@@ -14,31 +14,25 @@ const SURFACES: Surface[] = [
     title: "The Receipt™",
     caption: "Pattern memory for public speech.",
     image: "/gallery/B1_pattern_memory.webp",
-    placard: "Semantic timeline. Recurring language tracked across every statement. Match counts by tier.",
+    placard: "Match tiers surface the strongest patterns. History doesn\u2019t disappear.",
   },
   {
     title: "Framing Radar™",
     caption: "Five axes. One pentagon. Every model.",
     image: "/gallery/B2_five_dimensions.webp",
-    placard: "Rhetorical structure measured across five dimensions. Each axis computed independently per model.",
+    placard: "Overlay the models and the structure of the statement reveals itself.",
   },
   {
     title: "The Lens Lab™",
     caption: "Three systems. Side by side. You decide.",
     image: "/gallery/B3_three_lenses.webp",
-    placard: "Independent outputs displayed together. Consensus computed after. No model sees another.",
+    placard: "Consensus is computed after, displayed alongside, never merged.",
   },
   {
     title: "Provision Drift™",
     caption: "Semantic distance. Scored.",
     image: "/gallery/B4_distance.webp",
-    placard: "Measures how far each provision drifts from a bill\u2019s stated purpose. Categorized, not judged.",
-  },
-  {
-    title: "Consensus",
-    caption: "Convergence is computed. Not curated.",
-    image: "/gallery/B5_convergence.webp",
-    placard: "Models agree, you see it. Models disagree, you see that too. Variance detected, never suppressed.",
+    placard: "The further it drifts, the higher the score. Categorized, not judged.",
   },
 ];
 

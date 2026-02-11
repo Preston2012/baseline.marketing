@@ -16,7 +16,6 @@ const FEATURES: Feature[] = [
     image: "/screens/A1_receipt_timeline.webp",
     details: [
       "Tracks recurring language patterns across statements over time.",
-      "Match counts displayed per tier. Core sees 3, Pro sees 5, Pro+ unlimited.",
       "Patterns are measured, not interpreted. You decide what they mean.",
     ],
   },
@@ -25,7 +24,6 @@ const FEATURES: Feature[] = [
     tagline: "Five dimensions. One surface.",
     image: "/screens/A2_framing_radar_5axis.webp",
     details: [
-      "Pentagon chart measuring five rhetorical framing dimensions.",
       "Each axis computed independently per AI model.",
       "Variance between models is surfaced, not hidden.",
     ],
@@ -35,19 +33,8 @@ const FEATURES: Feature[] = [
     tagline: "Three lenses. One statement. You compare.",
     image: "/screens/A3_lens_lab.webp",
     details: [
-      "Side-by-side outputs from three independent AI models.",
-      "Consensus layer computed after all models return.",
+      "Side-by-side outputs from independent AI models.",
       "No model sees another\u2019s output.",
-    ],
-  },
-  {
-    title: "Signal Metrics",
-    tagline: "Four measurements. Zero opinions.",
-    image: "/screens/A4_signal_metrics.webp",
-    details: [
-      "Repetition, Novelty, Affect, and Entropy. Scored 0-100.",
-      "Each metric independent. No metric influences another.",
-      "Displayed without thresholds or labels.",
     ],
   },
   {
@@ -56,28 +43,6 @@ const FEATURES: Feature[] = [
     image: "/screens/A5_provision_drift.webp",
     details: [
       "Measures semantic distance between provisions and a bill\u2019s stated purpose.",
-      "Scored 0-100: Low, Moderate, High, Very High drift.",
-      "Automated categorization only. Not an evaluation.",
-    ],
-  },
-  {
-    title: "Congressional Votes",
-    tagline: "Every vote. Every bill. Every member.",
-    image: "/screens/A6_congressional_votes.webp",
-    details: [
-      "Per-member, per-bill granularity across the full congressional record.",
-      "See exactly how any figure voted on any bill.",
-      "Displayed as recorded or not recorded. Never judged.",
-    ],
-  },
-  {
-    title: "Consensus Badge",
-    tagline: "Agreement surfaced. Disagreement surfaced.",
-    image: "/screens/A7_consensus_badge.webp",
-    details: [
-      "Shows how many models converge on similar measurements.",
-      "Disagreement triggers variance detection. Not suppression.",
-      "Computed after all models return independently.",
     ],
   },
 ];
