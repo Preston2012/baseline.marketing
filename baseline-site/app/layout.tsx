@@ -79,7 +79,7 @@ function JsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: site.name,
-    description: "Observational speech measurement using three independent AI systems",
+    description: "Observational speech measurement using independent AI systems",
     url: site.url,
     applicationCategory: "NewsApplication",
     operatingSystem: "iOS, Android",
