@@ -64,7 +64,7 @@ function JsonLd() {
       email: site.contact.support,
       contactType: "customer support"
     },
-    sameAs: [site.social.x]
+    sameAs: []
   };
 
   const website = {

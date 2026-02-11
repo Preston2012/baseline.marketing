@@ -27,11 +27,6 @@ export default function DoNotSellPage() {
         California Privacy Rights Act (CPRA). This page explains your opt-out options.
       </p>
 
-      {/* Audit fix: disclaimer on DNSS page */}
-      <p className="p" style={{ color: "var(--text)", fontWeight: 600 }}>
-        Observational analysis only. Not a fact-check.
-      </p>
-
       <h2 className="h3">What Data May Be Shared</h2>
       <p className="p">
         When advertisements are displayed to Core tier users, Google AdMob may collect device identifiers, ad

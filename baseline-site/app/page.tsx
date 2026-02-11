@@ -4,7 +4,6 @@ import { site } from "@/config/site";
 import { Card } from "@/components/Card";
 import { SecondaryLinkButton } from "@/components/Button";
 import { StoreCTA } from "@/components/StoreCTA";
-import { ScreenshotGrid } from "@/components/ScreenshotGrid";
 import { FrostedFeatures } from "@/components/FrostedFeature";
 import { ProductSurfacesGallery } from "@/components/ProductSurfacesGallery";
 
@@ -48,7 +47,6 @@ export default function HomePage() {
             Speech, You Can Measure.
           </h1>
 
-          {/* Audit fix: disclaimer immediately adjacent to H1, above fold */}
           <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 8, marginBottom: 4 }}>
             Observational analysis only. Not a fact-check.
           </p>
@@ -91,25 +89,6 @@ export default function HomePage() {
               View methodology
             </SecondaryLinkButton>
           </div>
-
-          <div style={{ height: 18 }} />
-
-          {/* Above-fold product visual */}
-          <div
-            style={{
-              borderRadius: 14,
-              border: "2px solid var(--border_inactive)",
-              overflow: "hidden",
-              background: "rgba(12,26,35,0.55)"
-            }}
-          >
-            <img
-              src="/screens/framing_radar.png"
-              alt="Framing Radar measurement surface"
-              loading="eager"
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
         </div>
       </section>
 
@@ -136,7 +115,7 @@ export default function HomePage() {
 
           <Card title="The Receipt™" className="cardInteractive">
             <p className="p" style={{ margin: 0 }}>
-              A compact readout of recurring language patterns over time, with match counts shown by tier.
+              A semantic timeline tracking recurring language patterns over time, with match counts shown by tier.
             </p>
           </Card>
 
@@ -152,36 +131,29 @@ export default function HomePage() {
             </p>
           </Card>
 
+          <Card title="Provision Drift™" className="cardInteractive">
+            <p className="p" style={{ margin: 0 }}>
+              Measures semantic distance between individual provisions and a bill&rsquo;s stated purpose. Scored 0&ndash;100.
+            </p>
+          </Card>
+
+          <Card title="Consensus Convergence" className="cardInteractive">
+            <p className="p" style={{ margin: 0 }}>
+              Models agree — you see it. Models disagree — you see that too. Computed after all three return independently.
+            </p>
+          </Card>
+
           <Card title="Historical Trends" className="cardInteractive">
             <p className="p" style={{ margin: 0 }}>
               Measurement over time. Track how a figure&rsquo;s language patterns shift.
             </p>
           </Card>
 
-          <Card title="Vote Tracking" className="cardInteractive">
+          <Card title="Congressional Vote Record" className="cardInteractive">
             <p className="p" style={{ margin: 0 }}>
-              Every vote. Every bill. Per-figure congressional record.
+              Every vote. Every bill. Every member. See exactly how each figure voted — displayed as recorded or not recorded.
             </p>
           </Card>
-        </div>
-
-        <div style={{ height: 12 }} />
-
-        {/* Pipeline diagram */}
-        <div
-          style={{
-            borderRadius: 14,
-            border: "2px solid var(--border_inactive)",
-            overflow: "hidden",
-            background: "rgba(12,26,35,0.55)"
-          }}
-        >
-          <img
-            src="/screens/pipeline_diagram.png"
-            alt="Pipeline diagram"
-            loading="lazy"
-            style={{ width: "100%", height: "auto" }}
-          />
         </div>
       </section>
 
@@ -312,8 +284,9 @@ export default function HomePage() {
         {/* ── Vote Record ── */}
         <h3 className="h3">Congressional Vote Record</h3>
         <p className="p" style={{ maxWidth: 560, marginBottom: 12 }}>
-          For congressional figures, voting records are tracked separately from
-          speech metrics. Votes are displayed as recorded or not recorded.
+          Every vote. Every bill. Every member. Per-figure, per-bill granularity
+          across the full congressional record. See exactly how any member voted
+          on any piece of legislation.
         </p>
 
         <div
@@ -425,14 +398,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SCREENSHOTS */}
-      <section className="section" aria-label="Screenshots">
-        <h2 className="h2">Product surfaces</h2>
-        <p className="p">Representative measurement surfaces from the app.</p>
-        <ScreenshotGrid />
-      </section>
-
-      {/* PRODUCT SURFACES GALLERY */}
+      {/* PRODUCT SURFACES GALLERY — museum section */}
       <ProductSurfacesGallery />
     </>
   );

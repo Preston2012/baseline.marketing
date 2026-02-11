@@ -81,12 +81,12 @@ export default function TermsPage() {
           (500 limit).
         </li>
         <li>
-          <strong>B2B ($3,999/year, annual-only):</strong> All Pro+ features with maximum throughput,
-          Annotations (1000 limit), and elevated rate limits.
+          <strong>B2B (annual-only, Contact Us):</strong> All Pro+ features with maximum throughput,
+          Annotations (1000 limit), and elevated rate limits. Includes a 30-day pilot period.
         </li>
       </ul>
       <p className="p">
-        All paid tiers include a 7-day free trial. Subscriptions renew automatically unless cancelled at least
+        Pro includes a 7-day free trial. Subscriptions renew automatically unless cancelled at least
         24 hours before the end of the current period. Payment is charged to your App Store or Google Play account.
         You can manage or cancel your subscription in your App Store / Google Play account settings.
       </p>

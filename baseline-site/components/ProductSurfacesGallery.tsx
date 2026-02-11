@@ -6,51 +6,45 @@ type Surface = {
   title: string;
   caption: string;
   image: string;
-  description: string;
+  placard: string;
 };
 
 const SURFACES: Surface[] = [
   {
     title: "The Receipt™",
-    caption: "Recurring patterns. Exposed over time.",
+    caption: "Pattern memory for public speech.",
     image: "/gallery/B1_pattern_memory.webp",
-    description:
-      "A semantic timeline tracking recurring language patterns. Match counts displayed by tier. Patterns measured — never interpreted.",
+    placard: "Semantic timeline. Recurring language tracked across every statement. Match counts by tier.",
   },
   {
     title: "Framing Radar™",
-    caption: "Five dimensions. One surface.",
+    caption: "Five axes. One pentagon. Every model.",
     image: "/gallery/B2_five_dimensions.webp",
-    description:
-      "Pentagon chart measuring five rhetorical framing dimensions. Each axis computed independently by each AI model. Variance surfaced when models disagree.",
+    placard: "Rhetorical structure measured across five dimensions. Each axis computed independently per model.",
   },
   {
     title: "The Lens Lab™",
-    caption: "Three lenses. One statement. You compare.",
+    caption: "Three systems. Side by side. You decide.",
     image: "/gallery/B3_three_lenses.webp",
-    description:
-      "Side-by-side outputs from three independent AI models. Consensus computed after all models return. No model sees another\u2019s output.",
+    placard: "Independent outputs displayed together. Consensus computed after. No model sees another.",
   },
   {
     title: "Signal Metrics",
-    caption: "Four measurements. Zero opinions.",
+    caption: "Repetition. Novelty. Affect. Entropy.",
     image: "/screens/A4_signal_metrics.webp",
-    description:
-      "Repetition, Novelty, Affect, and Entropy — each scored 0\u2013100 with no thresholds. Every metric independent. No metric influences another.",
+    placard: "Four measurements per statement. Scored 0\u2013100. No thresholds. No labels. No opinions.",
   },
   {
     title: "Provision Drift™",
-    caption: "How far did it drift?",
+    caption: "Semantic distance. Scored.",
     image: "/gallery/B4_distance.webp",
-    description:
-      "Measures semantic distance between individual provisions and a bill\u2019s stated purpose. Scored on a 0\u2013100 scale. Automated categorization — not evaluation.",
+    placard: "Measures how far each provision drifts from a bill\u2019s stated purpose. Categorized, not judged.",
   },
   {
     title: "Consensus",
-    caption: "Agreement surfaced. Disagreement surfaced.",
+    caption: "Convergence is computed. Not curated.",
     image: "/gallery/B5_convergence.webp",
-    description:
-      "Shows model convergence on similar measurements. Disagreement triggers variance detection, not suppression. Computed after all models return independently.",
+    placard: "Models agree \u2014 you see it. Models disagree \u2014 you see that too. Variance detected, never suppressed.",
   },
 ];
 
@@ -94,9 +88,9 @@ function SurfaceCard({ surface }: { surface: Surface }) {
         </div>
         <div
           className="data"
-          style={{ color: "var(--teal)", fontSize: 13, fontStyle: "italic", marginBottom: 4 }}
+          style={{ color: "var(--teal)", fontSize: 13, marginBottom: 4 }}
         >
-          &ldquo;{surface.caption}&rdquo;
+          {surface.caption}
         </div>
         {!expanded && (
           <div className="data" style={{ color: "var(--sub)", fontSize: 11, opacity: 0.5 }}>
@@ -120,13 +114,7 @@ function SurfaceCard({ surface }: { surface: Surface }) {
               paddingTop: 8,
             }}
           >
-            <p className="p" style={{ margin: "0 0 8px" }}>{surface.description}</p>
-            <div
-              className="small"
-              style={{ opacity: 0.6, fontStyle: "italic" }}
-            >
-              Observational analysis only. Not a fact-check.
-            </div>
+            <p className="p" style={{ margin: 0, fontWeight: 500 }}>{surface.placard}</p>
           </div>
         </div>
       </div>
@@ -156,6 +144,14 @@ export function ProductSurfacesGallery() {
         {SURFACES.map((s) => (
           <SurfaceCard key={s.title} surface={s} />
         ))}
+      </div>
+
+      {/* Section-level disclaimer */}
+      <div
+        className="small"
+        style={{ opacity: 0.5, fontStyle: "italic", marginTop: 16, textAlign: "center" }}
+      >
+        Observational analysis only. Not a fact-check.
       </div>
 
       <style>{`

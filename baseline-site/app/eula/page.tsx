@@ -66,7 +66,7 @@ export default function EulaPage() {
         Pro, Pro+, and B2B. B2B plans may be provisioned directly and may not be listed for purchase in-app.
       </p>
       <p className="p">
-        All paid tiers include a 7-day free trial. Subscriptions automatically renew at the end of each billing
+        Pro includes a 7-day free trial. Subscriptions automatically renew at the end of each billing
         period (monthly or annual) unless you cancel at least 24 hours before the end of the current period.
       </p>
       <p className="p">
@@ -78,7 +78,7 @@ export default function EulaPage() {
       {/* ── 5. Free Trial ─────────────────────────────────────── */}
       <h2 className="h3">5. Free Trial</h2>
       <p className="p">
-        All paid tiers include a 7-day free trial. If you do not cancel before the trial ends, your subscription
+        Pro includes a 7-day free trial. If you do not cancel before the trial ends, your subscription
         will automatically convert to a paid subscription and you will be charged the applicable subscription price.
         Any unused portion of a free trial period may be forfeited when you purchase a subscription, as determined
         by the applicable platform (Apple or Google).

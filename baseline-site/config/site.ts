@@ -6,9 +6,7 @@ export const site = {
   // (Mandatory disclaimer is presented in UI via DisclaimerBar.)
   description:
     "Speech, You Can Measure. Observational analysis of public speech using three independent AI systems. Inputs are identical. Outputs are displayed side-by-side with sources and context. Observational analysis only. Not a fact-check.",
-  social: {
-    x: "https://x.com/PrestonWinters8"
-  },
+  social: {},
   contact: {
     support: "support@baseline.marketing",
     privacy: "privacy@baseline.marketing",
