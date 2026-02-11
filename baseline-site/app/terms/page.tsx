@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TermsPage() {
   return (
     <LegalDoc
-      title="BASELINE &mdash; Terms of Service"
+      title="BASELINE | Terms of Service"
       effectiveDate="February 8, 2026"
       lastUpdated="February 8, 2026"
       summary={[

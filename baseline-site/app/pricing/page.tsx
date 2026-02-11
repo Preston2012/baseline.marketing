@@ -3,11 +3,11 @@ import { site } from "@/config/site";
 import { PricingTable } from "@/components/PricingTable";
 
 export const metadata: Metadata = {
-  title: "Pricing — Baseline",
+  title: "Pricing | Baseline",
   description: "Free tier with full analysis. Pro for power users. Pro+ for bill analysis and Provision Drift™. Speech measurement at every level.",
   alternates: { canonical: `${site.url}/pricing/` },
   openGraph: {
-    title: "Pricing — Baseline",
+    title: "Pricing | Baseline",
     description: "Free tier with full analysis. Pro for power users. Pro+ for bill analysis and Provision Drift™.",
     images: [{ url: "/og/pricing-og.png", width: 1200, height: 630, alt: "Baseline Pricing" }],
   },

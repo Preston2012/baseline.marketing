@@ -4,12 +4,12 @@ import { ScreenshotGrid } from "@/components/ScreenshotGrid";
 import { Card } from "@/components/Card";
 
 export const metadata: Metadata = {
-  title: "Press — Baseline",
-  description: "Media resources for Baseline — the first observational speech measurement platform using three independent AI systems.",
+  title: "Press | Baseline",
+  description: "Media resources for Baseline. The first observational speech measurement platform using three independent AI systems.",
   alternates: { canonical: `${site.url}/press/` },
   openGraph: {
-    title: "Press — Baseline",
-    description: "Media resources for Baseline — the first observational speech measurement platform using three independent AI systems.",
+    title: "Press | Baseline",
+    description: "Media resources for Baseline. The first observational speech measurement platform using three independent AI systems.",
     images: [{ url: "/og/press-og.png", width: 1200, height: 630, alt: "Baseline Press" }],
   },
 };

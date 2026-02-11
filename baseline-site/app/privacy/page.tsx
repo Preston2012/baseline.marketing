@@ -4,14 +4,14 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Baseline Privacy Policy — data collection, use, sharing, retention, and your rights.",
+  description: "Baseline Privacy Policy. Data collection, use, sharing, retention, and your rights.",
   alternates: { canonical: `${site.url}/privacy/` }
 };
 
 export default function PrivacyPage() {
   return (
     <LegalDoc
-      title="BASELINE &mdash; Privacy Policy"
+      title="BASELINE | Privacy Policy"
       effectiveDate="February 8, 2026"
       lastUpdated="February 8, 2026"
       summary={[
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
             <tr>
               <td><strong>AI Providers</strong></td>
               <td>Observational analysis of public-figure statement text</td>
-              <td>Public-figure statement text only &mdash; no user personal data is sent to AI providers</td>
+              <td>Public-figure statement text only. No user personal data is sent to AI providers</td>
             </tr>
             <tr>
               <td><strong>Apple / Google</strong></td>

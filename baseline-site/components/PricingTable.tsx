@@ -57,7 +57,7 @@ export function PricingTable() {
       bullets: [
         "All Pro features",
         "Bill Overview & Notable Provisions",
-        "Provision Drift\u2122 \u2014 semantic distance scoring",
+        "Provision Drift2122: semantic distance scoring",
         "Unlimited Receipt\u2122 history",
         "Advanced notification controls",
         "Higher frequency digest updates",

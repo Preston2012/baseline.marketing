@@ -8,7 +8,7 @@ import { FrostedFeatures } from "@/components/FrostedFeature";
 import { ProductSurfacesGallery } from "@/components/ProductSurfacesGallery";
 
 export const metadata: Metadata = {
-  title: "Baseline — Speech, You Can Measure.",
+  title: "Baseline | Speech, You Can Measure.",
   description: "Three independent AI systems measure public speech side-by-side. Observational analysis with sources and context. Not a fact-check.",
   alternates: { canonical: `${site.url}/` }
 };
@@ -102,56 +102,56 @@ export default function HomePage() {
         </div>
 
         <p className="p" style={{ maxWidth: 760 }}>
-          Independent outputs. Side-by-side. Then consensus — computed, not curated.
+          Independent outputs. Side-by-side. Then consensus. Computed, not curated.
           Observational analysis only. Not a fact-check.
         </p>
 
         <div className="grid grid_2" style={{ marginTop: 12 }}>
           <Card title="Three independent systems" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
+            <p className="p redacted" style={{ margin: 0 }}>
               Identical input is processed independently by three AI systems. Outputs are displayed as returned, without editorial rewriting.
             </p>
           </Card>
 
           <Card title="The Receipt™" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
+            <p className="p redacted" style={{ margin: 0 }}>
               A semantic timeline tracking recurring language patterns over time, with match counts shown by tier.
             </p>
           </Card>
 
           <Card title="Framing Radar™ (5 axes)" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
+            <p className="p redacted" style={{ margin: 0 }}>
               A measurement surface for rhetorical structure across five framing dimensions.
             </p>
           </Card>
 
           <Card title="The Lens Lab™" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
+            <p className="p redacted" style={{ margin: 0 }}>
               Side-by-side lens outputs, plus a separate consensus layer for shared patterns and variance.
             </p>
           </Card>
 
           <Card title="Provision Drift™" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
-              Measures semantic distance between individual provisions and a bill&rsquo;s stated purpose. Scored 0&ndash;100.
+            <p className="p redacted" style={{ margin: 0 }}>
+              Measures semantic distance between individual provisions and a bill&rsquo;s stated purpose. Scored 0-100.
             </p>
           </Card>
 
           <Card title="Consensus Convergence" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
-              Models agree — you see it. Models disagree — you see that too. Computed after all three return independently.
+            <p className="p redacted" style={{ margin: 0 }}>
+              Models agree, you see it. Models disagree, you see that too. Computed after all three return independently.
             </p>
           </Card>
 
           <Card title="Historical Trends" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
+            <p className="p redacted" style={{ margin: 0 }}>
               Measurement over time. Track how a figure&rsquo;s language patterns shift.
             </p>
           </Card>
 
           <Card title="Congressional Vote Record" className="cardInteractive">
-            <p className="p" style={{ margin: 0 }}>
-              Every vote. Every bill. Every member. See exactly how each figure voted — displayed as recorded or not recorded.
+            <p className="p redacted" style={{ margin: 0 }}>
+              Every vote. Every bill. Every member. See exactly how each figure voted. Displayed as recorded or not recorded.
             </p>
           </Card>
         </div>
@@ -169,7 +169,7 @@ export default function HomePage() {
             Measurement Stack
           </span>
           <h2 className="h2" style={{ marginTop: 8, fontSize: 22 }}>What We Measure</h2>
-          <p className="p" style={{ maxWidth: 560, margin: "8px auto 0" }}>
+          <p className="p redacted" style={{ maxWidth: 560, margin: "8px auto 0" }}>
             Every statement. Multiple measurement layers. Each metric independent.
             No metric influences another.
           </p>
@@ -177,16 +177,16 @@ export default function HomePage() {
 
         {/* ── Signal Metrics ── */}
         <h3 className="h3">Signal Metrics</h3>
-        <p className="p" style={{ maxWidth: 560, marginBottom: 12 }}>
+        <p className="p redacted" style={{ maxWidth: 560, marginBottom: 12 }}>
           Four independent measurements computed per statement by each AI model.
-          Displayed on a 0–100 scale with no thresholds or labels.
+          Displayed on a 0-100 scale with no thresholds or labels.
         </p>
 
         <div className="grid grid_2" style={{ marginBottom: 24 }}>
           {[
             { name: "Repetition", value: 73, desc: "How closely this statement\u2019s language mirrors the figure\u2019s prior statements on the same topic." },
             { name: "Novelty", value: 41, desc: "How much new language or framing this statement introduces compared to prior patterns." },
-            { name: "Affect", value: 58, desc: "The rate of emotionally charged language \u2014 intensity markers, urgency signals, sentiment-loaded phrasing." },
+            { name: "Affect", value: 58, desc: "The rate of emotionally charged language . Intensity markers, urgency signals, sentiment-loaded phrasing." },
             { name: "Entropy", value: 29, desc: "Topical spread of the statement. Higher values indicate multiple subjects; lower values indicate tight focus." },
           ].map((m) => (
             <div
@@ -207,7 +207,7 @@ export default function HomePage() {
               <div style={{ height: 4, borderRadius: 2, background: "var(--border_inactive)", marginBottom: 10, overflow: "hidden" }}>
                 <div style={{ height: "100%", width: `${m.value}%`, background: "var(--teal)", borderRadius: 2 }} />
               </div>
-              <p className="p" style={{ margin: 0, fontSize: 13 }}>{m.desc}</p>
+              <p className="p redacted" style={{ margin: 0, fontSize: 13 }}>{m.desc}</p>
             </div>
           ))}
         </div>
@@ -238,20 +238,24 @@ export default function HomePage() {
                 <div className="small">Consensus Badge</div>
               </div>
             </div>
+            <div className="redacted">
             <p className="p" style={{ margin: "0 0 8px" }}>
               Models agree? You see it. Models disagree? You see that too.
             </p>
             <p className="p" style={{ margin: 0, paddingTop: 8, borderTop: "2px solid var(--border_inactive)" }}>
-              Each model processes the statement separately — none can see the
+              Each model processes the statement separately. None can see the
               others&#39; results. Convergence is computed after all three models
               have returned their independent outputs.
             </p>
+            </div>
+            <span className="redacted-label">Classified until launch</span>
           </Card>
 
           {/* Variance Detection */}
           <Card className="cardInteractive">
             <div style={{ color: "var(--text)", fontWeight: 600, fontSize: 14, marginBottom: 4 }}>Variance Detection</div>
             <div className="small" style={{ marginBottom: 12 }}>When models disagree</div>
+            <div className="redacted">
             {/* Variance banner mock */}
             <div
               style={{
@@ -271,25 +275,28 @@ export default function HomePage() {
             <p className="p" style={{ margin: "0 0 10px" }}>
               When models produce significantly different framing classifications
               for the same statement, a variance banner appears. This is not an
-              error — it reflects genuine measurement divergence.
+              error. It reflects genuine measurement divergence.
             </p>
             <div className="data" style={{ fontSize: 12, lineHeight: 1.8, color: "var(--sub)" }}>
               <div>GP&nbsp;&nbsp;<span style={{ color: "var(--text)" }}>Economic</span>&nbsp;&nbsp;<span style={{ color: "var(--teal)" }}>82</span></div>
               <div>CL&nbsp;&nbsp;<span style={{ color: "var(--text)" }}>Security</span>&nbsp;&nbsp;<span style={{ color: "var(--teal)" }}>76</span></div>
               <div>GR&nbsp;&nbsp;<span style={{ color: "var(--text)" }}>Economic</span>&nbsp;&nbsp;<span style={{ color: "var(--teal)" }}>79</span></div>
             </div>
+            </div>
+            <span className="redacted-label">Classified until launch</span>
           </Card>
         </div>
 
         {/* ── Vote Record ── */}
         <h3 className="h3">Congressional Vote Record</h3>
-        <p className="p" style={{ maxWidth: 560, marginBottom: 12 }}>
+        <p className="p redacted" style={{ maxWidth: 560, marginBottom: 12 }}>
           Every vote. Every bill. Every member. Per-figure, per-bill granularity
           across the full congressional record. See exactly how any member voted
           on any piece of legislation.
         </p>
 
         <div
+          className="redacted"
           style={{
             background: "var(--card)",
             border: "2px solid var(--border_inactive)",
@@ -353,7 +360,7 @@ export default function HomePage() {
 
         {/* ── Three-Model Pipeline ── */}
         <h3 className="h3">Three-Model Pipeline</h3>
-        <p className="p" style={{ maxWidth: 560, marginBottom: 12 }}>
+        <p className="p redacted" style={{ maxWidth: 560, marginBottom: 12 }}>
           Every statement flows through three independent AI models. Each model receives
           identical input and returns its own measurements. No model can see another&#39;s output.
         </p>
@@ -392,7 +399,7 @@ export default function HomePage() {
               <div style={{ color: "var(--text)", fontWeight: 600, fontSize: 13, marginBottom: 4 }}>
                 {m.code} analysis
               </div>
-              <p className="p" style={{ margin: 0, fontSize: 12 }}>{m.desc}</p>
+              <p className="p redacted" style={{ margin: 0, fontSize: 12 }}>{m.desc}</p>
             </div>
           ))}
         </div>

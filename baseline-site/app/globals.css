@@ -137,6 +137,25 @@ img{ max-width:100%; height:auto; display:block; }
   }
 }
 
+/* Redacted text — pre-launch stealth on proprietary surfaces. Remove .redacted class on launch day. */
+.redacted{
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  transition: filter 300ms ease-out;
+}
+.redacted-label{
+  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(45,212,191,0.4);
+  margin-top: 8px;
+  display: block;
+}
+
 /* Print */
 @media print{
   body{ background:#ffffff; color:#000000; }

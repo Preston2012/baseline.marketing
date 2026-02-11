@@ -29,12 +29,6 @@ const SURFACES: Surface[] = [
     placard: "Independent outputs displayed together. Consensus computed after. No model sees another.",
   },
   {
-    title: "Signal Metrics",
-    caption: "Repetition. Novelty. Affect. Entropy.",
-    image: "/screens/A4_signal_metrics.webp",
-    placard: "Four measurements per statement. Scored 0\u2013100. No thresholds. No labels. No opinions.",
-  },
-  {
     title: "Provision Drift™",
     caption: "Semantic distance. Scored.",
     image: "/gallery/B4_distance.webp",
@@ -44,7 +38,7 @@ const SURFACES: Surface[] = [
     title: "Consensus",
     caption: "Convergence is computed. Not curated.",
     image: "/gallery/B5_convergence.webp",
-    placard: "Models agree \u2014 you see it. Models disagree \u2014 you see that too. Variance detected, never suppressed.",
+    placard: "Models agree, you see it. Models disagree, you see that too. Variance detected, never suppressed.",
   },
 ];
 
@@ -90,7 +84,7 @@ function SurfaceCard({ surface }: { surface: Surface }) {
           className="data"
           style={{ color: "var(--teal)", fontSize: 13, marginBottom: 4 }}
         >
-          {surface.caption}
+          <span className="redacted">{surface.caption}</span>
         </div>
         {!expanded && (
           <div className="data" style={{ color: "var(--sub)", fontSize: 11, opacity: 0.5 }}>
@@ -114,7 +108,8 @@ function SurfaceCard({ surface }: { surface: Surface }) {
               paddingTop: 8,
             }}
           >
-            <p className="p" style={{ margin: 0, fontWeight: 500 }}>{surface.placard}</p>
+            <p className="p redacted" style={{ margin: 0, fontWeight: 500 }}>{surface.placard}</p>
+            <span className="redacted-label">Classified until launch</span>
           </div>
         </div>
       </div>
