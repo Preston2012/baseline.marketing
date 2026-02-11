@@ -12,10 +12,12 @@ type Tier = {
   annual: string;
   note?: string;
   bullets: string[];
+  collapsed?: boolean;
 };
 
 export function PricingTable() {
   const [billing, setBilling] = useState<Billing>("monthly");
+  const [proExpanded, setProExpanded] = useState(false);
 
   const tiers: Tier[] = [
     {
@@ -52,28 +54,30 @@ export function PricingTable() {
       name: "Pro+",
       monthly: "$24.99 / month",
       annual: "$199.99 / year",
-      note: "More signal. Less noise. Includes 7-day free trial.",
       bullets: [
         "All Pro features",
         "Bill Overview & Notable Provisions",
-        "Provision Drift\u2122 — semantic distance scoring",
+        "Provision Drift\u2122 \u2014 semantic distance scoring",
         "Unlimited Receipt\u2122 history",
         "Advanced notification controls",
         "Higher frequency digest updates",
         "Annotations: 500"
-      ]
+      ],
+      collapsed: true,
     },
     {
       id: "b2b",
       name: "B2B",
       monthly: "Contact Us",
-      annual: "$3,999 / year",
+      annual: "Contact Us",
       note: "Annual-only. Founding Partner pricing available for a limited time.",
       bullets: [
         "All Pro+ features",
         "Max throughput tier",
         "Annotations: 1000",
-        "Elevated rate limits"
+        "Elevated rate limits",
+        "30-day pilot included",
+        "Team access (coming soon)"
       ]
     }
   ];
@@ -82,14 +86,14 @@ export function PricingTable() {
 
   return (
     <div>
-      {/* Audit fix: exact launch pricing language */}
+      {/* Launch pricing callout */}
       <p className="p" style={{ marginTop: 10 }}>
         <span className="data">
           Pro launch price: $5.99/mo for the first 60 days, then $7.99/mo. Includes 7-day free trial.
         </span>
       </p>
 
-      {/* Audit fix: tabs pattern with role="tab" + aria-selected + aria-controls */}
+      {/* Billing toggle */}
       <div
         aria-label="Billing period"
         role="tablist"
@@ -150,39 +154,110 @@ export function PricingTable() {
         className="grid grid_2"
         style={{ marginTop: 12, alignItems: "stretch" }}
       >
-        {tiers.map((t) => (
-          <Card key={t.id} title={t.name}>
-            <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
-              <div className="data" style={{ fontSize: 16 }}>
-                {priceFor(t)}
+        {tiers.map((t) => {
+          /* Pro+ collapsed card */
+          if (t.collapsed) {
+            return (
+              <Card key={t.id} title={t.name}>
+                <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+                  <div className="data" style={{ fontSize: 16 }}>
+                    {priceFor(t)}
+                  </div>
+                </div>
+
+                {/* Collapsed state: one-liner + expand */}
+                {!proExpanded && (
+                  <div style={{ marginTop: 8 }}>
+                    <div
+                      className="data"
+                      style={{ color: "var(--sub)", fontSize: 13 }}
+                    >
+                      More signal. Less noise.
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setProExpanded(true)}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "var(--teal)",
+                        fontSize: 12,
+                        cursor: "pointer",
+                        padding: "8px 0 0",
+                        fontWeight: 600,
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 4,
+                      }}
+                    >
+                      See features <span style={{ fontSize: 10, transition: "transform 200ms" }}>▸</span>
+                    </button>
+                  </div>
+                )}
+
+                {/* Expanded state: full feature list */}
+                {proExpanded && (
+                  <div style={{ marginTop: 10 }}>
+                    <ul className="p" style={{ margin: 0 }}>
+                      {t.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                    <button
+                      type="button"
+                      onClick={() => setProExpanded(false)}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        color: "var(--sub)",
+                        fontSize: 11,
+                        cursor: "pointer",
+                        padding: "8px 0 0",
+                      }}
+                    >
+                      Collapse
+                    </button>
+                  </div>
+                )}
+              </Card>
+            );
+          }
+
+          /* Standard cards: Core, Pro, B2B */
+          return (
+            <Card key={t.id} title={t.name}>
+              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 12 }}>
+                <div className="data" style={{ fontSize: 16 }}>
+                  {priceFor(t)}
+                </div>
               </div>
-            </div>
 
-            {t.note ? (
-              <div className="small" style={{ opacity: 0.95, marginTop: 6 }}>{t.note}</div>
-            ) : null}
+              {t.note ? (
+                <div className="small" style={{ opacity: 0.95, marginTop: 6 }}>{t.note}</div>
+              ) : null}
 
-            <div style={{ height: 10 }} />
+              <div style={{ height: 10 }} />
 
-            <ul className="p" style={{ margin: 0 }}>
-              {t.bullets.map((b) => (
-                <li key={b}>{b}</li>
-              ))}
-            </ul>
-          </Card>
-        ))}
+              <ul className="p" style={{ margin: 0 }}>
+                {t.bullets.map((b) => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+            </Card>
+          );
+        })}
       </div>
 
       <div style={{ height: 12 }} />
 
-      {/* Audit fix: explicit 7-day trial, no "may include" hedging, no "eligible new subscribers" vagueness */}
+      {/* Subscription terms — Pro only trial, B2B = 30-day pilot */}
       <Card title="Subscription terms">
         <div className="p" style={{ margin: 0 }}>
-          All paid tiers include a 7-day free trial. Subscriptions renew automatically unless cancelled at least
+          Pro includes a 7-day free trial. Subscriptions renew automatically unless cancelled at least
           24 hours before the end of the current period. Payment is charged to your App Store or Google Play
           account at confirmation of purchase (or after the trial ends). You can manage or cancel your
           subscription in your App Store / Google Play account settings. Refund requests are handled by Apple or
-          Google under their respective policies.
+          Google under their respective policies. B2B plans are annual-only and include a 30-day pilot period.
         </div>
       </Card>
     </div>

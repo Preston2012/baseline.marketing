@@ -20,10 +20,8 @@ export default function Nav() {
 
   const close = useCallback(() => setOpen(false), []);
 
-  /* close on route change */
   useEffect(() => { close(); }, [pathname, close]);
 
-  /* close on outside click */
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
@@ -36,7 +34,6 @@ export default function Nav() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open, close]);
 
-  /* trap focus inside mobile menu */
   useEffect(() => {
     if (!open) return;
     const trap = (e: KeyboardEvent) => {
@@ -58,7 +55,6 @@ export default function Nav() {
     return () => document.removeEventListener('keydown', trap);
   }, [open, close]);
 
-  /* scroll lock */
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -68,8 +64,7 @@ export default function Nav() {
     <header
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-        background: 'rgba(8,16,23,0.92)', backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        background: '#000',
         borderBottom: '2px solid rgba(45,212,191,0.08)',
       }}
     >
@@ -77,12 +72,13 @@ export default function Nav() {
         style={{
           maxWidth: 1120, margin: '0 auto',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '0 24px', height: 64,
+          padding: '0 24px', height: 56,
+          position: 'relative',
         }}
         aria-label="Main navigation"
       >
-        {/* ── Logo: BA mark only ── */}
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 0, textDecoration: 'none' }}>
+        {/* BA mark — left */}
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, zIndex: 2 }}>
           <Image
             src="/brand/ba_mark.png"
             alt="Baseline"
@@ -93,8 +89,31 @@ export default function Nav() {
           />
         </Link>
 
-        {/* ── Desktop links ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 28 }} className="nav-desktop">
+        {/* Wordmark — centered */}
+        <Link
+          href="/"
+          style={{
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            alignItems: 'center',
+            textDecoration: 'none',
+            zIndex: 1,
+          }}
+        >
+          <Image
+            src="/brand/wordmark.png"
+            alt="BASELINE"
+            width={1248}
+            height={832}
+            priority
+            style={{ height: 22, width: 'auto' }}
+          />
+        </Link>
+
+        {/* Desktop links — right */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 28, zIndex: 2 }} className="nav-desktop">
           {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
@@ -116,7 +135,7 @@ export default function Nav() {
           <PrimaryLinkButton href="/pricing/" ariaLabel="Download">Download</PrimaryLinkButton>
         </div>
 
-        {/* ── Mobile hamburger ── */}
+        {/* Mobile hamburger */}
         <button
           ref={buttonRef}
           onClick={() => setOpen(v => !v)}
@@ -127,13 +146,14 @@ export default function Nav() {
           style={{
             display: 'none', background: 'none', border: 'none',
             color: '#eaf2ff', fontSize: 24, cursor: 'pointer', padding: 8,
+            zIndex: 2,
           }}
         >
           {open ? '✕' : '≡'}
         </button>
       </nav>
 
-      {/* ── Mobile drawer ── */}
+      {/* Mobile drawer */}
       {open && (
         <>
           <div
@@ -151,8 +171,8 @@ export default function Nav() {
             aria-modal="true"
             aria-label="Mobile navigation"
             style={{
-              position: 'fixed', top: 64, left: 0, right: 0,
-              background: '#081017',
+              position: 'fixed', top: 56, left: 0, right: 0,
+              background: '#000',
               borderBottom: '2px solid rgba(45,212,191,0.12)',
               padding: '16px 24px 24px', zIndex: 99,
               display: 'flex', flexDirection: 'column', gap: 4,

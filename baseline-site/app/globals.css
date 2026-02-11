@@ -76,7 +76,7 @@ img{ max-width:100%; height:auto; display:block; }
   z-index: 9999;
 }
 
-#main{ scroll-margin-top: 72px; }
+#main{ scroll-margin-top: 64px; }
 
 /* Buttons (marketing CTA exception allows teal fills) */
 /* Audit fix: added background + border-color transitions for hover feedback */

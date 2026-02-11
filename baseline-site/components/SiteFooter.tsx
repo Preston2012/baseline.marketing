@@ -2,7 +2,6 @@ import Link from "next/link";
 import { site } from "@/config/site";
 
 export function SiteFooter() {
-  /* Static export: year is build-time. Rebuild yearly or convert to "use client" for runtime. */
   const year = new Date().getFullYear();
 
   return (
@@ -41,11 +40,8 @@ export function SiteFooter() {
           Baseline, The Receipt™, Framing Radar™, The Lens Lab™, and Provision Drift™ are trademarks of Baseline.
         </div>
 
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>
           <a className="small" href={`mailto:${site.contact.support}`}>{site.contact.support}</a>
-          <span className="small" style={{ opacity: 0.5 }}>&bull;</span>
-          {/* Audit fix: noopener noreferrer + target _blank on external link */}
-          <a className="small" href={site.social.x} target="_blank" rel="noopener noreferrer">X</a>
         </div>
       </div>
     </footer>
