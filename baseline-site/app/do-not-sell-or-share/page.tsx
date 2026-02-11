@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function DoNotSellPage() {
   return (
     <LegalDoc
-      title="BASELINE &mdash; Do Not Sell or Share My Personal Information"
+      title="BASELINE | Do Not Sell or Share My Personal Information"
       effectiveDate="February 8, 2026"
       lastUpdated="February 8, 2026"
       summary={[

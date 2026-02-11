@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function EulaPage() {
   return (
     <LegalDoc
-      title="BASELINE &mdash; End User License Agreement"
+      title="BASELINE | End User License Agreement"
       effectiveDate="February 8, 2026"
       lastUpdated="February 8, 2026"
       summary={[

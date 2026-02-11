@@ -16,7 +16,7 @@ const FEATURES: Feature[] = [
     image: "/screens/A1_receipt_timeline.webp",
     details: [
       "Tracks recurring language patterns across statements over time.",
-      "Match counts displayed per tier \u2014 Core sees 3, Pro sees 5, Pro+ unlimited.",
+      "Match counts displayed per tier . Core sees 3, Pro sees 5, Pro+ unlimited.",
       "Patterns are measured, not interpreted. You decide what they mean.",
     ],
   },
@@ -45,7 +45,7 @@ const FEATURES: Feature[] = [
     tagline: "Four measurements. Zero opinions.",
     image: "/screens/A4_signal_metrics.webp",
     details: [
-      "Repetition, Novelty, Affect, and Entropy \u2014 scored 0\u2013100.",
+      "Repetition, Novelty, Affect, and Entropy . Scored 0-100.",
       "Each metric independent. No metric influences another.",
       "Displayed without thresholds or labels.",
     ],
@@ -56,7 +56,7 @@ const FEATURES: Feature[] = [
     image: "/screens/A5_provision_drift.webp",
     details: [
       "Measures semantic distance between provisions and a bill\u2019s stated purpose.",
-      "Scored 0\u2013100: Low, Moderate, High, Very High drift.",
+      "Scored 0-100: Low, Moderate, High, Very High drift.",
       "Automated categorization only. Not an evaluation.",
     ],
   },
@@ -67,7 +67,7 @@ const FEATURES: Feature[] = [
     details: [
       "Per-member, per-bill granularity across the full congressional record.",
       "See exactly how any figure voted on any bill.",
-      "Displayed as recorded or not recorded \u2014 never judged.",
+      "Displayed as recorded or not recorded . Never judged.",
     ],
   },
   {
@@ -76,7 +76,7 @@ const FEATURES: Feature[] = [
     image: "/screens/A7_consensus_badge.webp",
     details: [
       "Shows how many models converge on similar measurements.",
-      "Disagreement triggers variance detection \u2014 not suppression.",
+      "Disagreement triggers variance detection . Not suppression.",
       "Computed after all models return independently.",
     ],
   },
@@ -171,7 +171,7 @@ function FrostedCard({ feature }: { feature: Feature }) {
             marginBottom: revealed ? 12 : 0,
           }}
         >
-          {feature.tagline}
+          <span className="redacted">{feature.tagline}</span>
         </div>
 
         {/* Expanded details */}
@@ -183,11 +183,12 @@ function FrostedCard({ feature }: { feature: Feature }) {
             transition: "max-height 400ms ease-out, opacity 300ms ease-out 100ms",
           }}
         >
-          <ul className="p" style={{ margin: "8px 0 0", paddingLeft: 18 }}>
+          <ul className="p redacted" style={{ margin: "8px 0 0", paddingLeft: 18 }}>
             {feature.details.map((d) => (
               <li key={d} style={{ marginBottom: 4 }}>{d}</li>
             ))}
           </ul>
+          <span className="redacted-label">Classified until launch</span>
         </div>
       </div>
     </div>
