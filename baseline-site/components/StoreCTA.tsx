@@ -3,41 +3,42 @@
 import { useState } from "react";
 
 export function StoreCTA({
-  variant = "primary",
-  label
+  store
 }: {
-  variant?: "primary" | "secondary";
-  label: string;
+  store: "appstore" | "googleplay";
 }) {
   const [open, setOpen] = useState(false);
 
-  const isPrimary = variant === "primary";
+  const badge =
+    store === "appstore"
+      ? { src: "/brand/badge_appstore.svg", alt: "Download on the App Store" }
+      : { src: "/brand/badge_googleplay.svg", alt: "Get it on Google Play" };
 
   return (
     <>
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className={isPrimary ? "btnPrimary" : "btnSecondary"}
+        aria-label={badge.alt}
         style={{
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          height: 52,
-          padding: "0 14px",
-          borderRadius: "var(--radius_btn)",
-          background: isPrimary ? "var(--teal)" : "transparent",
-          color: isPrimary ? "var(--bg)" : "var(--text)",
-          fontWeight: 600,
-          border: isPrimary
-            ? "2px solid rgba(45,212,191,0.35)"
-            : "2px solid var(--border_inactive)",
+          background: "transparent",
+          border: "none",
+          padding: 0,
           cursor: "pointer",
-          fontSize: 14,
-          fontFamily: "inherit"
+          borderRadius: 8,
+          transition: "opacity 0.15s ease"
         }}
+        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
+        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
-        {label}
+        <img
+          src={badge.src}
+          alt={badge.alt}
+          style={{ height: 44, width: "auto", display: "block" }}
+        />
       </button>
 
       {open ? (
