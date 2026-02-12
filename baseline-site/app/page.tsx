@@ -123,11 +123,6 @@ export default function HomePage() {
           </a>
         </div>
 
-        <p className="p" style={{ maxWidth: 760 }}>
-          Independent outputs. Side-by-side. Then consensus. Computed, not curated.
-          Observational analysis only. Not a fact-check.
-        </p>
-
         <div className="grid grid_2" style={{ marginTop: 12 }}>
           <Card title="1) Input Normalization" className="cardInteractive">
             <p className="p redacted" style={{ margin: 0 }}>
