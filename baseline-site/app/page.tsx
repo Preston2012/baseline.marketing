@@ -48,13 +48,16 @@ export default function HomePage() {
           </h1>
 
           <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 8, marginBottom: 0 }}>
-            What they said. How they said it. Pure signal.
+            What they said. How they said it.
+          </p>
+          <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 4, marginBottom: 0 }}>
+            Pure signal.
           </p>
 
-          {/* Teal rule */}
+          {/* Teal rule — matched to "Pure signal." width */}
           <div
             style={{
-              width: 80,
+              width: 120,
               height: 2,
               background: "var(--teal)",
               marginTop: 12,
@@ -63,8 +66,8 @@ export default function HomePage() {
           />
 
           <p className="p" style={{ maxWidth: 760, marginBottom: 8 }}>
-            Every statement runs through independent AI systems. Outputs compared.
-            Patterns tracked. Sources always visible. Anomalies surfaced.
+            Every verified public statement ingested, analyzed, and reduced to digestible data.
+            Anomalies surfaced, never suppressed.
           </p>
 
           <p className="small" style={{ fontStyle: "italic", opacity: 0.5, marginBottom: 4 }}>
@@ -92,11 +95,13 @@ export default function HomePage() {
 
           <div style={{ height: 16 }} />
 
-          {/* Conversion CTAs */}
-          <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-            <StoreCTA variant="primary" label="Download on the App Store" />
-            <StoreCTA variant="secondary" label="Get it on Google Play" />
+          {/* Conversion CTAs — official badges, Apple first per guidelines */}
+          <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+            <StoreCTA store="appstore" />
+            <StoreCTA store="googleplay" />
+          </div>
 
+          <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
             <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
               View pricing
             </SecondaryLinkButton>
