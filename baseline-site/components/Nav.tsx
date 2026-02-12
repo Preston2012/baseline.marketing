@@ -105,10 +105,10 @@ export default function Nav() {
           <Image
             src="/brand/wordmark.png"
             alt="BASELINE"
-            width={1248}
-            height={832}
+            width={358}
+            height={100}
             priority
-            style={{ height: 22, width: 'auto' }}
+            style={{ height: 30, width: 'auto' }}
           />
         </Link>
 

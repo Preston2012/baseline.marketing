@@ -47,13 +47,28 @@ export default function HomePage() {
             Speech, You Can Measure.
           </h1>
 
-          <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 8, marginBottom: 4 }}>
-            Observational analysis only. Not a fact-check.
+          <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 8, marginBottom: 0 }}>
+            What they said. How they said it. Pure signal.
           </p>
 
+          {/* Teal rule */}
+          <div
+            style={{
+              width: 80,
+              height: 2,
+              background: "var(--teal)",
+              marginTop: 12,
+              marginBottom: 12,
+            }}
+          />
+
           <p className="p" style={{ maxWidth: 760, marginBottom: 8 }}>
-            Multiple AI systems. Same input. Independent outputs.
-            Sources and context on every surface.
+            Every statement runs through independent AI systems. Outputs compared.
+            Patterns tracked. Sources always visible. Anomalies surfaced.
+          </p>
+
+          <p className="small" style={{ fontStyle: "italic", opacity: 0.5, marginBottom: 4 }}>
+            Observational analysis only. Not a fact-check.
           </p>
 
           {/* Instrument micro-row */}
@@ -243,8 +258,11 @@ export default function HomePage() {
 
           {/* ── Variance Detection ── */}
           <Card title="Variance Detection" className="cardInteractive">
-            <p className="p" style={{ margin: "0 0 8px" }}>
-              When models disagree, you see it. Surfaced, never suppressed.
+            <p className="p" style={{ margin: "0 0 4px" }}>
+              When models disagree, you see it.
+            </p>
+            <p className="p" style={{ margin: "0 0 8px", fontStyle: "italic", opacity: 0.7 }}>
+              Surfaced, never suppressed.
             </p>
             <div className="redacted">
               <p className="p" style={{ margin: 0 }}>
@@ -269,8 +287,11 @@ export default function HomePage() {
 
           {/* ── Historical Trends ── */}
           <Card title="Historical Trends" className="cardInteractive">
-            <p className="p" style={{ margin: "0 0 8px" }}>
-              Language patterns over time. Measured, not predicted.
+            <p className="p" style={{ margin: "0 0 4px" }}>
+              Language patterns over time.
+            </p>
+            <p className="p" style={{ margin: "0 0 8px", fontStyle: "italic", opacity: 0.7 }}>
+              Measured, not predicted.
             </p>
             <div className="redacted">
               <p className="p" style={{ margin: 0 }}>

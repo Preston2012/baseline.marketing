@@ -195,8 +195,11 @@ export default function MethodologyPage() {
         </Card>
 
         <Card title="Provision Drift™: Semantic Distance Scoring">
-          <p className="p" style={{ margin: "0 0 8px" }}>
-            Measures how far each provision drifts from a bill&rsquo;s stated purpose. Scored <span className="data" style={{ color: "var(--teal)" }}>0-100</span>.
+          <p className="p" style={{ margin: "0 0 4px" }}>
+            Measures how far each provision drifts from a bill&rsquo;s stated purpose.
+          </p>
+          <p className="p" style={{ margin: "0 0 8px", fontStyle: "italic", opacity: 0.7 }}>
+            Scored <span className="data" style={{ color: "var(--teal)" }}>0-100</span>.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
@@ -231,8 +234,11 @@ export default function MethodologyPage() {
 
       <div className="grid" style={{ gap: 16 }}>
         <Card title="Signal Metrics">
-          <p className="p" style={{ margin: "0 0 8px" }}>
-            Four independent scores computed per statement by each AI model. Each scored <span className="data" style={{ color: "var(--teal)" }}>0-100</span>.
+          <p className="p" style={{ margin: "0 0 4px" }}>
+            Four independent scores computed per statement by each AI model.
+          </p>
+          <p className="p" style={{ margin: "0 0 8px", fontStyle: "italic", opacity: 0.7 }}>
+            Each scored <span className="data" style={{ color: "var(--teal)" }}>0-100</span>.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
