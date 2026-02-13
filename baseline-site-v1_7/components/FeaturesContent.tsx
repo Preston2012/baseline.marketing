@@ -77,8 +77,8 @@ const TOOLS: FeatureItem[] = [
 const TIER_HIERARCHY: Record<TierFilter, string[]> = {
   ALL: ["CORE", "PRO", "PRO+", "B2B"],
   CORE: ["CORE"],
-  PRO: ["PRO"],
-  "PRO+": ["PRO+", "B2B"],
+  PRO: ["CORE", "PRO"],
+  "PRO+": ["CORE", "PRO", "PRO+", "B2B"],
 };
 
 function FeatureGrid({
@@ -112,40 +112,73 @@ function FeatureGrid({
 
   return (
     <div className="grid grid_2" style={{ marginTop: 12 }}>
-      {filtered.map((f) => (
-        <Card key={f.name} title={f.name}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              marginBottom: 8,
-            }}
-          >
-            <TierPill tier={f.tier} />
-          </div>
-          <p className="p" style={{ margin: 0 }}>
-            {f.desc}
-          </p>
-          {f.image && (
+      {filtered.map((f) => {
+        const isPremium = f.tier === "PRO+" || f.tier === "B2B";
+        return (
+          <Card key={f.name} title={f.name}>
             <div
               style={{
-                marginTop: 12,
-                borderRadius: 8,
-                overflow: "hidden",
-                border: "2px solid var(--border_inactive)",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                marginBottom: 8,
               }}
             >
-              <img
-                src={f.image}
-                alt={f.name}
-                loading="lazy"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
+              <TierPill tier={f.tier} />
             </div>
-          )}
-        </Card>
-      ))}
+            <p className="p" style={{ margin: 0 }}>
+              {f.desc}
+            </p>
+            {f.image && (
+              <div
+                style={{
+                  marginTop: 12,
+                  borderRadius: 8,
+                  overflow: "hidden",
+                  border: "2px solid var(--border_inactive)",
+                  position: "relative",
+                }}
+              >
+                <img
+                  src={f.image}
+                  alt={f.name}
+                  loading="lazy"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    filter: isPremium ? "blur(6px) brightness(0.7)" : "none",
+                    transition: "filter 300ms",
+                  }}
+                />
+                {isPremium && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <span
+                      className="data"
+                      style={{
+                        color: "var(--sub)",
+                        fontSize: 11,
+                        letterSpacing: "0.1em",
+                        opacity: 0.7,
+                      }}
+                    >
+                      MORE SIGNAL. LESS NOISE.
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+          </Card>
+        );
+      })}
     </div>
   );
 }

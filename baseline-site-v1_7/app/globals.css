@@ -116,7 +116,7 @@ img{ max-width:100%; height:auto; display:block; }
   z-index: 9999;
 }
 
-#main{ scroll-margin-top: 112px; }
+#main{ scroll-margin-top: 112px; padding-top: 100px; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce){

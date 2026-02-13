@@ -28,7 +28,7 @@ export function FeaturesNav({
   /* I5: Scroll spy — track which section is in view */
   useEffect(() => {
     const handler = () => {
-      const offset = 120; // nav height + sticky offset
+      const offset = 160; // main nav (56) + features nav (~90) + margin
       for (let i = SECTIONS.length - 1; i >= 0; i--) {
         const el = document.getElementById(SECTIONS[i].id);
         if (el && el.getBoundingClientRect().top <= offset) {
@@ -44,7 +44,11 @@ export function FeaturesNav({
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) {
+      const navHeight = navRef.current?.offsetHeight ?? 90;
+      const top = el.getBoundingClientRect().top + window.scrollY - 56 - navHeight - 16;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   };
 
   return (
