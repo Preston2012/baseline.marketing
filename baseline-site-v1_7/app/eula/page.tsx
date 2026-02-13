@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/config/site";
 import { LegalDoc } from "@/components/LegalDoc";
 
@@ -88,7 +89,7 @@ export default function EulaPage() {
       <h2 className="h3">6. Consent to Data Use</h2>
       <p className="p">
         By using the App, you consent to the collection and use of your information as described in our{" "}
-        <a href="/privacy/">Privacy Policy</a>. The App processes public-figure statement text through independent AI
+        <Link href="/privacy/">Privacy Policy</Link>. The App processes public-figure statement text through independent AI
         systems. No user personal data is sent to AI providers for analysis.
       </p>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/config/site";
 import { Card } from "@/components/Card";
 import { RadarTooltips } from "@/components/RadarTooltips";
@@ -390,7 +391,7 @@ export default function MethodologyPage() {
 
       <p className="p">
         This methodology page is a high-level description of the measurement surfaces. Specific feature limits and
-        subscription details are listed on the <a href="/pricing/">Pricing</a> page.
+        subscription details are listed on the <Link href="/pricing/">Pricing</Link> page.
       </p>
     </section>
   );

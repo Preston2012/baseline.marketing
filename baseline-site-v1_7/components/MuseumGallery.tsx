@@ -280,7 +280,7 @@ function MuseumCard({
               letterSpacing: "0.05em",
             }}
           >
-            Tap to reveal
+            &#9656; CLEARANCE REQUIRED
           </span>
         </div>
 
