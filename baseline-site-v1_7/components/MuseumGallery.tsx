@@ -12,6 +12,7 @@ type MuseumItem = {
 };
 
 const GALLERY: MuseumItem[] = [
+  /* ── CORE ── */
   {
     title: "The Receipt\u2122",
     tagline: "Recurring patterns. Measured over time.",
@@ -20,6 +21,23 @@ const GALLERY: MuseumItem[] = [
     placard:
       "Match tiers surface the strongest patterns. History doesn\u2019t disappear.",
   },
+  {
+    title: "Signal Pulse\u2122",
+    tagline: "The signal at a glance.",
+    tier: "CORE",
+    image: "/gallery/B7_signal_pulse.png",
+    placard:
+      "Visual summary of signal activity. No analysis required to read it.",
+  },
+  {
+    title: "Framing Fingerprint\u2122",
+    tagline: "A figure\u2019s rhetorical identity.",
+    tier: "CORE",
+    image: "/gallery/B10_framing_fingerprint.png",
+    placard:
+      "Aggregate framing tendencies rendered as a unique visual signature.",
+  },
+  /* ── PRO ── */
   {
     title: "Framing Radar\u2122",
     tagline: "Five axes. One pentagon. Every model.",
@@ -45,22 +63,6 @@ const GALLERY: MuseumItem[] = [
       "Side-by-side framing comparison across any two tracked figures.",
   },
   {
-    title: "Signal Pulse\u2122",
-    tagline: "The signal at a glance.",
-    tier: "CORE",
-    image: "/gallery/B7_signal_pulse.png",
-    placard:
-      "Visual summary of signal activity. No analysis required to read it.",
-  },
-  {
-    title: "Framing Fingerprint\u2122",
-    tagline: "A figure\u2019s rhetorical identity.",
-    tier: "CORE",
-    image: "/gallery/B10_framing_fingerprint.png",
-    placard:
-      "Aggregate framing tendencies rendered as a unique visual signature.",
-  },
-  {
     title: "Constellation Nav\u2122",
     tagline: "Navigate the network.",
     tier: "PRO",
@@ -68,6 +70,7 @@ const GALLERY: MuseumItem[] = [
     placard:
       "Explore connections between figures, topics, and framing patterns.",
   },
+  /* ── PRO+ ── */
   {
     title: "Provision Drift\u2122",
     tagline: "How far did it drift?",
@@ -100,6 +103,7 @@ const GALLERY: MuseumItem[] = [
     placard:
       "Complete analytical profile for a single figure. Every surface, one view.",
   },
+  /* ── B2B ── */
   {
     title: "Narrative Sync\u2122",
     tagline: "Cross-figure framing convergence.",
