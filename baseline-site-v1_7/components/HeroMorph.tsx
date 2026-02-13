@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const WORDS = ["Speech", "Patterns", "Signals", "Measured"];
+const WORDS = ["Speech", "Patterns", "Signals", "Language"];
 
 /** S9: Morphing word in hero headline.
  *  Crossfades between words on a 3s cycle. */
