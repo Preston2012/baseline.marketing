@@ -4,29 +4,29 @@ import { useState } from "react";
 
 const AXES = [
   {
-    name: "Economic",
-    short: "Economic",
-    desc: "Fiscal language, market framing, cost-benefit positioning.",
+    name: "Adversarial",
+    short: "Adversarial",
+    desc: "Oppositional language, conflict framing, us-vs-them positioning.",
   },
   {
-    name: "Procedural",
-    short: "Procedural",
-    desc: "Process-oriented language, institutional mechanics, governance framing.",
+    name: "Problem ID",
+    short: "Problem ID",
+    desc: "Problem identification, diagnosis framing, issue-surfacing language.",
   },
   {
-    name: "Constitutional",
-    short: "Constitutional",
-    desc: "Rights-based framing, legal precedent, foundational principles.",
+    name: "Commitment",
+    short: "Commitment",
+    desc: "Forward-looking language, pledges, commitment signals.",
   },
   {
-    name: "Personal",
-    short: "Personal",
-    desc: "Identity-driven language, individual narratives, emotional appeals.",
+    name: "Justification",
+    short: "Justification",
+    desc: "Reactive framing, defensive language, rationale and precedent appeals.",
   },
   {
-    name: "Security",
-    short: "Security",
-    desc: "Threat framing, safety language, defense and protection rhetoric.",
+    name: "Imperative",
+    short: "Imperative",
+    desc: "Directive language, calls to action, urgency and mandate framing.",
   },
 ];
 

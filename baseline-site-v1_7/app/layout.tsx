@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -22,6 +22,13 @@ const jetbrains = JetBrains_Mono({
   display: "swap"
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#000000",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -30,8 +37,6 @@ export const metadata: Metadata = {
   },
   description: site.description,
   alternates: { canonical: `${site.url}/` },
-  themeColor: "#000000",
-  viewport: { width: "device-width", initialScale: 1, maximumScale: 5 },
   openGraph: {
     type: "website",
     url: `${site.url}/`,

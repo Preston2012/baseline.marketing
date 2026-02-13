@@ -58,8 +58,8 @@ export function ManifestoScroll() {
       <div
         style={{
           position: "sticky",
-          top: 56, /* below nav */
-          height: "calc(100vh - 56px)",
+          top: 100, /* below nav (56) + disclaimer bar (~44) */
+          height: "calc(100vh - 100px)",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

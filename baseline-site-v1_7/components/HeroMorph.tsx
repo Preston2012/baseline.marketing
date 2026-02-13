@@ -31,7 +31,7 @@ export function HeroMorph() {
         transition: "opacity 400ms ease-out, transform 400ms ease-out",
       }}
     >
-      {WORDS[index]}
+      {WORDS[index]},
     </span>
   );
 }

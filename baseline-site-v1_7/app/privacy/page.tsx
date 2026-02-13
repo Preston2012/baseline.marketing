@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/config/site";
 import { LegalDoc } from "@/components/LegalDoc";
 
@@ -192,7 +193,7 @@ export default function PrivacyPage() {
       <p className="p">
         Ad-related data sharing may constitute &ldquo;sharing&rdquo; of personal information under the California
         Privacy Rights Act (CPRA). See Section 7 and our{" "}
-        <a href="/do-not-sell-or-share/">Do Not Sell or Share</a> page for opt-out instructions.
+        <Link href="/do-not-sell-or-share/">Do Not Sell or Share</Link> page for opt-out instructions.
       </p>
 
       {/* ── 6. Data Security ───────────────────────────────────── */}
@@ -220,7 +221,7 @@ export default function PrivacyPage() {
         California residents have the right to know what personal information is collected, request deletion, request
         correction, and opt out of the &ldquo;sale&rdquo; or &ldquo;sharing&rdquo; of personal information. Baseline
         does not sell personal information. For ad-related data sharing opt-out, see our{" "}
-        <a href="/do-not-sell-or-share/">Do Not Sell or Share</a> page.
+        <Link href="/do-not-sell-or-share/">Do Not Sell or Share</Link> page.
       </p>
 
       <h3 className="h3" style={{ marginTop: 12 }}>7.3 EEA / UK Residents (GDPR)</h3>

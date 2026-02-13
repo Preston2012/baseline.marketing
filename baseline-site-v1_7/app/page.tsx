@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { site } from "@/config/site";
 
 import { SecondaryLinkButton } from "@/components/Button";
@@ -56,7 +57,7 @@ export default function HomePage() {
 
         <div style={{ position: "relative", padding: 24 }}>
           <h1 className="h1" style={{ maxWidth: 820 }}>
-            <HeroMorph />, You Can Measure.
+            <HeroMorph /> You Can Measure.
           </h1>
 
           <p
@@ -68,13 +69,15 @@ export default function HomePage() {
               marginBottom: 0,
             }}
           >
-            What they said. How they said it. Pure signal.
+            What they said. How they said it.
+            <br />
+            <span style={{ color: "var(--teal)" }}>Pure signal.</span>
           </p>
 
-          {/* Teal rule */}
+          {/* Teal rule — matches "Pure signal." width */}
           <div
             style={{
-              width: 120,
+              width: 105,
               height: 2,
               background: "var(--teal)",
               marginTop: 12,
@@ -125,12 +128,18 @@ export default function HomePage() {
             <StoreCTA store="googleplay" />
           </div>
 
-          <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 10 }}>
+            <SecondaryLinkButton href="/features/" ariaLabel="View features">
+              Features
+            </SecondaryLinkButton>
             <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
-              View pricing
+              Pricing
             </SecondaryLinkButton>
             <SecondaryLinkButton href="/methodology/" ariaLabel="View methodology">
-              View methodology
+              Methodology
+            </SecondaryLinkButton>
+            <SecondaryLinkButton href="/what-we-dont-do/" ariaLabel="What we don't do">
+              What We Don&rsquo;t Do
             </SecondaryLinkButton>
           </div>
         </div>
@@ -147,9 +156,9 @@ export default function HomePage() {
           }}
         >
           <h2 className="h2">How it works</h2>
-          <a className="small" href="/methodology/">
+          <Link className="small" href="/methodology/">
             Methodology
-          </a>
+          </Link>
         </div>
 
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", marginTop: 12 }}>
@@ -194,53 +203,6 @@ export default function HomePage() {
               loading="lazy"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
-          </div>
-
-          {/* Model badges */}
-          <div
-            className="grid"
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-              marginTop: 12,
-            }}
-          >
-            {[
-              { code: "GP", desc: "Processes each statement independently. No access to other models\u2019 outputs." },
-              { code: "CL", desc: "Processes each statement independently. No access to other models\u2019 outputs." },
-              { code: "GR", desc: "Processes each statement independently. No access to other models\u2019 outputs." },
-            ].map((m) => (
-              <div
-                key={m.code}
-                style={{
-                  background: "var(--card)",
-                  border: "2px solid var(--border_inactive)",
-                  borderRadius: "var(--radius_card)",
-                  padding: 16,
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  style={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: "50%",
-                    border: "2px solid rgba(45,212,191,0.3)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    margin: "0 auto 10px",
-                  }}
-                >
-                  <span className="data" style={{ color: "var(--teal)", fontSize: 15 }}>
-                    {m.code}
-                  </span>
-                </div>
-                <div style={{ color: "var(--text)", fontWeight: 600, fontSize: 13, marginBottom: 4 }}>
-                  {m.code} analysis
-                </div>
-                <p className="p" style={{ margin: 0, fontSize: 12 }}>{m.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
