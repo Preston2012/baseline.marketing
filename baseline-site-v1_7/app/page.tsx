@@ -10,7 +10,7 @@ import { HeroMorph } from "@/components/HeroMorph";
 import { TheWall } from "@/components/TheWall";
 
 export const metadata: Metadata = {
-  title: "Baseline | Speech, You Can Measure.",
+  title: { absolute: "Baseline | Speech, You Can Measure." },
   description:
     "Independent AI systems measure public speech side-by-side. Observational analysis with sources and context. Not a fact-check.",
   alternates: { canonical: `${site.url}/` },
@@ -113,7 +113,6 @@ export default function HomePage() {
             </span>
           </div>
 
-          <div style={{ height: 16 }} />
 
           {/* Store CTAs */}
           <div
@@ -122,12 +121,64 @@ export default function HomePage() {
               gap: 12,
               alignItems: "center",
               flexWrap: "wrap",
+              marginTop: 16,
             }}
           >
             <StoreCTA store="appstore" />
             <StoreCTA store="googleplay" />
           </div>
 
+          {/* ── Teal hashmark ruler — separates "get it" from "explore it" ── */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: "relative",
+              height: 1,
+              margin: "18px 0 16px",
+              background: "rgba(45,212,191,0.06)",
+            }}
+          >
+            {Array.from({ length: 16 }).map((_, i) => {
+              const t = i / 15;
+              const centerDist = Math.abs(t - 0.5) * 2;
+              const alpha = 0.04 + (1 - centerDist) * 0.1;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute",
+                    left: `${t * 100}%`,
+                    top: -1,
+                    width: 1,
+                    height: i % 4 === 0 ? 5 : 2,
+                    background: `rgba(45,212,191,${alpha.toFixed(3)})`,
+                  }}
+                />
+              );
+            })}
+            <div
+              style={{
+                position: "absolute",
+                left: "50%",
+                top: -1,
+                width: 3,
+                height: 3,
+                borderRadius: "50%",
+                background: "rgba(45,212,191,0.15)",
+                transform: "translateX(-50%)",
+              }}
+            />
+          </div>
+
+          {/* ── Ethos — featured solo button ── */}
+          <SecondaryLinkButton href="/ethos/" ariaLabel="Read our ethos">
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+              <span style={{ color: "var(--teal)", fontSize: 10, opacity: 0.6 }}>{"\u2726"}</span>
+              Ethos
+            </span>
+          </SecondaryLinkButton>
+
+          {/* ── Nav grid — 2×2 ── */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 10 }}>
             <SecondaryLinkButton href="/features/" ariaLabel="View features">
               Features
@@ -139,7 +190,7 @@ export default function HomePage() {
               Methodology
             </SecondaryLinkButton>
             <SecondaryLinkButton href="/what-we-dont-do/" ariaLabel="What we don't do">
-              What We Don&rsquo;t Do
+              Our Limits
             </SecondaryLinkButton>
           </div>
         </div>
@@ -217,14 +268,35 @@ export default function HomePage() {
               borderRadius: "var(--radius_card)",
               overflow: "hidden",
               background: "var(--card)",
+              position: "relative",
             }}
           >
             <img
-              src="/screens/pipeline_diagram.png"
+              src="/screens/pipeline_diagram.webp"
               alt="Baseline analysis pipeline diagram"
               loading="lazy"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
             />
+            {/* Classification overlay */}
+            <div style={{
+              position: "absolute", inset: 0,
+              display: "flex", flexDirection: "column",
+              alignItems: "center", justifyContent: "center", gap: 6,
+              background: "rgba(0,0,0,0.15)",
+            }}>
+              <span className="data" style={{
+                color: "rgba(45,212,191,0.4)", fontSize: 10,
+                letterSpacing: "0.18em",
+                border: "1px solid rgba(45,212,191,0.15)",
+                borderRadius: 4, padding: "3px 10px",
+                textTransform: "uppercase",
+              }}>
+                CLASSIFIED
+              </span>
+              <span className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
+                FULL PIPELINE · PRE-LAUNCH
+              </span>
+            </div>
           </div>
         </div>
       </section>

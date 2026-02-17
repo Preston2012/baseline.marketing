@@ -4,25 +4,31 @@ import { useState, useCallback } from "react";
 import { Card } from "./Card";
 import { TierPill } from "./TierPill";
 import { FeaturesNav, type TierFilter } from "./FeaturesNav";
+import { FrostedWidgetPreview } from "./FrostedWidget";
+import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget } from "./GalleryWidgets";
 
 type FeatureItem = {
   name: string;
   desc: string;
   tier: "CORE" | "PRO" | "PRO+" | "B2B";
-  image?: string;
 };
 
 const SIGNALS: FeatureItem[] = [
-  { name: "Signal Metrics", desc: "Repetition, Novelty, Affect, Entropy. Four independent scores per statement, each 0\u2013100.", tier: "CORE", image: "/screens/A13_signal_metrics.png" },
-  { name: "Consensus Convergence", desc: "How many models landed in the same place. Displayed as a ratio.", tier: "CORE", image: "/screens/A15_consensus.png" },
+  { name: "Signal Metrics", desc: "Repetition, Novelty, Affect, Entropy. Four independent scores per statement, each 0\u2013100.", tier: "CORE" },
+  { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The measurement that matters.", tier: "CORE" },
+  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.", tier: "CORE" },
+  { name: "Lens Lab\u2122", desc: "Three AI models running in parallel. Same statement, three independent measurements.", tier: "PRO" },
+  { name: "Consensus Convergence", desc: "How many models landed in the same place. Displayed as a ratio.", tier: "CORE" },
   { name: "Consensus Confidence Ring", desc: "Radial progress indicator on the consensus badge. Visual read at a glance.", tier: "CORE" },
   { name: "Variance Detection", desc: "When models disagree, you see it. Surfaced, never suppressed.", tier: "CORE" },
   { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO" },
   { name: "Divergence Sort", desc: "Sort statements by lowest consensus. Surface the most contested measurements first.", tier: "PRO+" },
+  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.", tier: "PRO+" },
 ];
 
 const FEED: FeatureItem[] = [
-  { name: "Feed Browse + Statement Detail", desc: "Read-only access to every analyzed statement with full source context.", tier: "CORE", image: "/screens/A14_unified_search.png" },
+  { name: "The Receipt\u2122", desc: "Complete statement analysis surface. Every measurement, every source, one scroll.", tier: "CORE" },
+  { name: "Feed Browse + Statement Detail", desc: "Read-only access to every analyzed statement with full source context.", tier: "CORE" },
   { name: "Trending Topics", desc: "Backend-generated topic chips surfacing what\u2019s active now.", tier: "CORE" },
   { name: "Source Favicon", desc: "16px source icon next to every source name. Instant recognition.", tier: "CORE" },
   { name: "\u201CWhy am I seeing this?\u201D", desc: "Feed transparency \u2014 understand the ranking signal.", tier: "CORE" },
@@ -37,6 +43,7 @@ const FEED: FeatureItem[] = [
 
 const FIGURES: FeatureItem[] = [
   { name: "Figure Profiles", desc: "Every tracked figure with their full measurement history.", tier: "CORE" },
+  { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.", tier: "PRO" },
   { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.", tier: "CORE" },
   { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.", tier: "CORE" },
   { name: "\u201CStatements This Week\u201D Badge", desc: "Teal count badge showing recent statement volume per figure.", tier: "CORE" },
@@ -44,13 +51,14 @@ const FIGURES: FeatureItem[] = [
   { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access.", tier: "PRO" },
   { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.", tier: "PRO" },
   { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.", tier: "PRO+" },
+  { name: "Intersections Panel\u2122", desc: "Cross-figure link topology. See where rhetoric overlaps across figures.", tier: "PRO+" },
   { name: "Declassified Dossier\u2122", desc: "Complete analytical profile. Every surface, one view.", tier: "PRO+" },
 ];
 
 const BILLS: FeatureItem[] = [
-  { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded.", tier: "CORE", image: "/screens/A12_vote_record.png" },
+  { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded.", tier: "CORE" },
   { name: "Bill Overview & Notable Provisions", desc: "Structured summaries of legislation with provision-level detail.", tier: "PRO+" },
-  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+", image: "/screens/A11_provision_drift.png" },
+  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+" },
   { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap.", tier: "PRO+" },
   { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance.", tier: "PRO+" },
   { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift.", tier: "PRO+" },
@@ -113,7 +121,6 @@ function FeatureGrid({
   return (
     <div className="grid grid_2" style={{ marginTop: 12 }}>
       {filtered.map((f) => {
-        const isPremium = f.tier === "PRO+" || f.tier === "B2B";
         return (
           <Card key={f.name} title={f.name}>
             <div
@@ -129,53 +136,6 @@ function FeatureGrid({
             <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
               {f.desc}
             </p>
-            {f.image && (
-              <div
-                style={{
-                  marginTop: 12,
-                  borderRadius: 8,
-                  overflow: "hidden",
-                  border: "2px solid var(--border_inactive)",
-                  position: "relative",
-                }}
-              >
-                <img
-                  src={f.image}
-                  alt={f.name}
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    display: "block",
-                    filter: isPremium ? "blur(6px) brightness(0.7)" : "none",
-                    transition: "filter 300ms",
-                  }}
-                />
-                {isPremium && (
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <span
-                      className="data"
-                      style={{
-                        color: "var(--sub)",
-                        fontSize: 11,
-                        letterSpacing: "0.1em",
-                        opacity: 0.7,
-                      }}
-                    >
-                      MORE SIGNAL. LESS NOISE.
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
           </Card>
         );
       })}
@@ -226,6 +186,22 @@ export function FeaturesContent() {
       <section id="signals" className="section" aria-label="Signal features">
         <span className="section-label">SIGNALS</span>
         <FeatureGrid items={SIGNALS} filter={tier} />
+        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
+          <FrostedWidgetPreview label="SIGNAL METRICS · 4-AXIS DECOMPOSITION">
+            <SignalMetricsWidget />
+          </FrostedWidgetPreview>
+          <FrostedWidgetPreview label="BASELINE™ · 24HR ROLLING AGGREGATE">
+            <BaselineScoreWidget />
+          </FrostedWidgetPreview>
+        </div>
+        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
+          <FrostedWidgetPreview label="SIGNAL PULSE™ · ACTIVITY WAVEFORM">
+            <SignalPulseWidget />
+          </FrostedWidgetPreview>
+          <FrostedWidgetPreview label="CONSENSUS · MODEL CONVERGENCE">
+            <ConsensusRingWidget />
+          </FrostedWidgetPreview>
+        </div>
         <div
           className="small"
           style={{ fontStyle: "italic", opacity: 0.5, marginTop: 12 }}
@@ -234,11 +210,36 @@ export function FeaturesContent() {
         </div>
       </section>
 
+      {/* Section hash ruler */}
+      <div aria-hidden="true" style={{ height: 1, background: "rgba(45,212,191,0.04)", position: "relative", margin: "0 0 0" }}>
+        {Array.from({ length: 24 }).map((_, i) => {
+          const t = i / 23;
+          const a = 0.02 + (1 - Math.abs(t - 0.5) * 2) * 0.06;
+          return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: -1, width: 1, height: i % 6 === 0 ? 5 : 2, background: `rgba(45,212,191,${a.toFixed(4)})` }} />;
+        })}
+      </div>
+
       {/* FEED */}
       <section id="feed" className="section" aria-label="Feed features">
         <span className="section-label">FEED</span>
         <FeatureGrid items={FEED} filter={tier} />
+        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
+          <FrostedWidgetPreview label="THE RECEIPT™ · SIMILARITY TIMELINE">
+            <ReceiptTimelineWidget />
+          </FrostedWidgetPreview>
+          <FrostedWidgetPreview label="CROSSFIRE™ · DUAL FIGURE COMPARISON">
+            <CrossfireWidget />
+          </FrostedWidgetPreview>
+        </div>
       </section>
+
+      <div aria-hidden="true" style={{ height: 1, background: "rgba(45,212,191,0.04)", position: "relative" }}>
+        {Array.from({ length: 24 }).map((_, i) => {
+          const t = i / 23;
+          const a = 0.02 + (1 - Math.abs(t - 0.5) * 2) * 0.06;
+          return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: -1, width: 1, height: i % 6 === 0 ? 5 : 2, background: `rgba(45,212,191,${a.toFixed(4)})` }} />;
+        })}
+      </div>
 
       {/* FIGURES */}
       <section id="figures" className="section" aria-label="Figure features">
@@ -313,12 +314,46 @@ export function FeaturesContent() {
         </div>
 
         <FeatureGrid items={FIGURES} filter={tier} />
+        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
+          <FrostedWidgetPreview label="FRAMING RADAR™ · 5-AXIS MEASUREMENT">
+            <RadarDemoWidget />
+          </FrostedWidgetPreview>
+          <FrostedWidgetPreview label="FRAMING FINGERPRINT™ · RHETORICAL IDENTITY">
+            <FingerprintWidget />
+          </FrostedWidgetPreview>
+        </div>
+        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
+          <FrostedWidgetPreview label="CONSTELLATION NAV™ · FIGURE TOPOLOGY">
+            <ConstellationWidget />
+          </FrostedWidgetPreview>
+          <FrostedWidgetPreview label="INTERSECTIONS PANEL™ · FRAMING OVERLAP">
+            <IntersectionsWidget />
+          </FrostedWidgetPreview>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="DECLASSIFIED DOSSIER™ · EXHIBIT PLATE PROFILE">
+            <DossierWidget />
+          </FrostedWidgetPreview>
+        </div>
       </section>
+
+      <div aria-hidden="true" style={{ height: 1, background: "rgba(45,212,191,0.04)", position: "relative" }}>
+        {Array.from({ length: 24 }).map((_, i) => {
+          const t = i / 23;
+          const a = 0.02 + (1 - Math.abs(t - 0.5) * 2) * 0.06;
+          return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: -1, width: 1, height: i % 6 === 0 ? 5 : 2, background: `rgba(45,212,191,${a.toFixed(4)})` }} />;
+        })}
+      </div>
 
       {/* BILLS */}
       <section id="bills" className="section" aria-label="Bill features">
         <span className="section-label">BILLS</span>
         <FeatureGrid items={BILLS} filter={tier} />
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="PROVISION DRIFT™ · SEMANTIC DISTANCE">
+            <DriftWidget />
+          </FrostedWidgetPreview>
+        </div>
         <div
           className="small"
           style={{ fontStyle: "italic", opacity: 0.5, marginTop: 12 }}
@@ -327,23 +362,24 @@ export function FeaturesContent() {
         </div>
       </section>
 
+      <div aria-hidden="true" style={{ height: 1, background: "rgba(45,212,191,0.04)", position: "relative" }}>
+        {Array.from({ length: 24 }).map((_, i) => {
+          const t = i / 23;
+          const a = 0.02 + (1 - Math.abs(t - 0.5) * 2) * 0.06;
+          return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: -1, width: 1, height: i % 6 === 0 ? 5 : 2, background: `rgba(45,212,191,${a.toFixed(4)})` }} />;
+        })}
+      </div>
+
       {/* TOOLS */}
       <section id="tools" className="section" aria-label="Tool features">
         <span className="section-label">TOOLS</span>
         <FeatureGrid items={TOOLS} filter={tier} />
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="LENS LAB™ · 3-SYSTEM PARALLEL ANALYSIS">
+            <LensLabWidget />
+          </FrostedWidgetPreview>
+        </div>
       </section>
-
-      <div
-        className="small"
-        style={{
-          fontStyle: "italic",
-          opacity: 0.5,
-          textAlign: "center",
-          padding: "0 0 24px",
-        }}
-      >
-        Observational analysis only. Not a fact-check.
-      </div>
     </>
   );
 }

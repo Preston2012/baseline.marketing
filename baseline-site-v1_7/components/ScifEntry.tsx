@@ -113,18 +113,48 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Lock body scroll while SCIF is active
+  // Lock body scroll while SCIF is active — nuclear approach for mobile
   useEffect(() => {
+    const preventTouch = (e: TouchEvent) => { e.preventDefault(); };
+    
     if (!cleared && !doorOpen) {
-      document.body.style.overflow = 'hidden';
+      // position:fixed is the only way to truly kill scroll on iOS
       document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.position = 'fixed';
+      document.documentElement.style.width = '100%';
+      document.documentElement.style.height = '100%';
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.height = '100%';
+      document.body.style.top = '0';
+      document.body.style.left = '0';
+      // Block touchmove to kill all touch-scrolling
+      document.addEventListener('touchmove', preventTouch, { passive: false });
     } else {
-      document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      document.documentElement.style.position = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
     }
     return () => {
-      document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
+      document.documentElement.style.position = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.removeEventListener('touchmove', preventTouch);
     };
   }, [cleared, doorOpen]);
 
@@ -387,8 +417,8 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
   // ── Render the SCIF ──
   return (
     <>
-      {/* Site is hidden underneath during ritual */}
-      <div style={{ visibility: 'hidden', position: 'absolute' }}>{children}</div>
+      {/* Site is hidden underneath during ritual — clipped to zero to prevent scroll generation */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: 0, height: 0, overflow: 'hidden', visibility: 'hidden' }}>{children}</div>
 
       {/* Amber flash overlay */}
       {amberFlash && (
@@ -397,8 +427,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
             position: 'fixed',
             top: 0,
             left: 0,
-            width: '100vw',
-            height: '100vh',
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
             background: 'rgba(212, 167, 45, 0.12)',
             zIndex: 10001,
             pointerEvents: 'none',
@@ -413,8 +445,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          height: '100%',
           zIndex: 10000,
           background: '#000',
           display: 'flex',
@@ -425,7 +459,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
           overflow: 'hidden',
           transition: doorOpen ? 'opacity 0.6s ease-out' : 'none',
           opacity: doorOpen ? 0 : 1,
+          touchAction: 'none',
+          overscrollBehavior: 'none',
         }}
+        onTouchMove={(e) => e.preventDefault()}
       >
         {/* ── Corner Reticles ── */}
         {reticlesVisible && (
@@ -469,7 +506,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
           </>
         )}
 
-        {/* ── Edge Hash Marks ── */}
+        {/* ── Edge Hash Marks (gradient: bright center → fading edges) ── */}
         {hashMarksVisible && (
           <>
             {/* Top edge */}
@@ -479,16 +516,21 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
               opacity: 0,
               animation: 'hash-fade 0.8s ease-out forwards',
             }}>
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div key={`ht-${i}`} style={{
-                  position: 'absolute',
-                  left: `${(i / 19) * 100}%`,
-                  top: 0,
-                  width: 1,
-                  height: i % 5 === 0 ? 8 : 4,
-                  background: 'rgba(45, 212, 191, 0.12)',
-                }} />
-              ))}
+              {Array.from({ length: 20 }).map((_, i) => {
+                const t = i / 19; // 0..1
+                const centerDist = Math.abs(t - 0.5) * 2; // 0 at center, 1 at edges
+                const alpha = 0.04 + (1 - centerDist) * 0.14; // 0.04 at edges → 0.18 at center
+                return (
+                  <div key={`ht-${i}`} style={{
+                    position: 'absolute',
+                    left: `${t * 100}%`,
+                    top: 0,
+                    width: 1,
+                    height: i % 5 === 0 ? 8 : 4,
+                    background: `rgba(45, 212, 191, ${alpha.toFixed(3)})`,
+                  }} />
+                );
+              })}
             </div>
             {/* Bottom edge */}
             <div style={{
@@ -497,16 +539,21 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
               opacity: 0,
               animation: 'hash-fade 0.8s ease-out 0.2s forwards',
             }}>
-              {Array.from({ length: 20 }).map((_, i) => (
-                <div key={`hb-${i}`} style={{
-                  position: 'absolute',
-                  left: `${(i / 19) * 100}%`,
-                  bottom: 0,
-                  width: 1,
-                  height: i % 5 === 0 ? 8 : 4,
-                  background: 'rgba(45, 212, 191, 0.12)',
-                }} />
-              ))}
+              {Array.from({ length: 20 }).map((_, i) => {
+                const t = i / 19;
+                const centerDist = Math.abs(t - 0.5) * 2;
+                const alpha = 0.04 + (1 - centerDist) * 0.14;
+                return (
+                  <div key={`hb-${i}`} style={{
+                    position: 'absolute',
+                    left: `${t * 100}%`,
+                    bottom: 0,
+                    width: 1,
+                    height: i % 5 === 0 ? 8 : 4,
+                    background: `rgba(45, 212, 191, ${alpha.toFixed(3)})`,
+                  }} />
+                );
+              })}
             </div>
             {/* Left edge */}
             <div style={{
@@ -515,16 +562,21 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
               opacity: 0,
               animation: 'hash-fade 0.8s ease-out 0.1s forwards',
             }}>
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div key={`hl-${i}`} style={{
-                  position: 'absolute',
-                  top: `${(i / 15) * 100}%`,
-                  left: 0,
-                  height: 1,
-                  width: i % 4 === 0 ? 8 : 4,
-                  background: 'rgba(45, 212, 191, 0.12)',
-                }} />
-              ))}
+              {Array.from({ length: 16 }).map((_, i) => {
+                const t = i / 15;
+                const centerDist = Math.abs(t - 0.5) * 2;
+                const alpha = 0.04 + (1 - centerDist) * 0.14;
+                return (
+                  <div key={`hl-${i}`} style={{
+                    position: 'absolute',
+                    top: `${t * 100}%`,
+                    left: 0,
+                    height: 1,
+                    width: i % 4 === 0 ? 8 : 4,
+                    background: `rgba(45, 212, 191, ${alpha.toFixed(3)})`,
+                  }} />
+                );
+              })}
             </div>
             {/* Right edge */}
             <div style={{
@@ -533,16 +585,21 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
               opacity: 0,
               animation: 'hash-fade 0.8s ease-out 0.3s forwards',
             }}>
-              {Array.from({ length: 16 }).map((_, i) => (
-                <div key={`hr-${i}`} style={{
-                  position: 'absolute',
-                  top: `${(i / 15) * 100}%`,
-                  right: 0,
-                  height: 1,
-                  width: i % 4 === 0 ? 8 : 4,
-                  background: 'rgba(45, 212, 191, 0.12)',
-                }} />
-              ))}
+              {Array.from({ length: 16 }).map((_, i) => {
+                const t = i / 15;
+                const centerDist = Math.abs(t - 0.5) * 2;
+                const alpha = 0.04 + (1 - centerDist) * 0.14;
+                return (
+                  <div key={`hr-${i}`} style={{
+                    position: 'absolute',
+                    top: `${t * 100}%`,
+                    right: 0,
+                    height: 1,
+                    width: i % 4 === 0 ? 8 : 4,
+                    background: `rgba(45, 212, 191, ${alpha.toFixed(3)})`,
+                  }} />
+                );
+              })}
             </div>
           </>
         )}
@@ -846,7 +903,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
 
         @keyframes hash-fade {
           from { opacity: 0; }
-          to { opacity: 0.6; }
+          to { opacity: 1; }
         }
 
         @keyframes prompt-fade {

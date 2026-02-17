@@ -3,22 +3,27 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { Card } from "@/components/Card";
 import { RadarTooltips } from "@/components/RadarTooltips";
+import { SurfaceWidgets, AnalysisWidgets, LayerWidgets } from "@/components/MethodologyWidgets";
 
 export const metadata: Metadata = {
-  title: "How It Works | Baseline Methodology",
+  title: "How It Works",
   description:
     "All AI models process identical input independently. Signal metrics, framing radar, semantic timelines, and consensus. All measured, never judged.",
   alternates: { canonical: `${site.url}/methodology/` },
   openGraph: {
     title: "How It Works | Baseline Methodology",
     description: "All AI models process identical input independently. Signal metrics, framing radar, semantic timelines, and consensus. All measured, never judged.",
-    images: [{ url: "/og/methodology-og.png", width: 1200, height: 630, alt: "Baseline Methodology" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline Methodology" }],
   },
 };
 
 export default function MethodologyPage() {
   return (
     <section className="section" aria-label="Methodology">
+      <div className="classification-stamp" style={{ marginBottom: 8 }}>
+        SIGINT-METHODOLOGY // UNCLASSIFIED // FOUO
+      </div>
+
       <h1 className="h1" style={{ fontSize: 28 }}>Methodology</h1>
 
       <p className="p" style={{ color: "var(--text)", fontWeight: 600, marginTop: 12 }}>
@@ -122,7 +127,21 @@ export default function MethodologyPage() {
         </Card>
       </div>
 
-      <div style={{ height: 32, borderBottom: "2px solid var(--border_inactive)" }} />
+      <div style={{ height: 32, borderBottom: "2px solid var(--border_inactive)", position: "relative" }}>
+        {/* Hash mark ruler */}
+        <div aria-hidden="true" style={{ position: "absolute", bottom: -1, left: 0, right: 0, height: 1 }}>
+          {Array.from({ length: 30 }).map((_, i) => {
+            const t = i / 29;
+            const centerDist = Math.abs(t - 0.5) * 2;
+            const alpha = 0.03 + (1 - centerDist) * 0.07;
+            return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, bottom: 0, width: 1, height: i % 5 === 0 ? 5 : 2, background: `rgba(45,212,191,${alpha.toFixed(3)})` }} />;
+          })}
+        </div>
+        {/* Classification stamp */}
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }}>
+          SIGINT-METH-01 // UNCLASSIFIED
+        </div>
+      </div>
       <div style={{ height: 24 }} />
 
       {/* ═══════════════════════════════════════════════════════
@@ -281,7 +300,7 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Aggregates Receipt&trade; history, Radar&trade; averages, signal trends, and vote record.</li>
+              <li>Aggregates The Receipt&trade; history, Framing Radar&trade; averages, signal trends, and vote record.</li>
               <li>Exhibit plate format: museum-grade presentation of longitudinal data.</li>
             </ul>
           </div>
@@ -302,7 +321,25 @@ export default function MethodologyPage() {
         </Card>
       </div>
 
-      <div style={{ height: 32, borderBottom: "2px solid var(--border_inactive)" }} />
+      <SurfaceWidgets />
+
+      <div style={{ height: 16 }} />
+
+      <AnalysisWidgets />
+
+      <div style={{ height: 32, borderBottom: "2px solid var(--border_inactive)", position: "relative" }}>
+        <div aria-hidden="true" style={{ position: "absolute", bottom: -1, left: 0, right: 0, height: 1 }}>
+          {Array.from({ length: 30 }).map((_, i) => {
+            const t = i / 29;
+            const centerDist = Math.abs(t - 0.5) * 2;
+            const alpha = 0.03 + (1 - centerDist) * 0.07;
+            return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, bottom: 0, width: 1, height: i % 5 === 0 ? 5 : 2, background: `rgba(45,212,191,${alpha.toFixed(3)})` }} />;
+          })}
+        </div>
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }}>
+          SIGINT-METH-02 // SURFACES
+        </div>
+      </div>
       <div style={{ height: 24 }} />
 
       {/* ═══════════════════════════════════════════════════════
@@ -327,6 +364,20 @@ export default function MethodologyPage() {
               <li><strong style={{ color: "var(--text)" }}>Affect:</strong> Rate of emotionally charged language. Intensity markers, urgency signals, sentiment-loaded phrasing.</li>
               <li><strong style={{ color: "var(--text)" }}>Entropy:</strong> Topical spread. Higher = multiple subjects. Lower = tight focus.</li>
               <li>No thresholds. No labels. No metric influences another.</li>
+            </ul>
+          </div>
+          <span className="redacted-label">Classified until launch</span>
+        </Card>
+
+        <Card title="Baseline Delta">
+          <p className="p" style={{ margin: "0 0 8px" }}>
+            How far a statement&rsquo;s signal metrics deviate from the figure&rsquo;s historical average.
+          </p>
+          <div className="redacted">
+            <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
+              <li>Computed per-metric: delta = current score minus rolling average for that figure on that metric.</li>
+              <li>Positive delta = elevated signal. Negative = below typical. Zero = on baseline.</li>
+              <li>Measures shift, not position. A high Affect score is context. A high Affect delta is signal.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -386,6 +437,8 @@ export default function MethodologyPage() {
           <span className="redacted-label">Classified until launch</span>
         </Card>
       </div>
+
+      <LayerWidgets />
 
       <div style={{ height: 18 }} />
 

@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 
 const SECTIONS = [
-  { id: "surfaces", label: "™ Surfaces" },
   { id: "signals", label: "Signals" },
   { id: "feed", label: "Feed" },
   { id: "figures", label: "Figures" },
@@ -21,7 +20,7 @@ export function FeaturesNav({
 }: {
   onTierChange: (tier: TierFilter) => void;
 }) {
-  const [active, setActive] = useState("surfaces");
+  const [active, setActive] = useState("signals");
   const [tier, setTier] = useState<TierFilter>("ALL");
   const navRef = useRef<HTMLDivElement>(null);
 

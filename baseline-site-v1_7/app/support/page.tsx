@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 export default function SupportPage() {
   return (
     <section className="section" aria-label="Support">
+      <div className="classification-stamp" style={{ marginBottom: 8 }}>
+        BASELINE-OPS // SUPPORT CHANNEL
+      </div>
       <h1 className="h1" style={{ fontSize: 28 }}>Support</h1>
 
       <p className="p" style={{ maxWidth: 760 }}>
