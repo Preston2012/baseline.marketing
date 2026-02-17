@@ -1,3 +1,11 @@
+/* ═══════════════════════════════════════════════════════════
+   BASELINE™ SIGNAL INTELLIGENCE BRIEF
+   CLASSIFICATION: UNCLASSIFIED // FOUO
+   GRID REF: 0x2DD4BF · 0x0C1A23 · 0x081017
+   DTG: 160000ZFEB26
+   SYS STATUS: NOMINAL
+   ═══════════════════════════════════════════════════════════ */
+
 :root{
   --bg:#081017;
   --card:#0c1a23;
@@ -11,6 +19,7 @@
   --border_active: rgba(45,212,191,0.15);
 
   --warn:#ffcc00;
+  --amber:#d4a72d;
 
   --radius_card:14px;
   --radius_btn:12px;
@@ -86,6 +95,23 @@ img{ max-width:100%; height:auto; display:block; }
 }
 
 .section{ padding: 24px 0; }
+
+/* Measurement ruler — hash marks on section dividers */
+.section-ruler{
+  height: 1px;
+  background: rgba(45,212,191,0.06);
+  position: relative;
+  margin: 8px 0;
+}
+
+/* Circuit trace — subtle connecting line between sections */
+.circuit-trace{
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(180deg, rgba(45,212,191,0.08), transparent);
+}
 .grid{
   display:grid;
   gap: 12px;
