@@ -126,7 +126,7 @@ function FeatureGrid({
             >
               <TierPill tier={f.tier} />
             </div>
-            <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
+            <p className="p" style={{ margin: 0 }}>
               {f.desc}
             </p>
             {f.image && (
@@ -293,10 +293,6 @@ export function FeaturesContent() {
                       color: "var(--text)",
                       background: "var(--card)",
                       whiteSpace: "nowrap",
-                      filter: "blur(5px)",
-                      WebkitFilter: "blur(5px)",
-                      userSelect: "none",
-                      WebkitUserSelect: "none",
                     }}
                   >
                     {name}

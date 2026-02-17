@@ -7,7 +7,6 @@ import Nav from "@/components/Nav";
 import { DisclaimerBar } from "@/components/DisclaimerBar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScrollProgress } from "@/components/ScrollProgress";
-import { ScifEntry } from "@/components/ScifEntry";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -119,23 +118,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable} ${jetbrains.variable}`}>
       <body>
-        <ScifEntry>
-          <a className="skip_link" href="#main">
-            Skip to content
-          </a>
+        <a className="skip_link" href="#main">
+          Skip to content
+        </a>
 
-          <JsonLd />
+        <JsonLd />
 
-          <ScrollProgress />
-          <Nav />
-          <DisclaimerBar />
+        <ScrollProgress />
+        <Nav />
+        <DisclaimerBar />
 
-          <main id="main" className="container" data-classification="UNCLASSIFIED" data-grid="0x2DD4BF" data-sys="BASELINE-SIGINT-v3.0">
-            {children}
-          </main>
+        <main id="main" className="container">
+          {children}
+        </main>
 
-          <SiteFooter />
-        </ScifEntry>
+        <SiteFooter />
       </body>
     </html>
   );

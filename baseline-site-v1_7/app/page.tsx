@@ -146,29 +146,7 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS — streamlined to 3 cards (was 6) per §4 ── */}
-      {/* Hidden HTML comment for devs who inspect: <!-- SIGINT BRIEF // UNCLASSIFIED // FOUO --> */}
       <section className="section" aria-label="How Baseline works">
-        {/* Section ruler with measurement hash marks */}
-        <div aria-hidden="true" style={{ height: 1, background: 'rgba(45,212,191,0.06)', position: 'relative', marginBottom: 16 }}>
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div key={i} style={{
-              position: 'absolute', left: `${(i / 23) * 100}%`, top: -1,
-              width: 1, height: i % 4 === 0 ? 6 : 3,
-              background: 'rgba(45,212,191,0.1)',
-            }} />
-          ))}
-          {/* Subtle center label */}
-          <div style={{
-            position: 'absolute', left: '50%', transform: 'translateX(-50%)',
-            background: 'var(--bg)', padding: '0 10px',
-            fontFamily: 'var(--font-jetbrains, monospace)', fontSize: 7,
-            letterSpacing: '0.15em', color: 'rgba(45,212,191,0.15)',
-            textTransform: 'uppercase', top: -4,
-          }}>
-            SYS.PROCESS
-          </div>
-        </div>
-
         <div
           style={{
             display: "flex",
@@ -236,15 +214,8 @@ export default function HomePage() {
           justifyContent: "center",
           gap: 20,
           padding: "20px 0 8px",
-          position: "relative",
         }}
       >
-        {/* Subtle reticle corners on the counter — military/intel folks notice */}
-        <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
-        <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
-        <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, right: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
-
         {[
           { label: "figures", value: "44" },
           { label: "statements", value: "\u2014" },
@@ -277,25 +248,7 @@ export default function HomePage() {
       <TheWall />
 
       {/* ── N8+N11: Breather line ── */}
-      <div style={{ textAlign: "center", padding: "32px 16px 8px", position: "relative" }}>
-        {/* Film perf accents — left edge */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', left: 0, top: 12, bottom: 12, width: 4,
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
-        }}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.04)' }} />
-          ))}
-        </div>
-        <div aria-hidden="true" style={{
-          position: 'absolute', right: 0, top: 12, bottom: 12, width: 4,
-          display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
-        }}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.04)' }} />
-          ))}
-        </div>
-
+      <div style={{ textAlign: "center", padding: "32px 16px 8px" }}>
         <p
           className="data"
           style={{
