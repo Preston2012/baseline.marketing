@@ -27,7 +27,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Every statement captured, analyzed, and stored forever',
       'Not summarized, not paraphrased, not deleted after 90 days',
-      'Nothing expires — nothing decays — the record only grows',
+      'Nothing expires. Nothing decays. The record only grows',
     ],
     tag: 'IMMUTABLE RECORD',
     icon: (
@@ -42,9 +42,9 @@ const PRINCIPLES: EthosCard[] = [
     headline: "Frozen at the Moment It\u2019s Taken",
     tagline: 'The timestamp is the seal.',
     bullets: [
-      'Once recorded, nothing changes — not the data, not the scores, not the conclusions',
+      'Once recorded, nothing changes: not the data, not the scores, not the conclusions',
       'No retroactive edits when the political wind shifts',
-      'Blockchain-grade permanence — no gas, no wallets, no barriers',
+      'Blockchain-grade permanence. No gas, no wallets, no barriers',
     ],
     tag: 'ZERO REVISIONISM',
     icon: (
@@ -63,8 +63,8 @@ const PRINCIPLES: EthosCard[] = [
     headline: 'Multiple Lenses. Zero Opinions.',
     tagline: 'The platform measures. You decide.',
     bullets: [
-      'Multiple AI models run simultaneously — each blind to the others',
-      'Agreement is a data point — disagreement is a data point',
+      'Multiple AI models run simultaneously, each blind to the others',
+      'Agreement is a data point. Disagreement is a data point',
       'Both are shown, neither is editorialized',
     ],
     tag: 'OBSERVATIONAL ANALYSIS',
@@ -84,7 +84,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       "Significance weighed against each figure\u2019s own noise floor",
       'No push notifications for routine speeches',
-      'No dopamine engineering — no engagement farming',
+      'No dopamine engineering. No engagement farming',
     ],
     tag: 'NO MANUFACTURED URGENCY',
     icon: (
@@ -101,8 +101,8 @@ const PRINCIPLES: EthosCard[] = [
     tagline: 'Every day the data gets deeper. Every day the barrier gets higher.',
     bullets: [
       'Each new entry makes all previous data more valuable',
-      'Semantic connections compound — patterns emerge across years',
-      'Storage costs negligible — recreating from scratch, prohibitive',
+      'Semantic connections compound. Patterns emerge across years',
+      'Storage costs negligible. Recreating from scratch, prohibitive',
     ],
     tag: 'COMPOUNDING INTELLIGENCE',
     icon: (
@@ -121,10 +121,10 @@ const PRINCIPLES: EthosCard[] = [
   {
     numeral: 'VI',
     headline: 'Show Your Work',
-    tagline: "A measurement you can\u2019t audit isn\u2019t a measurement — it\u2019s an assertion.",
+    tagline: "A measurement you can\u2019t audit isn\u2019t a measurement. It\u2019s an assertion.",
     bullets: [
       'All methodologies documented and accessible inside the product',
-      'Not buried in legal footnotes — linked, readable, questionable',
+      'Not buried in legal footnotes. Linked, readable, questionable',
       'Transparency is architecture, not marketing',
     ],
     tag: 'AUDITABLE BY DESIGN',
@@ -146,7 +146,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Politicians, crypto founders, AI leaders, tech CEOs, podcasters',
       "Anyone whose words move markets, shape policy, or shift opinion",
-      'Started with forty-four — building toward thousands',
+      'Started with forty-four. Building toward thousands',
     ],
     tag: 'CROSS-SECTOR INTELLIGENCE',
     icon: (
@@ -167,7 +167,7 @@ const PRINCIPLES: EthosCard[] = [
     tagline: "We don\u2019t manufacture urgency about information that requires clarity.",
     bullets: [
       'No countdown timers, scarcity theater, or FOMO',
-      'The product converts by being useful — the paywall is calm',
+      'The product converts by being useful. The paywall is calm',
       "The upgrade is obvious when you need it, invisible when you don\u2019t",
     ],
     tag: 'TRUST BY DEFAULT',
@@ -185,7 +185,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Screenshots that look like classified intelligence documents',
       "Shares that make people stop and ask what they\u2019re looking at",
-      'Proof of work — organic reach built into the output itself',
+      'Proof of work. Organic reach built into the output itself',
     ],
     tag: 'PROOF OF WORK',
     icon: (
@@ -206,7 +206,7 @@ const PRINCIPLES: EthosCard[] = [
     headline: 'The Permanent Record',
     tagline: 'Always recording. Always measuring. Never judging.',
     bullets: [
-      'Not a fact-checker — not an opinion engine — not a feed',
+      'Not a fact-checker, not an opinion engine, not a feed',
       'A measurement instrument and a research library that never closes',
       'An institutional memory that never forgets',
     ],
@@ -352,7 +352,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
           {card.tagline}
         </p>
 
-        {/* Bullets */}
+        {/* Bullets — frosted pre-launch */}
         <ul
           style={{
             listStyle: 'none',
@@ -363,6 +363,9 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
             flexDirection: 'column',
             gap: 7,
             textAlign: 'left',
+            filter: 'blur(5px)',
+            WebkitFilter: 'blur(5px)',
+            userSelect: 'none',
           }}
         >
           {card.bullets.map((b, i) => (
@@ -431,7 +434,7 @@ export function EthosContent() {
         className="classification-stamp"
         style={{ textAlign: 'center', paddingBottom: 24 }}
       >
-        BASELINE™ BRAND ETHOS — CLASSIFICATION: PUBLIC
+        BASELINE™ BRAND ETHOS // CLASSIFICATION: PUBLIC
       </div>
 
       <style>{`

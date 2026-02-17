@@ -1006,7 +1006,7 @@ export function DriftWidget() {
         {/* Bill header */}
         <div style={{ marginBottom: 8 }}>
           <div style={{ fontFamily: BODY, fontSize: 10, color: TEXT, fontWeight: 500, lineHeight: 1.2 }}>
-            H.R. 0000 — Infrastructure Act
+            H.R. 0000 // Infrastructure Act
           </div>
           <DataLabel size={7} color={SUB}>PROVISION DRIFT ANALYSIS · 5 SECTIONS</DataLabel>
         </div>

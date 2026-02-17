@@ -81,7 +81,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
   return (
     <div ref={cardRef} role="button" tabIndex={0} onClick={handleReveal}
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleReveal(); } }}
-      aria-label={revealed ? `${item.title} — revealed` : `${item.title} — tap to reveal`}
+      aria-label={revealed ? `${item.title} / revealed` : `${item.title} / tap to reveal`}
       className="museum-card"
       style={{
         flex: "0 0 340px", minWidth: 340, scrollSnapAlign: "start",
@@ -173,7 +173,13 @@ export function MuseumGallery() {
     if (!el) return;
     const handleScroll = () => {
       const cardWidth = 360;
-      setCurrentDot(Math.min(Math.round(el.scrollLeft / cardWidth), GALLERY.length - 1));
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      // If within 20px of the end, snap to last dot
+      if (maxScroll - el.scrollLeft < 20) {
+        setCurrentDot(GALLERY.length - 1);
+      } else {
+        setCurrentDot(Math.min(Math.round(el.scrollLeft / cardWidth), GALLERY.length - 1));
+      }
     };
     el.addEventListener("scroll", handleScroll, { passive: true });
     return () => el.removeEventListener("scroll", handleScroll);

@@ -5,7 +5,7 @@ import { EthosContent } from "@/components/EthosContent";
 export const metadata: Metadata = {
   title: "Ethos",
   description:
-    "Ten principles that govern everything Baseline builds, measures, and ships. Permanence, transparency, signal over noise — the brand ethos.",
+    "Ten principles that govern everything Baseline builds, measures, and ships. Permanence, transparency, signal over noise. The brand ethos.",
   alternates: { canonical: `${site.url}/ethos/` },
   openGraph: {
     title: "Ethos | Baseline",

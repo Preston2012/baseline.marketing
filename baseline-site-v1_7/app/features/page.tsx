@@ -5,7 +5,7 @@ import { FeaturesContent } from "@/components/FeaturesContent";
 export const metadata: Metadata = {
   title: "Features",
   description:
-    "Every surface. Every signal. Explore Baseline's full product tour — trademark features, signal metrics, feed tools, figure profiles, bill analysis, and more.",
+    "Every surface. Every signal. Explore Baseline's full product tour: trademark features, signal metrics, feed tools, figure profiles, bill analysis, and more.",
   alternates: { canonical: `${site.url}/features/` },
   openGraph: {
     title: "Features | Baseline",
@@ -24,7 +24,7 @@ export default function FeaturesPage() {
         <h1 className="h1" style={{ fontSize: 28 }}>Every surface. Every signal.</h1>
         <p className="p" style={{ maxWidth: 640 }}>
           The full measurement stack. Trademark surfaces, signal metrics, feed tools, figure
-          profiles, bill analysis, and export controls — organized by category.
+          profiles, bill analysis, and export controls, organized by category.
         </p>
       </section>
 

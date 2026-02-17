@@ -170,13 +170,15 @@ export default function HomePage() {
             />
           </div>
 
-          {/* ── Ethos — featured solo button ── */}
-          <SecondaryLinkButton href="/ethos/" ariaLabel="Read our ethos">
-            <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-              <span style={{ color: "var(--teal)", fontSize: 10, opacity: 0.6 }}>{"\u2726"}</span>
-              Ethos
-            </span>
-          </SecondaryLinkButton>
+          {/* ── Ethos — featured solo button (full-width) ── */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
+            <SecondaryLinkButton href="/ethos/" ariaLabel="Read our ethos">
+              <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+                <span style={{ color: "var(--teal)", fontSize: 10, opacity: 0.6 }}>{"\u2726"}</span>
+                Ethos
+              </span>
+            </SecondaryLinkButton>
+          </div>
 
           {/* ── Nav grid — 2×2 ── */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 10 }}>

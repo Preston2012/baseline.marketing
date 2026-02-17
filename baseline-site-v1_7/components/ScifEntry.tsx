@@ -746,7 +746,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
                   opacity: 0,
                   animation: 'denied-flash 0.3s ease-out forwards',
                 }}>
-                  ACCESS DENIED — RETRY
+                  ACCESS DENIED // RETRY
                 </div>
               )}
             </div>
