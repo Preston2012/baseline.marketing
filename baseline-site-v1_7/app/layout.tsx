@@ -8,6 +8,7 @@ import { DisclaimerBar } from "@/components/DisclaimerBar";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { ScifEntry } from "@/components/ScifEntry";
+import { PageFrame } from "@/components/PageFrame";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -121,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div style={{ overflow: 'hidden', maxWidth: '100vw', width: '100%' }}>
         <ScifEntry>
+          <PageFrame />
           <a className="skip_link" href="#main">
             Skip to content
           </a>

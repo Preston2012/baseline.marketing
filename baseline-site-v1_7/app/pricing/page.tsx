@@ -3,13 +3,13 @@ import { site } from "@/config/site";
 import { PricingTable } from "@/components/PricingTable";
 
 export const metadata: Metadata = {
-  title: "Pricing | Baseline",
+  title: "Pricing",
   description: "Speech measurement at every level. Three independent AI systems. Semantic similarity, framing analysis, and provision drift. Core free. Pro $7.99/mo. Pro+ $24.99/mo.",
   alternates: { canonical: `${site.url}/pricing/` },
   openGraph: {
     title: "Pricing | Baseline",
     description: "Speech measurement at every level. Three independent AI systems, semantic similarity, framing analysis, and provision drift. Core free. Pro $7.99/mo. Pro+ $24.99/mo.",
-    images: [{ url: "/og/pricing-og.png", width: 1200, height: 630, alt: "Baseline Pricing" }],
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline Pricing" }],
   },
 };
 

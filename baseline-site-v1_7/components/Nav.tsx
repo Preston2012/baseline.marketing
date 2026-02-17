@@ -1,15 +1,16 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { PrimaryLinkButton } from './Button';
+import { BRAND_WORDMARK, BRAND_BA_MARK } from '../config/brand-assets';
 
 /* §1 Nav Order: Home · Features · Methodology · Pricing
    Hamburger overflow: What We Don't Do · Press · Support · Legal */
 const NAV_PRIMARY = [
   { href: '/features/', label: 'Features' },
   { href: '/methodology/', label: 'Methodology' },
+  { href: '/ethos/', label: 'Ethos' },
   { href: '/pricing/', label: 'Pricing' },
 ];
 
@@ -92,12 +93,11 @@ export default function Nav() {
       >
         {/* BA mark — left */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, zIndex: 2 }}>
-          <Image
-            src="/brand/ba_mark.png"
+          <img
+            src={BRAND_BA_MARK}
             alt="Baseline"
             width={48}
             height={20}
-            priority
             style={{ height: 20, width: 'auto' }}
           />
         </Link>
@@ -122,12 +122,11 @@ export default function Nav() {
             zIndex: 1,
           }}
         >
-          <Image
-            src="/brand/wordmark.png"
+          <img
+            src={BRAND_WORDMARK}
             alt="BASELINE"
             width={358}
             height={100}
-            priority
             style={{ height: 36, width: 'auto' }}
           />
         </Link>

@@ -4,7 +4,7 @@ import { SecondaryLinkButton } from "@/components/Button";
 import { ManifestoScroll } from "@/components/ManifestoScroll";
 
 export const metadata: Metadata = {
-  title: "What We Don\u2019t Do | Baseline",
+  title: "What We Don\u2019t Do",
   description:
     "Baseline measures public speech. It does not rate, score, editorialize, or tell you what to think. Three systems analyze. You interpret.",
   alternates: { canonical: `${site.url}/what-we-dont-do/` },
@@ -18,11 +18,24 @@ export const metadata: Metadata = {
 export default function WhatWeDontDoPage() {
   return (
     <>
+      {/* Classification micro-stamp above manifesto */}
+      <div className="section" style={{ paddingBottom: 0 }}>
+        <div className="classification-stamp">
+          BASELINE-DOCTRINE // OPERATIONAL BOUNDARIES
+        </div>
+      </div>
+
       {/* S3: Scroll-hijacked manifesto — each statement pins and crossfades */}
       <ManifestoScroll />
 
       {/* Post-manifesto anchor */}
       <section className="section" aria-label="What We Don't Do — closing">
+        <h1 style={{
+          position: "absolute", width: 1, height: 1, padding: 0, margin: -1,
+          overflow: "hidden", clip: "rect(0, 0, 0, 0)", whiteSpace: "nowrap", borderWidth: 0
+        }}>
+          What We Don&rsquo;t Do
+        </h1>
         <div style={{ maxWidth: 640 }}>
           <p
             style={{
