@@ -119,6 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable} ${jetbrains.variable}`}>
       <body>
+        <div style={{ overflow: 'hidden', maxWidth: '100vw', width: '100%' }}>
         <ScifEntry>
           <a className="skip_link" href="#main">
             Skip to content
@@ -136,6 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <SiteFooter />
         </ScifEntry>
+        </div>
       </body>
     </html>
   );

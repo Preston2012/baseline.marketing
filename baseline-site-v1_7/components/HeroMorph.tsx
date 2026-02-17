@@ -29,6 +29,7 @@ export function HeroMorph() {
         opacity: fading ? 0 : 1,
         transform: fading ? "translateY(4px)" : "translateY(0)",
         transition: "opacity 400ms ease-out, transform 400ms ease-out",
+        color: "#2dd4bf",
       }}
     >
       {WORDS[index]},
