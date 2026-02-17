@@ -42,7 +42,7 @@ function pentagonPath(cx: number, cy: number, values: number[], maxR: number): s
 // ═══════════════════════════════════════════
 // 1. FRAMING RADAR™ DEMO
 // ═══════════════════════════════════════════
-const RADAR_AXES = ['Assertive', 'Hedging', 'Emotive', 'Deflective', 'Prescriptive'];
+const RADAR_AXES = ['Adversarial', 'Problem ID', 'Commitment', 'Justification', 'Imperative'];
 
 const RADAR_MODELS = [
   [78, 42, 65, 31, 58],  // GP-1
