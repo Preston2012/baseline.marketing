@@ -395,7 +395,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
         <div
           style={{
             position: 'fixed',
-            inset: 0,
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
             background: 'rgba(212, 167, 45, 0.12)',
             zIndex: 10001,
             pointerEvents: 'none',
@@ -408,7 +411,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
         id="scif-overlay"
         style={{
           position: 'fixed',
-          inset: 0,
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
           zIndex: 10000,
           background: '#000',
           display: 'flex',
@@ -417,7 +423,6 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
           justifyContent: 'center',
           fontFamily: 'var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
           overflow: 'hidden',
-          maxWidth: '100vw',
           transition: doorOpen ? 'opacity 0.6s ease-out' : 'none',
           opacity: doorOpen ? 0 : 1,
         }}
