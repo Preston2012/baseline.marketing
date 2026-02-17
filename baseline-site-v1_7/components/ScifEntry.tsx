@@ -113,6 +113,21 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
+  // Lock body scroll while SCIF is active
+  useEffect(() => {
+    if (!cleared && !doorOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [cleared, doorOpen]);
+
   // ── Cursor blink ──
   useEffect(() => {
     if (stage === 'done' || overlayGone) return;
@@ -402,6 +417,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
           justifyContent: 'center',
           fontFamily: 'var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
           overflow: 'hidden',
+          maxWidth: '100vw',
           transition: doorOpen ? 'opacity 0.6s ease-out' : 'none',
           opacity: doorOpen ? 0 : 1,
         }}
@@ -537,11 +553,11 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
             <div
               key={i}
               style={{
-                fontSize: BOOT_LINES[i]?.isHeadline ? 16 : 14,
+                fontSize: BOOT_LINES[i]?.isHeadline ? 'clamp(12px, 3.5vw, 16px)' : 'clamp(11px, 3vw, 14px)',
                 lineHeight: 1.8,
                 letterSpacing: '0.06em',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
+                overflowWrap: 'break-word',
+                wordBreak: 'break-word',
               }}
             >
               {/* Gunmetal label */}
