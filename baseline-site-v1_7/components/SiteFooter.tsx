@@ -80,21 +80,6 @@ export function SiteFooter() {
         >
           NEXT MEASUREMENT: &mdash;
         </div>
-
-        {/* Easter egg: NATO/ZULU format timestamp + hex grid ref */}
-        <div
-          className="data"
-          aria-hidden="true"
-          style={{
-            fontSize: 8,
-            color: "var(--sub)",
-            opacity: 0.12,
-            marginTop: 4,
-            letterSpacing: "0.1em",
-          }}
-        >
-          DTG: 160000ZFEB26 &middot; GRID: 0x2DD4BF &middot; SYS: NOMINAL &middot; UPLINK: ACTIVE
-        </div>
       </div>
     </footer>
   );
