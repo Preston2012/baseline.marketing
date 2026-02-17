@@ -372,9 +372,9 @@ export function LensLabConcept() {
           ))}
 
           {[
-            { x: 180, y: 20 },
-            { x: 68, y: 170 },
-            { x: 292, y: 170 },
+            { x: 180, y: 16 },
+            { x: 56, y: 158 },
+            { x: 302, y: 174 },
           ].map((end, i) => (
             <g key={i}>
               <line
