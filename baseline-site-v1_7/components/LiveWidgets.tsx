@@ -1,730 +1,756 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-
 /* ─────────────────────────────────────────────────────────
-   LIVE WIDGETS — Interactive demos replacing static screenshots
+   LIVE WIDGETS — Analytical Methodology Demonstrations
    ─────────────────────────────────────────────────────────
-   1. FramingRadarDemo   — 5-axis pentagon, 3 model overlays
-   2. SignalPulseDemo    — Activity bars with breathing anim
-   3. ConsensusBadgeDemo — Convergence ring + ratio
+   3 animated demos for the Methodology page showing HOW
+   the measurement pipeline works. Analytical, not flashy.
+   Complements the "How It Works" cards with visual proof.
+
+   Widget Index:
+   1. PipelineWidget       — Input → 3 parallel models → outputs
+   2. DeltaComputeWidget   — Current vs rolling avg = delta
+   3. ConsensusAssemblyWidget — 3 outputs → convergence ratio
    ───────────────────────────────────────────────────────── */
 
-// ── Shared constants ──
-const TEAL = '#2dd4bf';
-const TEAL_20 = 'rgba(45,212,191,0.2)';
-const TEAL_08 = 'rgba(45,212,191,0.08)';
-const AMBER = '#d4a72d';
-const GUNMETAL = '#3a4a56';
-const CARD_BG = '#0c1a23';
-const MODEL_COLORS = [
-  'rgba(45, 212, 191, 0.7)',   // GP-1 teal
-  'rgba(120, 180, 255, 0.6)',  // GP-2 blue
-  'rgba(200, 160, 255, 0.5)',  // GP-3 violet
-];
-const MODEL_LABELS = ['GP-1', 'GP-2', 'GP-3'];
+import { useEffect, useRef, useState } from 'react';
 
-// ── Utility: pentagon point ──
-function pentagonPoint(cx: number, cy: number, r: number, index: number): [number, number] {
-  const angle = (Math.PI * 2 * index) / 5 - Math.PI / 2;
-  return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
-}
+const T = '#2dd4bf';
+const A = '#d4a72d';
+const BG = '#0c1a23';
+const DARK = '#081017';
+const MONO = 'var(--font-jetbrains, ui-monospace, monospace)';
+const SUB = '#b6c6d6';
+const TEXT = '#eaf2ff';
+const TEAL_DIM = 'rgba(45,212,191,0.08)';
+const TEAL_LO = 'rgba(45,212,191,0.15)';
+const TEAL_MID = 'rgba(45,212,191,0.35)';
 
-function pentagonPath(cx: number, cy: number, values: number[], maxR: number): string {
-  return values
-    .map((v, i) => {
-      const [x, y] = pentagonPoint(cx, cy, (v / 100) * maxR, i);
-      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`;
-    })
-    .join(' ') + ' Z';
-}
-
-// ═══════════════════════════════════════════
-// 1. FRAMING RADAR™ DEMO
-// ═══════════════════════════════════════════
-const RADAR_AXES = ['Adversarial', 'Problem ID', 'Commitment', 'Justification', 'Imperative'];
-
-const RADAR_MODELS = [
-  [78, 42, 65, 31, 58],  // GP-1
-  [72, 48, 60, 35, 62],  // GP-2
-  [82, 38, 58, 28, 54],  // GP-3
-];
-const RADAR_CONSENSUS = [77, 43, 61, 31, 58];
-
-export function FramingRadarDemo() {
-  const [animProgress, setAnimProgress] = useState(0);
-  const [hoveredModel, setHoveredModel] = useState<number | null>(null);
-  const [hoveredAxis, setHoveredAxis] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
-
-  const cx = 140, cy = 130, maxR = 90;
-
+function useVisible(threshold = 0.25) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [vis, setVis] = useState(false);
   useEffect(() => {
-    const el = containerRef.current;
+    const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated.current) {
-        hasAnimated.current = true;
-        let start: number | null = null;
-        const animate = (ts: number) => {
-          if (!start) start = ts;
-          const p = Math.min((ts - start) / 1200, 1);
-          setAnimProgress(p);
-          if (p < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-      }
-    }, { threshold: 0.3 });
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVis(true); obs.disconnect(); } },
+      { threshold }
+    );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [threshold]);
+  return { ref, vis };
+}
 
-  const eased = animProgress < 1
-    ? animProgress * (2 - animProgress) // ease-out quad
-    : 1;
-
+function WidgetFrame({ stamp, children }: { stamp: string; children: React.ReactNode }) {
   return (
-    <div
-      ref={containerRef}
-      style={{
-        background: CARD_BG,
-        padding: '16px 8px 12px',
-        width: '100%',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Classification micro-stamp */}
-      <div style={{
-        position: 'absolute', top: 8, left: 12,
-        fontFamily: 'var(--font-jetbrains, monospace)',
-        fontSize: 8, letterSpacing: '0.15em',
-        color: 'rgba(45,212,191,0.2)',
-        textTransform: 'uppercase',
-      }}>
-        FRM-RDR-5AX // DEMO
+    <div style={{ background: BG, width: '100%', position: 'relative', overflow: 'hidden', padding: '8px 10px 10px' }}>
+      <div style={{ fontFamily: MONO, fontSize: 7, letterSpacing: '0.15em', color: TEAL_LO, textTransform: 'uppercase', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ width: 4, height: 4, borderRadius: '50%', background: TEAL_MID, display: 'inline-block', flexShrink: 0 }} />
+        {stamp}
       </div>
-
-      {/* Reticle corners */}
-      <div style={{ position: 'absolute', top: 6, right: 6, width: 10, height: 10, borderTop: `1px solid ${TEAL_20}`, borderRight: `1px solid ${TEAL_20}` }} />
-      <div style={{ position: 'absolute', bottom: 6, left: 6, width: 10, height: 10, borderBottom: `1px solid ${TEAL_20}`, borderLeft: `1px solid ${TEAL_20}` }} />
-
-      <svg viewBox="0 0 280 260" style={{ width: '100%', height: 'auto' }}>
-        {/* Grid rings */}
-        {[0.25, 0.5, 0.75, 1].map((scale) => (
-          <polygon
-            key={scale}
-            points={Array.from({ length: 5 }, (_, i) => {
-              const [x, y] = pentagonPoint(cx, cy, maxR * scale, i);
-              return `${x},${y}`;
-            }).join(' ')}
-            fill="none"
-            stroke={TEAL_08}
-            strokeWidth={scale === 1 ? 1.5 : 0.5}
-          />
-        ))}
-
-        {/* Axis lines */}
-        {RADAR_AXES.map((_, i) => {
-          const [x, y] = pentagonPoint(cx, cy, maxR, i);
-          return (
-            <line
-              key={i}
-              x1={cx} y1={cy} x2={x} y2={y}
-              stroke={TEAL_08}
-              strokeWidth={0.5}
-            />
-          );
+      <div style={{ position: 'absolute', top: 4, right: 4, width: 8, height: 8, borderTop: `1px solid ${TEAL_DIM}`, borderRight: `1px solid ${TEAL_DIM}` }} />
+      <div style={{ position: 'absolute', bottom: 4, left: 4, width: 8, height: 8, borderBottom: `1px solid ${TEAL_DIM}`, borderLeft: `1px solid ${TEAL_DIM}` }} />
+      <div style={{ position: 'absolute', bottom: 4, right: 4, width: 8, height: 8, borderBottom: `1px solid ${TEAL_DIM}`, borderRight: `1px solid ${TEAL_DIM}` }} />
+      {children}
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 10, right: 10, height: 1 }}>
+        {Array.from({ length: 16 }).map((_, i) => {
+          const t = i / 15;
+          return <div key={i} style={{ position: 'absolute', left: `${t * 100}%`, bottom: 0, width: 1, height: i % 4 === 0 ? 4 : 2, background: `rgba(45,212,191,${0.03 + (1 - Math.abs(t - 0.5) * 2) * 0.05})` }} />;
         })}
-
-        {/* Model overlays */}
-        {RADAR_MODELS.map((values, mi) => {
-          const animated = values.map(v => v * eased);
-          return (
-            <path
-              key={mi}
-              d={pentagonPath(cx, cy, animated, maxR)}
-              fill={MODEL_COLORS[mi].replace(/[\d.]+\)$/, '0.08)')}
-              stroke={MODEL_COLORS[mi]}
-              strokeWidth={hoveredModel === mi ? 2 : 1.2}
-              style={{
-                opacity: hoveredModel !== null && hoveredModel !== mi ? 0.2 : 1,
-                transition: 'opacity 200ms, stroke-width 200ms',
-              }}
-            />
-          );
-        })}
-
-        {/* Consensus overlay — dashed */}
-        <path
-          d={pentagonPath(cx, cy, RADAR_CONSENSUS.map(v => v * eased), maxR)}
-          fill="none"
-          stroke={TEAL}
-          strokeWidth={1.5}
-          strokeDasharray="4 3"
-          opacity={0.6}
-        />
-
-        {/* Axis labels */}
-        {RADAR_AXES.map((label, i) => {
-          const [x, y] = pentagonPoint(cx, cy, maxR + 18, i);
-          return (
-            <text
-              key={label}
-              x={x}
-              y={y}
-              fill={hoveredAxis === i ? TEAL : GUNMETAL}
-              fontSize={9}
-              fontFamily="var(--font-jetbrains, monospace)"
-              fontWeight={500}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              style={{ transition: 'fill 150ms', cursor: 'default' }}
-              onMouseEnter={() => setHoveredAxis(i)}
-              onMouseLeave={() => setHoveredAxis(null)}
-            >
-              {label.toUpperCase()}
-            </text>
-          );
-        })}
-
-        {/* Data point dots on consensus */}
-        {RADAR_CONSENSUS.map((v, i) => {
-          const [x, y] = pentagonPoint(cx, cy, (v * eased / 100) * maxR, i);
-          return (
-            <circle
-              key={i}
-              cx={x} cy={y} r={2.5}
-              fill={TEAL}
-              opacity={eased}
-            />
-          );
-        })}
-      </svg>
-
-      {/* Model legend */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 12,
-        marginTop: 4,
-      }}>
-        {MODEL_LABELS.map((label, i) => (
-          <div
-            key={label}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              cursor: 'pointer',
-              opacity: hoveredModel !== null && hoveredModel !== i ? 0.3 : 1,
-              transition: 'opacity 150ms',
-            }}
-            onMouseEnter={() => setHoveredModel(i)}
-            onMouseLeave={() => setHoveredModel(null)}
-          >
-            <div style={{
-              width: 8, height: 2,
-              background: MODEL_COLORS[i],
-              borderRadius: 1,
-            }} />
-            <span style={{
-              fontFamily: 'var(--font-jetbrains, monospace)',
-              fontSize: 9,
-              color: GUNMETAL,
-              letterSpacing: '0.05em',
-            }}>
-              {label}
-            </span>
-          </div>
-        ))}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          <div style={{
-            width: 8, height: 0,
-            borderTop: `1.5px dashed ${TEAL}`,
-          }} />
-          <span style={{
-            fontFamily: 'var(--font-jetbrains, monospace)',
-            fontSize: 9,
-            color: GUNMETAL,
-            letterSpacing: '0.05em',
-          }}>
-            CNS
-          </span>
-        </div>
       </div>
     </div>
   );
 }
 
+function DataLabel({ children, color, size }: { children: React.ReactNode; color?: string; size?: number }) {
+  return (
+    <span style={{ fontFamily: MONO, fontSize: size || 9, fontWeight: 500, color: color || SUB, letterSpacing: '0.06em', lineHeight: 1 }}>
+      {children}
+    </span>
+  );
+}
 
-// ═══════════════════════════════════════════
-// 2. SIGNAL PULSE™ DEMO
-// ═══════════════════════════════════════════
-const PULSE_DATA = [
-  { day: 'M', v: 72 }, { day: 'T', v: 45 }, { day: 'W', v: 88 },
-  { day: 'T', v: 34 }, { day: 'F', v: 91 }, { day: 'S', v: 28 },
-  { day: 'S', v: 53 }, { day: 'M', v: 67 }, { day: 'T', v: 82 },
-  { day: 'W', v: 41 }, { day: 'T', v: 76 }, { day: 'F', v: 95 },
-  { day: 'S', v: 22 }, { day: 'S', v: 38 },
-];
 
-export function SignalPulseDemo() {
-  const [animProgress, setAnimProgress] = useState(0);
-  const [hoveredBar, setHoveredBar] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
+// ═══════════════════════════════════════════════════════
+// 1. PIPELINE WIDGET
+//    Input → 3 Parallel Models → Independent Outputs
+//    Animated step-by-step data flow
+// ═══════════════════════════════════════════════════════
+
+export function PipelineWidget() {
+  const { ref, vis } = useVisible();
+  const [step, setStep] = useState(0); // 0=idle, 1=input, 2=processing, 3=outputs
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated.current) {
-        hasAnimated.current = true;
-        let start: number | null = null;
-        const animate = (ts: number) => {
-          if (!start) start = ts;
-          const p = Math.min((ts - start) / 800, 1);
-          setAnimProgress(p);
-          if (p < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-      }
-    }, { threshold: 0.3 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
+    if (!vis) return;
+    const timers = [
+      setTimeout(() => setStep(1), 400),
+      setTimeout(() => setStep(2), 1200),
+      setTimeout(() => setStep(3), 2400),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [vis]);
 
-  const maxH = 80;
+  const models = [
+    { id: 'GP-4', color: T },
+    { id: 'GP-G', color: T },
+    { id: 'GP-C', color: T },
+  ];
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        background: CARD_BG,
-        padding: '16px 12px 8px',
-        width: '100%',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Classification micro-stamp */}
-      <div style={{
-        fontFamily: 'var(--font-jetbrains, monospace)',
-        fontSize: 8, letterSpacing: '0.15em',
-        color: 'rgba(45,212,191,0.2)',
-        textTransform: 'uppercase',
-        marginBottom: 8,
-      }}>
-        SIG-PLS // 14D WINDOW
-      </div>
+    <WidgetFrame stamp="METH-PIPE // INPUT → PARALLEL ANALYSIS → OUTPUT">
+      <div ref={ref} style={{ padding: '6px 0' }}>
 
-      {/* Ruler marks along top */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
-        {[100, 75, 50, 25].map(v => (
-          <span key={v} style={{
-            fontFamily: 'var(--font-jetbrains, monospace)',
-            fontSize: 7,
-            color: 'rgba(45,212,191,0.15)',
-          }}>
-            {v}
-          </span>
-        ))}
-      </div>
-
-      {/* Grid lines */}
-      <div style={{ position: 'relative', height: maxH + 24 }}>
-        {[0, 0.25, 0.5, 0.75].map((pct) => (
-          <div key={pct} style={{
-            position: 'absolute',
-            top: pct * maxH,
-            left: 0, right: 0,
-            height: 1,
-            background: TEAL_08,
-          }} />
-        ))}
-
-        {/* Bars */}
+        {/* Step 1: Input normalization */}
         <div style={{
-          display: 'flex',
-          alignItems: 'flex-end',
-          gap: 3,
-          height: maxH,
-          position: 'relative',
-          zIndex: 1,
+          display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12,
+          opacity: step >= 1 ? 1 : 0.15,
+          transition: 'opacity 600ms ease',
         }}>
-          {PULSE_DATA.map((d, i) => {
-            const h = (d.v / 100) * maxH * animProgress;
-            const isHigh = d.v > 85;
+          <div style={{
+            width: 8, height: 8, borderRadius: '50%',
+            border: `1.5px solid ${step >= 1 ? T : TEAL_DIM}`,
+            background: step >= 1 ? 'rgba(45,212,191,0.1)' : DARK,
+            transition: 'all 600ms ease',
+          }} />
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <DataLabel size={8} color={step >= 1 ? TEXT : SUB}>CANONICAL INPUT</DataLabel>
+            <DataLabel size={7} color={SUB}>Normalized statement · identical to all models</DataLabel>
+          </div>
+          <DataLabel size={7} color={step >= 1 ? T : TEAL_DIM}>
+            {step >= 1 ? '✓ READY' : '—'}
+          </DataLabel>
+        </div>
+
+        {/* Flow line: input → split */}
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 0 8px' }}>
+          <div style={{
+            width: 1, height: 16,
+            background: step >= 2 ? `linear-gradient(180deg, ${T}, ${TEAL_LO})` : TEAL_DIM,
+            transition: 'background 600ms ease',
+          }} />
+        </div>
+
+        {/* Step 2: Three parallel model lanes */}
+        <div style={{ display: 'flex', gap: 6 }}>
+          {models.map((model, mi) => (
+            <div
+              key={model.id}
+              style={{
+                flex: 1,
+                padding: '6px 5px',
+                border: `1px solid ${step >= 2 ? TEAL_LO : TEAL_DIM}`,
+                borderRadius: 4,
+                textAlign: 'center',
+                opacity: step >= 2 ? 1 : 0.15,
+                transition: `all 600ms ease ${mi * 150}ms`,
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Processing scanline */}
+              {step === 2 && (
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+                  background: `linear-gradient(90deg, transparent, ${T}, transparent)`,
+                  animation: `live-scan-${mi} 1.5s ease-in-out infinite ${mi * 200}ms`,
+                }} />
+              )}
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3, marginBottom: 3 }}>
+                <div style={{
+                  width: 4, height: 4, borderRadius: '50%',
+                  background: step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.4)' : TEAL_DIM),
+                  transition: 'background 400ms ease',
+                }} />
+                <DataLabel size={8} color={TEXT}>{model.id}</DataLabel>
+              </div>
+
+              <DataLabel size={7} color={step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.5)' : SUB)}>
+                {step >= 3 ? 'COMPLETE' : (step >= 2 ? 'PROCESSING' : 'STANDBY')}
+              </DataLabel>
+
+              {/* Mini output preview */}
+              {step >= 3 && (
+                <div style={{ marginTop: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
+                  {[0.6, 0.8, 0.4, 0.7].map((w, bi) => (
+                    <div
+                      key={bi}
+                      style={{
+                        width: `${w * 16}px`,
+                        height: 2,
+                        background: T,
+                        borderRadius: 1,
+                        opacity: 0.4,
+                      }}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Flow line: outputs → display */}
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '8px 0' }}>
+          <div style={{
+            width: 1, height: 12,
+            background: step >= 3 ? `linear-gradient(180deg, ${TEAL_LO}, ${T})` : TEAL_DIM,
+            transition: 'background 600ms ease',
+          }} />
+        </div>
+
+        {/* Step 3: Output display */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          padding: '4px 6px',
+          border: `1px solid ${step >= 3 ? TEAL_LO : TEAL_DIM}`,
+          borderRadius: 4,
+          opacity: step >= 3 ? 1 : 0.15,
+          transition: 'all 600ms ease',
+        }}>
+          <DataLabel size={8} color={step >= 3 ? TEXT : SUB}>SIDE-BY-SIDE DISPLAY</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={step >= 3 ? T : TEAL_DIM}>
+            {step >= 3 ? '3/3 INDEPENDENT OUTPUTS' : '—'}
+          </DataLabel>
+        </div>
+
+        {/* Principle callout */}
+        <div style={{ marginTop: 8, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>NO MODEL SEES ANOTHER&apos;S OUTPUT · SEPARATION IS STRUCTURAL</DataLabel>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes live-scan-0 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        @keyframes live-scan-1 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        @keyframes live-scan-2 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+      `}</style>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 2. DELTA COMPUTE WIDGET
+//    Current score vs rolling average → delta
+// ═══════════════════════════════════════════════════════
+
+const DELTA_METRICS = [
+  { label: 'REP', current: 72, avg: 58 },
+  { label: 'NOV', current: 34, avg: 41 },
+  { label: 'AFF', current: 61, avg: 45 },
+  { label: 'ENT', current: 28, avg: 33 },
+];
+
+export function DeltaComputeWidget() {
+  const { ref, vis } = useVisible();
+  const [showDelta, setShowDelta] = useState(false);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timer = setTimeout(() => setShowDelta(true), 1800);
+    return () => clearTimeout(timer);
+  }, [vis]);
+
+  return (
+    <WidgetFrame stamp="METH-DELTA // CURRENT − ROLLING AVG = Δ">
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+          <DataLabel size={8} color={TEXT}>DELTA COMPUTATION</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>PER-METRIC · PER-FIGURE</DataLabel>
+        </div>
+
+        {/* Column headers */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 4, padding: '0 0 4px', borderBottom: `1px solid ${TEAL_DIM}` }}>
+          <div style={{ width: 28 }} />
+          <div style={{ flex: 1, textAlign: 'center' }}><DataLabel size={7} color={SUB}>CURRENT</DataLabel></div>
+          <div style={{ width: 10, textAlign: 'center' }}><DataLabel size={7} color={SUB}>−</DataLabel></div>
+          <div style={{ flex: 1, textAlign: 'center' }}><DataLabel size={7} color={SUB}>ROLLING AVG</DataLabel></div>
+          <div style={{ width: 10, textAlign: 'center' }}><DataLabel size={7} color={SUB}>=</DataLabel></div>
+          <div style={{ flex: 1, textAlign: 'center' }}><DataLabel size={7} color={T}>DELTA</DataLabel></div>
+        </div>
+
+        {/* Metric rows */}
+        {DELTA_METRICS.map((m, i) => {
+          const delta = m.current - m.avg;
+          const isPositive = delta > 0;
+          return (
+            <div
+              key={m.label}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 4,
+                padding: '5px 0',
+                borderBottom: i < DELTA_METRICS.length - 1 ? `1px solid ${TEAL_DIM}` : 'none',
+                opacity: vis ? 1 : 0,
+                transition: `opacity 600ms ease ${i * 100}ms`,
+              }}
+            >
+              <div style={{ width: 28 }}>
+                <DataLabel size={8} color={SUB}>{m.label}</DataLabel>
+              </div>
+
+              {/* Current score bar */}
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 3, justifyContent: 'center' }}>
+                <div style={{ width: 40, height: 3, background: DARK, borderRadius: 1, overflow: 'hidden' }}>
+                  <div style={{
+                    width: vis ? `${m.current}%` : '0%',
+                    height: '100%', background: T, borderRadius: 1, opacity: 0.6,
+                    transition: `width 1s ease ${i * 80}ms`,
+                  }} />
+                </div>
+                <DataLabel size={8} color={TEXT}>{m.current}</DataLabel>
+              </div>
+
+              <div style={{ width: 10, textAlign: 'center' }}><DataLabel size={8} color={SUB}>−</DataLabel></div>
+
+              {/* Rolling avg bar */}
+              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 3, justifyContent: 'center' }}>
+                <div style={{ width: 40, height: 3, background: DARK, borderRadius: 1, overflow: 'hidden' }}>
+                  <div style={{
+                    width: vis ? `${m.avg}%` : '0%',
+                    height: '100%', background: TEAL_MID, borderRadius: 1, opacity: 0.4,
+                    transition: `width 1s ease ${i * 80 + 400}ms`,
+                  }} />
+                </div>
+                <DataLabel size={8} color={SUB}>{m.avg}</DataLabel>
+              </div>
+
+              <div style={{ width: 10, textAlign: 'center' }}><DataLabel size={8} color={SUB}>=</DataLabel></div>
+
+              {/* Delta result */}
+              <div style={{ flex: 1, textAlign: 'center' }}>
+                <span style={{
+                  fontFamily: MONO, fontSize: 10, fontWeight: 600,
+                  color: showDelta ? (isPositive ? T : A) : 'transparent',
+                  transition: 'color 500ms ease',
+                }}>
+                  {isPositive ? '+' : ''}{delta}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Principle */}
+        <div style={{ marginTop: 8, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>POSITIVE Δ = ELEVATED · NEGATIVE Δ = BELOW TYPICAL · ZERO = ON BASELINE</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 3. CONSENSUS ASSEMBLY WIDGET
+//    3 independent outputs → convergence computation
+// ═══════════════════════════════════════════════════════
+
+export function ConsensusAssemblyWidget() {
+  const { ref, vis } = useVisible();
+  const [phase, setPhase] = useState(0); // 0=idle, 1=outputs received, 2=comparing, 3=result
+
+  useEffect(() => {
+    if (!vis) return;
+    const timers = [
+      setTimeout(() => setPhase(1), 500),
+      setTimeout(() => setPhase(2), 1500),
+      setTimeout(() => setPhase(3), 2800),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [vis]);
+
+  const modelResults = [
+    { id: 'GP-4', framing: 'ECONOMIC', scores: [72, 34, 61, 28] },
+    { id: 'GP-G', framing: 'ECONOMIC', scores: [68, 38, 55, 31] },
+    { id: 'GP-C', framing: 'POPULIST', scores: [74, 29, 72, 24] },
+  ];
+
+  return (
+    <WidgetFrame stamp="METH-CON // INDEPENDENT OUTPUTS → CONVERGENCE RATIO">
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Phase 1: Three independent outputs */}
+        <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
+          {modelResults.map((model, mi) => {
+            const divergent = model.framing !== modelResults[0].framing;
             return (
               <div
-                key={i}
+                key={model.id}
                 style={{
                   flex: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  cursor: 'default',
+                  padding: '4px 4px',
+                  border: `1px solid ${phase >= 1 ? (divergent && phase >= 2 ? 'rgba(212,167,45,0.15)' : TEAL_LO) : TEAL_DIM}`,
+                  borderRadius: 3,
+                  background: divergent && phase >= 2 ? 'rgba(212,167,45,0.02)' : 'transparent',
+                  opacity: phase >= 1 ? 1 : 0.15,
+                  transition: `all 600ms ease ${mi * 120}ms`,
+                  textAlign: 'center',
                 }}
-                onMouseEnter={() => setHoveredBar(i)}
-                onMouseLeave={() => setHoveredBar(null)}
               >
-                <div style={{
-                  width: '100%',
-                  maxWidth: 16,
-                  height: h,
-                  background: isHigh
-                    ? `linear-gradient(180deg, ${AMBER}40, ${AMBER}20)`
-                    : `linear-gradient(180deg, ${TEAL}40, ${TEAL}15)`,
-                  borderTop: `2px solid ${isHigh ? AMBER : TEAL}`,
-                  borderRadius: '2px 2px 0 0',
-                  transition: hoveredBar === i ? 'none' : 'height 100ms ease-out',
-                  opacity: hoveredBar !== null && hoveredBar !== i ? 0.4 : 1,
-                  position: 'relative',
-                }}>
-                  {/* Hover tooltip */}
-                  {hoveredBar === i && (
-                    <div style={{
-                      position: 'absolute',
-                      top: -18,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      fontFamily: 'var(--font-jetbrains, monospace)',
-                      fontSize: 9,
-                      color: isHigh ? AMBER : TEAL,
-                      fontWeight: 600,
-                      whiteSpace: 'nowrap',
-                    }}>
-                      {d.v}
-                    </div>
-                  )}
+                <DataLabel size={7} color={TEXT}>{model.id}</DataLabel>
+                <div style={{ marginTop: 2 }}>
+                  <DataLabel size={6} color={divergent && phase >= 2 ? A : T}>{model.framing}</DataLabel>
+                </div>
+                {/* Mini score dots */}
+                <div style={{ display: 'flex', gap: 1, justifyContent: 'center', marginTop: 3 }}>
+                  {model.scores.map((s, si) => (
+                    <div
+                      key={si}
+                      style={{
+                        width: 3, height: 3, borderRadius: '50%',
+                        background: divergent && phase >= 2 ? A : T,
+                        opacity: 0.2 + (s / 100) * 0.5,
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Day labels */}
+        {/* Phase 2: Comparison arrows */}
         <div style={{
-          display: 'flex',
-          gap: 3,
-          marginTop: 4,
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: 8,
+          opacity: phase >= 2 ? 1 : 0,
+          transition: 'opacity 600ms ease',
         }}>
-          {PULSE_DATA.map((d, i) => (
-            <div key={i} style={{
-              flex: 1,
-              textAlign: 'center',
-              fontFamily: 'var(--font-jetbrains, monospace)',
-              fontSize: 7,
-              color: 'rgba(45,212,191,0.2)',
-              letterSpacing: '0.05em',
-            }}>
-              {d.day}
-            </div>
-          ))}
+          <div style={{ width: 20, height: 1, background: T, opacity: 0.3 }} />
+          <DataLabel size={7} color={phase >= 2 ? T : SUB}>
+            {phase >= 2 ? 'COMPARING OUTPUTS' : '—'}
+          </DataLabel>
+          <div style={{ width: 20, height: 1, background: T, opacity: 0.3 }} />
         </div>
-      </div>
 
-      {/* Footer stats */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        marginTop: 8,
-        paddingTop: 8,
-        borderTop: `1px solid ${TEAL_08}`,
-      }}>
-        {[
-          { label: 'AVG', value: '58.4' },
-          { label: 'PEAK', value: '95' },
-          { label: 'σ', value: '22.1' },
-        ].map(s => (
-          <div key={s.label} style={{ textAlign: 'center' }}>
-            <div style={{
-              fontFamily: 'var(--font-jetbrains, monospace)',
-              fontSize: 11, fontWeight: 600,
-              color: TEAL,
-            }}>
-              {s.value}
-            </div>
-            <div style={{
-              fontFamily: 'var(--font-jetbrains, monospace)',
-              fontSize: 7,
-              color: GUNMETAL,
-              letterSpacing: '0.12em',
-            }}>
-              {s.label}
+        {/* Phase 3: Convergence result */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8,
+          padding: '6px 8px',
+          border: `1px solid ${phase >= 3 ? TEAL_LO : TEAL_DIM}`,
+          borderRadius: 4,
+          opacity: phase >= 3 ? 1 : 0.15,
+          transition: 'all 600ms ease',
+        }}>
+          {/* Mini convergence ring */}
+          <svg viewBox="0 0 32 32" style={{ width: 32, height: 32, flexShrink: 0 }}>
+            <circle cx="16" cy="16" r="12" fill="none" stroke={TEAL_DIM} strokeWidth="2" />
+            {[0, 1, 2].map((seg) => {
+              const segLen = (2 * Math.PI * 12) / 3;
+              const gap = 3;
+              const active = seg < 2; // 2/3 converged
+              return (
+                <circle
+                  key={seg}
+                  cx="16" cy="16" r="12"
+                  fill="none"
+                  stroke={phase >= 3 ? (active ? T : 'rgba(212,167,45,0.3)') : TEAL_DIM}
+                  strokeWidth="2"
+                  strokeDasharray={`${segLen - gap} ${2 * Math.PI * 12 - segLen + gap}`}
+                  strokeDashoffset={-seg * segLen + (2 * Math.PI * 12) / 4}
+                  strokeLinecap="round"
+                  style={{ transition: 'stroke 600ms ease' }}
+                />
+              );
+            })}
+            <text x="16" y="18" textAnchor="middle" style={{ fontFamily: MONO, fontSize: 8, fontWeight: 600, fill: phase >= 3 ? A : SUB }}>
+              2/3
+            </text>
+          </svg>
+
+          <div style={{ flex: 1 }}>
+            <DataLabel size={9} color={TEXT}>CONVERGENCE RESULT</DataLabel>
+            <div style={{ marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
+              <DataLabel size={7} color={T}>GP-4 + GP-G ALIGNED</DataLabel>
+              <DataLabel size={7} color={A}>GP-C DIVERGENT</DataLabel>
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* Principle */}
+        <div style={{ marginTop: 8, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>CONSENSUS IS ADDITIVE · NEVER OVERRIDES INDIVIDUAL OUTPUTS</DataLabel>
+        </div>
       </div>
-    </div>
+    </WidgetFrame>
   );
 }
 
 
-// ═══════════════════════════════════════════
-// 3. CONSENSUS BADGE DEMO
-// ═══════════════════════════════════════════
-export function ConsensusBadgeDemo() {
-  const [animProgress, setAnimProgress] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const hasAnimated = useRef(false);
+// ═══════════════════════════════════════════════════════
+// 4. SPLIT MICROSCOPE™ WIDGET
+//    Analytical: how variance is surfaced between models
+// ═══════════════════════════════════════════════════════
 
-  const consensus = 0.87; // 87% convergence
-  const circumference = 2 * Math.PI * 52;
+const MICRO_METRICS = ['REP', 'NOV', 'AFF', 'ENT'];
+const MODEL_A_VALS = [72, 34, 55, 28];
+const MODEL_B_VALS = [68, 38, 58, 31];
+const MODEL_C_VALS = [74, 29, 72, 24]; // Divergent on AFF
+
+export function SplitMicroscopeWidget() {
+  const { ref, vis } = useVisible();
+  const [highlightIdx, setHighlightIdx] = useState(-1);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated.current) {
-        hasAnimated.current = true;
-        let start: number | null = null;
-        const animate = (ts: number) => {
-          if (!start) start = ts;
-          const p = Math.min((ts - start) / 1500, 1);
-          const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
-          setAnimProgress(eased);
-          if (p < 1) requestAnimationFrame(animate);
-        };
-        requestAnimationFrame(animate);
-      }
-    }, { threshold: 0.3 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  const progress = consensus * animProgress;
-  const displayPct = Math.round(progress * 100);
+    if (!vis) return;
+    // Highlight divergent metric (AFF) after initial reveal
+    const timer = setTimeout(() => setHighlightIdx(2), 2200);
+    return () => clearTimeout(timer);
+  }, [vis]);
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        background: CARD_BG,
-        padding: '20px 16px',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Grid coordinates — coders/traders notice this */}
-      <div style={{
-        position: 'absolute', top: 8, right: 12,
-        fontFamily: 'var(--font-jetbrains, monospace)',
-        fontSize: 7, letterSpacing: '0.1em',
-        color: 'rgba(45,212,191,0.12)',
-      }}>
-        0x2DD4BF
-      </div>
+    <WidgetFrame stamp="METH-SPL // WHERE MODELS DIVERGE">
+      <div ref={ref} style={{ padding: '4px 0' }}>
 
-      {/* Ring */}
-      <div style={{ position: 'relative', width: 120, height: 120 }}>
-        <svg viewBox="0 0 120 120" style={{ width: 120, height: 120 }}>
-          {/* Background ring */}
-          <circle
-            cx="60" cy="60" r="52"
-            fill="none"
-            stroke={TEAL_08}
-            strokeWidth="4"
-          />
-          {/* Progress ring */}
-          <circle
-            cx="60" cy="60" r="52"
-            fill="none"
-            stroke={TEAL}
-            strokeWidth="4"
-            strokeDasharray={circumference}
-            strokeDashoffset={circumference * (1 - progress)}
-            strokeLinecap="round"
-            transform="rotate(-90 60 60)"
-            style={{ transition: 'stroke-dashoffset 50ms linear' }}
-          />
-          {/* Inner tick marks */}
-          {Array.from({ length: 24 }).map((_, i) => {
-            const angle = (i / 24) * Math.PI * 2 - Math.PI / 2;
-            const r1 = 43, r2 = i % 6 === 0 ? 39 : 41;
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <DataLabel size={8} color={TEXT}>SPLIT MICROSCOPE™</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>SIDE-BY-SIDE DIVERGENCE VIEW</DataLabel>
+        </div>
+
+        {/* Three-model comparison grid */}
+        <div style={{ display: 'flex', gap: 2, marginBottom: 6 }}>
+          {/* Row headers */}
+          <div style={{ width: 28, display: 'flex', flexDirection: 'column', gap: 2, paddingTop: 18 }}>
+            {MICRO_METRICS.map((m) => (
+              <div key={m} style={{ height: 16, display: 'flex', alignItems: 'center' }}>
+                <DataLabel size={7} color={SUB}>{m}</DataLabel>
+              </div>
+            ))}
+          </div>
+
+          {/* Model columns */}
+          {[
+            { id: 'GP-4', vals: MODEL_A_VALS },
+            { id: 'GP-G', vals: MODEL_B_VALS },
+            { id: 'GP-C', vals: MODEL_C_VALS },
+          ].map((model, mi) => {
+            const isDivergentModel = mi === 2;
             return (
-              <line
-                key={i}
-                x1={60 + r1 * Math.cos(angle)}
-                y1={60 + r1 * Math.sin(angle)}
-                x2={60 + r2 * Math.cos(angle)}
-                y2={60 + r2 * Math.sin(angle)}
-                stroke={i % 6 === 0 ? 'rgba(45,212,191,0.2)' : 'rgba(45,212,191,0.08)'}
-                strokeWidth={i % 6 === 0 ? 1 : 0.5}
+              <div
+                key={model.id}
+                style={{
+                  flex: 1, padding: '4px 3px',
+                  border: `1px solid ${isDivergentModel && highlightIdx >= 0 ? 'rgba(212,167,45,0.15)' : TEAL_DIM}`,
+                  borderRadius: 3,
+                  background: isDivergentModel && highlightIdx >= 0 ? 'rgba(212,167,45,0.02)' : 'transparent',
+                  opacity: vis ? 1 : 0,
+                  transition: `all 600ms ease ${mi * 120}ms`,
+                }}
+              >
+                <div style={{ textAlign: 'center', marginBottom: 4 }}>
+                  <DataLabel size={7} color={isDivergentModel && highlightIdx >= 0 ? A : TEXT}>{model.id}</DataLabel>
+                </div>
+                {model.vals.map((val, vi) => {
+                  const isHighlight = vi === highlightIdx;
+                  const isDivergentCell = isDivergentModel && isHighlight;
+                  const deviation = isDivergentModel ? Math.abs(val - MODEL_A_VALS[vi]) : 0;
+                  return (
+                    <div key={vi} style={{
+                      height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: isDivergentCell ? 'rgba(212,167,45,0.06)' : 'transparent',
+                      borderRadius: 2,
+                      transition: 'background 500ms ease',
+                    }}>
+                      <DataLabel size={9} color={isDivergentCell ? A : T}>{val}</DataLabel>
+                      {isDivergentCell && deviation > 10 && (
+                        <DataLabel size={6} color={A}>&nbsp;+{deviation}</DataLabel>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Divergence callout */}
+        {highlightIdx >= 0 && (
+          <div style={{
+            padding: '3px 6px',
+            background: 'rgba(212,167,45,0.04)',
+            border: `1px solid rgba(212,167,45,0.1)`,
+            borderRadius: 3,
+            display: 'flex', alignItems: 'center', gap: 4,
+            opacity: vis ? 1 : 0,
+            transition: 'opacity 600ms ease 2500ms',
+          }}>
+            <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
+            <DataLabel size={7} color={A}>AFF DIVERGENCE: GP-C +17 vs GP-4</DataLabel>
+            <div style={{ flex: 1 }} />
+            <DataLabel size={7} color={SUB}>SURFACED · NOT SUPPRESSED</DataLabel>
+          </div>
+        )}
+
+        <div style={{ marginTop: 6, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>WHEN MODELS DISAGREE · YOU SEE IT</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 5. NARRATIVE SYNC™ WIDGET
+//    Analytical: how convergence detection works (B2B)
+// ═══════════════════════════════════════════════════════
+
+const SYNC_FIGURES = [
+  { label: 'FIG-01', strand: [0.2, 0.25, 0.35, 0.50, 0.62, 0.71, 0.78] },
+  { label: 'FIG-02', strand: [0.8, 0.72, 0.60, 0.55, 0.64, 0.70, 0.76] },
+  { label: 'FIG-03', strand: [0.5, 0.48, 0.52, 0.58, 0.65, 0.72, 0.77] },
+];
+
+export function NarrativeSyncWidget() {
+  const { ref, vis } = useVisible();
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timers = [
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 2000),
+      setTimeout(() => setPhase(3), 3200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [vis]);
+
+  const W = 220, H = 90;
+  const PAD_X = 20, PAD_Y = 10;
+
+  return (
+    <WidgetFrame stamp="METH-NSC // CROSS-FIGURE FRAMING CONVERGENCE">
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+          <DataLabel size={8} color={TEXT}>NARRATIVE SYNC™</DataLabel>
+          <div style={{ flex: 1 }} />
+          <div style={{ padding: '1px 5px', border: `1px solid ${TEAL_LO}`, borderRadius: 2 }}>
+            <DataLabel size={6} color={T}>B2B</DataLabel>
+          </div>
+        </div>
+
+        {/* Convergence strands */}
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
+          {/* Time axis */}
+          <line x1={PAD_X} y1={H - PAD_Y} x2={W - PAD_X} y2={H - PAD_Y} stroke={TEAL_DIM} strokeWidth="0.5" />
+          {Array.from({ length: 7 }).map((_, i) => {
+            const x = PAD_X + (i / 6) * (W - PAD_X * 2);
+            return <line key={i} x1={x} y1={H - PAD_Y - 2} x2={x} y2={H - PAD_Y + 1} stroke={TEAL_DIM} strokeWidth="0.5" />;
+          })}
+
+          {/* Convergence zone highlight */}
+          {phase >= 2 && (
+            <rect
+              x={PAD_X + (4 / 6) * (W - PAD_X * 2)}
+              y={PAD_Y}
+              width={(2 / 6) * (W - PAD_X * 2)}
+              height={H - PAD_Y * 2}
+              fill="rgba(45,212,191,0.03)"
+              stroke={TEAL_LO}
+              strokeWidth="0.5"
+              strokeDasharray="3 3"
+              rx="2"
+              opacity={phase >= 2 ? 1 : 0}
+              style={{ transition: 'opacity 600ms ease' }}
+            />
+          )}
+
+          {/* Figure strands */}
+          {SYNC_FIGURES.map((fig, fi) => {
+            const points = fig.strand.map((v, i) => {
+              const x = PAD_X + (i / 6) * (W - PAD_X * 2);
+              const y = PAD_Y + (1 - v) * (H - PAD_Y * 2);
+              return `${x},${y}`;
+            }).join(' ');
+            return (
+              <polyline
+                key={fi}
+                points={points}
+                fill="none"
+                stroke={T}
+                strokeWidth="1"
+                opacity={phase >= 1 ? 0.2 + fi * 0.15 : 0}
+                style={{ transition: `opacity 800ms ease ${fi * 200}ms` }}
               />
             );
           })}
+
+          {/* Convergence junction node */}
+          {phase >= 3 && (
+            <g>
+              <circle
+                cx={PAD_X + (6 / 6) * (W - PAD_X * 2)}
+                cy={PAD_Y + (1 - 0.77) * (H - PAD_Y * 2)}
+                r="4"
+                fill="rgba(45,212,191,0.15)"
+                stroke={T}
+                strokeWidth="1"
+              >
+                <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite" />
+              </circle>
+              <text
+                x={PAD_X + (6 / 6) * (W - PAD_X * 2) - 12}
+                y={PAD_Y + (1 - 0.77) * (H - PAD_Y * 2) - 7}
+                style={{ fontFamily: MONO, fontSize: 5, fill: T, opacity: 0.6 }}
+              >
+                SYNC
+              </text>
+            </g>
+          )}
+
+          {/* Figure labels */}
+          {SYNC_FIGURES.map((fig, fi) => {
+            const y = PAD_Y + (1 - fig.strand[0]) * (H - PAD_Y * 2);
+            return (
+              <text
+                key={fi}
+                x={PAD_X - 3}
+                y={y + 2}
+                textAnchor="end"
+                style={{ fontFamily: MONO, fontSize: 5, fill: SUB, opacity: phase >= 1 ? 0.4 : 0, transition: 'opacity 600ms ease' }}
+              >
+                {fig.label}
+              </text>
+            );
+          })}
+
+          {/* Time labels */}
+          <text x={PAD_X} y={H - 2} style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>T-6</text>
+          <text x={W - PAD_X} y={H - 2} textAnchor="end" style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>NOW</text>
         </svg>
 
-        {/* Center content */}
+        {/* Result callout */}
         <div style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
+          marginTop: 6, padding: '3px 6px',
+          border: `1px solid ${phase >= 3 ? TEAL_LO : TEAL_DIM}`,
+          borderRadius: 3,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: phase >= 3 ? 1 : 0.15,
+          transition: 'all 600ms ease',
         }}>
-          <div style={{
-            fontFamily: 'var(--font-jetbrains, monospace)',
-            fontSize: 28, fontWeight: 600,
-            color: TEAL,
-            lineHeight: 1,
-          }}>
-            {displayPct}
+          <div style={{ width: 4, height: 4, borderRadius: '50%', background: T, opacity: 0.6 }}>
+            {phase >= 3 && <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2s" repeatCount="indefinite" />}
           </div>
-          <div style={{
-            fontFamily: 'var(--font-jetbrains, monospace)',
-            fontSize: 8,
-            color: GUNMETAL,
-            letterSpacing: '0.15em',
-            marginTop: 2,
-          }}>
-            CONVERGENCE
-          </div>
+          <DataLabel size={7} color={T}>CONVERGENCE DETECTED</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>3 FIGURES · 6-DAY WINDOW</DataLabel>
+        </div>
+
+        <div style={{ marginTop: 6, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>CORRELATION SURFACED AS SIGNAL · CAUSATION NOT IMPLIED</DataLabel>
         </div>
       </div>
-
-      {/* Model agreement row */}
-      <div style={{
-        display: 'flex',
-        gap: 16,
-        marginTop: 16,
-        paddingTop: 12,
-        borderTop: `1px solid ${TEAL_08}`,
-        width: '100%',
-        justifyContent: 'center',
-      }}>
-        {MODEL_LABELS.map((label, i) => {
-          const agrees = i < 2; // GP-1 and GP-2 agree, GP-3 slight variance
-          return (
-            <div key={label} style={{ textAlign: 'center' }}>
-              <div style={{
-                width: 8, height: 8,
-                borderRadius: '50%',
-                background: agrees ? TEAL : AMBER,
-                margin: '0 auto 4px',
-                opacity: animProgress,
-              }} />
-              <div style={{
-                fontFamily: 'var(--font-jetbrains, monospace)',
-                fontSize: 9,
-                color: GUNMETAL,
-                letterSpacing: '0.05em',
-              }}>
-                {label}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Micro-data footer */}
-      <div style={{
-        fontFamily: 'var(--font-jetbrains, monospace)',
-        fontSize: 8,
-        color: 'rgba(45,212,191,0.15)',
-        marginTop: 12,
-        letterSpacing: '0.1em',
-      }}>
-        3/3 MODELS · RATIO 2.61:1 · δ 0.13
-      </div>
-    </div>
-  );
-}
-
-
-// ═══════════════════════════════════════════
-// SECTION RULER — hash mark divider
-// ═══════════════════════════════════════════
-export function SectionRuler({ label }: { label?: string }) {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'relative',
-        height: 20,
-        margin: '8px 0',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
-      {/* Ruler line */}
-      <div style={{
-        flex: 1,
-        height: 1,
-        background: TEAL_08,
-        position: 'relative',
-      }}>
-        {/* Hash ticks */}
-        {Array.from({ length: 40 }).map((_, i) => (
-          <div key={i} style={{
-            position: 'absolute',
-            left: `${(i / 39) * 100}%`,
-            top: -1,
-            width: 1,
-            height: i % 5 === 0 ? 6 : 3,
-            background: 'rgba(45,212,191,0.12)',
-          }} />
-        ))}
-      </div>
-
-      {/* Center label */}
-      {label && (
-        <div style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'var(--bg, #081017)',
-          padding: '0 12px',
-          fontFamily: 'var(--font-jetbrains, monospace)',
-          fontSize: 8,
-          letterSpacing: '0.15em',
-          color: 'rgba(45,212,191,0.25)',
-          textTransform: 'uppercase',
-        }}>
-          {label}
-        </div>
-      )}
-    </div>
-  );
-}
-
-
-// ═══════════════════════════════════════════
-// FILM PERFORATION BORDER
-// ═══════════════════════════════════════════
-export function FilmPerf({ side = 'left' }: { side?: 'left' | 'right' }) {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'absolute',
-        [side]: 0,
-        top: 0,
-        bottom: 0,
-        width: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        padding: '8px 0',
-      }}
-    >
-      {Array.from({ length: 12 }).map((_, i) => (
-        <div key={i} style={{
-          width: 3,
-          height: 6,
-          borderRadius: 1,
-          background: 'rgba(45,212,191,0.06)',
-        }} />
-      ))}
-    </div>
+    </WidgetFrame>
   );
 }

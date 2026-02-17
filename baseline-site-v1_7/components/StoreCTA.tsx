@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BRAND_BA_MARK, BADGE_APPSTORE, BADGE_GOOGLEPLAY } from "../config/brand-assets";
 
 export function StoreCTA({
   store
@@ -11,8 +12,8 @@ export function StoreCTA({
 
   const badge =
     store === "appstore"
-      ? { src: "/brand/badge_appstore.svg", alt: "Download on the App Store" }
-      : { src: "/brand/badge_googleplay.svg", alt: "Get it on Google Play" };
+      ? { src: BADGE_APPSTORE, alt: "Download on the App Store" }
+      : { src: BADGE_GOOGLEPLAY, alt: "Get it on Google Play" };
 
   return (
     <>
@@ -73,7 +74,7 @@ export function StoreCTA({
           >
             {/* BA mark */}
             <img
-              src="/brand/ba_mark.png"
+              src={BRAND_BA_MARK}
               alt=""
               style={{ height: 48, width: 48, margin: "0 auto 16px" }}
             />

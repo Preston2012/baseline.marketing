@@ -3,7 +3,7 @@ import { site } from "@/config/site";
 import { Card } from "@/components/Card";
 
 export const metadata: Metadata = {
-  title: "Press | Baseline",
+  title: "Press",
   description:
     "Media resources for Baseline. The first observational speech measurement platform using independent AI systems.",
   alternates: { canonical: `${site.url}/press/` },
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
       "Media resources for Baseline. The first observational speech measurement platform using independent AI systems.",
     images: [
       {
-        url: "/og/press-og.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Baseline Press",
@@ -25,6 +25,11 @@ export const metadata: Metadata = {
 export default function PressPage() {
   return (
     <section className="section" aria-label="Press">
+      {/* Classification micro-stamp */}
+      <div className="classification-stamp" style={{ marginBottom: 8 }}>
+        BASELINE-PRESS // UNCLASSIFIED // PUBLIC RELEASE
+      </div>
+
       <h1 className="h1" style={{ fontSize: 28 }}>Press</h1>
 
       <p className="p" style={{ maxWidth: 760 }}>
@@ -82,7 +87,7 @@ export default function PressPage() {
 
         <Card title="Core features">
           <p className="p" style={{ margin: 0 }}>
-            The Receipt™ · Framing Radar™ · Lens Lab™ · Crossfire™ ·
+            Baseline™ · The Receipt™ · Framing Radar™ · Lens Lab™ · Crossfire™ ·
             Signal Pulse™ · Framing Fingerprint™ · Constellation Nav™ ·
             Provision Drift™ · Split Microscope™ · Intersections Panel™ ·
             Declassified Dossier™ · Narrative Sync™
