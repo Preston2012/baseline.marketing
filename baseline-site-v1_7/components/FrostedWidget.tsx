@@ -7,7 +7,7 @@
    frosted preview of interactive widgets. All pre-launch.
    ───────────────────────────────────────────────────────── */
 
-export function FrostedWidgetPreview({ children, label }: { children: React.ReactNode; label?: string }) {
+export function FrostedWidgetPreview({ children, label, tier }: { children: React.ReactNode; label?: string; tier?: string }) {
   return (
     <div style={{
       borderRadius: 10,
@@ -54,6 +54,17 @@ export function FrostedWidgetPreview({ children, label }: { children: React.Reac
         }}>
           PRE-LAUNCH
         </span>
+        {tier && (
+          <span style={{
+            fontFamily: "var(--font-jetbrains, monospace)",
+            fontSize: 8, letterSpacing: "0.12em",
+            color: "#2dd4bf", textTransform: "uppercase",
+            border: "1px solid rgba(45,212,191,0.25)",
+            borderRadius: 3, padding: "2px 8px", marginTop: 2,
+          }}>
+            {tier}
+          </span>
+        )}
       </div>
     </div>
   );
