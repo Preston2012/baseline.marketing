@@ -3,7 +3,7 @@
 /* ─────────────────────────────────────────────────────────
    GALLERY WIDGETS — Interactive Feature Demonstrations
    ─────────────────────────────────────────────────────────
-   9 functional widget demos for the Features page.
+   20 functional widget demos for the Features page.
    These are NOT art (that's MuseumConcepts). These are
    miniature app panels showing how each surface actually
    works — with mock data, live animations, and the
@@ -13,15 +13,26 @@
    Animations tease through the frost.
 
    Widget Index:
-   1. SignalMetricsWidget   — 4-bar signal breakdown
-   2. BaselineScoreWidget   — 24hr rolling aggregate
-   3. ConsensusRingWidget   — Model convergence ring
-   4. ReceiptTimelineWidget — Semantic similarity timeline
-   5. CrossfireWidget       — Dual-figure comparison
-   6. RadarDemoWidget       — 5-axis pentagon overlay
-   7. ConstellationWidget   — Figure link topology
-   8. DriftWidget           — Provision drift meter
-   9. LensLabWidget         — Triple-model parallel view
+   1.  SignalMetricsWidget      — 4-bar signal breakdown
+   2.  BaselineScoreWidget      — 24hr rolling aggregate
+   3.  ConsensusRingWidget      — Model convergence ring
+   4.  ReceiptTimelineWidget    — Semantic similarity timeline
+   5.  CrossfireWidget          — Dual-figure comparison
+   6.  RadarDemoWidget          — 5-axis pentagon overlay
+   7.  ConstellationWidget      — Figure link topology
+   8.  DriftWidget              — Provision drift meter
+   9.  LensLabWidget            — Triple-model parallel view
+   10. SignalPulseWidget        — Concentric sonar rings
+   11. FingerprintWidget        — Rhetorical identity whorl
+   12. IntersectionsWidget      — Cross-figure overlap topology
+   13. DossierWidget            — Complete exhibit plate profile
+   14. SplitMicroscopeWidget    — Side-by-side divergence view
+   15. NarrativeSyncWidget      — Cross-figure convergence (B2B)
+   16. BaselineDeltaWidget      — Center-zero deviation gauge
+   17. VarianceDetectionWidget  — Model disagreement surfacing
+   18. HistoricalTrendsWidget   — Signal metrics time-series
+   19. TopicHeatmapWidget       — Figure × topic coverage grid
+   20. ShiftAlertWidget         — 24hr language shift detection
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';
@@ -1616,6 +1627,1028 @@ export function DossierWidget() {
           <DataLabel size={7} color={SUB}>AGGREGATE SURFACES: 5</DataLabel>
           <DataLabel size={7} color={SUB}>TOTAL RECORDS: 454</DataLabel>
           <DataLabel size={7} color={TEAL_MID}>EXHIBIT PLATE</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 14. SPLIT MICROSCOPE™ WIDGET
+//     Side-by-side model divergence comparison
+//     (moved from MethodologyWidgets → Features showcase)
+// ═══════════════════════════════════════════════════════
+
+const MICRO_METRICS = ['REP', 'NOV', 'AFF', 'ENT'];
+const MODEL_A_VALS = [72, 34, 55, 28];
+const MODEL_B_VALS = [68, 38, 58, 31];
+const MODEL_C_VALS = [74, 29, 72, 24]; // Divergent on AFF
+
+export function SplitMicroscopeWidget() {
+  const { ref, vis } = useVisible();
+  const [highlightIdx, setHighlightIdx] = useState(-1);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timer = setTimeout(() => setHighlightIdx(2), 2200);
+    return () => clearTimeout(timer);
+  }, [vis]);
+
+  return (
+    <WidgetFrame stamp="SPL-MCR // SIDE-BY-SIDE DIVERGENCE VIEW" height={200}>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <DataLabel size={8} color={TEXT}>SPLIT MICROSCOPE™</DataLabel>
+          <div style={{ flex: 1 }} />
+          <div style={{ padding: '1px 5px', border: `1px solid ${TEAL_LO}`, borderRadius: 2 }}>
+            <DataLabel size={6} color={T}>PRO+</DataLabel>
+          </div>
+        </div>
+
+        {/* Three-model comparison grid */}
+        <div style={{ display: 'flex', gap: 2, marginBottom: 6 }}>
+          {/* Row headers */}
+          <div style={{ width: 28, display: 'flex', flexDirection: 'column', gap: 2, paddingTop: 18 }}>
+            {MICRO_METRICS.map((m) => (
+              <div key={m} style={{ height: 16, display: 'flex', alignItems: 'center' }}>
+                <DataLabel size={7} color={SUB}>{m}</DataLabel>
+              </div>
+            ))}
+          </div>
+
+          {/* Model columns */}
+          {[
+            { id: 'GP-4', vals: MODEL_A_VALS },
+            { id: 'GP-G', vals: MODEL_B_VALS },
+            { id: 'GP-C', vals: MODEL_C_VALS },
+          ].map((model, mi) => {
+            const isDivergentModel = mi === 2;
+            return (
+              <div
+                key={model.id}
+                style={{
+                  flex: 1, padding: '4px 3px',
+                  border: `1px solid ${isDivergentModel && highlightIdx >= 0 ? 'rgba(212,167,45,0.15)' : TEAL_DIM}`,
+                  borderRadius: 3,
+                  background: isDivergentModel && highlightIdx >= 0 ? 'rgba(212,167,45,0.02)' : 'transparent',
+                  opacity: vis ? 1 : 0,
+                  transition: `all 600ms ease ${mi * 120}ms`,
+                }}
+              >
+                <div style={{ textAlign: 'center', marginBottom: 4 }}>
+                  <DataLabel size={7} color={isDivergentModel && highlightIdx >= 0 ? A : TEXT}>{model.id}</DataLabel>
+                </div>
+                {model.vals.map((val, vi) => {
+                  const isHighlight = vi === highlightIdx;
+                  const isDivergentCell = isDivergentModel && isHighlight;
+                  const deviation = isDivergentModel ? Math.abs(val - MODEL_A_VALS[vi]) : 0;
+                  return (
+                    <div key={vi} style={{
+                      height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: isDivergentCell ? 'rgba(212,167,45,0.06)' : 'transparent',
+                      borderRadius: 2,
+                      transition: 'background 500ms ease',
+                    }}>
+                      <DataLabel size={9} color={isDivergentCell ? A : T}>{val}</DataLabel>
+                      {isDivergentCell && deviation > 10 && (
+                        <DataLabel size={6} color={A}>&nbsp;+{deviation}</DataLabel>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Divergence callout */}
+        {highlightIdx >= 0 && (
+          <div style={{
+            padding: '3px 6px',
+            background: 'rgba(212,167,45,0.04)',
+            border: `1px solid rgba(212,167,45,0.1)`,
+            borderRadius: 3,
+            display: 'flex', alignItems: 'center', gap: 4,
+            opacity: vis ? 1 : 0,
+            transition: 'opacity 600ms ease 2500ms',
+          }}>
+            <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
+            <DataLabel size={7} color={A}>AFF DIVERGENCE: GP-C +17 vs GP-4</DataLabel>
+            <div style={{ flex: 1 }} />
+            <DataLabel size={7} color={SUB}>SURFACED · NOT SUPPRESSED</DataLabel>
+          </div>
+        )}
+
+        <div style={{ marginTop: 6, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>WHEN MODELS DISAGREE · YOU SEE IT</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 15. NARRATIVE SYNC™ WIDGET
+//     Cross-figure framing convergence detection (B2B)
+//     (moved from MethodologyWidgets → Features showcase)
+// ═══════════════════════════════════════════════════════
+
+const SYNC_FIGURES = [
+  { label: 'FIG-01', strand: [0.2, 0.25, 0.35, 0.50, 0.62, 0.71, 0.78] },
+  { label: 'FIG-02', strand: [0.8, 0.72, 0.60, 0.55, 0.64, 0.70, 0.76] },
+  { label: 'FIG-03', strand: [0.5, 0.48, 0.52, 0.58, 0.65, 0.72, 0.77] },
+];
+
+export function NarrativeSyncWidget() {
+  const { ref, vis } = useVisible();
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timers = [
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 2000),
+      setTimeout(() => setPhase(3), 3200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [vis]);
+
+  const W = 220, H = 90;
+  const PAD_X = 20, PAD_Y = 10;
+
+  return (
+    <WidgetFrame stamp="NRT-SYN // CROSS-FIGURE FRAMING CONVERGENCE" height={180}>
+      <style>{`@keyframes nrt-dot { 0%,100% { opacity: 0.4; } 50% { opacity: 0.8; } }`}</style>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+          <DataLabel size={8} color={TEXT}>NARRATIVE SYNC™</DataLabel>
+          <div style={{ flex: 1 }} />
+          <div style={{ padding: '1px 5px', border: `1px solid ${TEAL_LO}`, borderRadius: 2 }}>
+            <DataLabel size={6} color={T}>B2B</DataLabel>
+          </div>
+        </div>
+
+        {/* Convergence strands */}
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
+          {/* Time axis */}
+          <line x1={PAD_X} y1={H - PAD_Y} x2={W - PAD_X} y2={H - PAD_Y} stroke={TEAL_DIM} strokeWidth="0.5" />
+          {Array.from({ length: 7 }).map((_, i) => {
+            const x = PAD_X + (i / 6) * (W - PAD_X * 2);
+            return <line key={i} x1={x} y1={H - PAD_Y - 2} x2={x} y2={H - PAD_Y + 1} stroke={TEAL_DIM} strokeWidth="0.5" />;
+          })}
+
+          {/* Convergence zone highlight */}
+          {phase >= 2 && (
+            <rect
+              x={PAD_X + (4 / 6) * (W - PAD_X * 2)}
+              y={PAD_Y}
+              width={(2 / 6) * (W - PAD_X * 2)}
+              height={H - PAD_Y * 2}
+              fill="rgba(45,212,191,0.03)"
+              stroke={TEAL_LO}
+              strokeWidth="0.5"
+              strokeDasharray="3 3"
+              rx="2"
+              opacity={phase >= 2 ? 1 : 0}
+              style={{ transition: 'opacity 600ms ease' }}
+            />
+          )}
+
+          {/* Figure strands */}
+          {SYNC_FIGURES.map((fig, fi) => {
+            const points = fig.strand.map((v, i) => {
+              const x = PAD_X + (i / 6) * (W - PAD_X * 2);
+              const y = PAD_Y + (1 - v) * (H - PAD_Y * 2);
+              return `${x},${y}`;
+            }).join(' ');
+            return (
+              <polyline
+                key={fi}
+                points={points}
+                fill="none"
+                stroke={T}
+                strokeWidth="1"
+                opacity={phase >= 1 ? 0.2 + fi * 0.15 : 0}
+                style={{ transition: `opacity 800ms ease ${fi * 200}ms` }}
+              />
+            );
+          })}
+
+          {/* Convergence junction node */}
+          {phase >= 3 && (
+            <g>
+              <circle
+                cx={PAD_X + (6 / 6) * (W - PAD_X * 2)}
+                cy={PAD_Y + (1 - 0.77) * (H - PAD_Y * 2)}
+                r="4"
+                fill="rgba(45,212,191,0.15)"
+                stroke={T}
+                strokeWidth="1"
+              >
+                <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite" />
+              </circle>
+              <text
+                x={PAD_X + (6 / 6) * (W - PAD_X * 2) - 12}
+                y={PAD_Y + (1 - 0.77) * (H - PAD_Y * 2) - 7}
+                style={{ fontFamily: MONO, fontSize: 5, fill: T, opacity: 0.6 }}
+              >
+                SYNC
+              </text>
+            </g>
+          )}
+
+          {/* Figure labels */}
+          {SYNC_FIGURES.map((fig, fi) => {
+            const y = PAD_Y + (1 - fig.strand[0]) * (H - PAD_Y * 2);
+            return (
+              <text
+                key={fi}
+                x={PAD_X - 3}
+                y={y + 2}
+                textAnchor="end"
+                style={{ fontFamily: MONO, fontSize: 5, fill: SUB, opacity: phase >= 1 ? 0.4 : 0, transition: 'opacity 600ms ease' }}
+              >
+                {fig.label}
+              </text>
+            );
+          })}
+
+          {/* Time labels */}
+          <text x={PAD_X} y={H - 2} style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>T-6</text>
+          <text x={W - PAD_X} y={H - 2} textAnchor="end" style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>NOW</text>
+        </svg>
+
+        {/* Result callout */}
+        <div style={{
+          marginTop: 6, padding: '3px 6px',
+          border: `1px solid ${phase >= 3 ? TEAL_LO : TEAL_DIM}`,
+          borderRadius: 3,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: phase >= 3 ? 1 : 0.15,
+          transition: 'all 600ms ease',
+        }}>
+          <div style={{
+            width: 4, height: 4, borderRadius: '50%', background: T,
+            opacity: phase >= 3 ? undefined : 0.6,
+            animation: phase >= 3 ? 'nrt-dot 2s ease-in-out infinite' : 'none',
+          }} />
+          <DataLabel size={7} color={T}>CONVERGENCE DETECTED</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>3 FIGURES · 6-DAY WINDOW</DataLabel>
+        </div>
+
+        <div style={{ marginTop: 6, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>CORRELATION SURFACED AS SIGNAL · CAUSATION NOT IMPLIED</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 16. BASELINE DELTA WIDGET
+//     Deviation from rolling average — center-zero gauge
+// ═══════════════════════════════════════════════════════
+
+const DELTA_DATA = [
+  { label: 'REP', delta: +14, current: 72, avg: 58 },
+  { label: 'NOV', delta: -7, current: 34, avg: 41 },
+  { label: 'AFF', delta: +16, current: 61, avg: 45 },
+  { label: 'ENT', delta: -5, current: 28, avg: 33 },
+];
+
+export function BaselineDeltaWidget() {
+  const { ref, vis } = useVisible();
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timer = setTimeout(() => setRevealed(true), 800);
+    return () => clearTimeout(timer);
+  }, [vis]);
+
+  const maxDelta = 25; // scale factor
+
+  return (
+    <WidgetFrame stamp="BSL-DLT // DEVIATION FROM ROLLING AVERAGE" height={170}>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 10 }}>
+          <DataLabel size={8} color={TEXT}>BASELINE DELTA</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>SHIFT FROM HISTORICAL AVG</DataLabel>
+        </div>
+
+        {/* Center-zero deviation bars */}
+        <div style={{ position: 'relative', padding: '0 4px' }}>
+          {/* Zero center line */}
+          <div style={{
+            position: 'absolute', left: '50%', top: 0, bottom: 0,
+            width: 1, background: 'rgba(182,198,214,0.12)',
+            transform: 'translateX(-0.5px)',
+          }} />
+          {/* Scale labels */}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', marginBottom: 4,
+            padding: '0 2px',
+          }}>
+            <DataLabel size={6} color={SUB}>−{maxDelta}</DataLabel>
+            <DataLabel size={6} color={SUB}>0</DataLabel>
+            <DataLabel size={6} color={SUB}>+{maxDelta}</DataLabel>
+          </div>
+
+          {DELTA_DATA.map((d, i) => {
+            const isPositive = d.delta > 0;
+            const barPct = Math.min(Math.abs(d.delta) / maxDelta * 50, 50); // max 50% of width
+            return (
+              <div
+                key={d.label}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 0,
+                  height: 26, marginBottom: 2,
+                  opacity: vis ? 1 : 0,
+                  transition: `opacity 600ms ease ${i * 120}ms`,
+                }}
+              >
+                {/* Metric label */}
+                <div style={{ width: 28, flexShrink: 0 }}>
+                  <DataLabel size={8} color={SUB}>{d.label}</DataLabel>
+                </div>
+
+                {/* Bar container */}
+                <div style={{ flex: 1, height: 14, position: 'relative' }}>
+                  {/* Track background */}
+                  <div style={{
+                    position: 'absolute', inset: '4px 0',
+                    background: DARK, borderRadius: 2,
+                  }} />
+
+                  {/* Deviation bar — extends from center */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 4, height: 6, borderRadius: 2,
+                    ...(isPositive
+                      ? { left: '50%', width: revealed ? `${barPct}%` : '0%' }
+                      : { right: '50%', width: revealed ? `${barPct}%` : '0%' }
+                    ),
+                    background: isPositive
+                      ? `linear-gradient(90deg, rgba(45,212,191,0.3), ${T})`
+                      : `linear-gradient(270deg, rgba(212,167,45,0.3), ${A})`,
+                    opacity: 0.7,
+                    transition: `width 1s cubic-bezier(0.22, 1, 0.36, 1) ${i * 100 + 300}ms`,
+                  }} />
+
+                  {/* Tick marks along track */}
+                  {[-0.75, -0.5, -0.25, 0, 0.25, 0.5, 0.75].map((t, ti) => (
+                    <div key={ti} style={{
+                      position: 'absolute',
+                      left: `${(t + 1) / 2 * 100}%`,
+                      top: 2, width: 1,
+                      height: t === 0 ? 10 : 3,
+                      background: t === 0 ? 'rgba(182,198,214,0.15)' : 'rgba(182,198,214,0.05)',
+                    }} />
+                  ))}
+                </div>
+
+                {/* Delta value */}
+                <div style={{ width: 36, textAlign: 'right', flexShrink: 0 }}>
+                  <span style={{
+                    fontFamily: MONO, fontSize: 10, fontWeight: 600,
+                    color: revealed ? (isPositive ? T : A) : 'transparent',
+                    transition: `color 600ms ease ${i * 100 + 800}ms`,
+                  }}>
+                    {isPositive ? '+' : ''}{d.delta}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Legend */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 10, marginTop: 6,
+          paddingTop: 4, borderTop: `1px solid ${TEAL_DIM}`,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <div style={{ width: 8, height: 3, background: T, borderRadius: 1, opacity: 0.7 }} />
+            <DataLabel size={7} color={SUB}>ELEVATED</DataLabel>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+            <div style={{ width: 8, height: 3, background: A, borderRadius: 1, opacity: 0.7 }} />
+            <DataLabel size={7} color={SUB}>BELOW TYPICAL</DataLabel>
+          </div>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={TEAL_MID}>ZERO = ON BASELINE</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 17. VARIANCE DETECTION WIDGET
+//     Model disagreement detection & surfacing
+// ═══════════════════════════════════════════════════════
+
+export function VarianceDetectionWidget() {
+  const { ref, vis } = useVisible();
+  const [phase, setPhase] = useState(0); // 0=scanning, 1=aligned, 2=divergence found, 3=surfaced
+
+  useEffect(() => {
+    if (!vis) return;
+    const timers = [
+      setTimeout(() => setPhase(1), 800),
+      setTimeout(() => setPhase(2), 2000),
+      setTimeout(() => setPhase(3), 3200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [vis]);
+
+  const models = [
+    { id: 'GP-4', framing: 'ECONOMIC', score: 72, aligned: true },
+    { id: 'GP-G', framing: 'ECONOMIC', score: 68, aligned: true },
+    { id: 'GP-C', framing: 'POPULIST', score: 74, aligned: false },
+  ];
+
+  return (
+    <WidgetFrame stamp="VAR-DET // MODEL DISAGREEMENT SURFACING" height={170}>
+      <style>{`
+        @keyframes var-scan { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(200%); } }
+        @keyframes var-pulse { 0%,100% { opacity: 0.06; } 50% { opacity: 0.15; } }
+        @keyframes var-dot { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+      `}</style>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header with scan status */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <div style={{
+            width: 5, height: 5, borderRadius: '50%',
+            background: phase < 2 ? T : A,
+            transition: 'background 400ms ease',
+            animation: phase < 2 ? 'var-dot 1.5s ease-in-out infinite' : 'none',
+          }} />
+          <DataLabel size={8} color={TEXT}>
+            {phase < 1 ? 'SCANNING OUTPUTS...' : phase < 2 ? 'COMPARING MODELS...' : 'VARIANCE DETECTED'}
+          </DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={phase >= 2 ? A : TEAL_MID}>
+            {phase >= 2 ? '⚠ ALERT' : 'MONITORING'}
+          </DataLabel>
+        </div>
+
+        {/* Three model indicators */}
+        <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
+          {models.map((m, mi) => {
+            const isDivergent = !m.aligned && phase >= 2;
+            return (
+              <div
+                key={m.id}
+                style={{
+                  flex: 1, padding: '8px 6px',
+                  border: `1px solid ${isDivergent ? 'rgba(212,167,45,0.2)' : (phase >= 1 ? TEAL_LO : TEAL_DIM)}`,
+                  borderRadius: 4,
+                  background: isDivergent ? 'rgba(212,167,45,0.03)' : 'transparent',
+                  textAlign: 'center',
+                  position: 'relative', overflow: 'hidden',
+                  opacity: vis ? 1 : 0,
+                  transition: `all 600ms ease ${mi * 150}ms`,
+                }}
+              >
+                {/* Scanning overlay */}
+                {phase === 0 && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: `linear-gradient(90deg, transparent, rgba(45,212,191,0.04), transparent)`,
+                    animation: 'var-scan 2s ease-in-out infinite',
+                  }} />
+                )}
+                {/* Divergence pulse */}
+                {isDivergent && (
+                  <div style={{
+                    position: 'absolute', inset: 0,
+                    background: 'rgba(212,167,45,0.03)',
+                    animation: 'var-pulse 2s ease-in-out infinite',
+                  }} />
+                )}
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3, marginBottom: 3 }}>
+                  <div style={{
+                    width: 5, height: 5, borderRadius: '50%',
+                    background: isDivergent ? A : (phase >= 1 ? T : TEAL_DIM),
+                    transition: 'background 500ms ease',
+                  }} />
+                  <DataLabel size={9} color={TEXT}>{m.id}</DataLabel>
+                </div>
+
+                {/* Framing label */}
+                <div style={{
+                  padding: '1px 4px',
+                  border: `1px solid ${isDivergent ? 'rgba(212,167,45,0.2)' : TEAL_DIM}`,
+                  borderRadius: 2, display: 'inline-block', marginBottom: 3,
+                }}>
+                  <DataLabel size={6} color={isDivergent ? A : T}>
+                    {phase >= 1 ? m.framing : '---'}
+                  </DataLabel>
+                </div>
+
+                {/* Score bar */}
+                <div style={{ height: 3, background: DARK, borderRadius: 1, overflow: 'hidden' }}>
+                  <div style={{
+                    width: phase >= 1 ? `${m.score}%` : '0%',
+                    height: '100%',
+                    background: isDivergent ? A : T,
+                    borderRadius: 1, opacity: 0.5,
+                    transition: 'width 1s ease 500ms',
+                  }} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Surfaced alert callout */}
+        <div style={{
+          padding: '4px 8px',
+          background: phase >= 3 ? 'rgba(212,167,45,0.04)' : 'transparent',
+          border: `1px solid ${phase >= 3 ? 'rgba(212,167,45,0.12)' : TEAL_DIM}`,
+          borderRadius: 4,
+          display: 'flex', alignItems: 'center', gap: 6,
+          opacity: phase >= 3 ? 1 : 0.15,
+          transition: 'all 600ms ease',
+        }}>
+          <div style={{ width: 3, height: 3, borderRadius: '50%', background: phase >= 3 ? A : TEAL_DIM }} />
+          <DataLabel size={7} color={phase >= 3 ? A : SUB}>FRAMING DIVERGENCE: GP-C vs GP-4, GP-G</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={phase >= 3 ? T : SUB}>DISPLAYED</DataLabel>
+        </div>
+
+        <div style={{ marginTop: 6, textAlign: 'center' }}>
+          <DataLabel size={7} color={TEAL_MID}>DISAGREEMENT DISPLAYED · NEVER HIDDEN</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 18. HISTORICAL TRENDS WIDGET
+//     Signal metrics over time — animated time-series
+// ═══════════════════════════════════════════════════════
+
+const TREND_SERIES = [
+  { label: 'REP', color: T, points: [58, 62, 55, 71, 68, 75, 72, 78] },
+  { label: 'NOV', color: 'rgba(45,212,191,0.6)', points: [41, 38, 45, 34, 42, 30, 34, 28] },
+  { label: 'AFF', color: 'rgba(45,212,191,0.4)', points: [45, 48, 52, 55, 50, 58, 61, 65] },
+  { label: 'ENT', color: 'rgba(45,212,191,0.25)', points: [33, 35, 30, 28, 32, 26, 28, 24] },
+];
+const TREND_LABELS = ['W-8', 'W-7', 'W-6', 'W-5', 'W-4', 'W-3', 'W-2', 'NOW'];
+
+export function HistoricalTrendsWidget() {
+  const { ref, vis } = useVisible();
+  const [crosshairX, setCrosshairX] = useState(-1);
+
+  useEffect(() => {
+    if (!vis) return;
+    // Animate crosshair sliding across
+    let frame = 0;
+    const positions = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 7, 7];
+    const timer = setInterval(() => {
+      frame++;
+      if (frame < positions.length) {
+        setCrosshairX(positions[frame]);
+      } else {
+        clearInterval(timer);
+      }
+    }, 400);
+    return () => clearInterval(timer);
+  }, [vis]);
+
+  const W = 240, H = 100;
+  const PX = 25, PY = 10;
+  const plotW = W - PX * 2, plotH = H - PY * 2;
+
+  function toSvg(val: number, idx: number): [number, number] {
+    const x = PX + (idx / 7) * plotW;
+    const y = PY + (1 - val / 100) * plotH;
+    return [x, y];
+  }
+
+  return (
+    <WidgetFrame stamp="HST-TRD // LANGUAGE PATTERNS OVER TIME" height={180}>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+          <DataLabel size={8} color={TEXT}>HISTORICAL TRENDS</DataLabel>
+          <div style={{ flex: 1 }} />
+          <div style={{ display: 'flex', gap: 8 }}>
+            {TREND_SERIES.map((s) => (
+              <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <div style={{ width: 6, height: 2, background: s.color, borderRadius: 1 }} />
+                <DataLabel size={6} color={SUB}>{s.label}</DataLabel>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
+          {/* Grid lines */}
+          {[0, 25, 50, 75, 100].map((v) => {
+            const y = PY + (1 - v / 100) * plotH;
+            return (
+              <g key={v}>
+                <line x1={PX} y1={y} x2={W - PX} y2={y} stroke={TEAL_DIM} strokeWidth="0.3" />
+                <text x={PX - 3} y={y + 2} textAnchor="end" style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>
+                  {v}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Time axis ticks + labels */}
+          {TREND_LABELS.map((label, i) => {
+            const x = PX + (i / 7) * plotW;
+            return (
+              <g key={i}>
+                <line x1={x} y1={H - PY} x2={x} y2={H - PY + 3} stroke={TEAL_DIM} strokeWidth="0.5" />
+                <text x={x} y={H - 2} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.4 }}>
+                  {label}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Series polylines */}
+          {TREND_SERIES.map((series, si) => {
+            const points = series.points.map((v, i) => {
+              const [x, y] = toSvg(v, i);
+              return `${x},${y}`;
+            }).join(' ');
+            return (
+              <polyline
+                key={si}
+                points={points}
+                fill="none"
+                stroke={series.color}
+                strokeWidth="1"
+                strokeLinejoin="round"
+                opacity={vis ? 1 : 0}
+                style={{ transition: `opacity 800ms ease ${si * 150}ms` }}
+              />
+            );
+          })}
+
+          {/* Data points on most prominent series */}
+          {TREND_SERIES[0].points.map((v, i) => {
+            const [x, y] = toSvg(v, i);
+            return (
+              <circle
+                key={i} cx={x} cy={y} r={1.5}
+                fill={T} opacity={vis ? 0.6 : 0}
+                style={{ transition: `opacity 600ms ease ${i * 80}ms` }}
+              />
+            );
+          })}
+
+          {/* Sliding crosshair */}
+          {crosshairX >= 0 && crosshairX <= 7 && (
+            <g>
+              <line
+                x1={PX + (crosshairX / 7) * plotW}
+                y1={PY}
+                x2={PX + (crosshairX / 7) * plotW}
+                y2={H - PY}
+                stroke={T} strokeWidth="0.5" strokeDasharray="2 2" opacity="0.3"
+                style={{ transition: 'all 350ms ease' }}
+              />
+              {/* Value readouts at crosshair */}
+              {TREND_SERIES.map((series, si) => {
+                const val = series.points[crosshairX];
+                if (val === undefined) return null;
+                const [x, y] = toSvg(val, crosshairX);
+                return (
+                  <g key={si}>
+                    <circle cx={x} cy={y} r={2.5} fill="rgba(45,212,191,0.1)" stroke={series.color} strokeWidth="0.8" style={{ transition: 'all 350ms ease' }} />
+                  </g>
+                );
+              })}
+            </g>
+          )}
+        </svg>
+
+        {/* Footer with crosshair readout */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 4 }}>
+          <DataLabel size={7} color={TEAL_MID}>8-WEEK SIGNAL HISTORY</DataLabel>
+          <div style={{ flex: 1 }} />
+          {crosshairX >= 0 && crosshairX <= 7 && (
+            <DataLabel size={7} color={T}>
+              REP: {TREND_SERIES[0].points[crosshairX]} · AFF: {TREND_SERIES[2].points[crosshairX]}
+            </DataLabel>
+          )}
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 19. TOPIC HEATMAP WIDGET
+//     Figure × topic coverage density grid
+// ═══════════════════════════════════════════════════════
+
+const HEATMAP_FIGURES = ['FIG-01', 'FIG-02', 'FIG-03', 'FIG-04', 'FIG-05'];
+const HEATMAP_TOPICS = ['ECON', 'SECURITY', 'CLIMATE', 'HEALTH', 'TECH'];
+// Coverage intensity 0–1 (row = figure, col = topic)
+const HEATMAP_DATA = [
+  [0.9, 0.6, 0.2, 0.1, 0.4],
+  [0.3, 0.8, 0.5, 0.3, 0.1],
+  [0.7, 0.2, 0.9, 0.6, 0.3],
+  [0.1, 0.4, 0.3, 0.8, 0.7],
+  [0.5, 0.1, 0.1, 0.2, 0.9],
+];
+
+export function TopicHeatmapWidget() {
+  const { ref, vis } = useVisible();
+
+  return (
+    <WidgetFrame stamp="TPC-HMP // FIGURE × TOPIC COVERAGE DENSITY" height={190}>
+      <style>{`@keyframes hmp-glow { 0%,100% { opacity: 0.06; } 50% { opacity: 0.15; } }`}</style>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+          <DataLabel size={8} color={TEXT}>TOPIC HEATMAP</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={SUB}>COVERAGE INTENSITY 0–1</DataLabel>
+        </div>
+
+        {/* Grid container */}
+        <div style={{ paddingLeft: 40 }}>
+          {/* Column headers */}
+          <div style={{ display: 'flex', gap: 2, marginBottom: 3, paddingLeft: 2 }}>
+            {HEATMAP_TOPICS.map((topic) => (
+              <div key={topic} style={{ flex: 1, textAlign: 'center' }}>
+                <DataLabel size={5} color={SUB}>{topic}</DataLabel>
+              </div>
+            ))}
+          </div>
+
+          {/* Rows */}
+          {HEATMAP_FIGURES.map((fig, ri) => (
+            <div key={fig} style={{
+              display: 'flex', alignItems: 'center', gap: 0,
+              marginBottom: 2,
+              opacity: vis ? 1 : 0,
+              transition: `opacity 500ms ease ${ri * 100}ms`,
+            }}>
+              {/* Row label */}
+              <div style={{ width: 40, marginLeft: -40, flexShrink: 0 }}>
+                <DataLabel size={6} color={SUB}>{fig}</DataLabel>
+              </div>
+
+              {/* Cells */}
+              <div style={{ flex: 1, display: 'flex', gap: 2 }}>
+                {HEATMAP_DATA[ri].map((intensity, ci) => {
+                  const isHot = intensity >= 0.7;
+                  return (
+                    <div
+                      key={ci}
+                      style={{
+                        flex: 1,
+                        height: 22,
+                        borderRadius: 2,
+                        background: isHot
+                          ? `rgba(45,212,191,${0.06 + intensity * 0.18})`
+                          : `rgba(45,212,191,${0.02 + intensity * 0.06})`,
+                        border: `1px solid ${isHot ? TEAL_LO : 'rgba(45,212,191,0.04)'}`,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        transition: `all 600ms ease ${(ri * 5 + ci) * 40}ms`,
+                        position: 'relative',
+                      }}
+                    >
+                      <DataLabel size={7} color={isHot ? T : 'rgba(45,212,191,0.35)'}>
+                        {vis ? intensity.toFixed(1) : '·'}
+                      </DataLabel>
+                      {/* Hot cell glow */}
+                      {isHot && vis && (
+                        <div style={{
+                          position: 'absolute', inset: 0, borderRadius: 2,
+                          background: 'rgba(45,212,191,0.03)',
+                          animation: 'hmp-glow 3s ease-in-out infinite',
+                        }} />
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Legend */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 4, marginTop: 8,
+          paddingTop: 4, borderTop: `1px solid ${TEAL_DIM}`,
+        }}>
+          {/* Gradient preview */}
+          <div style={{ display: 'flex', gap: 1 }}>
+            {[0.1, 0.3, 0.5, 0.7, 0.9].map((v) => (
+              <div key={v} style={{
+                width: 8, height: 6, borderRadius: 1,
+                background: `rgba(45,212,191,${0.04 + v * 0.15})`,
+              }} />
+            ))}
+          </div>
+          <DataLabel size={6} color={SUB}>LOW → HIGH</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={TEAL_MID}>5 FIGURES × 5 TOPICS</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+// ═══════════════════════════════════════════════════════
+// 20. SHIFT ALERT WIDGET
+//     24hr language shift detection with threshold trigger
+// ═══════════════════════════════════════════════════════
+
+const SHIFT_BASELINE = [45, 47, 44, 46, 48, 43, 45, 44, 46, 47];
+const SHIFT_SPIKE = [45, 47, 44, 46, 48, 43, 45, 72, 78, 81]; // spike at index 7
+
+export function ShiftAlertWidget() {
+  const { ref, vis } = useVisible();
+  const [spiked, setSpiked] = useState(false);
+
+  useEffect(() => {
+    if (!vis) return;
+    const timer = setTimeout(() => setSpiked(true), 1800);
+    return () => clearTimeout(timer);
+  }, [vis]);
+
+  const data = spiked ? SHIFT_SPIKE : SHIFT_BASELINE;
+  const W = 220, H = 80;
+  const PX = 15, PY = 8;
+  const plotW = W - PX * 2, plotH = H - PY * 2;
+  const threshold = 60; // alert threshold
+
+  function toSvg(val: number, idx: number): [number, number] {
+    return [
+      PX + (idx / (data.length - 1)) * plotW,
+      PY + (1 - val / 100) * plotH,
+    ];
+  }
+
+  const linePts = data.map((v, i) => {
+    const [x, y] = toSvg(v, i);
+    return `${x},${y}`;
+  }).join(' ');
+
+  const thresholdY = PY + (1 - threshold / 100) * plotH;
+
+  return (
+    <WidgetFrame stamp="SFT-ALT // 24HR LANGUAGE SHIFT DETECTION" height={170}>
+      <style>{`
+        @keyframes shift-flash { 0%,100% { opacity: 0; } 50% { opacity: 0.08; } }
+        @keyframes sft-dot { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
+      `}</style>
+      <div ref={ref} style={{ padding: '4px 0' }}>
+
+        {/* Header with alert status */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+          <div style={{
+            width: 5, height: 5, borderRadius: '50%',
+            background: spiked ? A : T,
+            transition: 'background 400ms ease',
+            animation: spiked ? 'sft-dot 1s ease-in-out infinite' : 'none',
+          }} />
+          <DataLabel size={8} color={TEXT}>SHIFT ALERT</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={spiked ? A : TEAL_MID}>
+            {spiked ? 'THRESHOLD BREACHED' : 'WITHIN RANGE'}
+          </DataLabel>
+        </div>
+
+        {/* Chart */}
+        <div style={{ position: 'relative' }}>
+          {/* Flash overlay on spike */}
+          {spiked && (
+            <div style={{
+              position: 'absolute', inset: 0, borderRadius: 4,
+              background: 'rgba(212,167,45,0.04)',
+              animation: 'shift-flash 2s ease-in-out 3',
+            }} />
+          )}
+
+          <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
+            {/* Grid */}
+            {[0, 25, 50, 75, 100].map((v) => {
+              const y = PY + (1 - v / 100) * plotH;
+              return <line key={v} x1={PX} y1={y} x2={W - PX} y2={y} stroke={TEAL_DIM} strokeWidth="0.3" />;
+            })}
+
+            {/* Threshold line */}
+            <line
+              x1={PX} y1={thresholdY} x2={W - PX} y2={thresholdY}
+              stroke={A} strokeWidth="0.8" strokeDasharray="4 3" opacity="0.4"
+            />
+            <text
+              x={W - PX + 2} y={thresholdY + 2}
+              style={{ fontFamily: MONO, fontSize: 5, fill: A, opacity: 0.5 }}
+            >
+              THR
+            </text>
+
+            {/* Signal line */}
+            <polyline
+              points={linePts}
+              fill="none"
+              stroke={spiked ? A : T}
+              strokeWidth="1.2"
+              strokeLinejoin="round"
+              opacity={vis ? 0.8 : 0}
+              style={{ transition: 'all 600ms ease' }}
+            />
+
+            {/* Area fill under spike section */}
+            {spiked && (() => {
+              const spikeStart = 6;
+              const areaPts = data.slice(spikeStart).map((v, i) => {
+                const [x, y] = toSvg(v, i + spikeStart);
+                return `${x},${y}`;
+              });
+              const lastX = PX + ((data.length - 1) / (data.length - 1)) * plotW;
+              const firstX = PX + (spikeStart / (data.length - 1)) * plotW;
+              const bottomY = PY + plotH;
+              return (
+                <polygon
+                  points={`${firstX},${bottomY} ${areaPts.join(' ')} ${lastX},${bottomY}`}
+                  fill={A}
+                  opacity={0.04}
+                />
+              );
+            })()}
+
+            {/* Data points */}
+            {data.map((v, i) => {
+              const [x, y] = toSvg(v, i);
+              const isSpike = spiked && v > threshold;
+              return (
+                <circle
+                  key={i} cx={x} cy={y}
+                  r={isSpike ? 2.5 : 1.5}
+                  fill={isSpike ? A : T}
+                  opacity={vis ? (isSpike ? 0.9 : 0.4) : 0}
+                  style={{ transition: `all 600ms ease ${i * 60}ms` }}
+                />
+              );
+            })}
+
+            {/* Trigger annotation */}
+            {spiked && (() => {
+              const [sx, sy] = toSvg(72, 7);
+              return (
+                <g>
+                  <line x1={sx} y1={sy - 6} x2={sx} y2={sy - 14} stroke={A} strokeWidth="0.5" opacity="0.6" />
+                  <text x={sx} y={sy - 16} textAnchor="middle" style={{ fontFamily: MONO, fontSize: 5, fill: A, opacity: 0.7 }}>
+                    SHIFT
+                  </text>
+                </g>
+              );
+            })()}
+
+            {/* Time axis */}
+            <text x={PX} y={H - 1} style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>24HR AGO</text>
+            <text x={W - PX} y={H - 1} textAnchor="end" style={{ fontFamily: MONO, fontSize: 4, fill: SUB, opacity: 0.3 }}>NOW</text>
+          </svg>
+        </div>
+
+        {/* Alert callout */}
+        <div style={{
+          marginTop: 6, padding: '3px 6px',
+          background: spiked ? 'rgba(212,167,45,0.04)' : 'transparent',
+          border: `1px solid ${spiked ? 'rgba(212,167,45,0.12)' : TEAL_DIM}`,
+          borderRadius: 3,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: spiked ? 1 : 0.2,
+          transition: 'all 600ms ease',
+        }}>
+          <div style={{ width: 3, height: 3, borderRadius: '50%', background: spiked ? A : TEAL_DIM }} />
+          <DataLabel size={7} color={spiked ? A : SUB}>REP SPIKE: 45 → 81 IN 3HR</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={spiked ? T : SUB}>ALERT TRIGGERED</DataLabel>
         </div>
       </div>
     </WidgetFrame>

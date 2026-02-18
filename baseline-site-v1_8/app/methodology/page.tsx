@@ -3,7 +3,7 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { Card } from "@/components/Card";
 import { RadarTooltips } from "@/components/RadarTooltips";
-import { SurfaceWidgets, AnalysisWidgets, LayerWidgets } from "@/components/MethodologyWidgets";
+import { SurfaceWidgets, LayerWidgets } from "@/components/MethodologyWidgets";
 
 export const metadata: Metadata = {
   title: "How It Works",
@@ -346,10 +346,6 @@ export default function MethodologyPage() {
       </div>
 
       <SurfaceWidgets />
-
-      <div style={{ height: 16 }} />
-
-      <AnalysisWidgets />
 
       <div style={{ height: 32, borderBottom: "2px solid var(--border_inactive)", position: "relative" }}>
         <div aria-hidden="true" style={{ position: "absolute", bottom: -1, left: 0, right: 0, height: 1 }}>

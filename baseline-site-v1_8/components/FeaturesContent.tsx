@@ -4,7 +4,7 @@ import { useState, useCallback, Fragment, type ReactNode } from "react";
 import { TierPill } from "./TierPill";
 import { FeaturesNav, type TierFilter } from "./FeaturesNav";
 import { FrostedWidgetPreview } from "./FrostedWidget";
-import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget } from "./GalleryWidgets";
+import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget, SplitMicroscopeWidget, NarrativeSyncWidget, BaselineDeltaWidget, VarianceDetectionWidget, HistoricalTrendsWidget, TopicHeatmapWidget, ShiftAlertWidget } from "./GalleryWidgets";
 
 /* ─────────────────────────────────────────────────────────
    TYPES
@@ -35,45 +35,50 @@ const SIGNALS: Feature[] = [
     widgetLabel: "SIGNAL METRICS \u00b7 4-AXIS DECOMPOSITION", widget: <SignalMetricsWidget /> },
   { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The reference signal for each figure.", tier: "CORE",
     widgetLabel: "BASELINE\u2122 \u00b7 24HR ROLLING AGGREGATE", widget: <BaselineScoreWidget /> },
-  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.", tier: "CORE" },
+  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.", tier: "CORE",
+    widgetLabel: "BASELINE DELTA \u00b7 DEVIATION GAUGE", widget: <BaselineDeltaWidget /> },
   { name: "Consensus Convergence", desc: "How often models agree. Shown as a simple ratio.", tier: "CORE",
     widgetLabel: "CONSENSUS \u00b7 MODEL CONVERGENCE", widget: <ConsensusRingWidget /> },
-  { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.", tier: "CORE" },
+  { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.", tier: "CORE",
+    widgetLabel: "VARIANCE \u00b7 MODEL DISAGREEMENT SURFACING", widget: <VarianceDetectionWidget /> },
   { name: "Lens Lab\u2122", desc: "Three AI models running in parallel. Same statement, three independent measurements.", tier: "PRO",
     widgetLabel: "LENS LAB\u2122 \u00b7 3-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
-  { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO" },
+  { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO",
+    widgetLabel: "HISTORICAL \u00b7 SIGNAL PATTERNS OVER TIME", widget: <HistoricalTrendsWidget /> },
   { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where measurements diverge most.", tier: "PRO+" },
-  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.", tier: "PRO+" },
+  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.", tier: "PRO+",
+    widgetLabel: "SPLIT MICROSCOPE\u2122 \u00b7 DIVERGENCE VIEW", widget: <SplitMicroscopeWidget /> },
 ];
 
 const FEED: Feature[] = [
-  { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.", tier: "CORE",
-    widgetLabel: "THE RECEIPT\u2122 \u00b7 STATEMENT EXHIBIT", widget: <ReceiptTimelineWidget /> },
   { name: "Feed Browse + Statement Detail", desc: "Access every analyzed statement with full source context.", tier: "CORE" },
   { name: "Trending Topics", desc: "Topic chips showing what\u2019s active now.", tier: "CORE" },
   { name: "\u201CWhy am I seeing this?\u201D", desc: "See why this statement is in your feed.", tier: "CORE" },
   { name: "Model Attribution", desc: "See which models produced each measurement.", tier: "CORE" },
+  { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.", tier: "CORE",
+    widgetLabel: "THE RECEIPT\u2122 \u00b7 STATEMENT EXHIBIT", widget: <ReceiptTimelineWidget /> },
   { name: "Feed Sorting", desc: "Sort by novelty, recency, or signal strength.", tier: "PRO" },
-  { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.", tier: "PRO",
-    widgetLabel: "CROSSFIRE\u2122 \u00b7 DUAL FIGURE COMPARISON", widget: <CrossfireWidget /> },
   { name: "Long-press Peek Preview", desc: "Press and hold to preview a statement without navigating.", tier: "PRO" },
   { name: "Double-tap Annotate", desc: "Quick-annotate any statement with a double tap.", tier: "PRO" },
+  { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.", tier: "PRO",
+    widgetLabel: "CROSSFIRE\u2122 \u00b7 DUAL FIGURE COMPARISON", widget: <CrossfireWidget /> },
 ];
 
 const FIGURES: Feature[] = [
   { name: "Figure Profiles", desc: "Every tracked figure with their full measurement history.", tier: "CORE" },
+  { name: "\u201CStatements This Week\u201D Badge", desc: "Recent statement count per figure.", tier: "CORE" },
+  { name: "\u201CSilent Vote\u201D Indicator", desc: "Shown when a figure discussed a bill but has no recorded vote.", tier: "CORE" },
   { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.", tier: "CORE",
     widgetLabel: "FRAMING FINGERPRINT\u2122 \u00b7 RHETORICAL IDENTITY", widget: <FingerprintWidget /> },
   { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.", tier: "CORE",
     widgetLabel: "SIGNAL PULSE\u2122 \u00b7 ACTIVITY WAVEFORM", widget: <SignalPulseWidget /> },
-  { name: "\u201CStatements This Week\u201D Badge", desc: "Recent statement count per figure.", tier: "CORE" },
-  { name: "\u201CSilent Vote\u201D Indicator", desc: "Shown when a figure discussed a bill but has no recorded vote.", tier: "CORE" },
+  { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access.", tier: "PRO" },
   { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.", tier: "PRO",
     widgetLabel: "FRAMING RADAR\u2122 \u00b7 5-AXIS MEASUREMENT", widget: <RadarDemoWidget /> },
-  { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access.", tier: "PRO" },
   { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.", tier: "PRO",
     widgetLabel: "CONSTELLATION NAV\u2122 \u00b7 FIGURE TOPOLOGY", widget: <ConstellationWidget /> },
-  { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.", tier: "PRO+" },
+  { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.", tier: "PRO+",
+    widgetLabel: "TOPIC HEATMAP \u00b7 COVERAGE DENSITY", widget: <TopicHeatmapWidget /> },
   { name: "Intersections Panel\u2122", desc: "Cross-figure pattern map. See where rhetoric overlaps across figures.", tier: "PRO+",
     widgetLabel: "INTERSECTIONS PANEL\u2122 \u00b7 FRAMING OVERLAP", widget: <IntersectionsWidget /> },
   { name: "Declassified Dossier\u2122", desc: "Complete analytical profile. Every surface, one view.", tier: "PRO+",
@@ -83,11 +88,11 @@ const FIGURES: Feature[] = [
 const BILLS: Feature[] = [
   { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded.", tier: "CORE" },
   { name: "Bill Overview & Notable Provisions", desc: "Structured summaries of legislation with provision-level detail.", tier: "PRO+" },
-  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+",
-    widgetLabel: "PROVISION DRIFT\u2122 \u00b7 SEMANTIC DISTANCE", widget: <DriftWidget /> },
   { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap.", tier: "PRO+" },
   { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance.", tier: "PRO+" },
   { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift.", tier: "PRO+" },
+  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+",
+    widgetLabel: "PROVISION DRIFT\u2122 \u00b7 SEMANTIC DISTANCE", widget: <DriftWidget /> },
 ];
 
 const TOOLS: Feature[] = [
@@ -101,10 +106,12 @@ const TOOLS: Feature[] = [
   { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score.", tier: "PRO" },
   { name: "Digest Notifications", desc: "Daily/weekly digests. Pro and above.", tier: "PRO" },
   { name: "Advanced Notifications", desc: "Per-figure, per-topic alerts with higher frequency.", tier: "PRO+" },
-  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.", tier: "PRO+" },
-  { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.", tier: "B2B" },
+  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.", tier: "PRO+",
+    widgetLabel: "SHIFT ALERT \u00b7 24HR SPIKE DETECTION", widget: <ShiftAlertWidget /> },
   { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Precision monitoring.", tier: "B2B" },
   { name: "Annotation Delta Cards", desc: "Track how model agreement on your annotations changes over time.", tier: "B2B" },
+  { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.", tier: "B2B",
+    widgetLabel: "NARRATIVE SYNC\u2122 \u00b7 CONVERGENCE DETECTION", widget: <NarrativeSyncWidget /> },
 ];
 
 /* ─────────────────────────────────────────────────────────
