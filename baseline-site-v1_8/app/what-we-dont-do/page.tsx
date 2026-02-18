@@ -6,7 +6,7 @@ import { ManifestoScroll } from "@/components/ManifestoScroll";
 export const metadata: Metadata = {
   title: "What We Don\u2019t Do",
   description:
-    "Baseline measures public speech. It does not rate, score, editorialize, or tell you what to think. Three systems analyze. You interpret.",
+    "Baseline measures public speech. It does not rate, score, editorialize, or tell you what to think. Independent systems analyze. You interpret.",
   alternates: { canonical: `${site.url}/what-we-dont-do/` },
   openGraph: {
     title: "What We Don\u2019t Do | Baseline",
@@ -46,7 +46,7 @@ export default function WhatWeDontDoPage() {
               lineHeight: 1.5,
             }}
           >
-            Three systems analyze.
+            Independent systems analyze.
             <br />
             You interpret.
           </p>

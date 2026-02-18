@@ -400,13 +400,10 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // ── If already cleared or still loading, just show content ──
+  // ── If still loading clearance state, show pure black — no content leak ──
   if (cleared === null) {
-    // Loading state — black screen to prevent flash
     return (
-      <div style={{ background: '#000', minHeight: '100vh' }}>
-        {children}
-      </div>
+      <div style={{ position: 'fixed', inset: 0, background: '#000', zIndex: 9999 }} />
     );
   }
 

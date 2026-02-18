@@ -185,12 +185,12 @@ export function PricingTable() {
         { text: "Intersections Panel™", tm: true },
         { text: "Declassified Dossier™", tm: true },
         { text: "The Receipt™ (unlimited)", tm: true },
+        { text: "The Receipt™ Comparison Mode", tm: true },
       ],
       expanded: [
         { text: "Bill Overview & Notable Provisions", secondary: true },
         { text: "Drift Cascade Waterfall", secondary: true },
         { text: "Drift League Table", secondary: true },
-        { text: "The Receipt™ Comparison Mode", tm: true },
         { text: "Topic Heatmap", secondary: true },
         { text: "Divergence Sort", secondary: true },
         { text: "Shift Alert / Rhetorical Velocity", secondary: true },
@@ -440,20 +440,8 @@ export function PricingTable() {
                 )}
 
                 {t.cta && (
-                  <button
-                    type="button"
-                    onClick={async () => {
-                      try {
-                        await navigator.clipboard.writeText("sales@baseline.marketing");
-                        const el = document.getElementById("b2b-toast");
-                        if (el) {
-                          el.style.opacity = "1";
-                          setTimeout(() => { el.style.opacity = "0"; }, 2000);
-                        }
-                      } catch {
-                        window.location.href = "mailto:sales@baseline.marketing?subject=B2B%20Inquiry";
-                      }
-                    }}
+                  <a
+                    href="mailto:sales@baseline.marketing?subject=B2B%20Inquiry"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -473,7 +461,7 @@ export function PricingTable() {
                     }}
                   >
                     Contact Us
-                  </button>
+                  </a>
                 )}
               </Card>
             </div>
@@ -482,30 +470,6 @@ export function PricingTable() {
       </div>
 
       <div style={{ height: 12 }} />
-
-      {/* E8: Copy toast */}
-      <div
-        id="b2b-toast"
-        style={{
-          position: "fixed",
-          bottom: 24,
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "var(--card)",
-          border: "2px solid var(--teal)",
-          borderRadius: 10,
-          padding: "10px 20px",
-          fontSize: 13,
-          fontWeight: 600,
-          color: "var(--teal)",
-          opacity: 0,
-          transition: "opacity 300ms ease-out",
-          pointerEvents: "none",
-          zIndex: 9000,
-        }}
-      >
-        sales@baseline.marketing copied
-      </div>
 
       {/* Subscription terms */}
       <Card title="Subscription terms">
