@@ -33,7 +33,7 @@ const CONCEPT_MAP = {
 } as const;
 
 const GALLERY: MuseumItem[] = [
-  { title: "Baseline\u2122", tagline: "Pure signal. No noise.", tier: "CORE", concept: "baseline", placard: "The measurement stack. Independent AI systems, side-by-side outputs, source context on every surface." },
+  { title: "Baseline\u2122", tagline: "Pure signal. No noise.", tier: "CORE", concept: "baseline", placard: "The measurement stack. Parallel AI systems, side-by-side results, source context on every surface." },
   { title: "The Receipt\u2122", tagline: "Recurring patterns. Measured over time.", tier: "CORE", concept: "receipt", placard: "Match tiers surface the strongest patterns. History doesn\u2019t disappear." },
   { title: "Signal Pulse\u2122", tagline: "The signal at a glance.", tier: "CORE", concept: "pulse", placard: "Visual summary of signal activity. No analysis required to read it." },
   { title: "Framing Fingerprint\u2122", tagline: "A figure\u2019s rhetorical identity.", tier: "CORE", concept: "fingerprint", placard: "Aggregate framing tendencies rendered as a unique visual signature." },

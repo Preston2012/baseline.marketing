@@ -17,6 +17,7 @@ type Tier = {
   headline: BulletItem[];
   expanded: BulletItem[];
   collapsed?: boolean;
+  inherits?: string;
   cta?: boolean;
 };
 
@@ -131,12 +132,12 @@ export function PricingTable() {
         { text: "The Receipt™ (3 matches)", tm: true },
         { text: "Signal Pulse™", tm: true },
         { text: "Framing Fingerprint™", tm: true },
-        { text: "Vote Record" },
-        { text: "Consensus view" },
+        { text: "Baseline™ score + Delta", tm: true },
+        { text: "Consensus view + Variance Detection" },
       ],
       expanded: [
-        { text: "Basic Signal Metrics (4 scores)", secondary: true },
-        { text: "Variance Detection banner", secondary: true },
+        { text: "Signal Metrics (4 scores per statement)", secondary: true },
+        { text: "Vote Record", secondary: true },
         { text: "Feed browse + Statement Detail", secondary: true },
         { text: "Trending Topics", secondary: true },
         { text: "\u201CWhy am I seeing this?\u201D", secondary: true },
@@ -151,18 +152,18 @@ export function PricingTable() {
       monthly: "$7.99 / month",
       annual: "$59.99 / year",
       note: "$5.99/mo for first 60 days, then $7.99/mo. Includes 7-day free trial.",
+      inherits: "Everything in Core, plus:",
       headline: [
-        { text: "The Receipt™ (5 matches)", tm: true },
         { text: "Framing Radar™", tm: true },
-        { text: "Lens Lab™", tm: true },
+        { text: "Lens Lab™ (3-model parallel)", tm: true },
         { text: "Crossfire™", tm: true },
         { text: "Constellation Nav™", tm: true },
+        { text: "The Receipt™ (5 matches)", tm: true },
       ],
       expanded: [
-        { text: "Individual lens views (GP · CL · GR)", secondary: true },
         { text: "Historical Trends", secondary: true },
         { text: "Feed sorting (novelty, recency, signal)", secondary: true },
-        { text: "Favorites & followed figures", secondary: true },
+        { text: "Favorites + followed figures", secondary: true },
         { text: "Long-press peek preview", secondary: true },
         { text: "Double-tap annotate", secondary: true },
         { text: "100 private annotations", secondary: true },
@@ -177,12 +178,13 @@ export function PricingTable() {
       monthly: "$24.99 / month",
       annual: "$199.99 / year",
       collapsed: true,
+      inherits: "Everything in Pro, plus:",
       headline: [
-        { text: "The Receipt™ (unlimited)", tm: true },
         { text: "Provision Drift™", tm: true },
         { text: "Split Microscope™", tm: true },
         { text: "Intersections Panel™", tm: true },
         { text: "Declassified Dossier™", tm: true },
+        { text: "The Receipt™ (unlimited)", tm: true },
       ],
       expanded: [
         { text: "Bill Overview & Notable Provisions", secondary: true },
@@ -201,17 +203,17 @@ export function PricingTable() {
       name: "B2B",
       monthly: "Contact Us",
       annual: "Contact Us",
-      note: "Annual-only. Founding Partner pricing available for a limited time.",
+      note: "Annual-only. Founding Partner pricing available.",
+      inherits: "Everything in Pro+, plus:",
       headline: [
         { text: "Narrative Sync™", tm: true },
-        { text: "All Pro+ features" },
+        { text: "Delta Threshold Alerts", tm: true },
+        { text: "Annotation Delta Cards", tm: true },
         { text: "1,000 private annotations" },
         { text: "10,000 requests/hour" },
-        { text: "30-day pilot included" },
       ],
       expanded: [
-        { text: "Delta Threshold Alerts", secondary: true },
-        { text: "Annotation Delta Cards", secondary: true },
+        { text: "30-day pilot included", secondary: true },
         { text: "Custom terms", secondary: true },
         { text: "Team access (coming soon)", secondary: true },
       ],
@@ -223,13 +225,6 @@ export function PricingTable() {
 
   return (
     <div ref={sectionRef}>
-      {/* Launch pricing callout */}
-      <p className="p" style={{ marginTop: 10 }}>
-        <span className="data">
-          Pro launch price: $5.99/mo for the first 60 days, then $7.99/mo.
-          Includes 7-day free trial.
-        </span>
-      </p>
 
       {/* I6: Billing toggle with animated slide indicator */}
       <div
@@ -348,6 +343,11 @@ export function PricingTable() {
 
                   {isOpen && (
                     <div style={{ marginTop: 10 }}>
+                      {t.inherits && (
+                        <div className="data" style={{ fontSize: 10, color: "var(--teal)", opacity: 0.6, letterSpacing: "0.08em", marginBottom: 8 }}>
+                          {t.inherits}
+                        </div>
+                      )}
                       <BulletList items={t.headline} />
                       <div style={{ height: 8 }} />
                       <BulletList items={t.expanded} />
@@ -416,6 +416,11 @@ export function PricingTable() {
 
                 {isOpen && (
                   <div style={{ marginTop: 8 }}>
+                    {t.inherits && (
+                      <div className="data" style={{ fontSize: 10, color: "var(--teal)", opacity: 0.6, letterSpacing: "0.08em", marginBottom: 8 }}>
+                        {t.inherits}
+                      </div>
+                    )}
                     <BulletList items={t.expanded} />
                     <button
                       type="button"

@@ -10,9 +10,9 @@ import { HeroMorph } from "@/components/HeroMorph";
 import { TheWall } from "@/components/TheWall";
 
 export const metadata: Metadata = {
-  title: { absolute: "Baseline | Speech, You Can Measure." },
+  title: { absolute: "Baseline | Speech you can measure." },
   description:
-    "Independent AI systems measure public speech side-by-side. Observational analysis with sources and context. Not a fact-check.",
+    "Parallel AI systems measure public speech side-by-side. Observational measurement with sources and context. Not a fact-check.",
   alternates: { canonical: `${site.url}/` },
 };
 
@@ -57,7 +57,7 @@ export default function HomePage() {
 
         <div style={{ position: "relative", padding: 24 }}>
           <h1 className="h1" style={{ maxWidth: 820 }}>
-            <HeroMorph /> You Can Measure.
+            <HeroMorph /> you can measure.
           </h1>
 
           <p
@@ -70,14 +70,13 @@ export default function HomePage() {
             }}
           >
             What they said. How they said it.
-            <br />
-            <span style={{ color: "var(--teal)" }}>Pure signal.</span>
           </p>
 
-          {/* Teal rule — matches "Pure signal." width */}
+          {/* Teal accent rule */}
           <div
             style={{
-              width: 105,
+              width: "33%",
+              maxWidth: 200,
               height: 2,
               background: "var(--teal)",
               marginTop: 12,
@@ -106,10 +105,10 @@ export default function HomePage() {
           >
             <span className="data">Same input</span>
             <span style={{ opacity: 0.6 }}>&bull;</span>
-            <span className="data">Independent systems</span>
+            <span className="data">Parallel systems</span>
             <span style={{ opacity: 0.6 }}>&bull;</span>
             <span className="data">
-              Side-by-side outputs + source context
+              Side-by-side results with source context
             </span>
           </div>
 
@@ -253,8 +252,8 @@ export default function HomePage() {
 
           <Card title="3) Display side by side">
             <p className="p" style={{ margin: 0 }}>
-              All outputs displayed together with a separately computed
-              consensus layer. Sources and context visible on every surface.
+              Results displayed together with a separately computed
+              consensus layer. Sources and context on every surface.
             </p>
           </Card>
         </div>

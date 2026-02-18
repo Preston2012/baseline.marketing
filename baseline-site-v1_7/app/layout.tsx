@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`
   },
   description: site.description,
-  alternates: { canonical: `${site.url}/` },
   openGraph: {
     type: "website",
     url: `${site.url}/`,
@@ -120,7 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${poppins.variable} ${jetbrains.variable}`}>
       <body>
-        <div style={{ overflow: 'hidden', maxWidth: '100vw', width: '100%' }}>
+        <div style={{ overflowX: 'hidden', maxWidth: '100vw', width: '100%' }}>
         <ScifEntry>
           <PageFrame />
           <a className="skip_link" href="#main">

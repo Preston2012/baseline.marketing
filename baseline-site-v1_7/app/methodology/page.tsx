@@ -31,7 +31,7 @@ export default function MethodologyPage() {
       </p>
 
       <p className="p" style={{ maxWidth: 820 }}>
-        Baseline is a measurement surface for public speech. A statement is captured from a verified public source,
+        Baseline™ is a measurement surface for public speech. A statement is captured from a verified public source,
         processed independently by multiple AI systems, and displayed side-by-side with source context. A separate
         consensus layer is computed after independent outputs are produced.
       </p>
@@ -54,7 +54,7 @@ export default function MethodologyPage() {
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Statement text captured with metadata: source link, timestamps, figure identity, context pointers</li>
               <li>Input normalized to a single canonical string before distribution</li>
-              <li>No preprocessing varies between models. Identical input is the control variable.</li>
+              <li>No preprocessing varies between models. Every model gets exactly the same input.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -67,7 +67,7 @@ export default function MethodologyPage() {
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Outputs are never combined, averaged, or editorially rewritten before display</li>
-              <li>Separation is structural, not optional. Variance stays observable by design.</li>
+              <li>Separation is structural, not optional. You always see the variance.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -106,7 +106,7 @@ export default function MethodologyPage() {
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Historical data preserved. Never overwritten, never retroactively edited.</li>
-              <li>Supports reproducibility: the same input can be re-evaluated against stored outputs.</li>
+              <li>Any statement can be re-evaluated against its stored outputs.</li>
               <li>Continuous audit trail. Every record has a timestamp and source chain.</li>
             </ul>
           </div>
@@ -145,6 +145,30 @@ export default function MethodologyPage() {
       <div style={{ height: 24 }} />
 
       {/* ═══════════════════════════════════════════════════════
+          THE METRIC
+          ═══════════════════════════════════════════════════════ */}
+      <span className="section-label">
+        The Metric
+      </span>
+
+      <Card title="Baseline™: 24-Hour Rolling Aggregate">
+        <p className="p" style={{ margin: "0 0 8px" }}>
+          The figure-level brand metric. A single score representing overall signal activity across the trailing 24-hour window.
+        </p>
+        <div className="redacted">
+          <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
+            <li>Computed as a rolling average of signal activity per figure over the most recent 24 hours.</li>
+            <li>Displayed on feed cards and figure profiles. Provides at-a-glance signal read without drilling into individual statements.</li>
+            <li>Baseline Delta measures deviation from the rolling average: positive = elevated, negative = below typical, zero = on baseline.</li>
+            <li>Updated continuously. Not a rating, not an opinion. A measurement of how active and how varied the signal is.</li>
+          </ul>
+        </div>
+        <span className="redacted-label">Classified until launch</span>
+      </Card>
+
+      <div style={{ height: 24 }} />
+
+      {/* ═══════════════════════════════════════════════════════
           SECTION 2: PROPRIETARY MEASUREMENT SURFACES
           ═══════════════════════════════════════════════════════ */}
       <span className="section-label">
@@ -152,13 +176,13 @@ export default function MethodologyPage() {
       </span>
 
       <div className="grid" style={{ gap: 16 }}>
-        <Card title="The Receipt™: Semantic Similarity Timeline">
+        <Card title="The Receipt™: Statement Exhibit">
           <p className="p" style={{ margin: "0 0 8px" }}>
             Surfaces past statements by the same figure on the same topic, ranked by semantic similarity.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Similarity computed via vector embeddings. Each statement compared against the figure&rsquo;s historical corpus on that topic.</li>
+              <li>Each statement is compared against everything the figure has previously said on that topic.</li>
               <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (cosine similarity). Tiers: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
               <li>Match counts entitlement-gated. Core: <span className="data" style={{ color: "var(--teal)" }}>3</span>, Pro: <span className="data" style={{ color: "var(--teal)" }}>5</span>, Pro+: <span className="data" style={{ color: "var(--teal)" }}>unlimited</span>.</li>
               <li>Patterns measured, not interpreted. Recurrence surfaced. Meaning left to the user.</li>
@@ -192,7 +216,7 @@ export default function MethodologyPage() {
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Outputs include: primary framing classification, signal metrics, and contextual notes.</li>
               <li>Consensus layer identifies shared patterns. Variance layer identifies divergence.</li>
-              <li>Agreement and disagreement are both first-class data.</li>
+              <li>Agreement and disagreement are both treated as signal.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -375,7 +399,7 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Computed per-metric: delta = current score minus rolling average for that figure on that metric.</li>
+              <li>Each metric measured against the figure&rsquo;s own rolling average.</li>
               <li>Positive delta = elevated signal. Negative = below typical. Zero = on baseline.</li>
               <li>Measures shift, not position. A high Affect score is context. A high Affect delta is signal.</li>
             </ul>
