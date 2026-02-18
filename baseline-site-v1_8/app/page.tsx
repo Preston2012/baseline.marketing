@@ -246,7 +246,7 @@ export default function HomePage() {
 
           <Card title="2) Analyze independently">
             <p className="p" style={{ margin: 0 }}>
-              Three AI systems process every statement in parallel.
+              Multiple AI systems process every statement in parallel.
               No model sees another&rsquo;s output. Variance stays observable.
             </p>
           </Card>
