@@ -217,7 +217,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     }, 70);
   }, [grantClearance]);
 
-  // ── Idle timer — 18 seconds then auto-type ──
+  // ── Idle timer — 12 seconds then auto-type ──
   const resetIdleTimer = useCallback(() => {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     idleTimerRef.current = setTimeout(() => {
