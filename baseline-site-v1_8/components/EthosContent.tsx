@@ -84,7 +84,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       "Significance weighed against each figure\u2019s own noise floor",
       'No push notifications for routine speeches',
-      'Alerts fire on signal deviation, not engagement metrics',
+      'Alerts trigger on signal deviation, not engagement metrics',
     ],
     tag: 'SIGNAL INTEGRITY',
     icon: (

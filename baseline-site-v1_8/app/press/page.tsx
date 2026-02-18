@@ -35,7 +35,7 @@ export default function PressPage() {
       <p className="p" style={{ maxWidth: 760 }}>
         Baseline™ is a measurement surface for public speech: identical inputs
         processed by multiple independent AI systems, displayed side-by-side
-        with a separate consensus layer. Sources and context are always
+        with a separate consensus result. Sources and context are always
         visible. Observational analysis only. Not a fact-check.
       </p>
 
