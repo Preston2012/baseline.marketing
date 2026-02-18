@@ -38,7 +38,7 @@ export function StoreCTA({
         <img
           src={badge.src}
           alt={badge.alt}
-          style={{ height: 44, width: "auto", display: "block" }}
+          style={{ height: 44, minWidth: 148, width: "auto", display: "block" }}
         />
       </button>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/config/site";
 
+import { WaitlistCapture } from "@/components/WaitlistCapture";
 import { SecondaryLinkButton } from "@/components/Button";
 import { StoreCTA } from "@/components/StoreCTA";
 import { MuseumGallery } from "@/components/MuseumGallery";
@@ -19,6 +20,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* ── WAITLIST CAPTURE — hero takeover ── */}
+      <WaitlistCapture />
+
       {/* ── HERO ── */}
       {/* I9: Hero fade-in via CSS animation */}
       <style>{`
@@ -75,8 +79,8 @@ export default function HomePage() {
           {/* Teal accent rule */}
           <div
             style={{
-              width: "33%",
-              maxWidth: 200,
+              width: "100%",
+              maxWidth: 380,
               height: 2,
               background: "var(--teal)",
               marginTop: 12,
@@ -94,19 +98,17 @@ export default function HomePage() {
           {/* Instrument micro-row */}
           <div
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 10,
+              textAlign: "center",
               marginTop: 8,
               color: "var(--sub)",
               fontSize: 12,
-              alignItems: "center",
+              lineHeight: 1.8,
             }}
           >
             <span className="data">Same input</span>
-            <span style={{ opacity: 0.6 }}>&bull;</span>
+            <span style={{ opacity: 0.6, margin: "0 6px" }}>&bull;</span>
             <span className="data">Parallel systems</span>
-            <span style={{ opacity: 0.6 }}>&bull;</span>
+            <br />
             <span className="data">
               Side-by-side results with source context
             </span>

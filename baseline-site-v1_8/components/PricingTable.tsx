@@ -390,6 +390,11 @@ export function PricingTable() {
                 )}
 
                 <div style={{ height: 10 }} />
+                {t.inherits && (
+                  <div className="data" style={{ fontSize: 10, color: "var(--teal)", opacity: 0.6, letterSpacing: "0.08em", marginBottom: 8 }}>
+                    {t.inherits}
+                  </div>
+                )}
                 <BulletList items={t.headline} />
 
                 {!isOpen && t.expanded.length > 0 && (
@@ -416,11 +421,6 @@ export function PricingTable() {
 
                 {isOpen && (
                   <div style={{ marginTop: 8 }}>
-                    {t.inherits && (
-                      <div className="data" style={{ fontSize: 10, color: "var(--teal)", opacity: 0.6, letterSpacing: "0.08em", marginBottom: 8 }}>
-                        {t.inherits}
-                      </div>
-                    )}
                     <BulletList items={t.expanded} />
                     <button
                       type="button"
