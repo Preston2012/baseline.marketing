@@ -468,7 +468,7 @@ export function ConsensusRingWidget() {
 
         {/* Model status rows */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {['GP-4', 'GP-G', 'GP-C'].map((model, i) => {
+          {['GP', 'CL', 'GR'].map((model, i) => {
             const aligned = i < ratio;
             return (
               <div key={model} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -1108,19 +1108,19 @@ export function DriftWidget() {
 
 const MODEL_OUTPUTS = [
   {
-    id: 'GP-4',
+    id: 'GP',
     framing: 'ECONOMIC',
     rep: 72, nov: 34, aff: 61, ent: 28,
     status: 'complete',
   },
   {
-    id: 'GP-G',
+    id: 'CL',
     framing: 'ECONOMIC',
     rep: 68, nov: 38, aff: 55, ent: 31,
     status: 'complete',
   },
   {
-    id: 'GP-C',
+    id: 'GR',
     framing: 'POPULIST',
     rep: 74, nov: 29, aff: 72, ent: 24,
     status: 'complete',
@@ -1154,10 +1154,10 @@ export function LensLabWidget() {
           </div>
           <div style={{ width: 16, height: 1, background: TEAL_DIM }} />
           <div style={{ width: 6, height: 6, borderRadius: '50%', border: `1px solid ${TEAL_LO}`, background: DARK }} />
-          <DataLabel size={6} color={SUB}>&nbsp;IDENTICAL INPUT → 3 INDEPENDENT OUTPUTS</DataLabel>
+          <DataLabel size={6} color={SUB}>&nbsp;IDENTICAL INPUT → INDEPENDENT OUTPUTS</DataLabel>
         </div>
 
-        {/* Three model columns */}
+        {/* Model columns */}
         <div style={{ display: 'flex', gap: 6 }}>
           {MODEL_OUTPUTS.map((model, mi) => {
             const isDivergent = model.framing !== MODEL_OUTPUTS[0].framing;
@@ -1242,7 +1242,7 @@ export function LensLabWidget() {
           }}
         >
           <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
-          <DataLabel size={7} color={A}>GP-C DIVERGENT FRAMING</DataLabel>
+          <DataLabel size={7} color={A}>GR DIVERGENT FRAMING</DataLabel>
           <div style={{ flex: 1 }} />
           <DataLabel size={7} color={SUB}>VARIANCE SURFACED</DataLabel>
         </div>
@@ -1668,7 +1668,7 @@ export function SplitMicroscopeWidget() {
           </div>
         </div>
 
-        {/* Three-model comparison grid */}
+        {/* Multi-model comparison grid */}
         <div style={{ display: 'flex', gap: 2, marginBottom: 6 }}>
           {/* Row headers */}
           <div style={{ width: 28, display: 'flex', flexDirection: 'column', gap: 2, paddingTop: 18 }}>
@@ -1681,9 +1681,9 @@ export function SplitMicroscopeWidget() {
 
           {/* Model columns */}
           {[
-            { id: 'GP-4', vals: MODEL_A_VALS },
-            { id: 'GP-G', vals: MODEL_B_VALS },
-            { id: 'GP-C', vals: MODEL_C_VALS },
+            { id: 'GP', vals: MODEL_A_VALS },
+            { id: 'CL', vals: MODEL_B_VALS },
+            { id: 'GR', vals: MODEL_C_VALS },
           ].map((model, mi) => {
             const isDivergentModel = mi === 2;
             return (
@@ -1736,7 +1736,7 @@ export function SplitMicroscopeWidget() {
             transition: 'opacity 600ms ease 2500ms',
           }}>
             <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
-            <DataLabel size={7} color={A}>AFF DIVERGENCE: GP-C +17 vs GP-4</DataLabel>
+            <DataLabel size={7} color={A}>AFF DIVERGENCE: GR +17 vs GP</DataLabel>
             <div style={{ flex: 1 }} />
             <DataLabel size={7} color={SUB}>SURFACED · NOT SUPPRESSED</DataLabel>
           </div>
@@ -2074,9 +2074,9 @@ export function VarianceDetectionWidget() {
   }, [vis]);
 
   const models = [
-    { id: 'GP-4', framing: 'ECONOMIC', score: 72, aligned: true },
-    { id: 'GP-G', framing: 'ECONOMIC', score: 68, aligned: true },
-    { id: 'GP-C', framing: 'POPULIST', score: 74, aligned: false },
+    { id: 'GP', framing: 'ECONOMIC', score: 72, aligned: true },
+    { id: 'CL', framing: 'ECONOMIC', score: 68, aligned: true },
+    { id: 'GR', framing: 'POPULIST', score: 74, aligned: false },
   ];
 
   return (
@@ -2105,7 +2105,7 @@ export function VarianceDetectionWidget() {
           </DataLabel>
         </div>
 
-        {/* Three model indicators */}
+        {/* Model indicators */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
           {models.map((m, mi) => {
             const isDivergent = !m.aligned && phase >= 2;
@@ -2186,7 +2186,7 @@ export function VarianceDetectionWidget() {
           transition: 'all 600ms ease',
         }}>
           <div style={{ width: 3, height: 3, borderRadius: '50%', background: phase >= 3 ? A : TEAL_DIM }} />
-          <DataLabel size={7} color={phase >= 3 ? A : SUB}>FRAMING DIVERGENCE: GP-C vs GP-4, GP-G</DataLabel>
+          <DataLabel size={7} color={phase >= 3 ? A : SUB}>FRAMING DIVERGENCE: GR vs GP, CL</DataLabel>
           <div style={{ flex: 1 }} />
           <DataLabel size={7} color={phase >= 3 ? T : SUB}>DISPLAYED</DataLabel>
         </div>

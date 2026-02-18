@@ -3,14 +3,14 @@
 /* ─────────────────────────────────────────────────────────
    LIVE WIDGETS — Analytical Methodology Demonstrations
    ─────────────────────────────────────────────────────────
-   3 animated demos for the Methodology page showing HOW
+   Animated demos for the Methodology page showing HOW
    the measurement pipeline works. Analytical, not flashy.
    Complements the "How It Works" cards with visual proof.
 
    Widget Index:
-   1. PipelineWidget       — Input → 3 parallel models → outputs
+   1. PipelineWidget       — Input → parallel models → outputs
    2. DeltaComputeWidget   — Current vs rolling avg = delta
-   3. ConsensusAssemblyWidget — 3 outputs → convergence ratio
+   3. ConsensusAssemblyWidget — Outputs → convergence ratio
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';
@@ -80,31 +80,32 @@ function DataLabel({ children, color, size }: { children: React.ReactNode; color
 
 export function PipelineWidget() {
   const { ref, vis } = useVisible();
-  const [step, setStep] = useState(0); // 0=idle, 1=input, 2=processing, 3=outputs
+  const [step, setStep] = useState(0); // 0=idle, 1=input, 2=extraction, 3=processing, 4=outputs
 
   useEffect(() => {
     if (!vis) return;
     const timers = [
       setTimeout(() => setStep(1), 400),
-      setTimeout(() => setStep(2), 1200),
-      setTimeout(() => setStep(3), 2400),
+      setTimeout(() => setStep(2), 1000),
+      setTimeout(() => setStep(3), 1800),
+      setTimeout(() => setStep(4), 3000),
     ];
     return () => timers.forEach(clearTimeout);
   }, [vis]);
 
   const models = [
-    { id: 'GP-4', color: T },
-    { id: 'GP-G', color: T },
-    { id: 'GP-C', color: T },
+    { id: 'GP', color: T },
+    { id: 'CL', color: T },
+    { id: 'GR', color: T },
   ];
 
   return (
-    <WidgetFrame stamp="METH-PIPE // INPUT → PARALLEL ANALYSIS → OUTPUT">
+    <WidgetFrame stamp="METH-PIPE // INPUT → EXTRACTION → PARALLEL ANALYSIS → OUTPUT">
       <div ref={ref} style={{ padding: '6px 0' }}>
 
         {/* Step 1: Input normalization */}
         <div style={{
-          display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12,
+          display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10,
           opacity: step >= 1 ? 1 : 0.15,
           transition: 'opacity 600ms ease',
         }}>
@@ -115,24 +116,65 @@ export function PipelineWidget() {
             transition: 'all 600ms ease',
           }} />
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <DataLabel size={8} color={step >= 1 ? TEXT : SUB}>CANONICAL INPUT</DataLabel>
-            <DataLabel size={7} color={SUB}>Normalized statement · identical to all models</DataLabel>
+            <DataLabel size={8} color={step >= 1 ? TEXT : SUB}>RAW SOURCE INPUT</DataLabel>
+            <DataLabel size={7} color={SUB}>Public statement ingested from source</DataLabel>
           </div>
           <DataLabel size={7} color={step >= 1 ? T : TEAL_DIM}>
-            {step >= 1 ? '✓ READY' : '—'}
+            {step >= 1 ? '✓ CAPTURED' : '—'}
           </DataLabel>
         </div>
 
-        {/* Flow line: input → split */}
-        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 0 8px' }}>
+        {/* Flow line: input → extraction */}
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 0 6px' }}>
           <div style={{
-            width: 1, height: 16,
+            width: 1, height: 12,
             background: step >= 2 ? `linear-gradient(180deg, ${T}, ${TEAL_LO})` : TEAL_DIM,
             transition: 'background 600ms ease',
           }} />
         </div>
 
-        {/* Step 2: Three parallel model lanes */}
+        {/* Step 2: Gemini extraction/structuring */}
+        <div style={{
+          display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10,
+          padding: '5px 6px',
+          border: `1px solid ${step >= 2 ? TEAL_LO : TEAL_DIM}`,
+          borderRadius: 4,
+          opacity: step >= 2 ? 1 : 0.15,
+          transition: 'all 600ms ease',
+          position: 'relative',
+          overflow: 'hidden',
+        }}>
+          {step === 2 && (
+            <div style={{
+              position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+              background: `linear-gradient(90deg, transparent, ${T}, transparent)`,
+              animation: 'live-scan-ext 1.2s ease-in-out infinite',
+            }} />
+          )}
+          <div style={{
+            width: 6, height: 6, borderRadius: '50%',
+            background: step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.4)' : TEAL_DIM),
+            transition: 'background 400ms ease',
+          }} />
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <DataLabel size={8} color={step >= 2 ? TEXT : SUB}>EXTRACTION · STRUCTURING</DataLabel>
+            <DataLabel size={6} color={step >= 2 ? SUB : TEAL_DIM}>Gemini · Normalize → canonical format</DataLabel>
+          </div>
+          <DataLabel size={7} color={step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.5)' : TEAL_DIM)}>
+            {step >= 3 ? '✓ STRUCTURED' : (step >= 2 ? 'EXTRACTING' : '—')}
+          </DataLabel>
+        </div>
+
+        {/* Flow line: extraction → split */}
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '0 0 6px' }}>
+          <div style={{
+            width: 1, height: 12,
+            background: step >= 3 ? `linear-gradient(180deg, ${T}, ${TEAL_LO})` : TEAL_DIM,
+            transition: 'background 600ms ease',
+          }} />
+        </div>
+
+        {/* Step 3: Parallel analysis model lanes */}
         <div style={{ display: 'flex', gap: 6 }}>
           {models.map((model, mi) => (
             <div
@@ -140,17 +182,17 @@ export function PipelineWidget() {
               style={{
                 flex: 1,
                 padding: '6px 5px',
-                border: `1px solid ${step >= 2 ? TEAL_LO : TEAL_DIM}`,
+                border: `1px solid ${step >= 3 ? TEAL_LO : TEAL_DIM}`,
                 borderRadius: 4,
                 textAlign: 'center',
-                opacity: step >= 2 ? 1 : 0.15,
+                opacity: step >= 3 ? 1 : 0.15,
                 transition: `all 600ms ease ${mi * 150}ms`,
                 position: 'relative',
                 overflow: 'hidden',
               }}
             >
               {/* Processing scanline */}
-              {step === 2 && (
+              {step === 3 && (
                 <div style={{
                   position: 'absolute', top: 0, left: 0, right: 0, height: 1,
                   background: `linear-gradient(90deg, transparent, ${T}, transparent)`,
@@ -161,18 +203,18 @@ export function PipelineWidget() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 3, marginBottom: 3 }}>
                 <div style={{
                   width: 4, height: 4, borderRadius: '50%',
-                  background: step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.4)' : TEAL_DIM),
+                  background: step >= 4 ? T : (step >= 3 ? 'rgba(45,212,191,0.4)' : TEAL_DIM),
                   transition: 'background 400ms ease',
                 }} />
                 <DataLabel size={8} color={TEXT}>{model.id}</DataLabel>
               </div>
 
-              <DataLabel size={7} color={step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.5)' : SUB)}>
-                {step >= 3 ? 'COMPLETE' : (step >= 2 ? 'PROCESSING' : 'STANDBY')}
+              <DataLabel size={7} color={step >= 4 ? T : (step >= 3 ? 'rgba(45,212,191,0.5)' : SUB)}>
+                {step >= 4 ? 'COMPLETE' : (step >= 3 ? 'ANALYZING' : 'STANDBY')}
               </DataLabel>
 
               {/* Mini output preview */}
-              {step >= 3 && (
+              {step >= 4 && (
                 <div style={{ marginTop: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
                   {[0.6, 0.8, 0.4, 0.7].map((w, bi) => (
                     <div
@@ -196,24 +238,24 @@ export function PipelineWidget() {
         <div style={{ display: 'flex', justifyContent: 'center', margin: '8px 0' }}>
           <div style={{
             width: 1, height: 12,
-            background: step >= 3 ? `linear-gradient(180deg, ${TEAL_LO}, ${T})` : TEAL_DIM,
+            background: step >= 4 ? `linear-gradient(180deg, ${TEAL_LO}, ${T})` : TEAL_DIM,
             transition: 'background 600ms ease',
           }} />
         </div>
 
-        {/* Step 3: Output display */}
+        {/* Step 4: Output display */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8,
           padding: '4px 6px',
-          border: `1px solid ${step >= 3 ? TEAL_LO : TEAL_DIM}`,
+          border: `1px solid ${step >= 4 ? TEAL_LO : TEAL_DIM}`,
           borderRadius: 4,
-          opacity: step >= 3 ? 1 : 0.15,
+          opacity: step >= 4 ? 1 : 0.15,
           transition: 'all 600ms ease',
         }}>
-          <DataLabel size={8} color={step >= 3 ? TEXT : SUB}>SIDE-BY-SIDE DISPLAY</DataLabel>
+          <DataLabel size={8} color={step >= 4 ? TEXT : SUB}>SIDE-BY-SIDE DISPLAY</DataLabel>
           <div style={{ flex: 1 }} />
-          <DataLabel size={7} color={step >= 3 ? T : TEAL_DIM}>
-            {step >= 3 ? '3/3 INDEPENDENT OUTPUTS' : '—'}
+          <DataLabel size={7} color={step >= 4 ? T : TEAL_DIM}>
+            {step >= 4 ? 'INDEPENDENT OUTPUTS' : '—'}
           </DataLabel>
         </div>
 
@@ -224,6 +266,7 @@ export function PipelineWidget() {
       </div>
 
       <style>{`
+        @keyframes live-scan-ext { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
         @keyframes live-scan-0 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
         @keyframes live-scan-1 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
         @keyframes live-scan-2 { 0%,100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
@@ -369,16 +412,16 @@ export function ConsensusAssemblyWidget() {
   }, [vis]);
 
   const modelResults = [
-    { id: 'GP-4', framing: 'ECONOMIC', scores: [72, 34, 61, 28] },
-    { id: 'GP-G', framing: 'ECONOMIC', scores: [68, 38, 55, 31] },
-    { id: 'GP-C', framing: 'POPULIST', scores: [74, 29, 72, 24] },
+    { id: 'GP', framing: 'ECONOMIC', scores: [72, 34, 61, 28] },
+    { id: 'CL', framing: 'ECONOMIC', scores: [68, 38, 55, 31] },
+    { id: 'GR', framing: 'POPULIST', scores: [74, 29, 72, 24] },
   ];
 
   return (
     <WidgetFrame stamp="METH-CON // INDEPENDENT OUTPUTS → CONVERGENCE RATIO">
       <div ref={ref} style={{ padding: '4px 0' }}>
 
-        {/* Phase 1: Three independent outputs */}
+        {/* Phase 1: Independent outputs */}
         <div style={{ display: 'flex', gap: 4, marginBottom: 8 }}>
           {modelResults.map((model, mi) => {
             const divergent = model.framing !== modelResults[0].framing;
@@ -469,8 +512,8 @@ export function ConsensusAssemblyWidget() {
           <div style={{ flex: 1 }}>
             <DataLabel size={9} color={TEXT}>CONVERGENCE RESULT</DataLabel>
             <div style={{ marginTop: 2, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <DataLabel size={7} color={T}>GP-4 + GP-G ALIGNED</DataLabel>
-              <DataLabel size={7} color={A}>GP-C DIVERGENT</DataLabel>
+              <DataLabel size={7} color={T}>GP + CL ALIGNED</DataLabel>
+              <DataLabel size={7} color={A}>GR DIVERGENT</DataLabel>
             </div>
           </div>
         </div>

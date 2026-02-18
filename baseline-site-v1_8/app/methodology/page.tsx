@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/config/site";
 import { Card } from "@/components/Card";
-import { RadarTooltips } from "@/components/RadarTooltips";
 import { SurfaceWidgets, LayerWidgets } from "@/components/MethodologyWidgets";
 
 export const metadata: Metadata = {
@@ -195,14 +194,12 @@ export default function MethodologyPage() {
           <p className="p" style={{ margin: "0 0 8px" }}>
             Maps rhetorical structure across five framing dimensions. Pentagon chart rendered per model.
           </p>
-          {/* I15: Interactive pentagon with axis tooltips */}
-          <RadarTooltips />
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Five axes: <span className="data" style={{ color: "var(--teal)" }}>Adversarial/Oppositional</span>, <span className="data" style={{ color: "var(--teal)" }}>Problem Identification</span>, <span className="data" style={{ color: "var(--teal)" }}>Commitment/Forward-Looking</span>, <span className="data" style={{ color: "var(--teal)" }}>Justification/Reactive</span>, <span className="data" style={{ color: "var(--teal)" }}>Imperative/Directive</span>.</li>
               <li>Each axis computed independently per AI model.</li>
               <li>Describes rhetorical structure, not moral character. A high Adversarial score means oppositional language, not that the speaker is wrong.</li>
-              <li>Variance between models on the same axis is shown. If two models read &ldquo;Justification&rdquo; and one reads &ldquo;Commitment,&rdquo; you see all three.</li>
+              <li>Variance between models on the same axis is shown. If models disagree on &ldquo;Justification&rdquo; vs &ldquo;Commitment,&rdquo; you see each one.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>

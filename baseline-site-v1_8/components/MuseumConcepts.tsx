@@ -55,7 +55,7 @@ function useVisible() {
 // ═══════════════════════════════════════════
 // 1. BASELINE™ — The Measurement Stack
 // ═══════════════════════════════════════════
-// Three signal lines converging to center glow
+// Signal lines converging to center glow
 export function BaselineConcept() {
   const { ref, vis } = useVisible();
   return (
@@ -336,7 +336,7 @@ export function RadarConcept() {
 
 
 // ═══════════════════════════════════════════
-// 6. LENS LAB™ — Three Systems
+// 6. LENS LAB™ — Independent Systems
 // ═══════════════════════════════════════════
 // Ref B3: Y-junction — 3 lines meeting at bright center
 export function LensLabConcept() {

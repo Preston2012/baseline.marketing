@@ -41,7 +41,7 @@ const SIGNALS: Feature[] = [
     widgetLabel: "CONSENSUS \u00b7 MODEL CONVERGENCE", widget: <ConsensusRingWidget /> },
   { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.", tier: "CORE",
     widgetLabel: "VARIANCE \u00b7 MODEL DISAGREEMENT SURFACING", widget: <VarianceDetectionWidget /> },
-  { name: "Lens Lab\u2122", desc: "Three AI models running in parallel. Same statement, three independent measurements.", tier: "PRO",
+  { name: "Lens Lab\u2122", desc: "Independent AI models running in parallel. Same statement, separate measurements.", tier: "PRO",
     widgetLabel: "LENS LAB\u2122 \u00b7 3-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
   { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO",
     widgetLabel: "HISTORICAL \u00b7 SIGNAL PATTERNS OVER TIME", widget: <HistoricalTrendsWidget /> },
