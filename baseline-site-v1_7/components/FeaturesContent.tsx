@@ -183,19 +183,21 @@ export function FeaturesContent() {
         <span className="section-label">SIGNALS</span>
         <FeatureGrid items={SIGNALS} filter={tier} />
         <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <FrostedWidgetPreview label="SIGNAL METRICS · 4-AXIS DECOMPOSITION">
+          <FrostedWidgetPreview label="SIGNAL METRICS · 4-AXIS DECOMPOSITION" tier="CORE">
             <SignalMetricsWidget />
           </FrostedWidgetPreview>
-          <FrostedWidgetPreview label="BASELINE™ · 24HR ROLLING AGGREGATE">
+          <FrostedWidgetPreview label="BASELINE™ · 24HR ROLLING AGGREGATE" tier="CORE">
             <BaselineScoreWidget />
           </FrostedWidgetPreview>
         </div>
-        <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <FrostedWidgetPreview label="SIGNAL PULSE™ · ACTIVITY WAVEFORM">
-            <SignalPulseWidget />
-          </FrostedWidgetPreview>
-          <FrostedWidgetPreview label="CONSENSUS · MODEL CONVERGENCE">
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="CONSENSUS · MODEL CONVERGENCE" tier="CORE">
             <ConsensusRingWidget />
+          </FrostedWidgetPreview>
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="LENS LAB™ · 3-SYSTEM PARALLEL ANALYSIS" tier="PRO">
+            <LensLabWidget />
           </FrostedWidgetPreview>
         </div>
         <div
@@ -220,10 +222,10 @@ export function FeaturesContent() {
         <span className="section-label">FEED</span>
         <FeatureGrid items={FEED} filter={tier} />
         <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <FrostedWidgetPreview label="THE RECEIPT™ · SIMILARITY TIMELINE">
+          <FrostedWidgetPreview label="THE RECEIPT™ · STATEMENT EXHIBIT" tier="CORE">
             <ReceiptTimelineWidget />
           </FrostedWidgetPreview>
-          <FrostedWidgetPreview label="CROSSFIRE™ · DUAL FIGURE COMPARISON">
+          <FrostedWidgetPreview label="CROSSFIRE™ · DUAL FIGURE COMPARISON" tier="PRO">
             <CrossfireWidget />
           </FrostedWidgetPreview>
         </div>
@@ -325,24 +327,29 @@ export function FeaturesContent() {
         </div>
 
         <FeatureGrid items={FIGURES} filter={tier} />
+        <div style={{ marginTop: 16 }}>
+          <FrostedWidgetPreview label="SIGNAL PULSE™ · ACTIVITY WAVEFORM" tier="CORE">
+            <SignalPulseWidget />
+          </FrostedWidgetPreview>
+        </div>
         <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <FrostedWidgetPreview label="FRAMING RADAR™ · 5-AXIS MEASUREMENT">
+          <FrostedWidgetPreview label="FRAMING RADAR™ · 5-AXIS MEASUREMENT" tier="PRO">
             <RadarDemoWidget />
           </FrostedWidgetPreview>
-          <FrostedWidgetPreview label="FRAMING FINGERPRINT™ · RHETORICAL IDENTITY">
+          <FrostedWidgetPreview label="FRAMING FINGERPRINT™ · RHETORICAL IDENTITY" tier="CORE">
             <FingerprintWidget />
           </FrostedWidgetPreview>
         </div>
         <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-          <FrostedWidgetPreview label="CONSTELLATION NAV™ · FIGURE TOPOLOGY">
+          <FrostedWidgetPreview label="CONSTELLATION NAV™ · FIGURE TOPOLOGY" tier="PRO">
             <ConstellationWidget />
           </FrostedWidgetPreview>
-          <FrostedWidgetPreview label="INTERSECTIONS PANEL™ · FRAMING OVERLAP">
+          <FrostedWidgetPreview label="INTERSECTIONS PANEL™ · FRAMING OVERLAP" tier="PRO+">
             <IntersectionsWidget />
           </FrostedWidgetPreview>
         </div>
         <div style={{ marginTop: 16 }}>
-          <FrostedWidgetPreview label="DECLASSIFIED DOSSIER™ · EXHIBIT PLATE PROFILE">
+          <FrostedWidgetPreview label="DECLASSIFIED DOSSIER™ · EXHIBIT PLATE PROFILE" tier="PRO+">
             <DossierWidget />
           </FrostedWidgetPreview>
         </div>
@@ -361,7 +368,7 @@ export function FeaturesContent() {
         <span className="section-label">BILLS</span>
         <FeatureGrid items={BILLS} filter={tier} />
         <div style={{ marginTop: 16 }}>
-          <FrostedWidgetPreview label="PROVISION DRIFT™ · SEMANTIC DISTANCE">
+          <FrostedWidgetPreview label="PROVISION DRIFT™ · SEMANTIC DISTANCE" tier="PRO+">
             <DriftWidget />
           </FrostedWidgetPreview>
         </div>
@@ -385,11 +392,6 @@ export function FeaturesContent() {
       <section id="tools" className="section" aria-label="Tool features">
         <span className="section-label">TOOLS</span>
         <FeatureGrid items={TOOLS} filter={tier} />
-        <div style={{ marginTop: 16 }}>
-          <FrostedWidgetPreview label="LENS LAB™ · 3-SYSTEM PARALLEL ANALYSIS">
-            <LensLabWidget />
-          </FrostedWidgetPreview>
-        </div>
       </section>
     </>
   );
