@@ -875,6 +875,15 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
               }}>
                 {scannerActive ? 'Scanning...' : 'Hold to verify'}
               </div>
+              <div style={{
+                fontSize: 8,
+                opacity: 0.25,
+                marginTop: 4,
+                letterSpacing: '0.04em',
+                color: 'rgba(45, 212, 191, 0.35)',
+              }}>
+                No biometric data is collected.
+              </div>
             </div>
           )}
         </div>

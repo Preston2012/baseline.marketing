@@ -37,13 +37,17 @@ export function SiteFooter() {
 
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             {[
+              { href: "/features/", label: "Features" },
+              { href: "/methodology/", label: "Methodology" },
+              { href: "/pricing/", label: "Pricing" },
+              { href: "/what-we-dont-do/", label: "What We Don\u2019t Do" },
+              { href: "/ethos/", label: "Ethos" },
+              { href: "/support/", label: "Support" },
+              { href: "/press/", label: "Press" },
               { href: "/privacy/", label: "Privacy" },
               { href: "/terms/", label: "Terms" },
               { href: "/eula/", label: "EULA" },
               { href: "/do-not-sell-or-share/", label: "Do Not Sell or Share" },
-              { href: "/ethos/", label: "Ethos" },
-              { href: "/support/", label: "Support" },
-              { href: "/press/", label: "Press" },
             ].map((link) => (
               <Link
                 key={link.href}

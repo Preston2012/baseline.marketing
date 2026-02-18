@@ -11,147 +11,114 @@ const STATEMENTS = [
   "We don\u2019t tell you what to think.",
 ];
 
-/** S3: Scroll-hijacked manifesto.
- *  Container is tall (100vh × statement count). The visible viewport
- *  pins the current statement and crossfades between them as user scrolls. */
+/** S3 v3: IntersectionObserver manifesto.
+ *  Each statement occupies vertical space and fades in on scroll.
+ *  Uses overflowX:hidden in layout (not overflow:hidden) to preserve
+ *  vertical layout and IntersectionObserver behavior. */
 export function ManifestoScroll() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
+  const [visibleSet, setVisibleSet] = useState<Set<number>>(new Set());
+  const refs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    const handler = () => {
-      const el = containerRef.current;
+    const observers: IntersectionObserver[] = [];
+
+    refs.current.forEach((el, i) => {
       if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const containerTop = -rect.top;
-      const containerHeight = el.offsetHeight - window.innerHeight;
-
-      if (containerHeight <= 0) return;
-
-      const pct = Math.max(0, Math.min(1, containerTop / containerHeight));
-      setProgress(pct);
-
-      const idx = Math.min(
-        Math.floor(pct * STATEMENTS.length),
-        STATEMENTS.length - 1
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleSet((prev) => {
+              const next = new Set(prev);
+              next.add(i);
+              return next;
+            });
+            obs.unobserve(el); /* fire once */
+          }
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -10% 0px" }
       );
-      setActiveIndex(idx);
-    };
+      obs.observe(el);
+      observers.push(obs);
+    });
 
-    window.addEventListener("scroll", handler, { passive: true });
-    handler();
-    return () => window.removeEventListener("scroll", handler);
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        /* Height drives scroll distance — each statement gets ~100vh of scroll */
-        height: `${STATEMENTS.length * 100}vh`,
-        position: "relative",
-      }}
-    >
-      {/* Sticky viewport */}
-      <div
-        style={{
-          position: "sticky",
-          top: 100, /* below nav (56) + disclaimer bar (~44) */
-          height: "calc(100vh - 100px)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          padding: "0 24px",
-          overflow: "hidden",
-        }}
-      >
-        {/* Counter */}
-        <div
-          className="data"
-          style={{
-            position: "absolute",
-            top: 32,
-            right: 24,
-            color: "rgba(45, 212, 191, 0.3)",
-            fontSize: 11,
-            letterSpacing: "0.1em",
-          }}
-        >
-          {String(activeIndex + 1).padStart(2, "0")} / {String(STATEMENTS.length).padStart(2, "0")}
-        </div>
+    <div style={{ padding: "40px 0" }}>
+      {STATEMENTS.map((s, i) => {
+        const isVisible = visibleSet.has(i);
 
-        {/* Progress bar */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: `${progress * 100}%`,
-            height: 2,
-            background: "var(--teal)",
-            transition: "width 50ms linear",
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Crossfading statements */}
-        <div style={{ position: "relative", minHeight: 80, width: "100%", maxWidth: 640 }}>
-          {STATEMENTS.map((s, i) => (
+        return (
+          <div
+            key={i}
+            ref={(el) => { refs.current[i] = el; }}
+            style={{
+              minHeight: "50vh",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 24px",
+              position: "relative",
+            }}
+          >
+            {/* Counter */}
             <div
-              key={i}
+              className="data"
               style={{
-                position: i === 0 ? "relative" : "absolute",
-                inset: i === 0 ? undefined : 0,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: activeIndex === i ? 1 : 0,
-                transform:
-                  activeIndex === i
-                    ? "translateY(0)"
-                    : activeIndex > i
-                      ? "translateY(-20px)"
-                      : "translateY(20px)",
-                transition: "opacity 400ms ease-out, transform 400ms ease-out",
-                pointerEvents: activeIndex === i ? "auto" : "none",
+                position: "absolute",
+                top: 32,
+                right: 24,
+                color: "rgba(45, 212, 191, 0.3)",
+                fontSize: 11,
+                letterSpacing: "0.1em",
+                opacity: isVisible ? 1 : 0,
+                transition: "opacity 400ms ease-out",
               }}
             >
-              <p
-                className="data"
-                style={{
-                  margin: 0,
-                  fontSize: "clamp(24px, 5vw, 42px)",
-                  color: "var(--text)",
-                  textAlign: "center",
-                  lineHeight: 1.3,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                {s}
-              </p>
+              {String(i + 1).padStart(2, "0")} / {String(STATEMENTS.length).padStart(2, "0")}
             </div>
-          ))}
-        </div>
 
-        {/* Scroll hint — only on first statement */}
-        <div
-          className="data"
-          style={{
-            position: "absolute",
-            bottom: 40,
-            opacity: activeIndex === 0 ? 0.3 : 0,
-            transition: "opacity 300ms",
-            fontSize: 11,
-            letterSpacing: "0.08em",
-            color: "var(--sub)",
-          }}
-        >
-          SCROLL
-        </div>
-      </div>
+            {/* Statement */}
+            <p
+              className="data"
+              style={{
+                margin: 0,
+                fontSize: "clamp(24px, 5vw, 42px)",
+                color: "var(--text)",
+                textAlign: "center",
+                lineHeight: 1.3,
+                letterSpacing: "-0.02em",
+                maxWidth: 640,
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "opacity 600ms ease-out, transform 600ms ease-out",
+              }}
+            >
+              {s}
+            </p>
+
+            {/* Thin teal thread between statements */}
+            {i < STATEMENTS.length - 1 && (
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 1,
+                  height: 48,
+                  background: "linear-gradient(to bottom, rgba(45,212,191,0.15), transparent)",
+                  opacity: isVisible ? 1 : 0,
+                  transition: "opacity 800ms ease-out 300ms",
+                }}
+                aria-hidden="true"
+              />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }

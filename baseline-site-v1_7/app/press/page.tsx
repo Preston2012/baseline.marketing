@@ -5,12 +5,12 @@ import { Card } from "@/components/Card";
 export const metadata: Metadata = {
   title: "Press",
   description:
-    "Media resources for Baseline. The first observational speech measurement platform using independent AI systems.",
+    "Media resources for Baseline. An observational speech measurement platform using independent AI systems.",
   alternates: { canonical: `${site.url}/press/` },
   openGraph: {
     title: "Press | Baseline",
     description:
-      "Media resources for Baseline. The first observational speech measurement platform using independent AI systems.",
+      "Media resources for Baseline. An observational speech measurement platform using independent AI systems.",
     images: [
       {
         url: "/og.png",
@@ -33,7 +33,7 @@ export default function PressPage() {
       <h1 className="h1" style={{ fontSize: 28 }}>Press</h1>
 
       <p className="p" style={{ maxWidth: 760 }}>
-        Baseline is a measurement surface for public speech: identical inputs
+        Baseline™ is a measurement surface for public speech: identical inputs
         processed by multiple independent AI systems, displayed side-by-side
         with a separate consensus layer. Sources and context are always
         visible. Observational analysis only. Not a fact-check.

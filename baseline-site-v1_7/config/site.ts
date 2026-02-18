@@ -1,11 +1,11 @@
 export const site = {
   name: "Baseline",
   url: "https://www.baseline.marketing",
-  tagline: "Speech, You Can Measure.",
+  tagline: "Speech you can measure.",
   // Keep meta copy neutral + instrument-grade.
   // (Mandatory disclaimer is presented in UI via DisclaimerBar.)
   description:
-    "Speech, You Can Measure. Observational analysis of public speech using three independent AI systems. Inputs are identical. Outputs are displayed side-by-side with sources and context. Observational analysis only. Not a fact-check.",
+    "Speech you can measure. Parallel AI systems measure public speech side-by-side with sources and context. Not a fact-check.",
   social: {},
   contact: {
     support: "support@baseline.marketing",
