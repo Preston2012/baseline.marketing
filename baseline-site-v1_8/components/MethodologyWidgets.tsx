@@ -1,7 +1,7 @@
 'use client';
 
 import { FrostedWidgetPreview } from "./FrostedWidget";
-import { PipelineWidget, DeltaComputeWidget, ConsensusAssemblyWidget, SplitMicroscopeWidget, NarrativeSyncWidget } from "./LiveWidgets";
+import { PipelineWidget, DeltaComputeWidget, ConsensusAssemblyWidget } from "./LiveWidgets";
 
 /* Frosted widget for Proprietary Surfaces section — pipeline demo */
 export function SurfaceWidgets() {
@@ -9,20 +9,6 @@ export function SurfaceWidgets() {
     <FrostedWidgetPreview label="MEASUREMENT PIPELINE · INPUT → PARALLEL → OUTPUT">
       <PipelineWidget />
     </FrostedWidgetPreview>
-  );
-}
-
-/* Frosted widget strip for Proprietary Surfaces — analytical demos */
-export function AnalysisWidgets() {
-  return (
-    <div className="grid_2" style={{ display: "grid", gap: 12, marginTop: 16 }}>
-      <FrostedWidgetPreview label="SPLIT MICROSCOPE™ · DIVERGENCE VIEW">
-        <SplitMicroscopeWidget />
-      </FrostedWidgetPreview>
-      <FrostedWidgetPreview label="NARRATIVE SYNC™ · CONVERGENCE DETECTION">
-        <NarrativeSyncWidget />
-      </FrostedWidgetPreview>
-    </div>
   );
 }
 
