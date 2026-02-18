@@ -32,7 +32,7 @@ export function HeroMorph() {
         color: "#2dd4bf",
       }}
     >
-      {WORDS[index]},
+      {WORDS[index]}
     </span>
   );
 }
