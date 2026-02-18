@@ -6,7 +6,7 @@ import { PipelineWidget, DeltaComputeWidget, ConsensusAssemblyWidget } from "./L
 /* Frosted widget for Proprietary Surfaces section — pipeline demo */
 export function SurfaceWidgets() {
   return (
-    <FrostedWidgetPreview label="MEASUREMENT PIPELINE · INPUT → PARALLEL → OUTPUT">
+    <FrostedWidgetPreview label="PIPELINE · INPUT → PARALLEL → OUTPUT">
       <PipelineWidget />
     </FrostedWidgetPreview>
   );

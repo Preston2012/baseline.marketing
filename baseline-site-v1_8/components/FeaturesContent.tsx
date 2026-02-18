@@ -155,26 +155,41 @@ function FeatureCard({ f }: { f: Feature }) {
 /* ─────────────────────────────────────────────────────────
    WIDGET CARD — frosted widget on top, card info below,
    one unified frame. One feature, one representation.
+   Easter egg: tap/hold widget area to partially defrost.
    ───────────────────────────────────────────────────────── */
 
 function WidgetCard({ f }: { f: Feature }) {
+  const [peeking, setPeeking] = useState(false);
+
   return (
     <div
       style={{
         background: "var(--card)",
-        border: "2px solid var(--border_inactive)",
+        border: `2px solid ${peeking ? 'rgba(45,212,191,0.15)' : 'var(--border_inactive)'}`,
         borderRadius: "var(--radius_card)",
         overflow: "hidden",
+        transition: "border-color 400ms ease",
       }}
     >
       {/* Widget preview area */}
-      <div style={{ position: "relative" }}>
+      <div
+        style={{ position: "relative", cursor: "default" }}
+        onPointerDown={() => setPeeking(true)}
+        onPointerUp={() => setPeeking(false)}
+        onPointerLeave={() => setPeeking(false)}
+        onPointerCancel={() => setPeeking(false)}
+      >
         <div style={{
-          filter: "blur(6px) brightness(0.6) saturate(0.5)",
-          WebkitFilter: "blur(6px) brightness(0.6) saturate(0.5)",
+          filter: peeking
+            ? "blur(2px) brightness(0.75) saturate(0.7)"
+            : "blur(6px) brightness(0.6) saturate(0.5)",
+          WebkitFilter: peeking
+            ? "blur(2px) brightness(0.75) saturate(0.7)"
+            : "blur(6px) brightness(0.6) saturate(0.5)",
           pointerEvents: "none",
           userSelect: "none",
           WebkitUserSelect: "none" as "none",
+          transition: "filter 400ms ease, -webkit-filter 400ms ease",
         }}>
           {f.widget}
         </div>
@@ -182,8 +197,9 @@ function WidgetCard({ f }: { f: Feature }) {
           position: "absolute", inset: 0,
           display: "flex", flexDirection: "column",
           alignItems: "center", justifyContent: "center", gap: 4,
-          background: "rgba(0,0,0,0.15)",
+          background: peeking ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.15)",
           pointerEvents: "none",
+          transition: "background 400ms ease",
         }}>
           {/* Mini reticle corners */}
           <div style={{ position: "absolute", top: 6, left: 6, width: 8, height: 8, borderTop: "1px solid rgba(45,212,191,0.12)", borderLeft: "1px solid rgba(45,212,191,0.12)" }} />
@@ -193,10 +209,13 @@ function WidgetCard({ f }: { f: Feature }) {
 
           <span style={{
             fontFamily: "var(--font-jetbrains, monospace)",
-            fontSize: 9, letterSpacing: "0.15em",
+            fontSize: 8, letterSpacing: "0.12em",
             color: "rgba(45,212,191,0.35)", textTransform: "uppercase",
             border: "1px solid rgba(45,212,191,0.12)",
             borderRadius: 3, padding: "2px 8px",
+            textAlign: "center", maxWidth: "90%",
+            opacity: peeking ? 0 : 1,
+            transition: "opacity 300ms ease",
           }}>
             {f.widgetLabel || "LIVE PREVIEW"}
           </span>
@@ -204,6 +223,8 @@ function WidgetCard({ f }: { f: Feature }) {
             fontFamily: "var(--font-jetbrains, monospace)",
             fontSize: 7, letterSpacing: "0.1em",
             color: "rgba(45,212,191,0.2)", textTransform: "uppercase",
+            opacity: peeking ? 0 : 1,
+            transition: "opacity 300ms ease",
           }}>
             PRE-LAUNCH
           </span>

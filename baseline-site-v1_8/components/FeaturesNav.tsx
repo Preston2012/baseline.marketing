@@ -90,22 +90,25 @@ export function FeaturesNav({
         style={{
           position: pinned ? "fixed" : "relative",
           top: pinned ? NAV_TOP : undefined,
-          left: pinned ? 0 : undefined,
-          right: pinned ? 0 : undefined,
+          left: 0,
+          right: 0,
+          width: pinned ? undefined : "100vw",
+          marginLeft: pinned ? undefined : "calc(-50vw + 50%)",
           zIndex: 90,
           background: "rgba(0, 0, 0, 0.92)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderBottom: "1px solid var(--border_inactive)",
-          padding: pinned ? "10px 16px" : "10px 0",
+          padding: "10px 16px",
           marginBottom: pinned ? 0 : 16,
         }}
       >
-        {/* Constrain content to container width when fixed */}
+        {/* Constrain content to container width */}
         <div
           style={{
             maxWidth: 1040,
             margin: "0 auto",
+            padding: "0 4px",
           }}
         >
           {/* I5: Section links */}
