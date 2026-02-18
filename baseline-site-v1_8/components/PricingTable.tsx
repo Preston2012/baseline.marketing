@@ -48,11 +48,20 @@ function BulletList({ items }: { items: BulletItem[] }) {
 function PriceDecode({ price }: { price: string }) {
   const [display, setDisplay] = useState(price.replace(/[^\s$/]/g, "█"));
   const [decoded, setDecoded] = useState(false);
+  const prevPrice = useRef(price);
   const hasRun = useRef(false);
 
   useEffect(() => {
+    // If price changed after initial decode, just swap instantly
+    if (hasRun.current && price !== prevPrice.current) {
+      prevPrice.current = price;
+      setDisplay(price);
+      return;
+    }
+
     if (hasRun.current) return;
     hasRun.current = true;
+    prevPrice.current = price;
 
     const chars = price.split("");
     const current = chars.map((c) =>
@@ -155,7 +164,7 @@ export function PricingTable() {
       inherits: "Everything in Core, plus:",
       headline: [
         { text: "Framing Radar™", tm: true },
-        { text: "Lens Lab™ (3-model parallel)", tm: true },
+        { text: "Lens Lab™ (multi-model parallel)", tm: true },
         { text: "Crossfire™", tm: true },
         { text: "Constellation Nav™", tm: true },
         { text: "The Receipt™ (5 matches)", tm: true },
