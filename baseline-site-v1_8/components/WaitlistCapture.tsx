@@ -363,7 +363,7 @@ export function WaitlistCapture() {
                     borderRadius: 10,
                     border: `2px solid ${
                       errorMsg
-                        ? "rgba(239,68,68,0.4)"
+                        ? "rgba(212,167,45,0.5)"
                         : "var(--border_inactive)"
                     }`,
                     background: "rgba(8,16,23,0.7)",
@@ -383,7 +383,7 @@ export function WaitlistCapture() {
                 <div
                   className="data"
                   style={{
-                    color: "rgba(239,68,68,0.7)",
+                    color: "rgba(212,167,45,0.85)",
                     fontSize: 10,
                     marginTop: 6,
                     textAlign: "center",
