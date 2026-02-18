@@ -25,9 +25,9 @@ const PRINCIPLES: EthosCard[] = [
     headline: 'We Forget Nothing',
     tagline: 'The record is the product. Permanence is the point.',
     bullets: [
-      'Every statement captured, analyzed, and stored forever',
+      'Every statement captured, analyzed, and retained as an append-only record',
       'Not summarized, not paraphrased, not deleted after 90 days',
-      'Nothing expires. Nothing decays. The record only grows',
+      'No silent deletions. No quiet edits. The record only grows',
     ],
     tag: 'IMMUTABLE RECORD',
     icon: (
@@ -44,7 +44,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Once recorded, nothing changes: not the data, not the scores, not the conclusions',
       'No retroactive edits when the political wind shifts',
-      'Blockchain-grade permanence. No gas, no wallets, no barriers',
+      'Permanent by design. No tokens. No wallets. No barriers',
     ],
     tag: 'ZERO REVISIONISM',
     icon: (
@@ -84,9 +84,9 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       "Significance weighed against each figure\u2019s own noise floor",
       'No push notifications for routine speeches',
-      'No dopamine engineering. No engagement farming',
+      'Alerts fire on signal deviation, not engagement metrics',
     ],
-    tag: 'NO MANUFACTURED URGENCY',
+    tag: 'SIGNAL INTEGRITY',
     icon: (
       <svg viewBox="0 0 26 26" fill="none">
         <polyline points="2,16 5,16 7,16 9,16 11,14 13,8 15,16 17,14 19,16 21,16 24,16" stroke="var(--teal)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.65" fill="none" />
@@ -101,8 +101,8 @@ const PRINCIPLES: EthosCard[] = [
     tagline: 'Every day the data gets deeper. Every day the barrier gets higher.',
     bullets: [
       'Each new entry makes all previous data more valuable',
-      'Semantic connections compound. Patterns emerge across years',
-      'Storage costs negligible. Recreating from scratch, prohibitive',
+      'Connections between statements compound. Patterns emerge across years',
+      'The dataset deepens every day. Rebuilding it from zero would take years',
     ],
     tag: 'COMPOUNDING INTELLIGENCE',
     icon: (
@@ -124,7 +124,7 @@ const PRINCIPLES: EthosCard[] = [
     tagline: "A measurement you can\u2019t audit isn\u2019t a measurement. It\u2019s an assertion.",
     bullets: [
       'All methodologies documented and accessible inside the product',
-      'Not buried in legal footnotes. Linked, readable, questionable',
+      'Not stuffed in legal footnotes. Linked. Readable. Open to scrutiny',
       'Transparency is architecture, not marketing',
     ],
     tag: 'AUDITABLE BY DESIGN',
@@ -181,11 +181,11 @@ const PRINCIPLES: EthosCard[] = [
   {
     numeral: 'IX',
     headline: 'Every Export Is a Billboard',
-    tagline: 'Quality is the marketing strategy.',
+    tagline: 'The work speaks for itself.',
     bullets: [
       'Screenshots that look like classified intelligence documents',
       "Shares that make people stop and ask what they\u2019re looking at",
-      'Proof of work. Organic reach built into the output itself',
+      'Every export earns its own attention',
     ],
     tag: 'PROOF OF WORK',
     icon: (

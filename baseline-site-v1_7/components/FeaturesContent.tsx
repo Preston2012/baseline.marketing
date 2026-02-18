@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, Fragment } from "react";
 import { Card } from "./Card";
 import { TierPill } from "./TierPill";
 import { FeaturesNav, type TierFilter } from "./FeaturesNav";
@@ -15,26 +15,22 @@ type FeatureItem = {
 
 const SIGNALS: FeatureItem[] = [
   { name: "Signal Metrics", desc: "Repetition, Novelty, Affect, Entropy. Four independent scores per statement, each 0\u2013100.", tier: "CORE" },
-  { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The measurement that matters.", tier: "CORE" },
+  { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The reference signal for each figure.", tier: "CORE" },
   { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.", tier: "CORE" },
-  { name: "Lens Lab\u2122", desc: "Three AI models running in parallel. Same statement, three independent measurements.", tier: "PRO" },
-  { name: "Consensus Convergence", desc: "How many models landed in the same place. Displayed as a ratio.", tier: "CORE" },
-  { name: "Consensus Confidence Ring", desc: "Radial progress indicator on the consensus badge. Visual read at a glance.", tier: "CORE" },
+  { name: "Consensus Convergence", desc: "How many models landed in the same place. Displayed as a ratio with a visual confidence ring.", tier: "CORE" },
   { name: "Variance Detection", desc: "When models disagree, you see it. Surfaced, never suppressed.", tier: "CORE" },
+  { name: "Lens Lab\u2122", desc: "Three AI models running in parallel. Same statement, three independent measurements.", tier: "PRO" },
   { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO" },
-  { name: "Divergence Sort", desc: "Sort statements by lowest consensus. Surface the most contested measurements first.", tier: "PRO+" },
+  { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where models diverge most.", tier: "PRO+" },
   { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.", tier: "PRO+" },
 ];
 
 const FEED: FeatureItem[] = [
-  { name: "The Receipt\u2122", desc: "Complete statement analysis surface. Every measurement, every source, one scroll.", tier: "CORE" },
-  { name: "Feed Browse + Statement Detail", desc: "Read-only access to every analyzed statement with full source context.", tier: "CORE" },
-  { name: "Trending Topics", desc: "Backend-generated topic chips surfacing what\u2019s active now.", tier: "CORE" },
-  { name: "Source Favicon", desc: "16px source icon next to every source name. Instant recognition.", tier: "CORE" },
-  { name: "\u201CWhy am I seeing this?\u201D", desc: "Feed transparency \u2014 understand the ranking signal.", tier: "CORE" },
-  { name: "\u201CMeasured By\u201D Attribution", desc: "Transparent row showing which models produced each measurement.", tier: "CORE" },
-  { name: "Teal Flash on Update", desc: "Border pulse when data changes. You see it happen.", tier: "CORE" },
-  { name: "Pulse Bar", desc: "3px activity indicator. Signal density at a glance.", tier: "CORE" },
+  { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.", tier: "CORE" },
+  { name: "Feed Browse + Statement Detail", desc: "Access every analyzed statement with full source context.", tier: "CORE" },
+  { name: "Trending Topics", desc: "Topic chips showing what\u2019s active now.", tier: "CORE" },
+  { name: "\u201CWhy am I seeing this?\u201D", desc: "See why this statement is in your feed.", tier: "CORE" },
+  { name: "Model Attribution", desc: "See which models produced each measurement.", tier: "CORE" },
   { name: "Feed Sorting", desc: "Sort by novelty, recency, or signal strength.", tier: "PRO" },
   { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.", tier: "PRO" },
   { name: "Long-press Peek Preview", desc: "Press and hold to preview a statement without navigating.", tier: "PRO" },
@@ -43,11 +39,11 @@ const FEED: FeatureItem[] = [
 
 const FIGURES: FeatureItem[] = [
   { name: "Figure Profiles", desc: "Every tracked figure with their full measurement history.", tier: "CORE" },
-  { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.", tier: "PRO" },
   { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.", tier: "CORE" },
   { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.", tier: "CORE" },
-  { name: "\u201CStatements This Week\u201D Badge", desc: "Teal count badge showing recent statement volume per figure.", tier: "CORE" },
-  { name: "\u201CSilent Vote\u201D Indicator", desc: "Surfaces when a figure has no recorded vote on a bill they discussed.", tier: "CORE" },
+  { name: "\u201CStatements This Week\u201D Badge", desc: "Recent statement count per figure.", tier: "CORE" },
+  { name: "\u201CSilent Vote\u201D Indicator", desc: "Displayed when a figure discussed a bill but has no recorded vote.", tier: "CORE" },
+  { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.", tier: "PRO" },
   { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access.", tier: "PRO" },
   { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.", tier: "PRO" },
   { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.", tier: "PRO+" },
@@ -67,18 +63,18 @@ const BILLS: FeatureItem[] = [
 const TOOLS: FeatureItem[] = [
   { name: "Private Annotations", desc: "Core: 0 \u00b7 Pro: 100 \u00b7 Pro+: 500 \u00b7 B2B: 1,000", tier: "CORE" },
   { name: "Request a Figure", desc: "Don\u2019t see someone? Request a figure for tracking.", tier: "CORE" },
-  { name: "Methodology Deep Link", desc: "\u201CHow is this measured?\u201D info sheets on every analysis surface.", tier: "CORE" },
-  { name: "\u201CFirst Statement\u201D Orientation", desc: "One-time overlay explaining your first measurement screen.", tier: "CORE" },
+  { name: "How Is This Measured?", desc: "Info sheets on every analysis surface explaining the methodology behind each measurement.", tier: "CORE" },
+  { name: "First Measurement Guide", desc: "Quick walkthrough on your first measurement screen.", tier: "CORE" },
   { name: "Export & Share", desc: "Museum-grade export with branded watermark. Pro and above.", tier: "PRO" },
   { name: "Ghost Export", desc: "Then vs. now \u2014 export a figure\u2019s measurements at two points in time.", tier: "PRO" },
   { name: "Copy with Citation", desc: "One-tap copy with automatic attribution footer.", tier: "PRO" },
-  { name: "Drift-infused Watermark", desc: "Export watermark dynamically reflects the statement\u2019s drift score.", tier: "PRO" },
+  { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score.", tier: "PRO" },
   { name: "Digest Notifications", desc: "Daily/weekly digests. Pro and above.", tier: "PRO" },
   { name: "Advanced Notifications", desc: "Per-figure, per-topic alerts with higher frequency.", tier: "PRO+" },
-  { name: "Shift Alert", desc: "Triggered when rhetorical velocity exceeds 1.5 standard deviations in 24 hours.", tier: "PRO+" },
+  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.", tier: "PRO+" },
   { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.", tier: "B2B" },
-  { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Research-grade monitoring.", tier: "B2B" },
-  { name: "Annotation Delta Cards", desc: "Track consensus delta on your annotations over time.", tier: "B2B" },
+  { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Precision monitoring.", tier: "B2B" },
+  { name: "Annotation Delta Cards", desc: "Track how model agreement on your annotations changes over time.", tier: "B2B" },
 ];
 
 /* Tier hierarchy for "PRO" filter showing PRO + PRO+ */
@@ -281,35 +277,50 @@ export function FeaturesContent() {
                   {cat.count}
                 </span>
               </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {cat.names.map((name) => (
-                  <span
-                    key={name}
-                    style={{
-                      display: "inline-block",
-                      padding: "6px 10px",
-                      border: "2px solid var(--border_inactive)",
-                      borderRadius: 8,
-                      fontSize: 12,
-                      color: "var(--text)",
-                      background: "var(--card)",
-                      whiteSpace: "nowrap",
-                      filter: "blur(5px)",
-                      WebkitFilter: "blur(5px)",
-                      userSelect: "none",
-                      WebkitUserSelect: "none",
-                    }}
-                  >
-                    {name}
-                  </span>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+                {cat.names.map((name, i) => (
+                  <Fragment key={name}>
+                    {name.startsWith("Office of") && !cat.names[i - 1]?.startsWith("Office of") && (
+                      <span
+                        className="data"
+                        style={{
+                          fontSize: 9,
+                          opacity: 0.3,
+                          letterSpacing: "0.08em",
+                          width: "100%",
+                          marginTop: 4,
+                        }}
+                      >
+                        INSTITUTIONAL FEEDS
+                      </span>
+                    )}
+                    <span
+                      style={{
+                        display: "inline-block",
+                        padding: "6px 10px",
+                        border: "2px solid var(--border_inactive)",
+                        borderRadius: 8,
+                        fontSize: 12,
+                        color: "var(--text)",
+                        background: "var(--card)",
+                        whiteSpace: "nowrap",
+                        filter: "blur(5px)",
+                        WebkitFilter: "blur(5px)",
+                        userSelect: "none",
+                        WebkitUserSelect: "none",
+                      }}
+                    >
+                      {name}
+                    </span>
+                  </Fragment>
                 ))}
               </div>
             </div>
           ))}
 
           <p className="small" style={{ opacity: 0.5, marginTop: 12 }}>
-            Request a figure for tracking in-app. Roster expands based on public
-            interest and source availability.
+            Request a figure for tracking in-app. Roster updates over time
+            based on source availability.
           </p>
         </div>
 
