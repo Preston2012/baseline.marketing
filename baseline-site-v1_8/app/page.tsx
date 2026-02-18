@@ -64,29 +64,29 @@ export default function HomePage() {
             <HeroMorph /> you can measure.
           </h1>
 
-          <p
-            className="p"
-            style={{
-              color: "var(--text)",
-              fontWeight: 600,
-              marginTop: 8,
-              marginBottom: 0,
-            }}
-          >
-            What they said. How they said it.
-          </p>
+          <div style={{ display: "inline-block", marginTop: 8, marginBottom: 0 }}>
+            <p
+              className="p"
+              style={{
+                color: "var(--text)",
+                fontWeight: 600,
+                marginTop: 0,
+                marginBottom: 0,
+              }}
+            >
+              What they said. How they said it.
+            </p>
 
-          {/* Teal accent rule */}
-          <div
-            style={{
-              width: "100%",
-              maxWidth: 380,
-              height: 2,
-              background: "var(--teal)",
-              marginTop: 12,
-              marginBottom: 12,
-            }}
-          />
+            {/* Teal accent rule — matches subtitle width */}
+            <div
+              style={{
+                width: "100%",
+                height: 2,
+                background: "var(--teal)",
+                marginTop: 10,
+              }}
+            />
+          </div>
 
           <p
             className="small"
