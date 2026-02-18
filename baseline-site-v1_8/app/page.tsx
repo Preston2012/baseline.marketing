@@ -115,13 +115,12 @@ export default function HomePage() {
           </div>
 
 
-          {/* Store CTAs */}
+          {/* Store CTAs — grid matches nav grid below */}
           <div
             style={{
-              display: "flex",
-              gap: 12,
-              alignItems: "center",
-              flexWrap: "wrap",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: 10,
               marginTop: 16,
             }}
           >
@@ -240,8 +239,8 @@ export default function HomePage() {
         <div className="grid" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", marginTop: 12 }}>
           <Card title="1) Ingest">
             <p className="p" style={{ margin: 0 }}>
-              Public statements captured with metadata: source link,
-              timestamps, figure identity, context.
+              Public statements captured with source, timestamp,
+              speaker, and context.
             </p>
           </Card>
 
@@ -252,10 +251,10 @@ export default function HomePage() {
             </p>
           </Card>
 
-          <Card title="3) Display side by side">
+          <Card title="3) Display side-by-side">
             <p className="p" style={{ margin: 0 }}>
-              Results displayed together with a separately computed
-              consensus layer. Sources and context on every surface.
+              Results displayed together with a separate consensus
+              result. Sources and context on every screen.
             </p>
           </Card>
         </div>

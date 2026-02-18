@@ -222,7 +222,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     idleTimerRef.current = setTimeout(() => {
       if (!accessGranted) autoType();
-    }, 18000);
+    }, 12000);
   }, [accessGranted, autoType]);
 
   // ── Start boot sequence ──
@@ -353,7 +353,7 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
       // After 2 failures on scanner already visible, auto-type at reduced timer
       if (newCount >= 3) {
         if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
-        idleTimerRef.current = setTimeout(() => autoType(), 8000);
+        idleTimerRef.current = setTimeout(() => autoType(), 5000);
       }
 
       resetIdleTimer();

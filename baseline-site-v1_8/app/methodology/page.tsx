@@ -48,12 +48,12 @@ export default function MethodologyPage() {
       <div className="grid" style={{ gap: 16 }}>
         <Card title="1) Input Normalization">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Every statement enters the system the same way. One canonical input. Every model receives it identically.
+            Every statement enters the system the same way. One standardized input. Every model receives it identically.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Statement text captured with metadata: source link, timestamps, figure identity, context pointers</li>
-              <li>Input normalized to a single canonical string before distribution</li>
+              <li>Statement text captured with source link, timestamp, speaker identity, and context</li>
+              <li>Input standardized to a single format before processing</li>
               <li>No preprocessing varies between models. Every model gets exactly the same input.</li>
             </ul>
           </div>
@@ -79,7 +79,7 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Context presented as supporting metadata and links. Not editorial judgment.</li>
+              <li>Context presented as supporting information and links. Not editorial judgment.</li>
               <li>No output is summarized, merged, or paraphrased before the user sees it.</li>
             </ul>
           </div>
@@ -183,8 +183,8 @@ export default function MethodologyPage() {
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each statement is compared against everything the figure has previously said on that topic.</li>
-              <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (cosine similarity). Tiers: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
-              <li>Match counts entitlement-gated. Core: <span className="data" style={{ color: "var(--teal)" }}>3</span>, Pro: <span className="data" style={{ color: "var(--teal)" }}>5</span>, Pro+: <span className="data" style={{ color: "var(--teal)" }}>unlimited</span>.</li>
+              <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (semantic similarity). Tiers: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
+              <li>Match limits vary by tier. Core: <span className="data" style={{ color: "var(--teal)" }}>3</span>, Pro: <span className="data" style={{ color: "var(--teal)" }}>5</span>, Pro+: <span className="data" style={{ color: "var(--teal)" }}>unlimited</span>.</li>
               <li>Patterns measured, not interpreted. Recurrence surfaced. Meaning left to the user.</li>
             </ul>
           </div>
@@ -202,7 +202,7 @@ export default function MethodologyPage() {
               <li>Five axes: <span className="data" style={{ color: "var(--teal)" }}>Adversarial/Oppositional</span>, <span className="data" style={{ color: "var(--teal)" }}>Problem Identification</span>, <span className="data" style={{ color: "var(--teal)" }}>Commitment/Forward-Looking</span>, <span className="data" style={{ color: "var(--teal)" }}>Justification/Reactive</span>, <span className="data" style={{ color: "var(--teal)" }}>Imperative/Directive</span>.</li>
               <li>Each axis computed independently per AI model.</li>
               <li>Describes rhetorical structure, not moral character. A high Adversarial score means oppositional language, not that the speaker is wrong.</li>
-              <li>Variance between models on the same axis is surfaced. If two models read &ldquo;Justification&rdquo; and one reads &ldquo;Commitment,&rdquo; you see all three.</li>
+              <li>Variance between models on the same axis is shown. If two models read &ldquo;Justification&rdquo; and one reads &ldquo;Commitment,&rdquo; you see all three.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -231,7 +231,7 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Each provision embedded and compared against the bill&rsquo;s title and purpose clause via semantic distance.</li>
+              <li>Each provision measured against the bill&rsquo;s title and purpose clause by semantic distance.</li>
               <li>Drift tiers: <span className="data" style={{ color: "var(--teal)" }}>Low (0-25)</span>, <span className="data" style={{ color: "var(--teal)" }}>Moderate (26-50)</span>, <span className="data" style={{ color: "var(--teal)" }}>High (51-75)</span>, <span className="data" style={{ color: "var(--teal)" }}>Very High (76-100)</span>.</li>
               <li>High-drift provisions surface riders, earmarks, and thematically distant amendments.</li>
               <li>Source links to original bill text always provided.</li>
@@ -247,7 +247,7 @@ export default function MethodologyPage() {
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Shared-topic matching via semantic overlap on the same legislative or policy subject.</li>
-              <li>Framing differences surfaced side by side. No &ldquo;winner&rdquo; declared.</li>
+              <li>Framing differences presented side-by-side. No &ldquo;winner&rdquo; declared.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -285,7 +285,7 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Topology computed from co-occurrence and framing similarity.</li>
+              <li>Connections mapped from shared topics and framing similarity.</li>
               <li>Navigation, not analysis. Explore, don&rsquo;t interpret.</li>
             </ul>
           </div>
@@ -298,8 +298,8 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Highlights the specific tokens, phrases, and axis scores where models diverge.</li>
-              <li>Disagreement is data. Surfaced at granular level.</li>
+              <li>Highlights the specific words, phrases, and axis scores where models diverge.</li>
+              <li>Disagreement is data. Shown in detail.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -307,11 +307,11 @@ export default function MethodologyPage() {
 
         <Card title="Intersections Panel™: Cross-Link Chips">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Surfaces shared framing and topic overlaps across figures and time on Statement Detail.
+            Shows shared framing and topic overlaps across figures and time on Statement Detail.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Links statements by topic, framing signature, and temporal proximity.</li>
+              <li>Links statements by topic, framing signature, and timing.</li>
               <li>Tappable chips navigate to related statements.</li>
             </ul>
           </div>
@@ -337,8 +337,8 @@ export default function MethodologyPage() {
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Computes framing similarity across figures within temporal windows.</li>
-              <li>Convergence surfaced as a signal. Causation is not implied.</li>
+              <li>Measures framing similarity across figures within defined time windows.</li>
+              <li>Convergence presented as a signal. Causation is not implied.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -400,7 +400,7 @@ export default function MethodologyPage() {
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each metric measured against the figure&rsquo;s own rolling average.</li>
-              <li>Positive delta = elevated signal. Negative = below typical. Zero = on baseline.</li>
+              <li>Positive means elevated signal. Negative means below typical. Zero means on baseline.</li>
               <li>Measures shift, not position. A high Affect score is context. A high Affect delta is signal.</li>
             </ul>
           </div>
@@ -428,7 +428,7 @@ export default function MethodologyPage() {
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Triggered when models diverge on primary framing classification or signal metric values.</li>
               <li>Variance banner displayed prominently. Not an error. Genuine measurement divergence.</li>
-              <li>Disagreement surfaced as data. Never suppressed.</li>
+              <li>Disagreement displayed as data. Never suppressed.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>
@@ -436,7 +436,7 @@ export default function MethodologyPage() {
 
         <Card title="Congressional Vote Record">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Per-member, per-bill granularity across the full congressional record.
+            Per-member, per-bill detail across the full congressional record.
           </p>
           <div className="redacted">
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
