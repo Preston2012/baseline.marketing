@@ -24,11 +24,9 @@ export function HeroMorph() {
   return (
     <span
       style={{
-        display: "inline-block",
-        minWidth: 160,
+        display: "inline",
         opacity: fading ? 0 : 1,
-        transform: fading ? "translateY(4px)" : "translateY(0)",
-        transition: "opacity 400ms ease-out, transform 400ms ease-out",
+        transition: "opacity 400ms ease-out",
         color: "#2dd4bf",
       }}
     >
