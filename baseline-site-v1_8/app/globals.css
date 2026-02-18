@@ -1,0 +1,364 @@
+/* ═══════════════════════════════════════════════════════════
+   BASELINE™ SIGNAL INTELLIGENCE BRIEF
+   CLASSIFICATION: UNCLASSIFIED // FOUO
+   GRID REF: 0x2DD4BF · 0x0C1A23 · 0x081017
+   DTG: 160000ZFEB26
+   SYS STATUS: NOMINAL
+   ═══════════════════════════════════════════════════════════ */
+
+:root{
+  --bg:#081017;
+  --card:#0c1a23;
+
+  --teal:#2dd4bf;
+
+  --text:#eaf2ff;
+  --sub:#b6c6d6;
+
+  --border_inactive: rgba(182,198,214,0.12);
+  --border_active: rgba(45,212,191,0.15);
+
+  --amber:#d4a72d;
+
+  --radius_card:14px;
+  --radius_btn:12px;
+}
+
+*{ box-sizing:border-box; box-shadow: none !important; }
+html,body{ padding:0; margin:0; overflow-x: hidden; max-width: 100vw; width: 100%; }
+body{ overflow-y: auto; }
+
+/* M1: Branded focus ring — teal doctrine, no shadows */
+:focus-visible{
+  outline: 2px solid #2dd4bf;
+  outline-offset: 2px;
+}
+
+/* M17: Teal selection */
+::selection{
+  background-color: rgba(45,212,191,0.3);
+  color: #eaf2ff;
+}
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-poppins, system-ui), system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* E4: Terminal scrollbar */
+::-webkit-scrollbar{ width: 6px; height: 6px; }
+::-webkit-scrollbar-track{ background: #000; }
+::-webkit-scrollbar-thumb{ background: #2dd4bf; border-radius: 3px; }
+html{ scrollbar-width: thin; scrollbar-color: #2dd4bf #000; }
+
+a{ color: inherit; }
+/* E9: Visible links in body/legal copy */
+.p a, .small a, .legal a{
+  color: var(--teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+img{ max-width:100%; height:auto; display:block; }
+
+.container{
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Audit fix: .h1 now includes font-size (was missing, relied on inline) */
+.h1{ font-weight: 600; letter-spacing: -0.02em; font-size: 40px; margin: 0; text-wrap: balance; }
+.h2{ font-weight: 600; font-size: 18px; margin: 0; text-wrap: balance; }
+.h3{ font-weight: 600; font-size: 16px; margin: 0; text-wrap: balance; }
+.p{ color: var(--sub); font-size: 14px; margin: 12px 0; line-height: 1.4; }
+.small{ color: var(--sub); font-size: 12px; }
+.data{
+  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 500;
+  color: var(--text);
+  font-feature-settings: "tnum";
+}
+
+/* Section labels (teal uppercase data labels) */
+.section-label{
+  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-weight: 500;
+  color: var(--teal);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.section{ padding: 24px 0; }
+
+.grid{
+  display:grid;
+  gap: 12px;
+}
+.grid_2{ grid-template-columns: 1fr; }
+@media (min-width: 900px){
+  .grid_2{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Skip link */
+.skip_link{
+  position:absolute;
+  left:-999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.skip_link:focus{
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 2px solid var(--border_active);
+  z-index: 9999;
+}
+
+#main{ scroll-margin-top: 112px; padding-top: 100px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Buttons (marketing CTA exception allows teal fills) */
+/* Audit fix: added background + border-color transitions for hover feedback */
+/* E2: translateY(-1px) on hover for tactile lift */
+.btnPrimary{
+  transition: opacity 200ms ease-out, transform 200ms ease-out, background 200ms ease-out, border-color 200ms ease-out;
+}
+.btnPrimary:hover{ opacity: 1; background: rgba(45,212,191,0.92); border-color: rgba(45,212,191,0.45); transform: translateY(-1px); }
+.btnPrimary:active{ transform: scale(0.98); }
+
+.btnSecondary{
+  transition: border-color 200ms ease-out, transform 200ms ease-out, opacity 200ms ease-out, background 200ms ease-out;
+}
+.btnSecondary:hover{ border-color: var(--teal); background: rgba(12,26,35,0.40); transform: translateY(-1px); }
+.btnSecondary:active{ transform: scale(0.98); }
+
+/* E7: No user-select on UI chrome */
+.noSelect{ user-select: none; -webkit-user-select: none; }
+
+/* I1: Scroll progress bar */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--teal);
+  z-index: 9999;
+  transition: none;
+}
+
+/* I13: Gallery card hover scale */
+.museum-card:hover{
+  transform: scale(1.02) !important;
+  border-color: rgba(45, 212, 191, 0.3) !important;
+}
+
+/* I16: Pricing tier comparison — hover highlights one, dims rest */
+.tier-grid:hover > *{
+  opacity: 0.55;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+.tier-grid:hover > *:hover{
+  opacity: 1;
+  transform: scale(1.01);
+}
+
+/* N14: Nav link teal scan line hover */
+.nav-scan-link{
+  position: relative;
+  overflow: hidden;
+}
+.nav-scan-link::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(45,212,191,0.5), transparent);
+  transition: none;
+}
+.nav-scan-link:hover::after{
+  animation: scan-sweep 0.6s ease-out forwards;
+}
+@keyframes scan-sweep{
+  0%{ left: -100%; }
+  100%{ left: 100%; }
+}
+
+/* Interactive card affordance (only when opt-in class applied) */
+/* Audit fix: scale(1.005) up instead of 0.99 down — premium feel */
+.cardInteractive{
+  transition: transform 200ms ease-out, border-color 200ms ease-out;
+}
+.cardInteractive:hover{
+  transform: scale(1.005);
+  border-color: var(--border_active);
+}
+
+/* Audit fix: proper scroll wrapper for legal tables instead of display:block */
+.legalTableWrap{
+  width: 100%;
+  overflow-x: auto;
+  border: 2px solid var(--border_inactive);
+  border-radius: 12px;
+}
+
+.legal table{
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.legal th, .legal td{
+  border: 2px solid var(--border_inactive);
+  padding: 10px;
+  vertical-align: top;
+}
+.legal th{
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.legal ul{ margin: 8px 0; padding-left: 18px; }
+.legal ol{ margin: 8px 0; padding-left: 18px; }
+
+/* Reduced transparency */
+@media (prefers-reduced-transparency: reduce){
+  .reduceTransparency{
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Redacted text — pre-launch stealth on proprietary surfaces. Remove .redacted class on launch day. */
+.redacted{
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  transition: filter 300ms ease-out;
+}
+.redacted-label{
+  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(45,212,191,0.35);
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.redacted-label::before{
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(45,212,191,0.3);
+  animation: museum-breathe 2.5s ease-in-out infinite;
+}
+
+/* Ambient scan line — page-level subtle sweep */
+@keyframes ambient-scan {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+/* Classification stamp — invisible until inspect */
+.classification-stamp{
+  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, monospace;
+  font-size: 7px;
+  letter-spacing: 0.15em;
+  color: rgba(45,212,191,0.08);
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Print */
+@media print{
+  body{ background:#ffffff; color:#000000; }
+}
+
+/* Museum gallery — shared across homepage + features */
+.museum-gallery {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+  cursor: grab;
+}
+.museum-gallery:active { cursor: grabbing; }
+.museum-gallery::-webkit-scrollbar { display: none; }
+
+/* M12: Gallery — always horizontal carousel on all viewports */
+@media (max-width: 900px) {
+  .museum-gallery {
+    /* Keep horizontal scroll on mobile — no vertical stacking */
+  }
+  .museum-gallery > div {
+    flex: 0 0 85vw !important;
+    min-width: 280px !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1024px) {
+  .museum-gallery > div {
+    flex: 0 0 320px !important;
+    min-width: 320px !important;
+  }
+}
+
+@keyframes museum-breathe {
+  0%, 100% { border-color: rgba(45, 212, 191, 0.03); }
+  50% { border-color: rgba(45, 212, 191, 0.08); }
+}
+
+/* E23: Stagger fade-in for gallery cards */
+@keyframes museumFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.museum-gallery > div {
+  animation: museumFadeIn 300ms ease-out both;
+}
+.museum-gallery > div:nth-child(1) { animation-delay: 0ms; }
+.museum-gallery > div:nth-child(2) { animation-delay: 30ms; }
+.museum-gallery > div:nth-child(3) { animation-delay: 60ms; }
+.museum-gallery > div:nth-child(4) { animation-delay: 90ms; }
+.museum-gallery > div:nth-child(5) { animation-delay: 120ms; }
+.museum-gallery > div:nth-child(6) { animation-delay: 150ms; }
+.museum-gallery > div:nth-child(7) { animation-delay: 180ms; }
+.museum-gallery > div:nth-child(8) { animation-delay: 210ms; }
+.museum-gallery > div:nth-child(9) { animation-delay: 240ms; }
+.museum-gallery > div:nth-child(10) { animation-delay: 270ms; }
+.museum-gallery > div:nth-child(11) { animation-delay: 300ms; }
+.museum-gallery > div:nth-child(12) { animation-delay: 330ms; }
+.museum-gallery > div:nth-child(13) { animation-delay: 360ms; }
