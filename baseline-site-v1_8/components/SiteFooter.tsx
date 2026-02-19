@@ -93,7 +93,7 @@ export function SiteFooter() {
             letterSpacing: "0.08em",
           }}
         >
-          NEXT MEASUREMENT: &mdash;
+          NEXT MEASUREMENT: --
         </div>
 
         {/* Easter egg: NATO/ZULU format timestamp + hex grid ref */}

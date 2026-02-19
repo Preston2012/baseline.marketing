@@ -245,7 +245,7 @@ function SignalBar({ label, value, delay, active }: { label: string; value: numb
         )}
       </div>
       <DataLabel size={9} color={T}>
-        {active ? value : '—'}
+        {active ? value : '--'}
       </DataLabel>
     </div>
   );
@@ -376,7 +376,7 @@ export function BaselineScoreWidget() {
                 transition: 'all 800ms ease',
               }}
             >
-              {vis ? score : '—'}
+              {vis ? score : '--'}
             </span>
           </div>
         </div>
@@ -1333,7 +1333,7 @@ export function SignalPulseWidget() {
                     transition: `width 1.2s cubic-bezier(0.22,1,0.36,1) ${i * 150}ms`,
                   }} />
                 </div>
-                <DataLabel size={7} color={T}>{vis ? val : '—'}</DataLabel>
+                <DataLabel size={7} color={T}>{vis ? val : '--'}</DataLabel>
               </div>
             );
           })}

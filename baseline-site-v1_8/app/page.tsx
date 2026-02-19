@@ -321,8 +321,8 @@ export default function HomePage() {
 
         {[
           { label: "figures", value: "44" },
-          { label: "statements", value: "\u2014" },
-          { label: "sources", value: "\u2014" },
+          { label: "statements", value: "--" },
+          { label: "sources", value: "--" },
         ].map((s) => (
           <div key={s.label} style={{ textAlign: "center" }}>
             <div

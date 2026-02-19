@@ -101,7 +101,7 @@ const TOOLS: Feature[] = [
   { name: "How Is This Measured?", desc: "Info sheets on every analysis surface explaining the methodology behind each measurement.", tier: "CORE" },
   { name: "First Measurement Guide", desc: "Quick walkthrough on your first measurement screen.", tier: "CORE" },
   { name: "Export & Share", desc: "Museum-grade export with branded watermark. Pro and above.", tier: "PRO" },
-  { name: "Ghost Export", desc: "Then vs. now \u2014 export a figure\u2019s measurements at two points in time.", tier: "PRO" },
+  { name: "Ghost Export", desc: "Then vs. now: export a figure\u2019s measurements at two points in time.", tier: "PRO" },
   { name: "Copy with Citation", desc: "One-tap copy with automatic attribution footer.", tier: "PRO" },
   { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score.", tier: "PRO" },
   { name: "Digest Notifications", desc: "Daily/weekly digests. Pro and above.", tier: "PRO" },
