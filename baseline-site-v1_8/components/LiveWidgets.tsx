@@ -120,7 +120,7 @@ export function PipelineWidget() {
             <DataLabel size={7} color={SUB}>Public statement ingested from source</DataLabel>
           </div>
           <DataLabel size={7} color={step >= 1 ? T : TEAL_DIM}>
-            {step >= 1 ? '✓ CAPTURED' : '—'}
+            {step >= 1 ? '✓ CAPTURED' : '--'}
           </DataLabel>
         </div>
 
@@ -161,7 +161,7 @@ export function PipelineWidget() {
             <DataLabel size={6} color={step >= 2 ? SUB : TEAL_DIM}>Gemini · Normalize → canonical format</DataLabel>
           </div>
           <DataLabel size={7} color={step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.5)' : TEAL_DIM)}>
-            {step >= 3 ? '✓ STRUCTURED' : (step >= 2 ? 'EXTRACTING' : '—')}
+            {step >= 3 ? '✓ STRUCTURED' : (step >= 2 ? 'EXTRACTING' : '--')}
           </DataLabel>
         </div>
 
@@ -255,7 +255,7 @@ export function PipelineWidget() {
           <DataLabel size={8} color={step >= 4 ? TEXT : SUB}>SIDE-BY-SIDE DISPLAY</DataLabel>
           <div style={{ flex: 1 }} />
           <DataLabel size={7} color={step >= 4 ? T : TEAL_DIM}>
-            {step >= 4 ? 'INDEPENDENT OUTPUTS' : '—'}
+            {step >= 4 ? 'INDEPENDENT OUTPUTS' : '--'}
           </DataLabel>
         </div>
 
@@ -469,7 +469,7 @@ export function ConsensusAssemblyWidget() {
         }}>
           <div style={{ width: 20, height: 1, background: T, opacity: 0.3 }} />
           <DataLabel size={7} color={phase >= 2 ? T : SUB}>
-            {phase >= 2 ? 'COMPARING OUTPUTS' : '—'}
+            {phase >= 2 ? 'COMPARING OUTPUTS' : '--'}
           </DataLabel>
           <div style={{ width: 20, height: 1, background: T, opacity: 0.3 }} />
         </div>
