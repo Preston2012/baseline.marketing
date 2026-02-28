@@ -14,6 +14,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const T = '#2dd4bf';
+const A = '#d4a72d';
 const MONO = 'var(--font-jetbrains, monospace)';
 const BG = '#0c1a23';
 
