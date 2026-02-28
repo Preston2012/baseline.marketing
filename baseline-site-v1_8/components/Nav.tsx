@@ -82,6 +82,16 @@ export default function Nav() {
         borderBottom: '2px solid rgba(45,212,191,0.08)',
       }}
     >
+      {/* Circuit trace: bottom accent with nodes */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: '5%', right: '5%', height: 1,
+        background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.03) 20%, rgba(45,212,191,0.05) 50%, rgba(45,212,191,0.03) 80%, transparent)',
+        pointerEvents: 'none', zIndex: 101,
+      }}>
+        <div style={{ position: 'absolute', left: '25%', top: -1, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+        <div style={{ position: 'absolute', left: '50%', top: -1, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.08)' }} />
+        <div style={{ position: 'absolute', left: '75%', top: -1, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+      </div>
       <nav
         style={{
           maxWidth: 1120, margin: '0 auto',
@@ -200,8 +210,28 @@ export default function Nav() {
               display: 'flex', flexDirection: 'column', gap: 4,
               maxHeight: 'calc(100vh - 56px)',
               overflowY: 'auto',
+              backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(45,212,191,0.008) 3px, rgba(45,212,191,0.008) 4px)',
             }}
           >
+            {/* Film perfs on drawer edges */}
+            <div aria-hidden="true" style={{
+              position: 'absolute', left: 2, top: 8, bottom: 8, width: 4,
+              display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+              pointerEvents: 'none',
+            }}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.05)' }} />
+              ))}
+            </div>
+            <div aria-hidden="true" style={{
+              position: 'absolute', right: 2, top: 8, bottom: 8, width: 4,
+              display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+              pointerEvents: 'none',
+            }}>
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.05)' }} />
+              ))}
+            </div>
             {allMobileLinks.map(({ href, label }) => (
               <Link
                 key={href}

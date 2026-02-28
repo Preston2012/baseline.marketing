@@ -186,15 +186,19 @@ export function MuseumGallery() {
   }, []);
 
   return (
-    <section className="section" aria-label="Trademark feature gallery">
+    <section className="section scanline-ghost" aria-label="Trademark feature gallery" style={{ position: 'relative' }}>
       <style>{INJECTED_STYLES}</style>
+
+      {/* Registration dots */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
       <h2 className="data" style={{
         color: "var(--teal)", fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase",
         display: "block", margin: 0, marginBlockEnd: 16, transition: "all 300ms",
       }}>
         {allDeclassified ? "ALL DECLASSIFIED" : "\u2122 SURFACES"}
-        {allDeclassified && <span style={{ display: "inline-block", width: 6, height: 6, background: "var(--teal)", borderRadius: "50%", marginLeft: 8, verticalAlign: "middle", animation: "museum-breathe 2s ease-in-out infinite" }} />}
+        {allDeclassified && <span className="hub-beacon" style={{ display: "inline-flex", marginLeft: 8, verticalAlign: "middle" }}><span style={{ width: 6, height: 6, background: "var(--teal)", borderRadius: "50%", animation: "museum-breathe 2s ease-in-out infinite" }} /></span>}
       </h2>
 
       {/* Hash mark ruler — gradient opacity */}

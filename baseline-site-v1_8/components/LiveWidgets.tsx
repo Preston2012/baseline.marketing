@@ -158,7 +158,7 @@ export function PipelineWidget() {
           }} />
           <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
             <DataLabel size={8} color={step >= 2 ? TEXT : SUB}>EXTRACTION · STRUCTURING</DataLabel>
-            <DataLabel size={6} color={step >= 2 ? SUB : TEAL_DIM}>Gemini · Normalize → canonical format</DataLabel>
+            <DataLabel size={6} color={step >= 2 ? SUB : TEAL_DIM}>Extraction · Normalize → canonical format</DataLabel>
           </div>
           <DataLabel size={7} color={step >= 3 ? T : (step >= 2 ? 'rgba(45,212,191,0.5)' : TEAL_DIM)}>
             {step >= 3 ? '✓ STRUCTURED' : (step >= 2 ? 'EXTRACTING' : '--')}

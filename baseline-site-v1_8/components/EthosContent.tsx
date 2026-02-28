@@ -27,7 +27,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Every statement captured, analyzed, and retained as an append-only record',
       'Not summarized, not paraphrased, not deleted after 90 days',
-      'No silent deletions. No quiet edits. The record only grows',
+      'Silent deletions don\u2019t exist here. The record only grows',
     ],
     tag: 'IMMUTABLE RECORD',
     icon: (
@@ -44,7 +44,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Once recorded, nothing changes: not the data, not the scores, not the conclusions',
       'No retroactive edits when the political wind shifts',
-      'Permanent by design. No tokens. No wallets. No barriers',
+      'Permanent by design. Zero friction. Zero gatekeeping',
     ],
     tag: 'ZERO REVISIONISM',
     icon: (
@@ -276,7 +276,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
   return (
     <div
       ref={ref}
-      className="ethos-card"
+      className="ethos-card handling-marks"
       style={{
         position: 'relative',
         background: 'rgba(12,26,35,0.55)',
@@ -290,6 +290,22 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
         overflow: 'hidden',
       }}
     >
+      {/* Registration dots: top corners */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 6, left: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 6, right: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+
+      {/* Circuit trace: bottom connector */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: 0, left: '15%', right: '15%', height: 1,
+        background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.04) 25%, rgba(45,212,191,0.06) 50%, rgba(45,212,191,0.04) 75%, transparent)',
+        pointerEvents: 'none',
+      }} />
+      {/* Circuit node */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', bottom: -2, left: '50%', width: 4, height: 4,
+        borderRadius: '50%', background: 'rgba(45,212,191,0.06)',
+        transform: 'translateX(-50%)', pointerEvents: 'none',
+      }} />
       {/* Corner stamp icon — top left */}
       <div
         style={{
@@ -423,7 +439,27 @@ export function EthosContent() {
   return (
     <>
       <Ruler />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14, paddingBottom: 48 }}>
+      <div className="intel-dot-grid" style={{ display: 'flex', flexDirection: 'column', gap: 14, paddingBottom: 48, position: 'relative' }}>
+        {/* Dual-edge film perforations */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: 6,
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+          pointerEvents: 'none',
+        }}>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div key={i} style={{ width: 3, height: 5, borderRadius: 1, background: 'rgba(45,212,191,0.03)' }} />
+          ))}
+        </div>
+        <div aria-hidden="true" style={{
+          position: 'absolute', right: 0, top: 0, bottom: 0, width: 6,
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+          pointerEvents: 'none',
+        }}>
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div key={i} style={{ width: 3, height: 5, borderRadius: 1, background: 'rgba(45,212,191,0.03)' }} />
+          ))}
+        </div>
+
         {PRINCIPLES.map((card, i) => (
           <EthosCardEl key={card.numeral} card={card} index={i} />
         ))}
