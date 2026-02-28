@@ -241,6 +241,37 @@ export default function MethodologyPage() {
           <span className="redacted-label">Classified until launch</span>
         </Card>
 
+        <Card title="Mutation Timeline™: Legislative Version Tracking">
+          <p className="p" style={{ margin: "0 0 8px" }}>
+            Tracks how bill provisions change across legislative versions: introduced, committee, floor, enrolled.
+          </p>
+          <div className="redacted">
+            <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
+              <li>Provision-level diffs between version pairs: additions, removals, and modifications.</li>
+              <li>Magnitude scoring (0&ndash;1) for each provision change based on text delta size.</li>
+              <li>Aggregate mutation percentage across the full bill.</li>
+              <li>Mechanical text diff computation. No AI opinion involved.</li>
+              <li>Source links to original bill versions always provided.</li>
+            </ul>
+          </div>
+          <span className="redacted-label">Classified until launch</span>
+        </Card>
+
+        <Card title="Spending Scope™: Fiscal Data Surfacing">
+          <p className="p" style={{ margin: "0 0 8px" }}>
+            Surfaces spending data tied to bills and provisions. Grounds legislative analysis in dollars.
+          </p>
+          <div className="redacted">
+            <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
+              <li>Two data sources: CBO scores (official estimates) and extracted dollar figures (from bill text).</li>
+              <li>Per-provision spending with section identifiers and spending categories.</li>
+              <li>Version-over-version spending deltas when multiple versions exist.</li>
+              <li>Factual financial data only. No AI opinion involved.</li>
+            </ul>
+          </div>
+          <span className="redacted-label">Classified until launch</span>
+        </Card>
+
         <Card title="Crossfire™: Side-by-Side Figure Comparison">
           <p className="p" style={{ margin: "0 0 8px" }}>
             Two figures on the same topic, same surface. Direct framing comparison without editorial selection.

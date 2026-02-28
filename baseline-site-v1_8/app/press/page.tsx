@@ -94,7 +94,8 @@ export default function PressPage() {
             Baseline™ · The Receipt™ · Framing Radar™ · Lens Lab™ · Crossfire™ ·
             Signal Pulse™ · Framing Fingerprint™ · Constellation Nav™ ·
             Provision Drift™ · Split Microscope™ · Intersections Panel™ ·
-            Declassified Dossier™ · Narrative Sync™
+            Declassified Dossier™ · Mutation Timeline™ · Spending Scope™ ·
+            Narrative Sync™
           </p>
         </Card>
       </div>

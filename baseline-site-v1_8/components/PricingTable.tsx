@@ -193,6 +193,8 @@ export function PricingTable() {
         { text: "Split Microscope™", tm: true },
         { text: "Intersections Panel™", tm: true },
         { text: "Declassified Dossier™", tm: true },
+        { text: "Mutation Timeline™", tm: true },
+        { text: "Spending Scope™", tm: true },
         { text: "The Receipt™ (unlimited)", tm: true },
         { text: "The Receipt™ Comparison Mode", tm: true },
       ],

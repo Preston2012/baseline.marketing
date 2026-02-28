@@ -3,7 +3,7 @@
 /* ─────────────────────────────────────────────────────────
    GALLERY WIDGETS — Interactive Feature Demonstrations
    ─────────────────────────────────────────────────────────
-   20 functional widget demos for the Features page.
+   22 functional widget demos for the Features page.
    These are NOT art (that's MuseumConcepts). These are
    miniature app panels showing how each surface actually
    works — with mock data, live animations, and the
@@ -33,6 +33,8 @@
    18. HistoricalTrendsWidget   — Signal metrics time-series
    19. TopicHeatmapWidget       — Figure × topic coverage grid
    20. ShiftAlertWidget         — 24hr language shift detection
+   21. MutationTimelineWidget   — Legislative genome sequencer
+   22. SpendingScopeWidget      — Fiscal sonar station
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';
@@ -2669,6 +2671,439 @@ export function ShiftAlertWidget() {
           <DataLabel size={7} color={spiked ? A : SUB}>REP SPIKE: 45 → 81 IN 3HR</DataLabel>
           <div style={{ flex: 1 }} />
           <DataLabel size={7} color={spiked ? T : SUB}>ALERT TRIGGERED</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+/* ─── 21. Mutation Timeline ── Legislative Genome Sequencer ── */
+
+export function MutationTimelineWidget() {
+  const [ref, vis] = useVisible();
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    if (!vis) return;
+    const t1 = setTimeout(() => setPhase(1), 200);
+    const t2 = setTimeout(() => setPhase(2), 600);
+    const t3 = setTimeout(() => setPhase(3), 1000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [vis]);
+
+  const versions = [
+    { label: 'INTRO', line: 244 },
+    { label: 'CMTE', line: 258 },
+    { label: 'FLOOR', line: 272 },
+    { label: 'ENROLL', line: 286 },
+  ];
+  const diffs = [
+    { prov: '§4(b)(2)', type: '+ADD', mag: 0.82, desc: 'NEW CLIMATE PROVISION' },
+    { prov: '§7(a)', type: '~MOD', mag: 0.45, desc: 'FUNDING CAP ADJUSTED' },
+    { prov: '§12(c)', type: '-REM', mag: 0.91, desc: 'OVERSIGHT CLAUSE REMOVED' },
+    { prov: '§3(d)', type: '~MOD', mag: 0.33, desc: 'THRESHOLD LOWERED' },
+    { prov: '§9(a)(1)', type: '+ADD', mag: 0.67, desc: 'REPORTING REQUIREMENT' },
+  ];
+  const aggMutation = 62;
+  const W = 320, H = 280;
+
+  return (
+    <WidgetFrame stamp="MTN-TML // LEGISLATIVE GENOME SEQUENCER" height={280} ref={ref}>
+      <div style={{ padding: '10px 12px 8px', height: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
+
+        {/* Scanline entrance */}
+        <div style={{
+          position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+          background: `linear-gradient(90deg, transparent, ${T}, transparent)`,
+          opacity: vis && phase < 2 ? 0.6 : 0,
+          transition: 'opacity 400ms ease',
+          transform: `translateY(${phase >= 1 ? '280px' : '0px'})`,
+          transitionProperty: 'opacity, transform',
+          transitionDuration: '400ms, 800ms',
+        }} />
+
+        {/* DNA Helix + Version Timeline */}
+        <svg viewBox={`0 0 ${W} 80`} style={{ width: '100%', height: 80, overflow: 'visible' }}>
+          {/* Background grid */}
+          {Array.from({ length: 17 }).map((_, i) => (
+            <line key={i} x1={i * 20} y1={0} x2={i * 20} y2={80}
+              stroke={T} strokeWidth="0.2" opacity={vis ? 0.06 : 0}
+              style={{ transition: `opacity 600ms ease ${i * 30}ms` }}
+            />
+          ))}
+
+          {/* Double helix strands */}
+          {[0, 1].map(strand => {
+            const pts = Array.from({ length: 50 }).map((_, i) => {
+              const x = (i / 49) * W;
+              const amp = 14;
+              const freq = 0.08;
+              const phase_offset = strand * Math.PI;
+              const y = 40 + Math.sin(i * freq * Math.PI * 2 + phase_offset) * amp;
+              return `${x},${y}`;
+            }).join(' ');
+            return (
+              <polyline key={strand}
+                points={pts}
+                fill="none"
+                stroke={T}
+                strokeWidth={strand === 0 ? '1' : '0.7'}
+                opacity={phase >= 2 ? (strand === 0 ? 0.5 : 0.3) : 0}
+                style={{ transition: 'opacity 800ms ease' }}
+                strokeDasharray={phase >= 2 ? 'none' : '4 4'}
+              />
+            );
+          })}
+
+          {/* Cross-braces (base pairs) */}
+          {Array.from({ length: 8 }).map((_, i) => {
+            const x = 30 + i * 35;
+            const idx = (x / W) * 49;
+            const y1 = 40 + Math.sin(idx * 0.08 * Math.PI * 2) * 14;
+            const y2 = 40 + Math.sin(idx * 0.08 * Math.PI * 2 + Math.PI) * 14;
+            return (
+              <line key={i} x1={x} y1={y1} x2={x} y2={y2}
+                stroke={T} strokeWidth="0.3"
+                opacity={phase >= 2 ? 0.2 : 0}
+                style={{ transition: `opacity 600ms ease ${400 + i * 80}ms` }}
+              />
+            );
+          })}
+
+          {/* Version nodes along timeline */}
+          {versions.map((v, i) => {
+            const x = 30 + i * 88;
+            return (
+              <g key={i}>
+                <circle cx={x} cy={68} r={4}
+                  fill={DARK} stroke={T} strokeWidth="1"
+                  opacity={phase >= 1 ? 0.8 : 0}
+                  style={{ transition: `opacity 400ms ease ${200 + i * 150}ms` }}
+                />
+                <circle cx={x} cy={68} r={1.5}
+                  fill={T}
+                  opacity={phase >= 1 ? 0.6 : 0}
+                  style={{ transition: `opacity 400ms ease ${300 + i * 150}ms` }}
+                />
+                <text x={x} y={78} textAnchor="middle"
+                  style={{ fontFamily: MONO, fontSize: 5.5, fill: SUB, opacity: phase >= 1 ? 0.5 : 0, transition: `opacity 400ms ease ${350 + i * 150}ms` }}>
+                  {v.label}
+                </text>
+                {i < 3 && (
+                  <line x1={x + 6} y1={68} x2={x + 82} y2={68}
+                    stroke={T} strokeWidth="0.4" strokeDasharray="2 2"
+                    opacity={phase >= 1 ? 0.15 : 0}
+                    style={{ transition: `opacity 400ms ease ${250 + i * 150}ms` }}
+                  />
+                )}
+                {/* Mutation site glow on CMTE and FLOOR */}
+                {(i === 1 || i === 2) && (
+                  <circle cx={x} cy={40} r={6}
+                    fill="none" stroke={i === 2 ? A : T}
+                    strokeWidth="0.5"
+                    opacity={phase >= 2 ? 0.3 : 0}
+                    style={{ transition: `opacity 600ms ease ${600 + i * 100}ms` }}
+                  />
+                )}
+              </g>
+            );
+          })}
+
+          {/* Hashmark ruler */}
+          {Array.from({ length: 12 }).map((_, i) => (
+            <line key={i}
+              x1={10 + i * 27} y1={1} x2={10 + i * 27} y2={i % 3 === 0 ? 4 : 2.5}
+              stroke={T} strokeWidth="0.3" opacity={vis ? 0.1 : 0}
+            />
+          ))}
+        </svg>
+
+        {/* Aggregate mutation gauge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <DataLabel size={6} color={SUB}>AGGREGATE MUTATION</DataLabel>
+          <div style={{ flex: 1, height: 6, background: TEAL_DIM, borderRadius: 1, overflow: 'hidden', position: 'relative' }}>
+            <div style={{
+              width: phase >= 3 ? `${aggMutation}%` : '0%',
+              height: '100%',
+              background: `linear-gradient(90deg, ${T}, ${aggMutation > 50 ? A : T})`,
+              borderRadius: 1,
+              transition: 'width 1000ms ease',
+              opacity: 0.7,
+            }} />
+          </div>
+          <DataLabel size={7} color={aggMutation > 50 ? A : T}>{phase >= 3 ? `${aggMutation}%` : '—'}</DataLabel>
+        </div>
+
+        {/* Provision diff cards */}
+        <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', gap: 3 }}>
+          {diffs.map((d, i) => {
+            const typeColor = d.type === '+ADD' ? T : d.type === '-REM' ? A : SUB;
+            const isHigh = d.mag > 0.6;
+            return (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                padding: '3px 6px',
+                background: isHigh ? 'rgba(212,167,45,0.03)' : TEAL_DIM,
+                border: `1px solid ${isHigh ? 'rgba(212,167,45,0.1)' : BORDER}`,
+                borderRadius: 2,
+                opacity: phase >= 3 ? 1 : 0,
+                transform: `translateY(${phase >= 3 ? 0 : 6}px)`,
+                transition: `all 400ms ease ${800 + i * 80}ms`,
+              }}>
+                <div style={{
+                  padding: '1px 4px', borderRadius: 1,
+                  background: `${typeColor}15`,
+                  border: `1px solid ${typeColor}30`,
+                }}>
+                  <DataLabel size={6} color={typeColor}>{d.type}</DataLabel>
+                </div>
+                <DataLabel size={7} color={TEXT}>{d.prov}</DataLabel>
+                <div style={{ flex: 1 }} />
+                <DataLabel size={6} color={SUB}>{d.desc}</DataLabel>
+                <div style={{ width: 24, height: 3, background: TEAL_DIM, borderRadius: 1, overflow: 'hidden' }}>
+                  <div style={{ width: `${d.mag * 100}%`, height: '100%', background: isHigh ? A : T, opacity: 0.6 }} />
+                </div>
+                <DataLabel size={6} color={isHigh ? A : T}>{d.mag.toFixed(2)}</DataLabel>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Anomaly callout */}
+        <div style={{
+          marginTop: 2, padding: '3px 6px',
+          background: 'rgba(212,167,45,0.04)',
+          border: `1px solid rgba(212,167,45,0.12)`,
+          borderRadius: 3,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: phase >= 3 ? 1 : 0,
+          transition: 'all 600ms ease 1200ms',
+        }}>
+          <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
+          <DataLabel size={7} color={A}>ANOMALY: §12(c) OVERSIGHT CLAUSE REMOVED (0.91)</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={T}>FLAGGED</DataLabel>
+        </div>
+      </div>
+    </WidgetFrame>
+  );
+}
+
+
+/* ─── 22. Spending Scope ── Fiscal Sonar Station ── */
+
+export function SpendingScopeWidget() {
+  const [ref, vis] = useVisible();
+  const [phase, setPhase] = useState(0);
+  const [sweep, setSweep] = useState(0);
+
+  useEffect(() => {
+    if (!vis) return;
+    const t1 = setTimeout(() => setPhase(1), 200);
+    const t2 = setTimeout(() => setPhase(2), 600);
+    const t3 = setTimeout(() => setPhase(3), 1000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [vis]);
+
+  useEffect(() => {
+    if (!vis || phase < 2) return;
+    const interval = setInterval(() => {
+      setSweep(prev => (prev + 1) % 360);
+    }, 50);
+    return () => clearInterval(interval);
+  }, [vis, phase]);
+
+  const contacts = [
+    { label: '§4(b)', amount: 8.2, angle: 45, dist: 0.6, source: 'CBO' },
+    { label: '§7(a)', amount: 4.1, angle: 130, dist: 0.4, source: 'EXT' },
+    { label: '§12(c)', amount: 3.8, angle: 210, dist: 0.7, source: 'FUSION' },
+    { label: '§3(d)', amount: 2.1, angle: 290, dist: 0.3, source: 'CBO' },
+    { label: '§9(a)', amount: 1.5, angle: 350, dist: 0.5, source: 'EXT' },
+  ];
+  const totalSpending = 19.7; // billions
+  const depthFill = 78;
+
+  const CX = 100, CY = 85, R = 65;
+
+  return (
+    <WidgetFrame stamp="SPD-SCP // FISCAL SONAR STATION" height={280} ref={ref}>
+      <div style={{ padding: '8px 10px', height: '100%', display: 'flex', flexDirection: 'column', gap: 4 }}>
+
+        {/* Sonar display + contacts */}
+        <div style={{ display: 'flex', gap: 8, flex: 1 }}>
+          <svg viewBox="0 0 200 170" style={{ width: '55%', height: 170, overflow: 'visible' }}>
+            {/* Concentric sonar rings */}
+            {[1, 0.75, 0.5, 0.25].map((scale, i) => (
+              <circle key={i} cx={CX} cy={CY} r={R * scale}
+                fill="none" stroke={T} strokeWidth="0.4"
+                opacity={phase >= 1 ? 0.08 + i * 0.03 : 0}
+                style={{ transition: `opacity 600ms ease ${i * 100}ms` }}
+              />
+            ))}
+
+            {/* Crosshair lines */}
+            <line x1={CX - R} y1={CY} x2={CX + R} y2={CY}
+              stroke={T} strokeWidth="0.3" opacity={phase >= 1 ? 0.1 : 0}
+              style={{ transition: 'opacity 400ms ease 200ms' }}
+            />
+            <line x1={CX} y1={CY - R} x2={CX} y2={CY + R}
+              stroke={T} strokeWidth="0.3" opacity={phase >= 1 ? 0.1 : 0}
+              style={{ transition: 'opacity 400ms ease 200ms' }}
+            />
+
+            {/* Animated sweep arm */}
+            {phase >= 2 && (() => {
+              const rad = (sweep * Math.PI) / 180;
+              const ex = CX + Math.cos(rad) * R;
+              const ey = CY + Math.sin(rad) * R;
+              return (
+                <g>
+                  <line x1={CX} y1={CY} x2={ex} y2={ey}
+                    stroke={T} strokeWidth="0.6" opacity={0.25}
+                  />
+                  {/* Trailing arc */}
+                  <path
+                    d={`M ${CX + Math.cos((sweep - 30) * Math.PI / 180) * R} ${CY + Math.sin((sweep - 30) * Math.PI / 180) * R} A ${R} ${R} 0 0 1 ${ex} ${ey}`}
+                    fill="none" stroke={T} strokeWidth="0.3" opacity={0.08}
+                  />
+                </g>
+              );
+            })()}
+
+            {/* Animated ping ring */}
+            {phase >= 2 && (
+              <circle cx={CX} cy={CY}
+                r={R * ((sweep % 120) / 120)}
+                fill="none" stroke={T} strokeWidth="0.5"
+                opacity={0.15 * (1 - (sweep % 120) / 120)}
+              />
+            )}
+
+            {/* Contact blips */}
+            {contacts.map((c, i) => {
+              const rad = (c.angle * Math.PI) / 180;
+              const x = CX + Math.cos(rad) * R * c.dist;
+              const y = CY + Math.sin(rad) * R * c.dist;
+              const isLargest = c.amount > 5;
+              const blipSize = 1.5 + (c.amount / totalSpending) * 4;
+              return (
+                <g key={i}>
+                  <circle cx={x} cy={y} r={blipSize}
+                    fill={isLargest ? A : T}
+                    opacity={phase >= 2 ? (isLargest ? 0.8 : 0.5) : 0}
+                    style={{ transition: `opacity 500ms ease ${600 + i * 100}ms` }}
+                  />
+                  <circle cx={x} cy={y} r={blipSize + 3}
+                    fill="none" stroke={isLargest ? A : T} strokeWidth="0.3"
+                    opacity={phase >= 2 ? (isLargest ? 0.2 : 0.1) : 0}
+                    style={{ transition: `opacity 500ms ease ${650 + i * 100}ms` }}
+                  />
+                  <text x={x} y={y - blipSize - 3} textAnchor="middle"
+                    style={{ fontFamily: MONO, fontSize: 5, fill: isLargest ? A : T, opacity: phase >= 3 ? 0.7 : 0, transition: `opacity 400ms ease ${800 + i * 80}ms` }}>
+                    ${c.amount}B
+                  </text>
+                </g>
+              );
+            })}
+
+            {/* Center beacon */}
+            <circle cx={CX} cy={CY} r={2} fill={T} opacity={phase >= 1 ? 0.4 : 0}
+              style={{ transition: 'opacity 400ms ease' }}
+            />
+          </svg>
+
+          {/* Right panel: depth gauge + source badges + spending bars */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {/* Total exposure */}
+            <div style={{ textAlign: 'center', padding: '4px 0' }}>
+              <DataLabel size={6} color={SUB}>TOTAL FISCAL EXPOSURE</DataLabel>
+              <div style={{
+                fontFamily: MONO, fontSize: 16, color: T, fontWeight: 600,
+                opacity: phase >= 3 ? 1 : 0,
+                transition: 'opacity 600ms ease 800ms',
+              }}>
+                ${phase >= 3 ? `${totalSpending}B` : '—'}
+              </div>
+            </div>
+
+            {/* Depth gauge */}
+            <div style={{ display: 'flex', alignItems: 'stretch', gap: 4 }}>
+              <DataLabel size={6} color={SUB}>DEPTH</DataLabel>
+              <div style={{ flex: 1, height: 8, background: TEAL_DIM, borderRadius: 1, overflow: 'hidden', position: 'relative' }}>
+                <div style={{
+                  width: phase >= 3 ? `${depthFill}%` : '0%',
+                  height: '100%',
+                  background: `linear-gradient(90deg, ${T}, ${depthFill > 60 ? A : T})`,
+                  borderRadius: 1,
+                  transition: 'width 1200ms ease',
+                  opacity: 0.6,
+                }} />
+                {/* Threshold marker */}
+                <div style={{
+                  position: 'absolute', top: 0, left: '50%', width: 1, height: '100%',
+                  background: SUB, opacity: 0.2,
+                }} />
+              </div>
+              <DataLabel size={6} color={depthFill > 60 ? A : T}>{phase >= 3 ? `${depthFill}%` : '—'}</DataLabel>
+            </div>
+
+            {/* Source intelligence badges */}
+            <div style={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+              {['SIGINT', 'COMINT', 'FUSION'].map((badge, i) => (
+                <div key={i} style={{
+                  padding: '1px 5px',
+                  background: i === 2 ? 'rgba(212,167,45,0.06)' : TEAL_DIM,
+                  border: `1px solid ${i === 2 ? 'rgba(212,167,45,0.15)' : BORDER}`,
+                  borderRadius: 2,
+                  opacity: phase >= 2 ? 1 : 0,
+                  transition: `opacity 400ms ease ${400 + i * 100}ms`,
+                }}>
+                  <DataLabel size={6} color={i === 2 ? A : T}>{badge}</DataLabel>
+                </div>
+              ))}
+            </div>
+
+            {/* Per-provision spending bars */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2, justifyContent: 'flex-end' }}>
+              {contacts.map((c, i) => (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: 4,
+                  opacity: phase >= 3 ? 1 : 0,
+                  transform: `translateX(${phase >= 3 ? 0 : 8}px)`,
+                  transition: `all 400ms ease ${900 + i * 60}ms`,
+                }}>
+                  <DataLabel size={6} color={SUB}>{c.label}</DataLabel>
+                  <div style={{ flex: 1, height: 4, background: TEAL_DIM, borderRadius: 1, overflow: 'hidden' }}>
+                    <div style={{
+                      width: `${(c.amount / totalSpending) * 100}%`,
+                      height: '100%',
+                      background: c.amount > 5 ? A : T,
+                      opacity: 0.5,
+                      borderRadius: 1,
+                    }} />
+                  </div>
+                  <DataLabel size={5.5} color={T}>{c.source}</DataLabel>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Proximity warning */}
+        <div style={{
+          padding: '3px 6px',
+          background: 'rgba(212,167,45,0.04)',
+          border: `1px solid rgba(212,167,45,0.12)`,
+          borderRadius: 3,
+          display: 'flex', alignItems: 'center', gap: 4,
+          opacity: phase >= 3 ? 1 : 0,
+          transition: 'all 600ms ease 1200ms',
+        }}>
+          <div style={{ width: 3, height: 3, borderRadius: '50%', background: A }} />
+          <DataLabel size={7} color={A}>PROXIMITY: §4(b) OUTSIZED ($8.2B / 41.6%)</DataLabel>
+          <div style={{ flex: 1 }} />
+          <DataLabel size={7} color={T}>FLAGGED</DataLabel>
         </div>
       </div>
     </WidgetFrame>

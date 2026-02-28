@@ -4,7 +4,7 @@ import { useState, useCallback, Fragment, type ReactNode } from "react";
 import { TierPill } from "./TierPill";
 import { FeaturesNav, type TierFilter } from "./FeaturesNav";
 import { FrostedWidgetPreview } from "./FrostedWidget";
-import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget, SplitMicroscopeWidget, NarrativeSyncWidget, BaselineDeltaWidget, VarianceDetectionWidget, HistoricalTrendsWidget, TopicHeatmapWidget, ShiftAlertWidget } from "./GalleryWidgets";
+import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget, SplitMicroscopeWidget, NarrativeSyncWidget, BaselineDeltaWidget, VarianceDetectionWidget, HistoricalTrendsWidget, TopicHeatmapWidget, ShiftAlertWidget, MutationTimelineWidget, SpendingScopeWidget } from "./GalleryWidgets";
 
 /* ─────────────────────────────────────────────────────────
    TYPES
@@ -93,6 +93,10 @@ const BILLS: Feature[] = [
   { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift.", tier: "PRO+" },
   { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+",
     widgetLabel: "PROVISION DRIFT\u2122 \u00b7 SEMANTIC DISTANCE", widget: <DriftWidget /> },
+  { name: "Mutation Timeline\u2122", desc: "How bill provisions change across legislative versions. Each mutation measured, each splice detected.", tier: "PRO+",
+    widgetLabel: "MUTATION TIMELINE\u2122 \u00b7 GENOME SEQUENCER", widget: <MutationTimelineWidget />, wide: true },
+  { name: "Spending Scope\u2122", desc: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced.", tier: "PRO+",
+    widgetLabel: "SPENDING SCOPE\u2122 \u00b7 FISCAL SONAR STATION", widget: <SpendingScopeWidget />, wide: true },
 ];
 
 const TOOLS: Feature[] = [
