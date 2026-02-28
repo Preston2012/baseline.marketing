@@ -860,3 +860,223 @@ export function SyncConcept() {
     </ConceptWrap>
   );
 }
+
+
+/* ─── 14. Mutation Timeline Concept ── Genome sequencer ── */
+
+export function MutationTimelineConcept() {
+  const [ref, vis] = useVisible();
+
+  return (
+    <ConceptWrap stamp="MTN-TML // GENOME SPECIMEN">
+      <div ref={ref} style={{ position: 'relative', width: '100%', aspectRatio: '1.8/1' }}>
+        <style>{`
+          .mtn-strand { stroke-dasharray: 800; stroke-dashoffset: 800; transition: stroke-dashoffset 2.2s ease; }
+          .mtn-strand.on { stroke-dashoffset: 0; }
+          .mtn-node { opacity: 0; transition: opacity 0.6s ease; }
+          .mtn-node.on { opacity: 1; }
+          .mtn-glow { opacity: 0; transition: opacity 1s ease 1.4s; }
+          .mtn-glow.on { opacity: 0.5; }
+        `}</style>
+        <svg viewBox="0 0 360 200" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <radialGradient id="mtn-amb">
+              <stop offset="0%" stopColor={T} stopOpacity="0.06" />
+              <stop offset="100%" stopColor={T} stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="mtn-flare">
+              <stop offset="0%" stopColor={T} stopOpacity="0.2" />
+              <stop offset="60%" stopColor={T} stopOpacity="0.05" />
+              <stop offset="100%" stopColor={T} stopOpacity="0" />
+            </radialGradient>
+            <radialGradient id="mtn-amber">
+              <stop offset="0%" stopColor={A} stopOpacity="0.25" />
+              <stop offset="100%" stopColor={A} stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          <circle cx="180" cy="100" r="90" fill="url(#mtn-amb)" />
+
+          {/* Double helix strands */}
+          {[0, 1].map(strand => {
+            const pts = Array.from({ length: 50 }).map((_, i) => {
+              const x = 30 + (i / 49) * 300;
+              const y = 100 + Math.sin(i * 0.14 * Math.PI * 2 + strand * Math.PI) * 28;
+              return `${x},${y}`;
+            }).join(' ');
+            return (
+              <polyline key={strand}
+                className={`mtn-strand${vis ? ' on' : ''}`}
+                style={{ transitionDelay: `${strand * 300}ms` }}
+                points={pts}
+                fill="none" stroke={T}
+                strokeWidth={strand === 0 ? '1' : '0.6'}
+                opacity="0.3"
+              />
+            );
+          })}
+
+          {/* Cross-braces */}
+          {Array.from({ length: 8 }).map((_, i) => {
+            const x = 55 + i * 38;
+            const idx = ((x - 30) / 300) * 49;
+            const y1 = 100 + Math.sin(idx * 0.14 * Math.PI * 2) * 28;
+            const y2 = 100 + Math.sin(idx * 0.14 * Math.PI * 2 + Math.PI) * 28;
+            return (
+              <line key={i}
+                className={`mtn-node${vis ? ' on' : ''}`}
+                style={{ transitionDelay: `${800 + i * 80}ms` }}
+                x1={x} y1={y1} x2={x} y2={y2}
+                stroke={T} strokeWidth="0.3" opacity="0.12"
+              />
+            );
+          })}
+
+          {/* Version nodes */}
+          {[0, 1, 2, 3].map(i => {
+            const x = 70 + i * 75;
+            return (
+              <g key={i}>
+                <circle
+                  className={`mtn-node${vis ? ' on' : ''}`}
+                  style={{ transitionDelay: `${600 + i * 200}ms` }}
+                  cx={x} cy={100} r={5}
+                  fill="none" stroke={T} strokeWidth="0.8" opacity="0.4"
+                />
+                <circle cx={x} cy={100} r={12} fill="url(#mtn-flare)"
+                  className={`mtn-node${vis ? ' on' : ''}`}
+                  style={{ transitionDelay: `${700 + i * 200}ms` }}
+                />
+              </g>
+            );
+          })}
+
+          {/* Amber mutation site */}
+          <circle className={`mtn-glow${vis ? ' on' : ''}`}
+            cx="220" cy="100" r="20" fill="url(#mtn-amber)"
+          />
+
+          {/* Centerline axis */}
+          <line x1="30" y1="165" x2="330" y2="165" stroke={T} strokeWidth="0.3" opacity="0.06" />
+
+          {/* Hashmark ruler */}
+          {Array.from({ length: 12 }).map((_, i) => (
+            <line key={i} x1={55 + i * 24} y1="163" x2={55 + i * 24} y2={i % 3 === 0 ? '168' : '166'}
+              stroke={T} strokeWidth="0.3" opacity="0.06"
+            />
+          ))}
+
+          {/* Film perforations */}
+          {Array.from({ length: 8 }, (_, i) => {
+            const x = 70 + i * 32;
+            return (
+              <g key={i}>
+                <rect x={x} y="8" width="4" height="2" rx="0.5" fill={T} opacity="0.03" />
+                <rect x={x} y="190" width="4" height="2" rx="0.5" fill={T} opacity="0.03" />
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </ConceptWrap>
+  );
+}
+
+
+/* ─── 15. Spending Scope Concept ── Fiscal sonar ── */
+
+export function SpendingScopeConcept() {
+  const [ref, vis] = useVisible();
+
+  return (
+    <ConceptWrap stamp="SPD-SCP // FISCAL SONAR">
+      <div ref={ref} style={{ position: 'relative', width: '100%', aspectRatio: '1.8/1' }}>
+        <style>{`
+          @keyframes spd-ping { 0% { r: 10; opacity: 0.15; } 100% { r: 80; opacity: 0; } }
+          .spd-ping { animation: spd-ping 3.5s ease-out infinite; }
+          .spd-ping-2 { animation-delay: 1.2s; }
+          .spd-ping-3 { animation-delay: 2.4s; }
+          .spd-ring { opacity: 0; transition: opacity 0.8s ease; }
+          .spd-ring.on { opacity: 1; }
+          @keyframes spd-breathe { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
+          .spd-beacon { animation: spd-breathe 3s ease-in-out infinite; }
+        `}</style>
+        <svg viewBox="0 0 360 200" style={{ width: '100%', height: '100%' }}>
+          <defs>
+            <radialGradient id="spd-amb">
+              <stop offset="0%" stopColor={T} stopOpacity="0.06" />
+              <stop offset="100%" stopColor={T} stopOpacity="0" />
+            </radialGradient>
+          </defs>
+
+          <circle cx="160" cy="100" r="100" fill="url(#spd-amb)" />
+
+          {/* Concentric sonar rings */}
+          {[75, 55, 35, 15].map((r, i) => (
+            <circle key={i}
+              className={`spd-ring${vis ? ' on' : ''}`}
+              style={{ transitionDelay: `${i * 150}ms` }}
+              cx="160" cy="100" r={r}
+              fill="none" stroke={T} strokeWidth="0.4" opacity="0.08"
+            />
+          ))}
+
+          {/* Crosshair */}
+          <line x1="85" y1="100" x2="235" y2="100" stroke={T} strokeWidth="0.3" opacity="0.06" />
+          <line x1="160" y1="25" x2="160" y2="175" stroke={T} strokeWidth="0.3" opacity="0.06" />
+
+          {/* Animated sonar pings */}
+          {vis && <>
+            <circle className="spd-ping" cx="160" cy="100" fill="none" stroke={T} strokeWidth="0.5" />
+            <circle className="spd-ping spd-ping-2" cx="160" cy="100" fill="none" stroke={T} strokeWidth="0.5" />
+            <circle className="spd-ping spd-ping-3" cx="160" cy="100" fill="none" stroke={T} strokeWidth="0.5" />
+          </>}
+
+          {/* Contact blips */}
+          {[
+            { x: 190, y: 70, r: 4, amber: true },
+            { x: 130, y: 120, r: 2, amber: false },
+            { x: 200, y: 130, r: 2.5, amber: false },
+            { x: 120, y: 75, r: 1.5, amber: false },
+            { x: 180, y: 140, r: 1.8, amber: false },
+          ].map((b, i) => (
+            <g key={i}>
+              <circle
+                className={`spd-ring${vis ? ' on' : ''}`}
+                style={{ transitionDelay: `${600 + i * 120}ms` }}
+                cx={b.x} cy={b.y} r={b.r}
+                fill={b.amber ? A : T}
+                opacity={b.amber ? 0.7 : 0.4}
+              />
+            </g>
+          ))}
+
+          {/* Depth gauge — right side */}
+          <line x1="310" y1="30" x2="310" y2="170" stroke={T} strokeWidth="0.4" opacity="0.08" />
+          {Array.from({ length: 8 }).map((_, i) => (
+            <line key={i} x1="306" y1={30 + i * 20} x2="310" y2={30 + i * 20}
+              stroke={T} strokeWidth="0.3" opacity="0.1"
+            />
+          ))}
+
+          {/* Center beacon */}
+          <circle className="spd-beacon" cx="160" cy="100" r="3" fill={T} />
+
+          {/* Horizontal flare */}
+          <line x1="130" y1="100" x2="190" y2="100" stroke={T} strokeWidth="0.4" opacity="0.12" />
+
+          {/* Film perforations */}
+          {Array.from({ length: 8 }, (_, i) => {
+            const x = 70 + i * 32;
+            return (
+              <g key={i}>
+                <rect x={x} y="8" width="4" height="2" rx="0.5" fill={T} opacity="0.03" />
+                <rect x={x} y="190" width="4" height="2" rx="0.5" fill={T} opacity="0.03" />
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </ConceptWrap>
+  );
+}

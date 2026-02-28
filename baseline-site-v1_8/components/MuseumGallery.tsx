@@ -6,6 +6,7 @@ import {
   BaselineConcept, ReceiptConcept, SignalPulseConcept, FingerprintConcept,
   RadarConcept, LensLabConcept, CrossfireConcept, ConstellationConcept,
   DriftConcept, MicroscopeConcept, IntersectionsConcept, DossierConcept, SyncConcept,
+  MutationTimelineConcept, SpendingScopeConcept,
 } from "./MuseumConcepts";
 
 type MuseumItem = {
@@ -30,6 +31,8 @@ const CONCEPT_MAP = {
   intersections: IntersectionsConcept,
   dossier: DossierConcept,
   sync: SyncConcept,
+  mutation: MutationTimelineConcept,
+  spending: SpendingScopeConcept,
 } as const;
 
 const GALLERY: MuseumItem[] = [
@@ -45,6 +48,8 @@ const GALLERY: MuseumItem[] = [
   { title: "Split Microscope\u2122", tagline: "Where models diverge.", tier: "PRO+", concept: "microscope", placard: "Detailed variance breakdown when independent systems disagree." },
   { title: "Intersections Panel\u2122", tagline: "Cross-linking patterns.", tier: "PRO+", concept: "intersections", placard: "Shows shared framing and topic overlaps across figures and time." },
   { title: "Declassified Dossier\u2122", tagline: "The full exhibit plate.", tier: "PRO+", concept: "dossier", placard: "Complete analytical profile for a single figure. Every surface, one view." },
+  { title: "Mutation Timeline\u2122", tagline: "The legislative genome, sequenced.", tier: "PRO+", concept: "mutation", placard: "How bill provisions change across legislative versions. Each mutation measured, each splice detected." },
+  { title: "Spending Scope\u2122", tagline: "Fiscal depth, measured.", tier: "PRO+", concept: "spending", placard: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced." },
   { title: "Narrative Sync\u2122", tagline: "Cross-figure framing convergence.", tier: "B2B", concept: "sync", placard: "Detects when independent figures begin using similar framing simultaneously." },
 ];
 
