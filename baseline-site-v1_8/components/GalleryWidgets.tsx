@@ -2681,7 +2681,7 @@ export function ShiftAlertWidget() {
 /* ─── 21. Mutation Timeline ── Legislative Genome Sequencer ── */
 
 export function MutationTimelineWidget() {
-  const [ref, vis] = useVisible();
+  const { ref, vis } = useVisible();
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
@@ -2709,8 +2709,8 @@ export function MutationTimelineWidget() {
   const W = 320, H = 280;
 
   return (
-    <WidgetFrame stamp="MTN-TML // LEGISLATIVE GENOME SEQUENCER" height={280} ref={ref}>
-      <div style={{ padding: '10px 12px 8px', height: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
+    <WidgetFrame stamp="MTN-TML // LEGISLATIVE GENOME SEQUENCER" height={280}>
+      <div ref={ref} style={{ padding: '10px 12px 8px', height: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
 
         {/* Scanline entrance */}
         <div style={{
@@ -2894,7 +2894,7 @@ export function MutationTimelineWidget() {
 /* ─── 22. Spending Scope ── Fiscal Sonar Station ── */
 
 export function SpendingScopeWidget() {
-  const [ref, vis] = useVisible();
+  const { ref, vis } = useVisible();
   const [phase, setPhase] = useState(0);
   const [sweep, setSweep] = useState(0);
 
@@ -2927,8 +2927,8 @@ export function SpendingScopeWidget() {
   const CX = 100, CY = 85, R = 65;
 
   return (
-    <WidgetFrame stamp="SPD-SCP // FISCAL SONAR STATION" height={280} ref={ref}>
-      <div style={{ padding: '8px 10px', height: '100%', display: 'flex', flexDirection: 'column', gap: 4 }}>
+    <WidgetFrame stamp="SPD-SCP // FISCAL SONAR STATION" height={280}>
+      <div ref={ref} style={{ padding: '8px 10px', height: '100%', display: 'flex', flexDirection: 'column', gap: 4 }}>
 
         {/* Sonar display + contacts */}
         <div style={{ display: 'flex', gap: 8, flex: 1 }}>
