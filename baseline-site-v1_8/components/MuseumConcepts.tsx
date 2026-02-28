@@ -865,7 +865,7 @@ export function SyncConcept() {
 /* ─── 14. Mutation Timeline Concept ── Genome sequencer ── */
 
 export function MutationTimelineConcept() {
-  const [ref, vis] = useVisible();
+  const { ref, vis } = useVisible();
 
   return (
     <ConceptWrap stamp="MTN-TML // GENOME SPECIMEN">
@@ -986,7 +986,7 @@ export function MutationTimelineConcept() {
 /* ─── 15. Spending Scope Concept ── Fiscal sonar ── */
 
 export function SpendingScopeConcept() {
-  const [ref, vis] = useVisible();
+  const { ref, vis } = useVisible();
 
   return (
     <ConceptWrap stamp="SPD-SCP // FISCAL SONAR">
