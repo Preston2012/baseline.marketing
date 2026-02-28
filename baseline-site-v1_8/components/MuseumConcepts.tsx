@@ -870,102 +870,91 @@ export function MutationTimelineConcept() {
 
   return (
     <ConceptWrap stamp="MTN-TML // GENOME SPECIMEN">
-      <div ref={ref} style={{ position: 'relative', width: '100%', aspectRatio: '1.8/1' }}>
+      <div ref={ref}>
         <style>{`
-          .mtn-strand { stroke-dasharray: 800; stroke-dashoffset: 800; transition: stroke-dashoffset 2.2s ease; }
-          .mtn-strand.on { stroke-dashoffset: 0; }
-          .mtn-node { opacity: 0; transition: opacity 0.6s ease; }
-          .mtn-node.on { opacity: 1; }
-          .mtn-glow { opacity: 0; transition: opacity 1s ease 1.4s; }
-          .mtn-glow.on { opacity: 0.5; }
+          @keyframes mtn-scan { 0% { transform: translateY(-10px); opacity: 0; } 30% { opacity: 0.3; } 100% { transform: translateY(180px); opacity: 0; } }
+          @keyframes mtn-pulse { 0%,100% { opacity: 0.25; } 50% { opacity: 0.5; } }
+          .mtn-band { opacity: 0; transition: opacity 0.6s ease, transform 0.8s ease; transform: scaleX(0); transform-origin: center; }
+          .mtn-band.on { opacity: 1; transform: scaleX(1); }
+          .mtn-scan { animation: mtn-scan 4s ease-in-out infinite; }
+          .mtn-glow { animation: mtn-pulse 3s ease-in-out infinite; }
         `}</style>
-        <svg viewBox="0 0 360 200" style={{ width: '100%', height: '100%' }}>
+        <svg viewBox="0 0 360 200" style={{ width: '100%', height: 'auto', display: 'block' }}>
           <defs>
             <radialGradient id="mtn-amb">
-              <stop offset="0%" stopColor={T} stopOpacity="0.06" />
+              <stop offset="0%" stopColor={T} stopOpacity="0.05" />
               <stop offset="100%" stopColor={T} stopOpacity="0" />
             </radialGradient>
-            <radialGradient id="mtn-flare">
-              <stop offset="0%" stopColor={T} stopOpacity="0.2" />
-              <stop offset="60%" stopColor={T} stopOpacity="0.05" />
-              <stop offset="100%" stopColor={T} stopOpacity="0" />
-            </radialGradient>
-            <radialGradient id="mtn-amber">
-              <stop offset="0%" stopColor={A} stopOpacity="0.25" />
+            <radialGradient id="mtn-mut">
+              <stop offset="0%" stopColor={A} stopOpacity="0.3" />
+              <stop offset="50%" stopColor={A} stopOpacity="0.08" />
               <stop offset="100%" stopColor={A} stopOpacity="0" />
             </radialGradient>
+            <linearGradient id="mtn-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={T} stopOpacity="0" />
+              <stop offset="30%" stopColor={T} stopOpacity="0.08" />
+              <stop offset="70%" stopColor={T} stopOpacity="0.08" />
+              <stop offset="100%" stopColor={T} stopOpacity="0" />
+            </linearGradient>
           </defs>
 
+          {/* Ambient glow */}
           <circle cx="180" cy="100" r="90" fill="url(#mtn-amb)" />
 
-          {/* Double helix strands */}
-          {[0, 1].map(strand => {
-            const pts = Array.from({ length: 50 }).map((_, i) => {
-              const x = 30 + (i / 49) * 300;
-              const y = 100 + Math.sin(i * 0.14 * Math.PI * 2 + strand * Math.PI) * 28;
-              return `${x},${y}`;
-            }).join(' ');
-            return (
-              <polyline key={strand}
-                className={`mtn-strand${vis ? ' on' : ''}`}
-                style={{ transitionDelay: `${strand * 300}ms` }}
-                points={pts}
-                fill="none" stroke={T}
-                strokeWidth={strand === 0 ? '1' : '0.6'}
-                opacity="0.3"
-              />
-            );
-          })}
-
-          {/* Cross-braces */}
-          {Array.from({ length: 8 }).map((_, i) => {
-            const x = 55 + i * 38;
-            const idx = ((x - 30) / 300) * 49;
-            const y1 = 100 + Math.sin(idx * 0.14 * Math.PI * 2) * 28;
-            const y2 = 100 + Math.sin(idx * 0.14 * Math.PI * 2 + Math.PI) * 28;
-            return (
-              <line key={i}
-                className={`mtn-node${vis ? ' on' : ''}`}
-                style={{ transitionDelay: `${800 + i * 80}ms` }}
-                x1={x} y1={y1} x2={x} y2={y2}
-                stroke={T} strokeWidth="0.3" opacity="0.12"
-              />
-            );
-          })}
-
-          {/* Version nodes */}
-          {[0, 1, 2, 3].map(i => {
-            const x = 70 + i * 75;
-            return (
-              <g key={i}>
-                <circle
-                  className={`mtn-node${vis ? ' on' : ''}`}
-                  style={{ transitionDelay: `${600 + i * 200}ms` }}
-                  cx={x} cy={100} r={5}
-                  fill="none" stroke={T} strokeWidth="0.8" opacity="0.4"
-                />
-                <circle cx={x} cy={100} r={12} fill="url(#mtn-flare)"
-                  className={`mtn-node${vis ? ' on' : ''}`}
-                  style={{ transitionDelay: `${700 + i * 200}ms` }}
-                />
-              </g>
-            );
-          })}
-
-          {/* Amber mutation site */}
-          <circle className={`mtn-glow${vis ? ' on' : ''}`}
-            cx="220" cy="100" r="20" fill="url(#mtn-amber)"
-          />
-
-          {/* Centerline axis */}
-          <line x1="30" y1="165" x2="330" y2="165" stroke={T} strokeWidth="0.3" opacity="0.06" />
-
-          {/* Hashmark ruler */}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <line key={i} x1={55 + i * 24} y1="163" x2={55 + i * 24} y2={i % 3 === 0 ? '168' : '166'}
-              stroke={T} strokeWidth="0.3" opacity="0.06"
-            />
+          {/* Vertical specimen lanes (gel electrophoresis columns) */}
+          {[120, 160, 200, 240].map((x, i) => (
+            <rect key={i} x={x - 1} y="20" width="2" height="160" fill="url(#mtn-fade)" />
           ))}
+
+          {/* Horizontal bands at different positions per lane (DNA banding pattern) */}
+          {[
+            { x: 120, bands: [45, 72, 105, 138] },
+            { x: 160, bands: [38, 68, 98, 130, 155] },
+            { x: 200, bands: [50, 85, 118] },
+            { x: 240, bands: [42, 75, 100, 128, 150] },
+          ].map((lane, li) =>
+            lane.bands.map((y, bi) => {
+              const isMutation = li === 2 && bi === 1;
+              const w = 18 + Math.sin(li * 3 + bi * 7) * 6;
+              return (
+                <rect key={`${li}-${bi}`}
+                  className={`mtn-band${vis ? ' on' : ''}`}
+                  style={{ transitionDelay: `${li * 200 + bi * 100}ms` }}
+                  x={lane.x - w / 2} y={y} width={w} height={3} rx="1"
+                  fill={isMutation ? A : T}
+                  opacity={isMutation ? 0.5 : 0.12 + bi * 0.02}
+                />
+              );
+            })
+          )}
+
+          {/* Mutation site glow */}
+          <circle cx="200" cy="86" r="18" fill="url(#mtn-mut)" />
+
+          {/* Scanning line */}
+          {vis && (
+            <line className="mtn-scan" x1="100" y1="0" x2="260" y2="0"
+              stroke={T} strokeWidth="0.5" opacity="0.2"
+            />
+          )}
+
+          {/* Version markers along bottom */}
+          {[120, 160, 200, 240].map((x, i) => (
+            <g key={i}>
+              <circle
+                className={`mtn-band${vis ? ' on' : ''}`}
+                style={{ transitionDelay: `${800 + i * 150}ms` }}
+                cx={x} cy="185" r="2.5"
+                fill="none" stroke={T} strokeWidth="0.6" opacity="0.2"
+              />
+              <circle className="mtn-glow" cx={x} cy="185" r="1" fill={T} opacity="0.3"
+                style={{ animationDelay: `${i * 400}ms` }}
+              />
+            </g>
+          ))}
+
+          {/* Faint connecting line between version markers */}
+          <line x1="120" y1="185" x2="240" y2="185" stroke={T} strokeWidth="0.3" opacity="0.05" />
 
           {/* Film perforations */}
           {Array.from({ length: 8 }, (_, i) => {
@@ -991,7 +980,7 @@ export function SpendingScopeConcept() {
 
   return (
     <ConceptWrap stamp="SPD-SCP // FISCAL SONAR">
-      <div ref={ref} style={{ position: 'relative', width: '100%', aspectRatio: '1.8/1' }}>
+      <div ref={ref}>
         <style>{`
           @keyframes spd-ping { 0% { r: 10; opacity: 0.15; } 100% { r: 80; opacity: 0; } }
           .spd-ping { animation: spd-ping 3.5s ease-out infinite; }
@@ -1002,7 +991,7 @@ export function SpendingScopeConcept() {
           @keyframes spd-breathe { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
           .spd-beacon { animation: spd-breathe 3s ease-in-out infinite; }
         `}</style>
-        <svg viewBox="0 0 360 200" style={{ width: '100%', height: '100%' }}>
+        <svg viewBox="0 0 360 200" style={{ width: '100%', height: 'auto', display: 'block' }}>
           <defs>
             <radialGradient id="spd-amb">
               <stop offset="0%" stopColor={T} stopOpacity="0.06" />
