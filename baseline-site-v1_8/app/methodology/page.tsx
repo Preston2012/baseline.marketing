@@ -18,7 +18,11 @@ export const metadata: Metadata = {
 
 export default function MethodologyPage() {
   return (
-    <section className="section" aria-label="Methodology">
+    <section className="section intel-dot-grid" aria-label="Methodology" style={{ position: 'relative' }}>
+      {/* Registration dots */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+
       <div className="classification-stamp" style={{ marginBottom: 8 }}>
         SIGINT-METHODOLOGY // UNCLASSIFIED // FOUO
       </div>
@@ -380,7 +384,6 @@ export default function MethodologyPage() {
               <li><strong style={{ color: "var(--text)" }}>Novelty:</strong> How much new language or framing the statement introduces versus established patterns.</li>
               <li><strong style={{ color: "var(--text)" }}>Affect:</strong> Rate of emotionally charged language. Intensity markers, urgency signals, sentiment-loaded phrasing.</li>
               <li><strong style={{ color: "var(--text)" }}>Entropy:</strong> Topical spread. Higher = multiple subjects. Lower = tight focus.</li>
-              <li>No thresholds. No labels. No metric influences another.</li>
             </ul>
           </div>
           <span className="redacted-label">Classified until launch</span>

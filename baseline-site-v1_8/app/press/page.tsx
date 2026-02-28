@@ -24,7 +24,11 @@ export const metadata: Metadata = {
 
 export default function PressPage() {
   return (
-    <section className="section" aria-label="Press">
+    <section className="section intel-dot-grid" aria-label="Press" style={{ position: 'relative' }}>
+      {/* Registration dots */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+
       {/* Classification micro-stamp */}
       <div className="classification-stamp" style={{ marginBottom: 8 }}>
         BASELINE-PRESS // UNCLASSIFIED // PUBLIC RELEASE

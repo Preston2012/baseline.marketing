@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <section className="section" aria-label="Pricing">
+    <section className="section" aria-label="Pricing" style={{ position: 'relative' }}>
+      {/* Registration dots */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+
       <h1 className="h1" style={{ fontSize: 28 }}>Pricing</h1>
       <p className="p">
         Plans are purchased in-app via the App Store or Google Play. Paid tiers remove all advertising.

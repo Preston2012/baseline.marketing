@@ -59,6 +59,12 @@ export function PageFrame() {
       <div style={{ position: 'absolute', bottom: INSET, left: INSET, width: RETICLE_SIZE, height: RETICLE_SIZE, borderBottom: `1px solid ${rc}`, borderLeft: `1px solid ${rc}` }} />
       <div style={{ position: 'absolute', bottom: INSET, right: INSET, width: RETICLE_SIZE, height: RETICLE_SIZE, borderBottom: `1px solid ${rc}`, borderRight: `1px solid ${rc}` }} />
 
+      {/* Registration dots: inside each reticle corner */}
+      <div style={{ position: 'absolute', top: INSET + 3, left: INSET + 3, width: 3, height: 3, borderRadius: '50%', background: `rgba(45,212,191,${RETICLE_ALPHA * 0.8})` }} />
+      <div style={{ position: 'absolute', top: INSET + 3, right: INSET + 3, width: 3, height: 3, borderRadius: '50%', background: `rgba(45,212,191,${RETICLE_ALPHA * 0.8})` }} />
+      <div style={{ position: 'absolute', bottom: INSET + 3, left: INSET + 3, width: 3, height: 3, borderRadius: '50%', background: `rgba(45,212,191,${RETICLE_ALPHA * 0.8})` }} />
+      <div style={{ position: 'absolute', bottom: INSET + 3, right: INSET + 3, width: 3, height: 3, borderRadius: '50%', background: `rgba(45,212,191,${RETICLE_ALPHA * 0.8})` }} />
+
       {/* Top hash marks */}
       <div style={{ position: 'absolute', top: INSET, left: INSET + RETICLE_SIZE + 8, right: INSET + RETICLE_SIZE + 8, height: 1 }}>
         {Array.from({ length: 24 }).map((_, i) => {

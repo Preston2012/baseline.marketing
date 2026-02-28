@@ -6,7 +6,7 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="noSelect"
+      className="noSelect intel-dot-grid"
       style={{
         marginTop: 28,
         borderTop: "2px solid var(--border_inactive)",
@@ -14,6 +14,12 @@ export function SiteFooter() {
         position: "relative",
       }}
     >
+      {/* Registration dots: all four corners */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 6, left: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 6, right: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, left: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, right: 6, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+
       {/* Hash mark ruler along top border */}
       <div aria-hidden="true" style={{ position: "absolute", top: -1, left: 16, right: 16, height: 1 }}>
         {Array.from({ length: 40 }).map((_, i) => {
@@ -22,6 +28,8 @@ export function SiteFooter() {
           const alpha = 0.02 + (1 - centerDist) * 0.06;
           return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: 0, width: 1, height: i % 5 === 0 ? 5 : 2, background: `rgba(45,212,191,${alpha.toFixed(4)})` }} />;
         })}
+        {/* Circuit trace node: center of ruler */}
+        <div style={{ position: 'absolute', left: '50%', top: -2, width: 5, height: 5, borderRadius: '50%', background: 'rgba(45,212,191,0.08)', transform: 'translateX(-50%)' }} />
       </div>
       <div className="container" style={{ padding: "14px 16px" }}>
         <div

@@ -32,7 +32,7 @@ export default function HomePage() {
         }
       `}</style>
       <section
-        className="section"
+        className="section corner-brackets"
         style={{
           position: "relative",
           minHeight: 420,
@@ -200,7 +200,11 @@ export default function HomePage() {
 
       {/* ── HOW IT WORKS — streamlined to 3 cards (was 6) per §4 ── */}
       {/* Hidden HTML comment for devs who inspect: <!-- SIGINT BRIEF // UNCLASSIFIED // FOUO --> */}
-      <section className="section" aria-label="How Baseline works">
+      <section className="section intel-dot-grid" aria-label="How Baseline works" style={{ position: 'relative' }}>
+        {/* Registration dots: corner alignment markers */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+
         {/* Section ruler with measurement hash marks */}
         <div aria-hidden="true" style={{ height: 1, background: 'rgba(45,212,191,0.06)', position: 'relative', marginBottom: 16 }}>
           {Array.from({ length: 24 }).map((_, i) => (
@@ -210,6 +214,12 @@ export default function HomePage() {
               background: 'rgba(45,212,191,0.1)',
             }} />
           ))}
+          {/* Circuit trace node: center */}
+          <div style={{
+            position: 'absolute', left: '50%', top: -3, width: 5, height: 5,
+            borderRadius: '50%', background: 'rgba(45,212,191,0.08)',
+            transform: 'translateX(-50%)',
+          }} />
           {/* Subtle center label */}
           <div style={{
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
@@ -286,13 +296,26 @@ export default function HomePage() {
               alignItems: "center", justifyContent: "center", gap: 6,
               background: "rgba(0,0,0,0.15)",
             }}>
+              {/* Reticle corners */}
+              <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
+              <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
+              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, left: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
+              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, right: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
+
               <span className="data" style={{
                 color: "rgba(45,212,191,0.4)", fontSize: 10,
                 letterSpacing: "0.18em",
                 border: "1px solid rgba(45,212,191,0.15)",
                 borderRadius: 4, padding: "3px 10px",
                 textTransform: "uppercase",
+                position: "relative", overflow: "hidden",
               }}>
+                {/* Scan sweep inside badge */}
+                <span style={{
+                  position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%",
+                  background: "linear-gradient(90deg, transparent, rgba(45,212,191,0.12), transparent)",
+                  animation: "scan-sweep 2.5s ease-in-out infinite",
+                }} />
                 CLASSIFIED
               </span>
               <span className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
@@ -305,6 +328,7 @@ export default function HomePage() {
 
       {/* ── N3: Live statement counter ── */}
       <div
+        className="handling-marks"
         style={{
           display: "flex",
           justifyContent: "center",
@@ -313,11 +337,24 @@ export default function HomePage() {
           position: "relative",
         }}
       >
-        {/* Subtle reticle corners on the counter — military/intel folks notice */}
+        {/* Registration dots: all four corners */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 6, left: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', top: 6, right: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: -2, left: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', bottom: -2, right: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
+
+        {/* Subtle reticle corners on the counter */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, right: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
+
+        {/* Circuit trace: horizontal connector between counters */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: '50%', left: '15%', right: '15%', height: 1,
+          background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.03) 20%, rgba(45,212,191,0.05) 50%, rgba(45,212,191,0.03) 80%, transparent)',
+          pointerEvents: 'none',
+        }} />
 
         {[
           { label: "figures", value: "44" },
@@ -351,13 +388,13 @@ export default function HomePage() {
       <TheWall />
 
       {/* ── N8+N11: Breather line ── */}
-      <div style={{ textAlign: "center", padding: "32px 16px 8px", position: "relative" }}>
+      <div className="scanline-ghost" style={{ textAlign: "center", padding: "32px 16px 8px", position: "relative" }}>
         {/* Film perf accents — left edge */}
         <div aria-hidden="true" style={{
           position: 'absolute', left: 0, top: 12, bottom: 12, width: 4,
           display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
         }}>
-          {Array.from({ length: 4 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.04)' }} />
           ))}
         </div>
@@ -365,10 +402,17 @@ export default function HomePage() {
           position: 'absolute', right: 0, top: 12, bottom: 12, width: 4,
           display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
         }}>
-          {Array.from({ length: 4 }).map((_, i) => (
+          {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: 'rgba(45,212,191,0.04)' }} />
           ))}
         </div>
+
+        {/* Circuit trace: top connector */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
+          background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.04) 30%, rgba(45,212,191,0.06) 50%, rgba(45,212,191,0.04) 70%, transparent)',
+          pointerEvents: 'none',
+        }} />
 
         <p
           className="data"

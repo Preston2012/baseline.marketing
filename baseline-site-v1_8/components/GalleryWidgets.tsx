@@ -131,6 +131,24 @@ function WidgetFrame({
       <div style={{ position: 'absolute', bottom: 4, left: 4, width: 8, height: 8, borderBottom: `1px solid ${TEAL_DIM}`, borderLeft: `1px solid ${TEAL_DIM}` }} />
       <div style={{ position: 'absolute', bottom: 4, right: 4, width: 8, height: 8, borderBottom: `1px solid ${TEAL_DIM}`, borderRight: `1px solid ${TEAL_DIM}` }} />
 
+      {/* Registration dots: inside each reticle */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 7, right: 7, width: 2, height: 2, borderRadius: '50%', background: TEAL_DIM }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 7, left: 7, width: 2, height: 2, borderRadius: '50%', background: TEAL_DIM }} />
+      <div aria-hidden="true" style={{ position: 'absolute', bottom: 7, right: 7, width: 2, height: 2, borderRadius: '50%', background: TEAL_DIM }} />
+
+      {/* Film perforation edges */}
+      {[0, 1].map(side => (
+        <div key={`perf-${side}`} aria-hidden="true" style={{
+          position: 'absolute', [side === 0 ? 'left' : 'right']: 0, top: 0, bottom: 0, width: 4,
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+          padding: '8px 0', pointerEvents: 'none',
+        }}>
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} style={{ width: 2, height: 4, borderRadius: 1, background: TEAL_DIM }} />
+          ))}
+        </div>
+      ))}
+
       {children}
 
       {/* Bottom hash ruler */}
@@ -160,6 +178,8 @@ function WidgetFrame({
             />
           );
         })}
+        {/* Circuit trace node: center */}
+        <div style={{ position: 'absolute', left: '50%', bottom: -1, width: 3, height: 3, borderRadius: '50%', background: TEAL_DIM, transform: 'translateX(-50%)' }} />
       </div>
     </div>
   );
@@ -1131,7 +1151,7 @@ export function LensLabWidget() {
   const { ref, vis } = useVisible();
 
   return (
-    <WidgetFrame stamp="LNS-LAB // 3-SYSTEM PARALLEL ANALYSIS" height={190}>
+    <WidgetFrame stamp="LNS-LAB // MULTI-SYSTEM PARALLEL ANALYSIS" height={190}>
       <div ref={ref} style={{ padding: '4px 0' }}>
         {/* Pipeline header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, marginBottom: 8 }}>

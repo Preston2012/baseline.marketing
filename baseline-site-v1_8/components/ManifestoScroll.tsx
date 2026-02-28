@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const STATEMENTS = [
-  "We don\u2019t declare truth.",
-  "We don\u2019t label lies.",
+  "We don\u2019t declare what\u2019s real.",
+  "We don\u2019t pass judgment.",
   "We don\u2019t score people.",
   "We don\u2019t editorialize.",
   "We don\u2019t collapse disagreement.",
@@ -45,7 +45,27 @@ export function ManifestoScroll() {
   }, []);
 
   return (
-    <div style={{ padding: "40px 0" }}>
+    <div style={{ padding: "40px 0", position: "relative" }}>
+      {/* Film perforation edges */}
+      <div aria-hidden="true" style={{
+        position: 'absolute', left: 0, top: 0, bottom: 0, width: 5,
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+        pointerEvents: 'none',
+      }}>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} style={{ width: 2, height: 5, borderRadius: 1, background: 'rgba(45,212,191,0.03)' }} />
+        ))}
+      </div>
+      <div aria-hidden="true" style={{
+        position: 'absolute', right: 0, top: 0, bottom: 0, width: 5,
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
+        pointerEvents: 'none',
+      }}>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} style={{ width: 2, height: 5, borderRadius: 1, background: 'rgba(45,212,191,0.03)' }} />
+        ))}
+      </div>
+
       {STATEMENTS.map((s, i) => {
         const isVisible = visibleSet.has(i);
 
@@ -99,7 +119,7 @@ export function ManifestoScroll() {
               {s}
             </p>
 
-            {/* Thin teal thread between statements */}
+            {/* Teal thread + circuit node between statements */}
             {i < STATEMENTS.length - 1 && (
               <div
                 style={{
@@ -114,7 +134,10 @@ export function ManifestoScroll() {
                   transition: "opacity 800ms ease-out 300ms",
                 }}
                 aria-hidden="true"
-              />
+              >
+                {/* Circuit node at junction */}
+                <div style={{ position: 'absolute', top: 0, left: -2, width: 5, height: 5, borderRadius: '50%', background: 'rgba(45,212,191,0.1)' }} />
+              </div>
             )}
           </div>
         );
