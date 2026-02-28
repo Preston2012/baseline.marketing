@@ -44,7 +44,7 @@ const GALLERY: MuseumItem[] = [
   { title: "Lens Lab\u2122", tagline: "Independent systems. Side-by-side. You decide.", tier: "PRO", concept: "lenslab", placard: "Consensus is computed after, displayed alongside, never merged." },
   { title: "Crossfire\u2122", tagline: "Two figures. One surface. Direct comparison.", tier: "PRO", concept: "crossfire", placard: "Side-by-side framing comparison across any two tracked figures." },
   { title: "Constellation Nav\u2122", tagline: "Navigate the network.", tier: "PRO", concept: "constellation", placard: "Explore connections between figures, topics, and framing patterns." },
-  { title: "Provision Drift\u2122", tagline: "How far did it drift?", tier: "PRO+", concept: "drift", placard: "Measures semantic distance between provisions and a bill\u2019s stated purpose." },
+  { title: "Provision Drift\u2122", tagline: "How far did it drift?", tier: "PRO", concept: "drift", placard: "Measures semantic distance between provisions and a bill\u2019s stated purpose." },
   { title: "Split Microscope\u2122", tagline: "Where models diverge.", tier: "PRO+", concept: "microscope", placard: "Detailed variance breakdown when independent systems disagree." },
   { title: "Intersections Panel\u2122", tagline: "Cross-linking patterns.", tier: "PRO+", concept: "intersections", placard: "Shows shared framing and topic overlaps across figures and time." },
   { title: "Declassified Dossier\u2122", tagline: "The full exhibit plate.", tier: "PRO+", concept: "dossier", placard: "Complete analytical profile for a single figure. Every surface, one view." },

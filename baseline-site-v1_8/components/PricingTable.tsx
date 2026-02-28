@@ -167,6 +167,7 @@ export function PricingTable() {
         { text: "Lens Lab™ (multi-model parallel)", tm: true },
         { text: "Crossfire™", tm: true },
         { text: "Constellation Nav™", tm: true },
+        { text: "Provision Drift™", tm: true },
         { text: "The Receipt™ (5 matches)", tm: true },
       ],
       expanded: [
@@ -189,7 +190,6 @@ export function PricingTable() {
       collapsed: true,
       inherits: "Everything in Pro, plus:",
       headline: [
-        { text: "Provision Drift™", tm: true },
         { text: "Split Microscope™", tm: true },
         { text: "Intersections Panel™", tm: true },
         { text: "Declassified Dossier™", tm: true },

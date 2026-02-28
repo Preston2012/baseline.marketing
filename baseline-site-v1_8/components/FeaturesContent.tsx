@@ -91,7 +91,7 @@ const BILLS: Feature[] = [
   { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap.", tier: "PRO+" },
   { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance.", tier: "PRO+" },
   { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift.", tier: "PRO+" },
-  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO+",
+  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO",
     widgetLabel: "PROVISION DRIFT\u2122 \u00b7 SEMANTIC DISTANCE", widget: <DriftWidget /> },
   { name: "Mutation Timeline\u2122", desc: "How bill provisions change across legislative versions. Each mutation measured, each splice detected.", tier: "PRO+",
     widgetLabel: "MUTATION TIMELINE\u2122 \u00b7 GENOME SEQUENCER", widget: <MutationTimelineWidget />, wide: true },
