@@ -298,9 +298,15 @@ export function PricingTable() {
       <div
         id="pricing-panel"
         role="tabpanel"
-        className="grid grid_2 tier-grid"
-        style={{ marginTop: 12, alignItems: "stretch" }}
+        className="grid grid_2 tier-grid handling-marks"
+        style={{ marginTop: 12, alignItems: "stretch", position: "relative" }}
       >
+        {/* Circuit trace: top of grid */}
+        <div aria-hidden="true" style={{
+          position: 'absolute', top: -1, left: '10%', right: '10%', height: 1,
+          background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.04) 25%, rgba(45,212,191,0.06) 50%, rgba(45,212,191,0.04) 75%, transparent)',
+          pointerEvents: 'none',
+        }} />
         {tiers.map((t, i) => {
           const isOpen = expandedTiers.has(t.id);
 

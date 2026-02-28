@@ -42,7 +42,7 @@ const SIGNALS: Feature[] = [
   { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.", tier: "CORE",
     widgetLabel: "VARIANCE \u00b7 MODEL DISAGREEMENT SURFACING", widget: <VarianceDetectionWidget /> },
   { name: "Lens Lab\u2122", desc: "Independent AI models running in parallel. Same statement, separate measurements.", tier: "PRO",
-    widgetLabel: "LENS LAB\u2122 \u00b7 3-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
+    widgetLabel: "LENS LAB\u2122 \u00b7 MULTI-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
   { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO",
     widgetLabel: "HISTORICAL \u00b7 SIGNAL PATTERNS OVER TIME", widget: <HistoricalTrendsWidget /> },
   { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where measurements diverge most.", tier: "PRO+" },
@@ -324,6 +324,8 @@ function SectionDivider() {
         const a = 0.02 + (1 - Math.abs(t - 0.5) * 2) * 0.06;
         return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, top: -1, width: 1, height: i % 6 === 0 ? 5 : 2, background: `rgba(45,212,191,${a.toFixed(4)})` }} />;
       })}
+      {/* Circuit trace node: center */}
+      <div style={{ position: 'absolute', left: '50%', top: -2, width: 5, height: 5, borderRadius: '50%', background: 'rgba(45,212,191,0.07)', transform: 'translateX(-50%)' }} />
     </div>
   );
 }

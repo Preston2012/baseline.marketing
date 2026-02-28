@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 export default function FeaturesPage() {
   return (
     <>
-      <section className="section" aria-label="Features header">
+      <section className="section" aria-label="Features header" style={{ position: 'relative' }}>
+        {/* Registration dots */}
+        <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+        <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
         <div className="classification-stamp" style={{ marginBottom: 8 }}>
           SIGINT-FEATURES // PRODUCT MANIFEST // v3.5
         </div>

@@ -101,7 +101,14 @@ export function WaitlistCapture() {
           90% { opacity: 1; }
           100% { top: 100%; opacity: 0; }
         }
+        @keyframes wlGhostScan {
+          0% { top: -2px; opacity: 0; }
+          15% { opacity: 0.6; }
+          85% { opacity: 0.6; }
+          100% { top: 100%; opacity: 0; }
+        }
       `}</style>
+      {/* Primary scanline */}
       <div
         aria-hidden="true"
         style={{
@@ -117,6 +124,22 @@ export function WaitlistCapture() {
           pointerEvents: "none",
         }}
       />
+      {/* Ghost scanline — slower, dimmer, trailing */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: 0,
+          right: 0,
+          height: 1,
+          background:
+            "linear-gradient(90deg, transparent 0%, rgba(45,212,191,0.06) 30%, rgba(45,212,191,0.1) 50%, rgba(45,212,191,0.06) 70%, transparent 100%)",
+          animation: "wlGhostScan 3.5s ease-out forwards",
+          animationDelay: "600ms",
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
 
       {/* Reticle corners */}
       <Corner pos="top-left" />
@@ -124,14 +147,14 @@ export function WaitlistCapture() {
       <Corner pos="bottom-left" />
       <Corner pos="bottom-right" />
 
-      {/* Film perf accents — left edge */}
+      {/* Film perf accents — left edge (enhanced) */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           left: 3,
-          top: 20,
-          bottom: 20,
+          top: 16,
+          bottom: 16,
           width: 4,
           display: "flex",
           flexDirection: "column",
@@ -140,14 +163,14 @@ export function WaitlistCapture() {
           zIndex: 1,
         }}
       >
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}
             style={{
               width: 2,
               height: 5,
               borderRadius: 1,
-              background: "rgba(45,212,191,0.06)",
+              background: `rgba(45,212,191,${i % 3 === 0 ? 0.08 : 0.05})`,
             }}
           />
         ))}
@@ -158,8 +181,8 @@ export function WaitlistCapture() {
         style={{
           position: "absolute",
           right: 3,
-          top: 20,
-          bottom: 20,
+          top: 16,
+          bottom: 16,
           width: 4,
           display: "flex",
           flexDirection: "column",
@@ -168,18 +191,50 @@ export function WaitlistCapture() {
           zIndex: 1,
         }}
       >
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 10 }).map((_, i) => (
           <div
             key={i}
             style={{
               width: 2,
               height: 5,
               borderRadius: 1,
-              background: "rgba(45,212,191,0.06)",
+              background: `rgba(45,212,191,${i % 3 === 0 ? 0.08 : 0.05})`,
             }}
           />
         ))}
       </div>
+
+      {/* Circuit trace: horizontal connector across middle */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: 20,
+          right: 20,
+          height: 1,
+          background: "linear-gradient(90deg, rgba(45,212,191,0.03) 0%, transparent 15%, transparent 85%, rgba(45,212,191,0.03) 100%)",
+          zIndex: 1,
+          pointerEvents: "none",
+        }}
+      >
+        {/* Nodes at edges */}
+        <div style={{ position: "absolute", left: 0, top: -1, width: 3, height: 3, borderRadius: "50%", background: "rgba(45,212,191,0.06)" }} />
+        <div style={{ position: "absolute", right: 0, top: -1, width: 3, height: 3, borderRadius: "50%", background: "rgba(45,212,191,0.06)" }} />
+      </div>
+
+      {/* Intel dot grid: subtle background texture */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(rgba(45,212,191,0.02) 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+          pointerEvents: "none",
+          zIndex: 1,
+        }}
+      />
 
       {/* Content layer */}
       <div style={{ position: "relative", padding: "36px 24px 32px", zIndex: 1 }}>
@@ -618,7 +673,7 @@ function SuccessState() {
   );
 }
 
-/* ── Reticle corner helper ── */
+/* ── Reticle corner helper — enhanced with registration dot ── */
 function Corner({
   pos,
 }: {
@@ -643,5 +698,22 @@ function Corner({
   if (pos.includes("left")) style.borderLeft = `1px solid ${color}`;
   if (pos.includes("right")) style.borderRight = `1px solid ${color}`;
 
-  return <div aria-hidden="true" style={style} />;
+  // Registration dot position: inside corner
+  const dotStyle: React.CSSProperties = {
+    position: "absolute",
+    width: 3,
+    height: 3,
+    borderRadius: "50%",
+    background: "rgba(45,212,191,0.08)",
+  };
+  if (pos.includes("top")) dotStyle.top = 2;
+  if (pos.includes("bottom")) dotStyle.bottom = 2;
+  if (pos.includes("left")) dotStyle.left = 2;
+  if (pos.includes("right")) dotStyle.right = 2;
+
+  return (
+    <div aria-hidden="true" style={style}>
+      <div style={dotStyle} />
+    </div>
+  );
 }

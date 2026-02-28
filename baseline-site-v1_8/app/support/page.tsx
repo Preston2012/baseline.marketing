@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 
 export default function SupportPage() {
   return (
-    <section className="section" aria-label="Support">
+    <section className="section intel-dot-grid" aria-label="Support" style={{ position: 'relative' }}>
+      {/* Registration dots */}
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+      <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
+
       <div className="classification-stamp" style={{ marginBottom: 8 }}>
         BASELINE-OPS // SUPPORT CHANNEL
       </div>

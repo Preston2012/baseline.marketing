@@ -69,9 +69,16 @@ export function StoreCTA({
               padding: 28,
               maxWidth: 380,
               width: "100%",
-              textAlign: "center"
+              textAlign: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            {/* Reticle corners */}
+            <div aria-hidden="true" style={{ position: 'absolute', top: 6, left: 6, width: 10, height: 10, borderTop: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
+            <div aria-hidden="true" style={{ position: 'absolute', top: 6, right: 6, width: 10, height: 10, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, left: 6, width: 10, height: 10, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
+            <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, right: 6, width: 10, height: 10, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
             {/* BA mark */}
             <img
               src={BRAND_BA_MARK}
