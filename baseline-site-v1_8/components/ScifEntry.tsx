@@ -400,6 +400,16 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  // ── Skip intro handler ──
+  const handleSkip = () => {
+    try { localStorage.setItem(CLEARED_KEY, 'true'); } catch {}
+    setDoorOpen(true);
+    setTimeout(() => {
+      setOverlayGone(true);
+      setStage('done');
+    }, 600);
+  };
+
   // ── If still loading clearance state, show pure black — no content leak ──
   if (cleared === null) {
     return (
@@ -897,6 +907,37 @@ export function ScifEntry({ children }: { children: React.ReactNode }) {
             animation: 'scanline-down 3s linear infinite',
           }} />
         )}
+
+        {/* Skip intro button */}
+        <button
+          onClick={handleSkip}
+          style={{
+            position: 'absolute',
+            bottom: 32,
+            right: 32,
+            background: 'none',
+            border: '1px solid rgba(255,255,255,0.15)',
+            borderRadius: 6,
+            padding: '8px 16px',
+            color: 'rgba(255,255,255,0.5)',
+            fontSize: 12,
+            fontFamily: 'inherit',
+            letterSpacing: 1,
+            cursor: 'pointer',
+            zIndex: 10001,
+            transition: 'all 0.2s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = 'rgba(255,255,255,0.8)';
+            e.currentTarget.style.borderColor = 'rgba(45,212,191,0.4)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'rgba(255,255,255,0.5)';
+            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+          }}
+        >
+          SKIP INTRO
+        </button>
       </div>
 
       {/* ── Animations ── */}

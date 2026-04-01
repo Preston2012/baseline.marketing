@@ -3,7 +3,6 @@
 import { useState, useCallback, Fragment, type ReactNode } from "react";
 import { TierPill } from "./TierPill";
 import { FeaturesNav, type TierFilter } from "./FeaturesNav";
-import { FrostedWidgetPreview } from "./FrostedWidget";
 import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget, SplitMicroscopeWidget, NarrativeSyncWidget, BaselineDeltaWidget, VarianceDetectionWidget, HistoricalTrendsWidget, TopicHeatmapWidget, ShiftAlertWidget, MutationTimelineWidget, SpendingScopeWidget } from "./GalleryWidgets";
 
 /* ─────────────────────────────────────────────────────────
@@ -163,79 +162,28 @@ function FeatureCard({ f }: { f: Feature }) {
    ───────────────────────────────────────────────────────── */
 
 function WidgetCard({ f }: { f: Feature }) {
-  const [peeking, setPeeking] = useState(false);
-
   return (
     <div
       style={{
         background: "var(--card)",
-        border: `2px solid ${peeking ? 'rgba(45,212,191,0.15)' : 'var(--border_inactive)'}`,
+        border: "2px solid var(--border_inactive)",
         borderRadius: "var(--radius_card)",
         overflow: "hidden",
-        transition: "border-color 400ms ease",
       }}
     >
-      {/* Widget preview area */}
-      <div
-        style={{ position: "relative", cursor: "default" }}
-        onPointerDown={() => setPeeking(true)}
-        onPointerUp={() => setPeeking(false)}
-        onPointerLeave={() => setPeeking(false)}
-        onPointerCancel={() => setPeeking(false)}
-      >
-        <div style={{
-          filter: peeking
-            ? "blur(2px) brightness(0.75) saturate(0.7)"
-            : "blur(6px) brightness(0.6) saturate(0.5)",
-          WebkitFilter: peeking
-            ? "blur(2px) brightness(0.75) saturate(0.7)"
-            : "blur(6px) brightness(0.6) saturate(0.5)",
-          pointerEvents: "none",
-          userSelect: "none",
-          WebkitUserSelect: "none" as "none",
-          transition: "filter 400ms ease, -webkit-filter 400ms ease",
-        }}>
+      {/* Widget preview area — unfrosted, live */}
+      <div style={{ position: "relative" }}>
+        <div style={{ pointerEvents: "none", userSelect: "none" }}>
           {f.widget}
         </div>
-        <div style={{
-          position: "absolute", inset: 0,
-          display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center", gap: 4,
-          background: peeking ? "rgba(0,0,0,0.05)" : "rgba(0,0,0,0.15)",
-          pointerEvents: "none",
-          transition: "background 400ms ease",
-        }}>
-          {/* Mini reticle corners */}
-          <div style={{ position: "absolute", top: 6, left: 6, width: 8, height: 8, borderTop: "1px solid rgba(45,212,191,0.12)", borderLeft: "1px solid rgba(45,212,191,0.12)" }} />
-          <div style={{ position: "absolute", top: 6, right: 6, width: 8, height: 8, borderTop: "1px solid rgba(45,212,191,0.12)", borderRight: "1px solid rgba(45,212,191,0.12)" }} />
-          <div style={{ position: "absolute", bottom: 6, left: 6, width: 8, height: 8, borderBottom: "1px solid rgba(45,212,191,0.12)", borderLeft: "1px solid rgba(45,212,191,0.12)" }} />
-          <div style={{ position: "absolute", bottom: 6, right: 6, width: 8, height: 8, borderBottom: "1px solid rgba(45,212,191,0.12)", borderRight: "1px solid rgba(45,212,191,0.12)" }} />
-
-          <span style={{
-            fontFamily: "var(--font-jetbrains, monospace)",
-            fontSize: 8, letterSpacing: "0.12em",
-            color: "rgba(45,212,191,0.35)", textTransform: "uppercase",
-            border: "1px solid rgba(45,212,191,0.12)",
-            borderRadius: 3, padding: "2px 8px",
-            textAlign: "center", maxWidth: "90%",
-            opacity: peeking ? 0 : 1,
-            transition: "opacity 300ms ease",
-          }}>
-            {f.widgetLabel || "LIVE PREVIEW"}
-          </span>
-          <span style={{
-            fontFamily: "var(--font-jetbrains, monospace)",
-            fontSize: 7, letterSpacing: "0.1em",
-            color: "rgba(45,212,191,0.2)", textTransform: "uppercase",
-            opacity: peeking ? 0 : 1,
-            transition: "opacity 300ms ease",
-          }}>
-            PRE-LAUNCH
-          </span>
-        </div>
+        {/* Subtle reticle corners */}
+        <div style={{ position: "absolute", top: 6, left: 6, width: 8, height: 8, borderTop: "1px solid rgba(45,212,191,0.12)", borderLeft: "1px solid rgba(45,212,191,0.12)" }} />
+        <div style={{ position: "absolute", top: 6, right: 6, width: 8, height: 8, borderTop: "1px solid rgba(45,212,191,0.12)", borderRight: "1px solid rgba(45,212,191,0.12)" }} />
+        <div style={{ position: "absolute", bottom: 6, left: 6, width: 8, height: 8, borderBottom: "1px solid rgba(45,212,191,0.12)", borderLeft: "1px solid rgba(45,212,191,0.12)" }} />
+        <div style={{ position: "absolute", bottom: 6, right: 6, width: 8, height: 8, borderBottom: "1px solid rgba(45,212,191,0.12)", borderRight: "1px solid rgba(45,212,191,0.12)" }} />
       </div>
 
-      {/* Card info area — seamless below the widget */}
+      {/* Card info area */}
       <div style={{ padding: 16, borderTop: "1px solid var(--border_inactive)" }}>
         <div style={{ color: "var(--text)", fontWeight: 600, marginBottom: 8, fontSize: 14 }}>
           {f.name}
