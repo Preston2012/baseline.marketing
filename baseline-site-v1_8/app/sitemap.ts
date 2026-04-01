@@ -8,6 +8,7 @@ const routes = [
   "/ethos/",
   "/pricing/",
   "/what-we-dont-do/",
+  "/built/",
   "/press/",
   "/support/",
   "/privacy/",
@@ -17,7 +18,7 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-02-17");
+  const lastModified = new Date("2026-04-01");
   return routes.map((path) => ({
     url: `${site.url}${path}`,
     lastModified
