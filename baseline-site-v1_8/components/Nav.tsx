@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { PrimaryLinkButton } from './Button';
 import { BRAND_WORDMARK, BRAND_BA_MARK } from '../config/brand-assets';
@@ -104,12 +105,13 @@ export default function Nav() {
       >
         {/* BA mark — left */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, zIndex: 2 }}>
-          <img
+          <Image
             src={BRAND_BA_MARK}
             alt="Baseline"
             width={48}
             height={20}
             style={{ height: 20, width: 'auto' }}
+            priority
           />
         </Link>
 
@@ -133,12 +135,13 @@ export default function Nav() {
             zIndex: 1,
           }}
         >
-          <img
+          <Image
             src={BRAND_WORDMARK}
             alt="BASELINE"
             width={358}
             height={100}
             style={{ height: 36, width: 'auto' }}
+            priority
           />
         </Link>
 

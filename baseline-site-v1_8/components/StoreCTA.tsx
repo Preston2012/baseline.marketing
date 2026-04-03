@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { BRAND_BA_MARK, BADGE_APPSTORE, BADGE_GOOGLEPLAY } from "../config/brand-assets";
 
 export function StoreCTA({
@@ -35,9 +36,11 @@ export function StoreCTA({
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
-        <img
+        <Image
           src={badge.src}
           alt={badge.alt}
+          width={180}
+          height={52}
           style={{ height: "auto", width: "100%", maxHeight: 52, display: "block", objectFit: "contain" }}
         />
       </button>
@@ -80,9 +83,11 @@ export function StoreCTA({
             <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, left: 6, width: 10, height: 10, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
             <div aria-hidden="true" style={{ position: 'absolute', bottom: 6, right: 6, width: 10, height: 10, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
             {/* BA mark */}
-            <img
+            <Image
               src={BRAND_BA_MARK}
               alt=""
+              width={48}
+              height={48}
               style={{ height: 48, width: 48, margin: "0 auto 16px" }}
             />
 
