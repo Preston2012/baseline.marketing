@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Built By Preston Winters | Baseline",
     description:
-      "Solo-built political intelligence platform. 100K+ lines of code, 4 AI providers, production on Google Play.",
+      "Solo-built political intelligence platform. 100K+ lines of code, 4 AI providers, closed testing on Google Play.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
@@ -24,7 +24,7 @@ const STATS = [
   { value: "28", label: "SCREENS", sub: "Production app" },
   { value: "22", label: "EDGE FUNCTIONS", sub: "Supabase backend" },
   { value: "4", label: "AI PROVIDERS", sub: "Independent analysis" },
-  { value: "3", label: "APPS LIVE", sub: "iOS + Android" },
+  { value: "2", label: "APPS BUILT", sub: "1 published, 1 in testing" },
   { value: "500+", label: "BUILD SESSIONS", sub: "Documented" },
 ];
 
@@ -38,7 +38,6 @@ const STACK = [
   "Riverpod",
   "GoRouter",
   "RevenueCat",
-  "AdMob",
   "Git",
 ];
 
@@ -118,8 +117,8 @@ export default function BuiltPage() {
             maxWidth: 560,
           }}
         >
-          3 production apps. 100K+ lines of code for Baseline alone. Built in
-          months, not years, using multi-AI orchestration.
+          1 published app. 1 in closed testing. 100K+ lines of code for
+          Baseline alone. Built in months, not years, using multi-AI orchestration.
         </p>
 
         <div
@@ -134,7 +133,7 @@ export default function BuiltPage() {
             display: "inline-block",
           }}
         >
-          Baseline is in closed testing on Google Play. Public launch Q2 2026.
+          Baseline is in closed testing on Google Play. Public launch planned 2026.
         </div>
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -294,7 +293,7 @@ export default function BuiltPage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
             { name: "StainSlayer AI", desc: "Stain identification app. Camera-first UX. Live on iOS and Android.", status: "LIVE" },
-            { name: "3 Additional Apps", desc: "Active development pipeline. Home intelligence, document translation, self-accuracy tracking.", status: "IN DEV" },
+            { name: "4 Additional Apps", desc: "Active development pipeline. Homebase (home intelligence), ChopLight (gesture flashlight), GAUGE (weather intelligence), Inkfall (tower defense).", status: "IN DEV" },
             { name: "Cyber Hornets", desc: "Previously CEO. 40.9K followers, 7-figure revenue, 10K+ Discord community.", status: "PREV" },
           ].map((p) => (
             <div key={p.name} style={{ padding: "16px 20px", background: "var(--card)", border: "2px solid var(--border_inactive)", borderRadius: 10, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
