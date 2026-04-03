@@ -1,5 +1,5 @@
 /** Supabase client config — waitlist only for now */
 export const supabaseConfig = {
-  url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  url: "https://jfpvojhkiduegclatqsl.supabase.co",
+  anonKey: "sb_publishable_2zm7k8m6M6CEWviqKepDUw_2x74L8ew",
 } as const;
