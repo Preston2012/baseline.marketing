@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/config/site";
 
 import { WaitlistCapture } from "@/components/WaitlistCapture";
@@ -199,7 +200,6 @@ export default function HomePage() {
       </section>
 
       {/* ── HOW IT WORKS — streamlined to 3 cards (was 6) per §4 ── */}
-      {/* Hidden HTML comment for devs who inspect: <!-- SIGINT BRIEF // UNCLASSIFIED // FOUO --> */}
       <section className="section intel-dot-grid" aria-label="How Baseline works" style={{ position: 'relative' }}>
         {/* Registration dots: corner alignment markers */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
@@ -269,7 +269,7 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* ── Pipeline Visual — moved FROM press page TO here per §4 ── */}
+        {/* ── Pipeline Visual ── */}
         <div style={{ marginTop: 24 }}>
           <h3 className="h3">Pipeline</h3>
 
@@ -283,9 +283,11 @@ export default function HomePage() {
               position: "relative",
             }}
           >
-            <img
+            <Image
               src="/screens/pipeline_diagram.webp"
               alt="Baseline analysis pipeline diagram"
+              width={1040}
+              height={600}
               loading="lazy"
               style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
             />
@@ -296,7 +298,6 @@ export default function HomePage() {
               alignItems: "center", justifyContent: "center", gap: 6,
               background: "rgba(0,0,0,0.15)",
             }}>
-              {/* Reticle corners */}
               <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
               <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
               <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, left: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
@@ -310,7 +311,6 @@ export default function HomePage() {
                 textTransform: "uppercase",
                 position: "relative", overflow: "hidden",
               }}>
-                {/* Scan sweep inside badge */}
                 <span style={{
                   position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%",
                   background: "linear-gradient(90deg, transparent, rgba(45,212,191,0.12), transparent)",
@@ -326,7 +326,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── N3: Live statement counter ── */}
+      {/* ── N3: Signal counter ── */}
       <div
         className="handling-marks"
         style={{
@@ -337,19 +337,16 @@ export default function HomePage() {
           position: "relative",
         }}
       >
-        {/* Registration dots: all four corners */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 6, left: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', top: 6, right: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: -2, left: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: -2, right: 12, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
 
-        {/* Subtle reticle corners on the counter */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 16, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, left: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderLeft: '1px solid rgba(45,212,191,0.06)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', bottom: 0, right: 16, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.06)', borderRight: '1px solid rgba(45,212,191,0.06)' }} />
 
-        {/* Circuit trace: horizontal connector between counters */}
         <div aria-hidden="true" style={{
           position: 'absolute', top: '50%', left: '15%', right: '15%', height: 1,
           background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.03) 20%, rgba(45,212,191,0.05) 50%, rgba(45,212,191,0.03) 80%, transparent)',
@@ -357,9 +354,9 @@ export default function HomePage() {
         }} />
 
         {[
-          { label: "figures", value: "44" },
-          { label: "statements", value: "--" },
-          { label: "sources", value: "--" },
+          { label: "figures tracked", value: "44" },
+          { label: "AI providers", value: "4" },
+          { label: "parallel systems", value: "3" },
         ].map((s) => (
           <div key={s.label} style={{ textAlign: "center" }}>
             <div
@@ -389,7 +386,6 @@ export default function HomePage() {
 
       {/* ── N8+N11: Breather line ── */}
       <div className="scanline-ghost" style={{ textAlign: "center", padding: "32px 16px 8px", position: "relative" }}>
-        {/* Film perf accents — left edge */}
         <div aria-hidden="true" style={{
           position: 'absolute', left: 0, top: 12, bottom: 12, width: 4,
           display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center',
@@ -407,7 +403,6 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Circuit trace: top connector */}
         <div aria-hidden="true" style={{
           position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
           background: 'linear-gradient(90deg, transparent, rgba(45,212,191,0.04) 30%, rgba(45,212,191,0.06) 50%, rgba(45,212,191,0.04) 70%, transparent)',
@@ -428,7 +423,7 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* ── ™ MUSEUM GALLERY — replaces FrostedFeatures + What We Measure + ProductSurfacesGallery ── */}
+      {/* ── MUSEUM GALLERY ── */}
       <MuseumGallery />
     </>
   );
