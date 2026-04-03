@@ -174,584 +174,147 @@ export default function BuiltPage() {
           >
             Contact Me
           </a>
+          <a
+            href="https://github.com/Preston2012/baseline-showcase"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              height: 44,
+              padding: "0 20px",
+              borderRadius: 8,
+              background: "transparent",
+              color: "var(--sub)",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: 14,
+              border: "2px solid rgba(182,198,214,0.15)",
+            }}
+          >
+            GitHub
+          </a>
         </div>
       </section>
 
       {/* ── STATS GRID ── */}
-      <section
-        style={{
-          padding: "0 24px 48px",
-          maxWidth: 720,
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: 12,
-          }}
-        >
+      <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 12 }}>
           {STATS.map((s) => (
-            <div
-              key={s.label}
-              style={{
-                padding: "20px 16px",
-                background: "var(--card)",
-                border: "2px solid var(--border_inactive)",
-                borderRadius: 10,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily:
-                    "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                  fontSize: 28,
-                  fontWeight: 700,
-                  color: "var(--teal)",
-                  lineHeight: 1,
-                  marginBottom: 6,
-                }}
-              >
-                {s.value}
-              </div>
-              <div
-                style={{
-                  fontFamily:
-                    "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                  fontSize: 10,
-                  letterSpacing: "0.12em",
-                  color: "var(--text)",
-                  fontWeight: 600,
-                  marginBottom: 2,
-                }}
-              >
-                {s.label}
-              </div>
-              <div
-                style={{
-                  fontSize: 11,
-                  color: "var(--sub)",
-                }}
-              >
-                {s.sub}
-              </div>
+            <div key={s.label} style={{ padding: "20px 16px", background: "var(--card)", border: "2px solid var(--border_inactive)", borderRadius: 10 }}>
+              <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 28, fontWeight: 700, color: "var(--teal)", lineHeight: 1, marginBottom: 6 }}>{s.value}</div>
+              <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, letterSpacing: "0.12em", color: "var(--text)", fontWeight: 600, marginBottom: 2 }}>{s.label}</div>
+              <div style={{ fontSize: 11, color: "var(--sub)" }}>{s.sub}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── SEE IT LIVE CALLOUT ── */}
-      <section
-        style={{
-          padding: "0 24px 48px",
-          maxWidth: 720,
-          margin: "0 auto",
-        }}
-      >
-        <a
-          href="/features/"
-          style={{
-            display: "block",
-            padding: "24px 20px",
-            background: "var(--card)",
-            border: "2px solid rgba(45,212,191,0.2)",
-            borderRadius: 10,
-            textDecoration: "none",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          {/* Corner reticles */}
+      <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
+        <a href="/features/" style={{ display: "block", padding: "24px 20px", background: "var(--card)", border: "2px solid rgba(45,212,191,0.2)", borderRadius: 10, textDecoration: "none", position: "relative", overflow: "hidden" }}>
           <div style={{ position: "absolute", top: 6, left: 6, width: 10, height: 10, borderTop: "1px solid rgba(45,212,191,0.15)", borderLeft: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderTop: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, left: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderLeft: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, right: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
-
-          <div
-            style={{
-              fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace",
-              fontSize: 9,
-              letterSpacing: "0.15em",
-              color: "rgba(45,212,191,0.4)",
-              marginBottom: 8,
-              textTransform: "uppercase",
-            }}
-          >
-            LIVE DEMO // 20 INTERACTIVE WIDGETS
-          </div>
-          <div
-            style={{
-              fontSize: 17,
-              fontWeight: 600,
-              color: "var(--text)",
-              marginBottom: 6,
-            }}
-          >
-            Every widget on this site is custom-built
-          </div>
-          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>
-            No chart libraries. No UI kits. No templates. 20 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.
-          </div>
-          <span
-            style={{
-              fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace",
-              fontSize: 12,
-              fontWeight: 600,
-              color: "var(--teal)",
-              letterSpacing: "0.05em",
-            }}
-          >
-            View live widgets →
-          </span>
+          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 20 INTERACTIVE WIDGETS</div>
+          <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>Every widget on this site is custom-built</div>
+          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 20 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.</div>
+          <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, color: "var(--teal)", letterSpacing: "0.05em" }}>View live widgets &rarr;</span>
         </a>
       </section>
 
       {/* ── ARCHITECTURE ── */}
-      <section
-        style={{
-          padding: "0 24px 48px",
-          maxWidth: 720,
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            fontFamily:
-              "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            fontSize: 9,
-            letterSpacing: "0.15em",
-            color: "rgba(45,212,191,0.4)",
-            marginBottom: 12,
-            textTransform: "uppercase",
-          }}
-        >
-          SYSTEM ARCHITECTURE // BASELINE
-        </div>
-
-        <h2
-          style={{
-            fontSize: 22,
-            fontWeight: 600,
-            color: "var(--text)",
-            margin: "0 0 24px",
-          }}
-        >
-          How Baseline Works
-        </h2>
+      <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>SYSTEM ARCHITECTURE // BASELINE</div>
+        <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 24px" }}>How Baseline Works</h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {PIPELINE.map((p, i) => (
             <div key={p.step}>
-              <div
-                style={{
-                  display: "flex",
-                  gap: 16,
-                  padding: "16px 0",
-                }}
-              >
-                {/* Step number + vertical line */}
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    minWidth: 32,
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 32,
-                      height: 32,
-                      borderRadius: "50%",
-                      border: "2px solid var(--teal)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontFamily:
-                        "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                      fontSize: 11,
-                      fontWeight: 700,
-                      color: "var(--teal)",
-                    }}
-                  >
-                    {p.step}
-                  </div>
+              <div style={{ display: "flex", gap: 16, padding: "16px 0" }}>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minWidth: 32 }}>
+                  <div style={{ width: 32, height: 32, borderRadius: "50%", border: "2px solid var(--teal)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 11, fontWeight: 700, color: "var(--teal)" }}>{p.step}</div>
                 </div>
-
-                {/* Content */}
                 <div style={{ flex: 1 }}>
-                  <div
-                    style={{
-                      fontFamily:
-                        "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                      fontSize: 12,
-                      fontWeight: 600,
-                      letterSpacing: "0.1em",
-                      color: "var(--teal)",
-                      marginBottom: 4,
-                    }}
-                  >
-                    {p.label}
-                  </div>
-                  <p
-                    style={{
-                      fontSize: 14,
-                      color: "var(--sub)",
-                      margin: 0,
-                      lineHeight: 1.5,
-                    }}
-                  >
-                    {p.desc}
-                  </p>
+                  <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", color: "var(--teal)", marginBottom: 4 }}>{p.label}</div>
+                  <p style={{ fontSize: 14, color: "var(--sub)", margin: 0, lineHeight: 1.5 }}>{p.desc}</p>
                 </div>
               </div>
-
-              {/* Connector line */}
               {i < PIPELINE.length - 1 && (
-                <div
-                  style={{
-                    width: 2,
-                    height: 20,
-                    background:
-                      "linear-gradient(180deg, var(--teal), rgba(45,212,191,0.1))",
-                    marginLeft: 15,
-                  }}
-                />
+                <div style={{ width: 2, height: 20, background: "linear-gradient(180deg, var(--teal), rgba(45,212,191,0.1))", marginLeft: 15 }} />
               )}
             </div>
           ))}
         </div>
 
-        {/* Stack badges */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 8,
-            marginTop: 32,
-          }}
-        >
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 32 }}>
           {STACK.map((s) => (
-            <span
-              key={s}
-              style={{
-                fontFamily:
-                  "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                fontSize: 11,
-                padding: "5px 12px",
-                borderRadius: 6,
-                border: "1px solid rgba(45,212,191,0.2)",
-                color: "rgba(45,212,191,0.7)",
-                letterSpacing: "0.05em",
-              }}
-            >
-              {s}
-            </span>
+            <span key={s} style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 11, padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(45,212,191,0.2)", color: "rgba(45,212,191,0.7)", letterSpacing: "0.05em" }}>{s}</span>
           ))}
         </div>
 
-        <a
-          href="/methodology/"
-          style={{
-            display: "inline-block",
-            marginTop: 20,
-            fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            fontSize: 12,
-            color: "var(--teal)",
-            textDecoration: "none",
-            letterSpacing: "0.05em",
-          }}
-        >
-          Read the full technical methodology →
-        </a>
+        <a href="/methodology/" style={{ display: "inline-block", marginTop: 20, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, color: "var(--teal)", textDecoration: "none", letterSpacing: "0.05em" }}>Read the full technical methodology &rarr;</a>
       </section>
 
       {/* ── HOW I BUILD ── */}
-      <section
-        style={{
-          padding: "0 24px 48px",
-          maxWidth: 720,
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            fontFamily:
-              "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            fontSize: 9,
-            letterSpacing: "0.15em",
-            color: "rgba(45,212,191,0.4)",
-            marginBottom: 12,
-            textTransform: "uppercase",
-          }}
-        >
-          METHODOLOGY // BUILD PROCESS
-        </div>
-
-        <h2
-          style={{
-            fontSize: 22,
-            fontWeight: 600,
-            color: "var(--text)",
-            margin: "0 0 16px",
-          }}
-        >
-          Multi-AI Orchestration
-        </h2>
-
-        <p
-          className="p"
-          style={{
-            fontSize: 15,
-            color: "var(--sub)",
-            margin: "0 0 16px",
-            lineHeight: 1.6,
-          }}
-        >
+      <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>METHODOLOGY // BUILD PROCESS</div>
+        <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 16px" }}>Multi-AI Orchestration</h2>
+        <p className="p" style={{ fontSize: 15, color: "var(--sub)", margin: "0 0 16px", lineHeight: 1.6 }}>
           I don&rsquo;t write every line by hand. I direct Claude, GPT, Gemini,
           and Grok simultaneously, using each model&rsquo;s strengths for
           different tasks: architecture, code generation, QA, and user research
           synthesis. The result is solo output at team velocity.
         </p>
 
-        <div
-          style={{
-            padding: "16px 20px",
-            background: "var(--card)",
-            border: "2px solid var(--border_inactive)",
-            borderRadius: 10,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-            }}
-          >
+        <div style={{ padding: "16px 20px", background: "var(--card)", border: "2px solid var(--border_inactive)", borderRadius: 10 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {[
-              {
-                model: "Claude",
-                role: "Architecture, complex code generation, institutional knowledge management",
-              },
-              {
-                model: "GPT",
-                role: "Rapid prototyping, broad technical QA, documentation",
-              },
-              {
-                model: "Gemini",
-                role: "Data extraction, structuring, research synthesis",
-              },
-              {
-                model: "Grok",
-                role: "Edge case identification, adversarial testing, alternative perspectives",
-              },
+              { model: "Claude", role: "Architecture, complex code generation, institutional knowledge management" },
+              { model: "GPT", role: "Rapid prototyping, broad technical QA, documentation" },
+              { model: "Gemini", role: "Data extraction, structuring, research synthesis" },
+              { model: "Grok", role: "Edge case identification, adversarial testing, alternative perspectives" },
             ].map((m) => (
               <div key={m.model} style={{ display: "flex", gap: 12 }}>
-                <div
-                  style={{
-                    fontFamily:
-                      "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    color: "var(--teal)",
-                    minWidth: 60,
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {m.model}
-                </div>
-                <div style={{ fontSize: 13, color: "var(--sub)", lineHeight: 1.4 }}>
-                  {m.role}
-                </div>
+                <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 11, fontWeight: 600, color: "var(--teal)", minWidth: 60, letterSpacing: "0.05em" }}>{m.model}</div>
+                <div style={{ fontSize: 13, color: "var(--sub)", lineHeight: 1.4 }}>{m.role}</div>
               </div>
             ))}
           </div>
-
-          <div
-            style={{
-              marginTop: 16,
-              paddingTop: 12,
-              borderTop: "1px solid var(--border_inactive)",
-              fontFamily:
-                "var(--font-jetbrains, monospace), ui-monospace, monospace",
-              fontSize: 10,
-              color: "rgba(45,212,191,0.5)",
-              letterSpacing: "0.1em",
-            }}
-          >
-            390+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED
-          </div>
+          <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid var(--border_inactive)", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, color: "rgba(45,212,191,0.5)", letterSpacing: "0.1em" }}>390+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED</div>
         </div>
       </section>
 
       {/* ── OTHER PROJECTS ── */}
-      <section
-        style={{
-          padding: "0 24px 48px",
-          maxWidth: 720,
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            fontFamily:
-              "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            fontSize: 9,
-            letterSpacing: "0.15em",
-            color: "rgba(45,212,191,0.4)",
-            marginBottom: 12,
-            textTransform: "uppercase",
-          }}
-        >
-          ADDITIONAL // PORTFOLIO
-        </div>
-
-        <h2
-          style={{
-            fontSize: 22,
-            fontWeight: 600,
-            color: "var(--text)",
-            margin: "0 0 20px",
-          }}
-        >
-          Other Projects
-        </h2>
+      <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>ADDITIONAL // PORTFOLIO</div>
+        <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 20px" }}>Other Projects</h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
-            {
-              name: "StainSlayer AI",
-              desc: "Stain identification app. Camera-first UX. Live on iOS and Android.",
-              status: "LIVE",
-            },
-            {
-              name: "3 Additional Apps",
-              desc: "Active development pipeline. Home intelligence, document translation, self-accuracy tracking.",
-              status: "IN DEV",
-            },
-            {
-              name: "Cyber Hornets",
-              desc: "Previously CEO. 40.9K followers, 7-figure revenue, 10K+ Discord community.",
-              status: "PREV",
-            },
+            { name: "StainSlayer AI", desc: "Stain identification app. Camera-first UX. Live on iOS and Android.", status: "LIVE" },
+            { name: "3 Additional Apps", desc: "Active development pipeline. Home intelligence, document translation, self-accuracy tracking.", status: "IN DEV" },
+            { name: "Cyber Hornets", desc: "Previously CEO. 40.9K followers, 7-figure revenue, 10K+ Discord community.", status: "PREV" },
           ].map((p) => (
-            <div
-              key={p.name}
-              style={{
-                padding: "16px 20px",
-                background: "var(--card)",
-                border: "2px solid var(--border_inactive)",
-                borderRadius: 10,
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                gap: 16,
-              }}
-            >
+            <div key={p.name} style={{ padding: "16px 20px", background: "var(--card)", border: "2px solid var(--border_inactive)", borderRadius: 10, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
               <div>
-                <div
-                  style={{
-                    fontWeight: 600,
-                    color: "var(--text)",
-                    fontSize: 15,
-                    marginBottom: 4,
-                  }}
-                >
-                  {p.name}
-                </div>
-                <div style={{ fontSize: 13, color: "var(--sub)", lineHeight: 1.4 }}>
-                  {p.desc}
-                </div>
+                <div style={{ fontWeight: 600, color: "var(--text)", fontSize: 15, marginBottom: 4 }}>{p.name}</div>
+                <div style={{ fontSize: 13, color: "var(--sub)", lineHeight: 1.4 }}>{p.desc}</div>
               </div>
-              <span
-                style={{
-                  fontFamily:
-                    "var(--font-jetbrains, monospace), ui-monospace, monospace",
-                  fontSize: 9,
-                  letterSpacing: "0.1em",
-                  padding: "3px 8px",
-                  borderRadius: 4,
-                  border: `1px solid ${
-                    p.status === "LIVE"
-                      ? "rgba(45,212,191,0.3)"
-                      : "rgba(255,255,255,0.1)"
-                  }`,
-                  color:
-                    p.status === "LIVE"
-                      ? "var(--teal)"
-                      : "var(--sub)",
-                  whiteSpace: "nowrap",
-                  flexShrink: 0,
-                }}
-              >
-                {p.status}
-              </span>
+              <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.1em", padding: "3px 8px", borderRadius: 4, border: `1px solid ${p.status === "LIVE" ? "rgba(45,212,191,0.3)" : "rgba(255,255,255,0.1)"}`, color: p.status === "LIVE" ? "var(--teal)" : "var(--sub)", whiteSpace: "nowrap", flexShrink: 0 }}>{p.status}</span>
             </div>
           ))}
         </div>
       </section>
 
       {/* ── CONTACT FOOTER ── */}
-      <section
-        style={{
-          padding: "32px 24px 80px",
-          maxWidth: 720,
-          margin: "0 auto",
-          borderTop: "1px solid var(--border_inactive)",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 6,
-          }}
-        >
-          <div
-            style={{
-              fontWeight: 700,
-              fontSize: 18,
-              color: "var(--text)",
-              marginBottom: 8,
-            }}
-          >
-            Preston Winters
-          </div>
-
-          <a
-            href="mailto:Droiddna2013@gmail.com"
-            style={{
-              color: "var(--teal)",
-              textDecoration: "none",
-              fontSize: 14,
-              fontFamily:
-                "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            }}
-          >
-            Droiddna2013@gmail.com
-          </a>
-          <a
-            href="tel:+15415510731"
-            style={{
-              color: "var(--sub)",
-              textDecoration: "none",
-              fontSize: 14,
-              fontFamily:
-                "var(--font-jetbrains, monospace), ui-monospace, monospace",
-            }}
-          >
-            541-551-0731
-          </a>
-          <span
-            style={{
-              color: "var(--sub)",
-              fontSize: 14,
-            }}
-          >
-            Bandon, Oregon
-          </span>
+      <section style={{ padding: "32px 24px 80px", maxWidth: 720, margin: "0 auto", borderTop: "1px solid var(--border_inactive)" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <div style={{ fontWeight: 700, fontSize: 18, color: "var(--text)", marginBottom: 8 }}>Preston Winters</div>
+          <a href="mailto:Droiddna2013@gmail.com" style={{ color: "var(--teal)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>Droiddna2013@gmail.com</a>
+          <a href="tel:+15415510731" style={{ color: "var(--sub)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>541-551-0731</a>
+          <span style={{ color: "var(--sub)", fontSize: 14 }}>Bandon, Oregon</span>
         </div>
       </section>
     </>
