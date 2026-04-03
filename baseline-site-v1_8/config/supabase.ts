@@ -1,5 +1,5 @@
 /** Supabase client config — waitlist only for now */
 export const supabaseConfig = {
   url: "https://jfpvojhkiduegclatqsl.supabase.co",
-  anonKey: "sb_publishable_2zm7k8m6M6CEWviqKepDUw_2x74L8ew",
+  anonKey: "sb_publishable_SNVIXY_HZVInAQ8Vv84RHQ_mTEaw5r0",
 } as const;
