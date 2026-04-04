@@ -354,7 +354,7 @@ export default function HomePage() {
         }} />
 
         {[
-          { label: "figures tracked", value: "44" },
+          { label: "figures tracked", value: "106" },
           { label: "AI providers", value: "4" },
           { label: "parallel systems", value: "3" },
         ].map((s) => (

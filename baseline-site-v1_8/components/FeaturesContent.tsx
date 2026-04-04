@@ -321,9 +321,9 @@ function FigureRoster() {
   return (
     <div style={{ marginBottom: 20 }}>
       <p className="p" style={{ maxWidth: 640, marginBottom: 12 }}>
-        <span className="data" style={{ color: "var(--teal)" }}>44 figures</span>{" "}
-        tracked at launch across five categories. Roster expands over time.
-        Congressional members sync automatically via Congress.gov.
+        <span className="data" style={{ color: "var(--teal)" }}>106 figures</span>{" "}
+        tracked at launch. 44 named across five categories, plus congressional
+        members synced automatically via Congress.gov. Roster expands over time.
       </p>
 
       {FIGURE_CATEGORIES.map((cat) => (
