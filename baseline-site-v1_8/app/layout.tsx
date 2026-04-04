@@ -71,7 +71,10 @@ function JsonLd() {
       email: site.contact.support,
       contactType: "customer support"
     },
-    sameAs: []
+    sameAs: [
+      "https://github.com/Preston2012",
+      "https://linkedin.com/in/prestonwinters"
+    ]
   };
 
   const website = {

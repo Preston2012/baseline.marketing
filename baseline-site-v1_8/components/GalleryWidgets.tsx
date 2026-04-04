@@ -2832,7 +2832,7 @@ export function MutationTimelineWidget() {
               opacity: 0.7,
             }} />
           </div>
-          <DataLabel size={7} color={aggMutation > 50 ? A : T}>{phase >= 3 ? `${aggMutation}%` : '—'}</DataLabel>
+          <DataLabel size={7} color={aggMutation > 50 ? A : T}>{phase >= 3 ? `${aggMutation}%` : '--'}</DataLabel>
         </div>
 
         {/* Provision diff cards */}
@@ -3023,7 +3023,7 @@ export function SpendingScopeWidget() {
                 opacity: phase >= 3 ? 1 : 0,
                 transition: 'opacity 600ms ease 800ms',
               }}>
-                ${phase >= 3 ? `${totalSpending}B` : '—'}
+                ${phase >= 3 ? `${totalSpending}B` : '--'}
               </div>
             </div>
 
@@ -3045,7 +3045,7 @@ export function SpendingScopeWidget() {
                   background: SUB, opacity: 0.2,
                 }} />
               </div>
-              <DataLabel size={6} color={depthFill > 60 ? A : T}>{phase >= 3 ? `${depthFill}%` : '—'}</DataLabel>
+              <DataLabel size={6} color={depthFill > 60 ? A : T}>{phase >= 3 ? `${depthFill}%` : '--'}</DataLabel>
             </div>
 
             {/* Source intelligence badges */}

@@ -10,7 +10,7 @@ Hero section with morphing headline, waitlist email capture (Supabase), app stor
 **Key components:** `WaitlistCapture`, `HeroMorph`, `StoreCTA`, `TheWall`, `MuseumGallery`
 
 ### `/features/`
-Interactive showcase of every product surface. 15+ custom-built widgets demonstrating the production app UI: framing radar, signal pulse, receipt timeline, provision drift, split microscope, and more. Each widget renders live with animated data. No chart libraries.
+Interactive showcase of every product surface. 22 custom-built widgets demonstrating the production app UI: framing radar, signal pulse, receipt timeline, provision drift, split microscope, and more. Each widget renders live with animated data. No chart libraries.
 
 **Key components:** `FeaturesContent`, `FeaturesNav`, `GalleryWidgets`, `LiveWidgets`
 
