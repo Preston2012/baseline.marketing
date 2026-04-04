@@ -174,7 +174,7 @@ export default function BuiltPage() {
             Contact Me
           </a>
           <a
-            href="https://github.com/Preston2012/baseline-showcase"
+            href="https://github.com/Preston2012"
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -192,6 +192,26 @@ export default function BuiltPage() {
             }}
           >
             GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/prestonwinters"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              height: 44,
+              padding: "0 20px",
+              borderRadius: 8,
+              background: "transparent",
+              color: "var(--sub)",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: 14,
+              border: "2px solid rgba(182,198,214,0.15)",
+            }}
+          >
+            LinkedIn
           </a>
         </div>
       </section>
@@ -216,9 +236,9 @@ export default function BuiltPage() {
           <div style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderTop: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, left: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderLeft: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, right: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
-          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 20 INTERACTIVE WIDGETS</div>
+          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 22 INTERACTIVE WIDGETS</div>
           <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>Every widget on this site is custom-built</div>
-          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 20 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.</div>
+          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 22 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.</div>
           <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, color: "var(--teal)", letterSpacing: "0.05em" }}>View live widgets &rarr;</span>
         </a>
       </section>
