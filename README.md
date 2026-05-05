@@ -136,3 +136,14 @@ Output is in `baseline-site-v1_8/out/`. Deploy to any static host (Cloudflare Pa
 
 Preston Winters
 [baseline.marketing/built](https://www.baseline.marketing/built/) | [LinkedIn](https://linkedin.com/in/prestonwinters) | [GitHub](https://github.com/Preston2012) | [Droiddna2013@gmail.com](mailto:Droiddna2013@gmail.com)
+
+
+---
+
+## Other work by the author
+
+- **[Demiurge](https://github.com/Preston2012/demi).** Open-source memory engine for AI agents.
+- **[Ouroboros](https://github.com/Preston2012/ouroboros).** Governance architecture for the AI era.
+- **[AI Council](https://github.com/Preston2012/ai-council).** Multi-model orchestration methodology.
+
+[Preston Winters](https://github.com/Preston2012) · [preston@baseline.marketing](mailto:preston@baseline.marketing)
