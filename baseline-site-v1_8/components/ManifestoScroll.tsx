@@ -90,7 +90,7 @@ export function ManifestoScroll() {
                 position: "absolute",
                 top: 32,
                 right: 24,
-                color: "rgba(45, 212, 191, 0.3)",
+                color: "var(--teal-dim)",
                 fontSize: 11,
                 letterSpacing: "0.1em",
                 opacity: isVisible ? 1 : 0,

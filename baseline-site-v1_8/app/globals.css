@@ -15,6 +15,7 @@
   --text:#eaf2ff;
   --sub:#b6c6d6;
   --sub-dim:#8a9ab0;     /* WCAG AA dim: 6.68:1 on bg, 6.17:1 on card. Use instead of opacity:0.5 on text. */
+  --teal-dim:#26988b;    /* WCAG AA dim teal: 5.42:1 on bg, 5.63:1 on scanline-ghost, 5.31:1 on footer. Use instead of rgba(45,212,191,0.15-0.40) on text. */
 
   --border_inactive: rgba(182,198,214,0.12);
   --border_active: rgba(45,212,191,0.15);

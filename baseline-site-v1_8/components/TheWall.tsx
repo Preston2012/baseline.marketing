@@ -82,7 +82,7 @@ export function TheWall() {
             style={{
               fontSize: 10,
               letterSpacing: "0.06em",
-              color: "rgba(45, 212, 191, 0.2)",
+              color: "var(--teal-dim)",
               flexShrink: 0,
             }}
           >
@@ -108,7 +108,7 @@ export function TheWall() {
             style={{
               fontSize: 8,
               letterSpacing: "0.08em",
-              color: "rgba(45, 212, 191, 0.07)",
+              color: "var(--teal-dim)",
               flexShrink: 0,
             }}
           >

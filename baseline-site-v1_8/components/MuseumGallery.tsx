@@ -128,7 +128,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
           transition: "opacity 400ms, background 400ms",
         }}>
           <span aria-hidden="true" className="data" style={{
-            color: "rgba(45,212,191,0.6)", fontSize: 10, letterSpacing: "0.18em",
+            color: "var(--teal-dim)", fontSize: 10, letterSpacing: "0.18em",
             border: "1px solid rgba(45,212,191,0.2)", borderRadius: 4,
             padding: "3px 10px", textTransform: "uppercase", position: "relative", overflow: "hidden",
           }}>

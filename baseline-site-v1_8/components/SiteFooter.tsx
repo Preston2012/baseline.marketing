@@ -96,8 +96,7 @@ export function SiteFooter() {
           className="data"
           style={{
             fontSize: 10,
-            color: "var(--sub)",
-            opacity: 0.3,
+            color: "var(--sub-dim)",
             marginTop: 8,
             letterSpacing: "0.08em",
           }}
@@ -111,8 +110,7 @@ export function SiteFooter() {
           aria-hidden="true"
           style={{
             fontSize: 8,
-            color: "var(--sub)",
-            opacity: 0.12,
+            color: "var(--sub-dim)",
             marginTop: 4,
             letterSpacing: "0.1em",
           }}
