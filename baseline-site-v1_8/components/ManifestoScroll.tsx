@@ -84,7 +84,7 @@ export function ManifestoScroll() {
             }}
           >
             {/* Counter */}
-            <div
+            <div aria-hidden="true"
               className="data"
               style={{
                 position: "absolute",

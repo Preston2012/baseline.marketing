@@ -95,7 +95,7 @@ export function FrostedWidgetPreview({ children, label, tier }: { children: Reac
           <div style={{ position: 'absolute', bottom: 1, right: 1, width: 2, height: 2, borderRadius: '50%', background: 'rgba(45,212,191,0.1)' }} />
         </div>
 
-        <span style={{
+        <span aria-hidden="true" style={{
           fontFamily: "var(--font-jetbrains, monospace)",
           fontSize: 8, letterSpacing: "0.12em",
           color: "rgba(45,212,191,0.35)", textTransform: "uppercase",
@@ -107,7 +107,7 @@ export function FrostedWidgetPreview({ children, label, tier }: { children: Reac
         }}>
           {label || "LIVE PREVIEW"}
         </span>
-        <span style={{
+        <span aria-hidden="true" style={{
           fontFamily: "var(--font-jetbrains, monospace)",
           fontSize: 7, letterSpacing: "0.1em",
           color: "rgba(45,212,191,0.2)", textTransform: "uppercase",

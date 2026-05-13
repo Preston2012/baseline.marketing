@@ -14,6 +14,7 @@
 
   --text:#eaf2ff;
   --sub:#b6c6d6;
+  --sub-dim:#8a9ab0;     /* WCAG AA dim: 6.68:1 on bg, 6.17:1 on card. Use instead of opacity:0.5 on text. */
 
   --border_inactive: rgba(182,198,214,0.12);
   --border_active: rgba(45,212,191,0.15);

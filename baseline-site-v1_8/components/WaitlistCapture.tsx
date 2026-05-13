@@ -74,13 +74,37 @@ export function WaitlistCapture() {
         border: "2px solid var(--border_inactive)",
         borderRadius: 18,
         overflow: "hidden",
-        backgroundImage: "url(/brand/hero_skyline.jpg)",
-        backgroundSize: "cover",
-        backgroundPosition: "center top",
         backgroundColor: "#081017",
         marginBottom: 16,
       }}
     >
+      {/* LCP image — WebP srcset + fetchpriority high. ~13K mobile, ~26K tablet, ~41K desktop. */}
+      <picture>
+        <source
+          type="image/webp"
+          srcSet="/brand/hero_skyline_768.webp 768w, /brand/hero_skyline_1280.webp 1280w, /brand/hero_skyline_1920.webp 1920w"
+          sizes="(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px"
+        />
+        <img
+          src="/brand/hero_skyline.jpg"
+          alt=""
+          aria-hidden="true"
+          // @ts-expect-error - fetchpriority is a real HTML attribute, React types lag
+          fetchpriority="high"
+          decoding="async"
+          width={1920}
+          height={1490}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center top",
+            zIndex: 0,
+          }}
+        />
+      </picture>
       {/* Dark overlay — matches hero treatment */}
       <div
         style={{
@@ -90,6 +114,7 @@ export function WaitlistCapture() {
             "linear-gradient(180deg, rgba(8,16,23,0.94) 0%, rgba(8,16,23,0.88) 50%, rgba(8,16,23,0.96) 100%)",
           backdropFilter: "blur(4px)",
           WebkitBackdropFilter: "blur(4px)",
+          zIndex: 1,
         }}
       />
 
@@ -120,7 +145,7 @@ export function WaitlistCapture() {
             "linear-gradient(90deg, transparent 0%, rgba(45,212,191,0.15) 20%, rgba(45,212,191,0.3) 50%, rgba(45,212,191,0.15) 80%, transparent 100%)",
           animation: "wlScanline 2s ease-out forwards",
           animationDelay: "300ms",
-          zIndex: 2,
+          zIndex: 3,
           pointerEvents: "none",
         }}
       />
@@ -136,7 +161,7 @@ export function WaitlistCapture() {
             "linear-gradient(90deg, transparent 0%, rgba(45,212,191,0.06) 30%, rgba(45,212,191,0.1) 50%, rgba(45,212,191,0.06) 70%, transparent 100%)",
           animation: "wlGhostScan 3.5s ease-out forwards",
           animationDelay: "600ms",
-          zIndex: 2,
+          zIndex: 3,
           pointerEvents: "none",
         }}
       />
@@ -236,10 +261,10 @@ export function WaitlistCapture() {
         }}
       />
 
-      {/* Content layer */}
-      <div style={{ position: "relative", padding: "36px 24px 32px", zIndex: 1 }}>
+      {/* Content layer — above hero image (z0) and gradient overlay (z1) */}
+      <div style={{ position: "relative", padding: "36px 24px 32px", zIndex: 2 }}>
         {/* Classification stamp row */}
-        <div
+        <div aria-hidden="true"
           className="data"
           style={{
             display: "flex",
@@ -371,7 +396,7 @@ export function WaitlistCapture() {
               {/* Terminal-style input wrapper */}
               <div style={{ position: "relative" }}>
                 {/* Prompt caret */}
-                <span
+                <span aria-hidden="true"
                   className="data"
                   style={{
                     position: "absolute",
@@ -525,8 +550,7 @@ export function WaitlistCapture() {
                   justifyContent: "center",
                   gap: 8,
                   fontSize: 8,
-                  color: "var(--sub)",
-                  opacity: 0.3,
+                  color: "var(--sub-dim)",
                   textAlign: "center",
                   marginTop: 18,
                   letterSpacing: "0.1em",
@@ -603,7 +627,7 @@ function SuccessState() {
       </div>
 
       {/* Classification stamp */}
-      <div
+      <div aria-hidden="true"
         className="data"
         style={{
           fontSize: 8,

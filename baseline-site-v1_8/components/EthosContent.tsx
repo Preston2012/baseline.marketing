@@ -327,7 +327,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
       {/* Centered content */}
       <div style={{ textAlign: 'center', maxWidth: 540, margin: '0 auto' }}>
         {/* Numeral */}
-        <span
+        <span aria-hidden="true"
           className="data"
           style={{
             fontSize: 28,
@@ -362,7 +362,6 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
             color: 'var(--sub)',
             marginBottom: 16,
             fontStyle: 'italic',
-            opacity: 0.8,
           }}
         >
           {card.tagline}

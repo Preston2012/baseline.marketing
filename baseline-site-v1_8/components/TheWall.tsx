@@ -66,12 +66,13 @@ export function TheWall() {
         }}
       />
 
-      <div
+      <div aria-hidden="true"
         style={{
           display: "flex",
           gap: 32,
           whiteSpace: "nowrap",
           animation: "wall-scroll 30s linear infinite",
+          // decorative ticker
         }}
       >
         {ITEMS.map((item, i) => (
@@ -91,7 +92,7 @@ export function TheWall() {
       </div>
 
       {/* Ghost reverse ticker: dimmer, slower, opposite direction */}
-      <div
+      <div aria-hidden="true"
         style={{
           display: "flex",
           gap: 40,
