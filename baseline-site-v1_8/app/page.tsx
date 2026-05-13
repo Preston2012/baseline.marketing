@@ -40,14 +40,37 @@ export default function HomePage() {
           borderRadius: 18,
           overflow: "hidden",
           border: "2px solid var(--border_inactive)",
-          backgroundImage: "url(/brand/hero_skyline.jpg)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
           backgroundColor: "#081017",
           animation: "heroFadeIn 600ms ease-out",
         }}
         aria-label="Baseline hero"
       >
+        {/* Hero image — WebP srcset, loading lazy because WaitlistCapture above is the actual LCP. */}
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/brand/hero_skyline_768.webp 768w, /brand/hero_skyline_1280.webp 1280w, /brand/hero_skyline_1920.webp 1920w"
+            sizes="(max-width: 768px) 768px, (max-width: 1280px) 1280px, 1920px"
+          />
+          <img
+            src="/brand/hero_skyline.jpg"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            width={1920}
+            height={1490}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center",
+              zIndex: 0,
+            }}
+          />
+        </picture>
         <div
           className="reduceTransparency"
           style={{
@@ -57,10 +80,11 @@ export default function HomePage() {
               "linear-gradient(180deg, rgba(8,16,23,0.92) 0%, rgba(8,16,23,0.85) 50%, rgba(8,16,23,0.95) 100%)",
             backdropFilter: "blur(4px)",
             WebkitBackdropFilter: "blur(4px)",
+            zIndex: 1,
           }}
         />
 
-        <div style={{ position: "relative", padding: 24 }}>
+        <div style={{ position: "relative", padding: 24, zIndex: 2 }}>
           <h1 className="h1" style={{ maxWidth: 820 }}>
             <HeroMorph /> you can measure.
           </h1>
@@ -91,7 +115,7 @@ export default function HomePage() {
 
           <p
             className="small"
-            style={{ fontStyle: "italic", opacity: 0.5, marginBottom: 4 }}
+            style={{ fontStyle: "italic", color: "var(--sub-dim)", marginBottom: 4 }}
           >
             Observational analysis only. Not a fact-check.
           </p>
@@ -107,7 +131,7 @@ export default function HomePage() {
             }}
           >
             <span className="data">Same input</span>
-            <span style={{ opacity: 0.6, margin: "0 6px" }}>&bull;</span>
+            <span aria-hidden="true" style={{ opacity: 0.6, margin: "0 6px" }}>&bull;</span>
             <span className="data">Parallel systems</span>
             <br />
             <span className="data">
@@ -175,7 +199,7 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
             <SecondaryLinkButton href="/ethos/" ariaLabel="Read our ethos">
               <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
-                <span style={{ color: "var(--teal)", fontSize: 10, opacity: 0.6 }}>{"\u2726"}</span>
+                <span aria-hidden="true" style={{ color: "var(--teal)", fontSize: 10, opacity: 0.6 }}>{"\u2726"}</span>
                 Ethos
               </span>
             </SecondaryLinkButton>
@@ -220,8 +244,8 @@ export default function HomePage() {
             borderRadius: '50%', background: 'rgba(45,212,191,0.08)',
             transform: 'translateX(-50%)',
           }} />
-          {/* Subtle center label */}
-          <div style={{
+          {/* Subtle center label — decorative chrome */}
+          <div aria-hidden="true" style={{
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
             background: 'var(--bg)', padding: '0 10px',
             fontFamily: 'var(--font-jetbrains, monospace)', fontSize: 7,
@@ -318,7 +342,7 @@ export default function HomePage() {
                 }} />
                 CLASSIFIED
               </span>
-              <span className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
+              <span aria-hidden="true" className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
                 FULL PIPELINE · PRE-LAUNCH
               </span>
             </div>
@@ -412,10 +436,9 @@ export default function HomePage() {
         <p
           className="data"
           style={{
-            color: "var(--sub)",
+            color: "var(--sub-dim)",
             fontSize: 13,
             letterSpacing: "0.04em",
-            opacity: 0.6,
             margin: 0,
           }}
         >

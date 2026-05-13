@@ -127,7 +127,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
           opacity: revealed ? 0 : 1, pointerEvents: revealed ? "none" : "auto",
           transition: "opacity 400ms, background 400ms",
         }}>
-          <span className="data" style={{
+          <span aria-hidden="true" className="data" style={{
             color: "rgba(45,212,191,0.6)", fontSize: 10, letterSpacing: "0.18em",
             border: "1px solid rgba(45,212,191,0.2)", borderRadius: 4,
             padding: "3px 10px", textTransform: "uppercase", position: "relative", overflow: "hidden",
@@ -156,7 +156,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
           <TierPill tier={item.tier} />
         </div>
         <div className="data" style={{ color: "var(--teal)", fontSize: 13, marginBottom: revealed ? 12 : 4 }}>{item.tagline}</div>
-        {!revealed && <div className="data" style={{ color: "var(--sub)", fontSize: 11, opacity: 0.5 }}>&#9656; CLEARANCE REQUIRED</div>}
+        {!revealed && <div className="data" style={{ color: "var(--sub-dim)", fontSize: 11 }}>&#9656; CLEARANCE REQUIRED</div>}
         <div style={{ maxHeight: revealed ? 300 : 0, opacity: revealed ? 1 : 0, overflow: "hidden", transition: "max-height 300ms, opacity 200ms 100ms" }}>
           <div style={{ borderTop: "2px solid rgba(45,212,191,0.1)", marginTop: 8, paddingTop: 8 }}>
             <p className="p" style={{ margin: 0, fontWeight: 500 }}>{item.placard}</p>
@@ -233,7 +233,7 @@ export function MuseumGallery() {
         ))}
       </div>
 
-      <div className="small" style={{ opacity: 0.5, fontStyle: "italic", marginTop: 16, textAlign: "center" }}>
+      <div className="small" style={{ color: "var(--sub-dim)", fontStyle: "italic", marginTop: 16, textAlign: "center" }}>
         Observational analysis only. Not a fact-check.
       </div>
     </section>

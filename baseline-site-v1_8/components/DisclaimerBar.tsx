@@ -19,7 +19,7 @@ export function DisclaimerBar() {
           Observational analysis only. Not a fact-check.
         </span>
         {/* Audit fix: secondary text opacity tuned to ~0.85 */}
-        <span className="small" style={{ opacity: 0.85, minWidth: 0 }}>
+        <span className="small" style={{ minWidth: 0 }}>
           Outputs may vary between systems. Sources and context remain the reference surface.
         </span>
       </div>

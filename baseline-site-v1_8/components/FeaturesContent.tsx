@@ -211,7 +211,7 @@ function SectionGrid({ items, filter }: { items: Feature[]; filter: TierFilter }
 
   if (filtered.length === 0) {
     return (
-      <div className="data" style={{ color: "var(--sub)", fontSize: 12, opacity: 0.5, padding: "20px 0", textAlign: "center" }}>
+      <div className="data" style={{ color: "var(--sub-dim)", fontSize: 12, padding: "20px 0", textAlign: "center" }}>
         No features in this tier for this category.
       </div>
     );
@@ -340,7 +340,7 @@ function FigureRoster() {
             {cat.names.map((name, i) => (
               <Fragment key={name}>
                 {name.startsWith("Office of") && !cat.names[i - 1]?.startsWith("Office of") && (
-                  <span className="data" style={{ fontSize: 9, opacity: 0.3, letterSpacing: "0.08em", width: "100%", marginTop: 4 }}>
+                  <span className="data" style={{ fontSize: 9, color: "var(--sub-dim)", letterSpacing: "0.08em", width: "100%", marginTop: 4 }}>
                     INSTITUTIONAL FEEDS
                   </span>
                 )}
@@ -360,7 +360,7 @@ function FigureRoster() {
         </div>
       ))}
 
-      <p className="small" style={{ opacity: 0.5, marginTop: 12 }}>
+      <p className="small" style={{ color: "var(--sub-dim)", marginTop: 12 }}>
         Request a figure for tracking in-app. Roster updates over time
         based on source availability.
       </p>
@@ -383,7 +383,7 @@ export function FeaturesContent() {
       <section id="signals" className="section" aria-label="Signal features">
         <span className="section-label">SIGNALS</span>
         <SectionGrid items={SIGNALS} filter={tier} />
-        <div className="small" style={{ fontStyle: "italic", opacity: 0.5, marginTop: 12 }}>
+        <div className="small" style={{ fontStyle: "italic", color: "var(--sub-dim)", marginTop: 12 }}>
           Observational analysis only. Not a fact-check.
         </div>
       </section>
@@ -408,7 +408,7 @@ export function FeaturesContent() {
       <section id="bills" className="section" aria-label="Bill features">
         <span className="section-label">BILLS</span>
         <SectionGrid items={BILLS} filter={tier} />
-        <div className="small" style={{ fontStyle: "italic", opacity: 0.5, marginTop: 12 }}>
+        <div className="small" style={{ fontStyle: "italic", color: "var(--sub-dim)", marginTop: 12 }}>
           Observational analysis only. Not a fact-check.
         </div>
       </section>

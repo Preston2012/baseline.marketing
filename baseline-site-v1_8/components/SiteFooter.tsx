@@ -74,7 +74,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="small" style={{ opacity: 0.5, marginTop: 4, lineHeight: 1.8 }}>
+        <div className="small" style={{ color: "var(--sub-dim)", marginTop: 4, lineHeight: 1.8 }}>
           Baseline™, The Receipt™, Framing Radar™, Lens Lab™, Crossfire™, Signal Pulse™,
           Framing Fingerprint™, Constellation Nav™, Provision Drift™, Split Microscope™,
           Intersections Panel™, Declassified Dossier™, and Narrative Sync™ are trademarks of Baseline.
@@ -92,6 +92,7 @@ export function SiteFooter() {
 
         {/* N5: Next measurement timestamp */}
         <div
+          aria-hidden="true"
           className="data"
           style={{
             fontSize: 10,
