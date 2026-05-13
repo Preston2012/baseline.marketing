@@ -249,7 +249,7 @@ export default function HomePage() {
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
             background: 'var(--bg)', padding: '0 10px',
             fontFamily: 'var(--font-jetbrains, monospace)', fontSize: 7,
-            letterSpacing: '0.15em', color: 'rgba(45,212,191,0.15)',
+            letterSpacing: '0.15em', color: 'var(--teal-dim)',
             textTransform: 'uppercase', top: -4,
           }}>
             SYS.PROCESS
@@ -328,7 +328,7 @@ export default function HomePage() {
               <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, right: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
 
               <span className="data" style={{
-                color: "rgba(45,212,191,0.4)", fontSize: 10,
+                color: "var(--teal-dim)", fontSize: 10,
                 letterSpacing: "0.18em",
                 border: "1px solid rgba(45,212,191,0.15)",
                 borderRadius: 4, padding: "3px 10px",

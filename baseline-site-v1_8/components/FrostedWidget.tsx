@@ -98,7 +98,7 @@ export function FrostedWidgetPreview({ children, label, tier }: { children: Reac
         <span aria-hidden="true" style={{
           fontFamily: "var(--font-jetbrains, monospace)",
           fontSize: 8, letterSpacing: "0.12em",
-          color: "rgba(45,212,191,0.35)", textTransform: "uppercase",
+          color: "var(--teal-dim)", textTransform: "uppercase",
           border: "1px solid rgba(45,212,191,0.12)",
           borderRadius: 3, padding: "2px 8px",
           textAlign: "center", maxWidth: "90%",
@@ -110,7 +110,7 @@ export function FrostedWidgetPreview({ children, label, tier }: { children: Reac
         <span aria-hidden="true" style={{
           fontFamily: "var(--font-jetbrains, monospace)",
           fontSize: 7, letterSpacing: "0.1em",
-          color: "rgba(45,212,191,0.2)", textTransform: "uppercase",
+          color: "var(--teal-dim)", textTransform: "uppercase",
           opacity: peeking ? 0 : 1,
           transition: "opacity 300ms ease",
         }}>

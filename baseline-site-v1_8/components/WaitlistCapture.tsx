@@ -273,7 +273,7 @@ export function WaitlistCapture() {
             gap: 10,
             fontSize: 8,
             letterSpacing: "0.2em",
-            color: "rgba(45,212,191,0.25)",
+            color: "var(--teal-dim)",
             textTransform: "uppercase",
             marginBottom: 20,
             opacity: entered ? 1 : 0,
@@ -403,7 +403,7 @@ export function WaitlistCapture() {
                     left: 14,
                     top: "50%",
                     transform: "translateY(-50%)",
-                    color: "rgba(45,212,191,0.3)",
+                    color: "var(--teal-dim)",
                     fontSize: 13,
                     pointerEvents: "none",
                     zIndex: 2,
@@ -632,7 +632,7 @@ function SuccessState() {
         style={{
           fontSize: 8,
           letterSpacing: "0.2em",
-          color: "rgba(45,212,191,0.35)",
+          color: "var(--teal-dim)",
           textTransform: "uppercase",
           marginBottom: 10,
         }}

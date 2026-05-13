@@ -22,7 +22,7 @@ const BG = '#0c1a23';
 function ConceptWrap({ stamp, children }: { stamp: string; children: React.ReactNode }) {
   return (
     <div style={{ background: BG, width: '100%', position: 'relative', overflow: 'hidden', padding: '10px 8px 6px' }}>
-      <div style={{ fontFamily: MONO, fontSize: 7, letterSpacing: '0.15em', color: 'rgba(45,212,191,0.15)', textTransform: 'uppercase', marginBottom: 6 }}>
+      <div aria-hidden="true" style={{ fontFamily: MONO, fontSize: 7, letterSpacing: '0.15em', color: 'var(--teal-dim)', textTransform: 'uppercase', marginBottom: 6 }}>
         {stamp}
       </div>
       <div style={{ position: 'absolute', top: 5, right: 5, width: 8, height: 8, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
