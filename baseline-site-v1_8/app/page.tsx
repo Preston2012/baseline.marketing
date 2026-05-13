@@ -308,14 +308,26 @@ export default function HomePage() {
               position: "relative",
             }}
           >
-            <Image
-              src="/screens/pipeline_diagram.webp"
-              alt="Baseline analysis pipeline diagram"
-              width={1040}
-              height={600}
-              loading="lazy"
-              style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
-            />
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcSet="/screens/pipeline_diagram_720.webp"
+                type="image/webp"
+              />
+              <source
+                srcSet="/screens/pipeline_diagram_1024.webp"
+                type="image/webp"
+              />
+              <img
+                src="/screens/pipeline_diagram_1024.webp"
+                alt="Baseline analysis pipeline diagram"
+                width={1040}
+                height={600}
+                loading="lazy"
+                decoding="async"
+                style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
+              />
+            </picture>
             {/* Classification overlay */}
             <div style={{
               position: "absolute", inset: 0,
