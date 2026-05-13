@@ -56,7 +56,8 @@ export default function HomePage() {
             src="/brand/hero_skyline.jpg"
             alt=""
             aria-hidden="true"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
             decoding="async"
             width={1920}
             height={1490}
