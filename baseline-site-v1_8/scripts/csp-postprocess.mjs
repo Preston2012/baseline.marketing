@@ -42,19 +42,21 @@ function cspHash(text) {
 }
 
 function buildCsp(hashes) {
-  // - script-src: self covers Next.js static chunks + Cloudflare's
-  //   /cdn-cgi/scripts/email-decode helper. Inline hashes for flight data.
+  // - script-src: self + Cloudflare Web Analytics beacon host. Cloudflare's
+  //   edge auto-injects static.cloudflareinsights.com/beacon.min.js when
+  //   analytics features fire (varies by request / user-agent). Allowlisting
+  //   keeps Lighthouse Best-Practices at 100 regardless of whether the beacon
+  //   shows up. Inline hashes cover Next.js flight data per page.
+  //   /cdn-cgi/scripts/email-decode.min.js is same-origin so 'self' covers it.
   // - style-src: self + 'unsafe-inline' (Next.js inline criticals + Tailwind).
-  // - connect-src: self only. Baseline marketing site doesn't talk to
-  //   external APIs from the browser (the trading engine is at api.baseline
-  //   not on the marketing site).
+  // - connect-src: self + cloudflareinsights.com (beacon POSTs telemetry).
   const directives = [
     "default-src 'self'",
-    `script-src 'self' ${[...hashes].join(' ')}`,
+    `script-src 'self' https://static.cloudflareinsights.com ${[...hashes].join(' ')}`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self' data:",
-    "connect-src 'self'",
+    "connect-src 'self' https://cloudflareinsights.com",
     "form-action 'self'",
     "base-uri 'self'",
     "object-src 'none'",
