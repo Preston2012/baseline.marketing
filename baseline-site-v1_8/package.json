@@ -4,8 +4,8 @@
   "version": "1.4.0",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "export": "next build",
+    "build": "next build && node scripts/csp-postprocess.mjs",
+    "export": "next build && node scripts/csp-postprocess.mjs",
     "start": "next start",
     "lint": "next lint"
   },
