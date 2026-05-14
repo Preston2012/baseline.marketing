@@ -4,7 +4,7 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Baseline Terms of Service.",
+  description: "Baseline Terms of Service. Acceptable use, subscriptions, and dispute terms for the speech-measurement instrument. Observational analysis, not a fact-check.",
   alternates: { canonical: `${site.url}/terms/` }
 };
 

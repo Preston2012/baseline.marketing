@@ -5,7 +5,7 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "End User License Agreement",
-  description: "Baseline End User License Agreement (EULA).",
+  description: "Baseline End User License Agreement. License terms for the mobile speech-measurement app: subscriptions, trial terms, auto-renewal, and platform requirements.",
   alternates: { canonical: `${site.url}/eula/` }
 };
 
