@@ -4,7 +4,7 @@ import { Card } from "@/components/Card";
 
 export const metadata: Metadata = {
   title: "Support",
-  description: "Support contacts and operational notes for Baseline.",
+  description: "Baseline support contacts and operational notes. How to reach the team behind the speech-measurement instrument. Account, billing, and technical issues.",
   alternates: { canonical: `${site.url}/support/` }
 };
 

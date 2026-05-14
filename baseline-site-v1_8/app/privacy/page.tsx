@@ -5,7 +5,7 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Baseline Privacy Policy. Data collection, use, sharing, retention, and your rights.",
+  description: "Baseline Privacy Policy. What we collect, how we use it, sharing and retention, and your rights as a user of the mobile speech-measurement application.",
   alternates: { canonical: `${site.url}/privacy/` }
 };
 
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
           stored as structured data.
         </li>
         <li>
-          {/* Audit fix: Pro, Pro+, B2B — not just "Pro+ or B2B" */}
+          {/* Audit fix: Pro, Pro+, B2B, not just "Pro+ or B2B" */}
           <strong>Private Annotations:</strong> If you are a paid subscriber (Pro, Pro+, or B2B tier), you may
           create private notes on public figure statements. These annotations are visible only to you and are never
           shared with other users or made public.
