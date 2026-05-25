@@ -8,6 +8,10 @@ This is not a template or a landing page. It is a product engineering artifact: 
 **Portfolio:** [baseline.marketing/built](https://www.baseline.marketing/built/)
 **Architecture:** [baseline-showcase](https://github.com/Preston2012/baseline-showcase)
 
+<p align="center">
+  <img src="docs/screenshots/baseline-marketing-hero.jpg" alt="baseline.marketing mobile hero - Signals you can measure" width="320" />
+</p>
+
 ## Why this site exists
 
 Building the marketing layer before launch is deliberate:
@@ -130,12 +134,12 @@ Output is in `baseline-site-v1_8/out/`. Deploy to any static host (Cloudflare Pa
 - [baseline-showcase](https://github.com/Preston2012/baseline-showcase): Architecture docs, code samples, system design
 - [trading-toolkit](https://github.com/Preston2012/trading-toolkit): Python automation
 - [ai-council](https://github.com/Preston2012/ai-council): Multi-model methodology
-- Contact: [Droiddna2013@gmail.com](mailto:Droiddna2013@gmail.com)
+- Contact: [preston@winterscode.com](mailto:preston@winterscode.com)
 
 ## Contact
 
 Preston Winters
-[baseline.marketing/built](https://www.baseline.marketing/built/) | [LinkedIn](https://linkedin.com/in/prestonwinters) | [GitHub](https://github.com/Preston2012) | [Droiddna2013@gmail.com](mailto:Droiddna2013@gmail.com)
+[baseline.marketing/built](https://www.baseline.marketing/built/) | [LinkedIn](https://linkedin.com/in/prestonwinters) | [GitHub](https://github.com/Preston2012) | [preston@winterscode.com](mailto:preston@winterscode.com)
 
 
 ---
@@ -146,4 +150,4 @@ Preston Winters
 - **[Ouroboros](https://github.com/Preston2012/ouroboros).** Governance architecture for the AI era.
 - **[AI Council](https://github.com/Preston2012/ai-council).** Multi-model orchestration methodology.
 
-[Preston Winters](https://github.com/Preston2012) · [preston@baseline.marketing](mailto:preston@baseline.marketing)
+[Preston Winters](https://github.com/Preston2012) · [preston@winterscode.com](mailto:preston@winterscode.com)
