@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ── WAITLIST CAPTURE — hero takeover ── */}
+      {/* ── WAITLIST CAPTURE - hero takeover ── */}
       <WaitlistCapture />
 
       {/* ── HERO ── */}
@@ -45,7 +45,7 @@ export default function HomePage() {
         }}
         aria-label="Baseline hero"
       >
-        {/* Hero image — WebP srcset, loading lazy because WaitlistCapture above is the actual LCP. */}
+        {/* Hero image - WebP srcset, loading lazy because WaitlistCapture above is the actual LCP. */}
         <picture>
           <source
             type="image/webp"
@@ -103,7 +103,7 @@ export default function HomePage() {
               What they said. How they said it.
             </p>
 
-            {/* Teal accent rule — matches subtitle width */}
+            {/* Teal accent rule - matches subtitle width */}
             <div
               style={{
                 width: "100%",
@@ -141,7 +141,7 @@ export default function HomePage() {
           </div>
 
 
-          {/* Store CTAs — grid matches nav grid below */}
+          {/* Store CTAs - grid matches nav grid below */}
           <div
             style={{
               display: "grid",
@@ -154,7 +154,7 @@ export default function HomePage() {
             <StoreCTA store="googleplay" />
           </div>
 
-          {/* ── Teal hashmark ruler — separates "get it" from "explore it" ── */}
+          {/* ── Teal hashmark ruler - separates "get it" from "explore it" ── */}
           <div
             aria-hidden="true"
             style={{
@@ -196,7 +196,7 @@ export default function HomePage() {
             />
           </div>
 
-          {/* ── Ethos — featured solo button (full-width) ── */}
+          {/* ── Ethos - featured solo button (full-width) ── */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr" }}>
             <SecondaryLinkButton href="/ethos/" ariaLabel="Read our ethos">
               <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
@@ -206,7 +206,7 @@ export default function HomePage() {
             </SecondaryLinkButton>
           </div>
 
-          {/* ── Nav grid — 2×2 ── */}
+          {/* ── Nav grid - 2×2 ── */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 10 }}>
             <SecondaryLinkButton href="/features/" ariaLabel="View features">
               Features
@@ -224,7 +224,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS — streamlined to 3 cards (was 6) per §4 ── */}
+      {/* ── HOW IT WORKS - streamlined to 3 cards (was 6) per §4 ── */}
       <section className="section intel-dot-grid" aria-label="How Baseline works" style={{ position: 'relative' }}>
         {/* Registration dots: corner alignment markers */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
@@ -245,7 +245,7 @@ export default function HomePage() {
             borderRadius: '50%', background: 'rgba(45,212,191,0.08)',
             transform: 'translateX(-50%)',
           }} />
-          {/* Subtle center label — decorative chrome */}
+          {/* Subtle center label - decorative chrome */}
           <div aria-hidden="true" style={{
             position: 'absolute', left: '50%', transform: 'translateX(-50%)',
             background: 'var(--bg)', padding: '0 10px',
@@ -418,7 +418,7 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* ── S1: The Wall — scrolling data ticker ── */}
+      {/* ── S1: The Wall - scrolling data ticker ── */}
       <TheWall />
 
       {/* ── N8+N11: Breather line ── */}

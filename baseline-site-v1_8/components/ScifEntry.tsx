@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────
-   SCIF ENTRY — SHELVED 2026-05-13
+   SCIF ENTRY - SHELVED 2026-05-13
    ─────────────────────────────────────────────────────────
    The boot ritual was suspected of hurting first-visit
    bounce rate. Baseline is on hold while Winters Code pays

@@ -3,7 +3,7 @@
 import { FrostedWidgetPreview } from "./FrostedWidget";
 import { PipelineWidget, DeltaComputeWidget, ConsensusAssemblyWidget } from "./LiveWidgets";
 
-/* Frosted widget for Proprietary Surfaces section — pipeline demo */
+/* Frosted widget for Proprietary Surfaces section - pipeline demo */
 export function SurfaceWidgets() {
   return (
     <FrostedWidgetPreview label="PIPELINE · INPUT → PARALLEL → OUTPUT">

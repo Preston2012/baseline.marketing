@@ -31,11 +31,11 @@ const AXES = [
 ];
 
 /** I15: Interactive pentagon with hover tooltips on each axis.
- *  Pure CSS tooltips — no external dependencies. */
+ *  Pure CSS tooltips - no external dependencies. */
 export function RadarTooltips() {
   const [active, setActive] = useState<number | null>(null);
 
-  /* Pentagon geometry — 5 points around a center */
+  /* Pentagon geometry - 5 points around a center */
   const cx = 140,
     cy = 140,
     r = 100;

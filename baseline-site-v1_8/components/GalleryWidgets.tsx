@@ -1,40 +1,40 @@
 'use client';
 
 /* ─────────────────────────────────────────────────────────
-   GALLERY WIDGETS — Interactive Feature Demonstrations
+   GALLERY WIDGETS - Interactive Feature Demonstrations
    ─────────────────────────────────────────────────────────
    22 functional widget demos for the Features page.
    These are NOT art (that's MuseumConcepts). These are
    miniature app panels showing how each surface actually
-   works — with mock data, live animations, and the
+   works - with mock data, live animations, and the
    classified instrument aesthetic.
 
    Placed inside FrostedWidgetPreview for pre-launch blur.
    Animations tease through the frost.
 
    Widget Index:
-   1.  SignalMetricsWidget      — 4-bar signal breakdown
-   2.  BaselineScoreWidget      — 24hr rolling aggregate
-   3.  ConsensusRingWidget      — Model convergence ring
-   4.  ReceiptTimelineWidget    — Semantic similarity timeline
-   5.  CrossfireWidget          — Dual-figure comparison
-   6.  RadarDemoWidget          — 5-axis pentagon overlay
-   7.  ConstellationWidget      — Figure link topology
-   8.  DriftWidget              — Provision drift meter
-   9.  LensLabWidget            — Triple-model parallel view
-   10. SignalPulseWidget        — Concentric sonar rings
-   11. FingerprintWidget        — Rhetorical identity whorl
-   12. IntersectionsWidget      — Cross-figure overlap topology
-   13. DossierWidget            — Complete exhibit plate profile
-   14. SplitMicroscopeWidget    — Side-by-side divergence view
-   15. NarrativeSyncWidget      — Cross-figure convergence (B2B)
-   16. BaselineDeltaWidget      — Center-zero deviation gauge
-   17. VarianceDetectionWidget  — Model disagreement surfacing
-   18. HistoricalTrendsWidget   — Signal metrics time-series
-   19. TopicHeatmapWidget       — Figure × topic coverage grid
-   20. ShiftAlertWidget         — 24hr language shift detection
-   21. MutationTimelineWidget   — Legislative genome sequencer
-   22. SpendingScopeWidget      — Fiscal sonar station
+   1.  SignalMetricsWidget - 4-bar signal breakdown
+   2.  BaselineScoreWidget - 24hr rolling aggregate
+   3.  ConsensusRingWidget - Model convergence ring
+   4.  ReceiptTimelineWidget - Semantic similarity timeline
+   5.  CrossfireWidget - Dual-figure comparison
+   6.  RadarDemoWidget - 5-axis pentagon overlay
+   7.  ConstellationWidget - Figure link topology
+   8.  DriftWidget - Provision drift meter
+   9.  LensLabWidget - Triple-model parallel view
+   10. SignalPulseWidget - Concentric sonar rings
+   11. FingerprintWidget - Rhetorical identity whorl
+   12. IntersectionsWidget - Cross-figure overlap topology
+   13. DossierWidget - Complete exhibit plate profile
+   14. SplitMicroscopeWidget - Side-by-side divergence view
+   15. NarrativeSyncWidget - Cross-figure convergence (B2B)
+   16. BaselineDeltaWidget - Center-zero deviation gauge
+   17. VarianceDetectionWidget - Model disagreement surfacing
+   18. HistoricalTrendsWidget - Signal metrics time-series
+   19. TopicHeatmapWidget - Figure × topic coverage grid
+   20. ShiftAlertWidget - 24hr language shift detection
+   21. MutationTimelineWidget - Legislative genome sequencer
+   22. SpendingScopeWidget - Fiscal sonar station
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';
@@ -306,7 +306,7 @@ export function SignalMetricsWidget() {
           <div style={{ width: 20, height: 20, borderRadius: '50%', border: `1.5px solid ${TEAL_LO}`, background: DARK }} />
           <div>
             <div style={{ fontFamily: BODY, fontSize: 10, color: TEXT, fontWeight: 500, lineHeight: 1.2 }}>Statement Analysis</div>
-            <div style={{ fontFamily: MONO, fontSize: 7, color: SUB, opacity: 0.5, letterSpacing: '0.08em' }}>4 INDEPENDENT SCORES · 0–100</div>
+            <div style={{ fontFamily: MONO, fontSize: 7, color: SUB, opacity: 0.5, letterSpacing: '0.08em' }}>4 INDEPENDENT SCORES · 0-100</div>
           </div>
         </div>
 
@@ -447,7 +447,7 @@ export function ConsensusRingWidget() {
           <svg viewBox="0 0 72 72" style={{ width: '100%', height: '100%' }}>
             {/* Background track */}
             <circle cx="36" cy="36" r="30" fill="none" stroke={TEAL_DIM} strokeWidth="3" />
-            {/* Convergence fill — 3 segments for 3 models */}
+            {/* Convergence fill - 3 segments for 3 models */}
             {[0, 1, 2].map((seg) => {
               const segLen = (2 * Math.PI * 30) / 3;
               const gap = 4;
@@ -511,7 +511,7 @@ export function ConsensusRingWidget() {
               </div>
             );
           })}
-          {/* Variance indicator — only when not 3/3 */}
+          {/* Variance indicator - only when not 3/3 */}
           {ratio < 3 && (
             <div
               style={{
@@ -859,7 +859,7 @@ export function RadarDemoWidget() {
             );
           })}
 
-          {/* Data polygon — filled + stroked */}
+          {/* Data polygon - filled + stroked */}
           <polygon
             points={dataPts}
             fill="rgba(45,212,191,0.06)"
@@ -1044,7 +1044,7 @@ export function DriftWidget() {
           <DataLabel size={7} color={SUB}>PROVISION DRIFT ANALYSIS · 5 SECTIONS</DataLabel>
         </div>
 
-        {/* Drift bars — waterfall style */}
+        {/* Drift bars - waterfall style */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           {PROVISIONS.map((prov, i) => {
             const isHigh = prov.drift > 0.6;
@@ -1276,7 +1276,7 @@ export function LensLabWidget() {
 
 // ═══════════════════════════════════════════════════════
 // 10. SIGNAL PULSE™ WIDGET
-//     Concentric sonar rings — activity at a glance
+//     Concentric sonar rings - activity at a glance
 // ═══════════════════════════════════════════════════════
 
 export function SignalPulseWidget() {
@@ -1380,7 +1380,7 @@ export function SignalPulseWidget() {
 export function FingerprintWidget() {
   const { ref, vis } = useVisible();
 
-  // Generate fingerprint rings — each with unique tilt and radius
+  // Generate fingerprint rings - each with unique tilt and radius
   const rings = Array.from({ length: 9 }).map((_, i) => {
     const rx = 18 + i * 5.5;
     const ry = 12 + i * 4.8 + (i % 2 === 0 ? 2 : -1);
@@ -1582,7 +1582,7 @@ export function DossierWidget() {
   return (
     <WidgetFrame stamp="DCL-DOS // COMPLETE ANALYTICAL PROFILE" height={200}>
       <div ref={ref} style={{ padding: '4px 0' }}>
-        {/* Dossier header — exhibit plate style */}
+        {/* Dossier header - exhibit plate style */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10,
           paddingBottom: 8, borderBottom: `1px solid ${TEAL_DIM}`,
@@ -1935,7 +1935,7 @@ export function NarrativeSyncWidget() {
 
 // ═══════════════════════════════════════════════════════
 // 16. BASELINE DELTA WIDGET
-//     Deviation from rolling average — center-zero gauge
+//     Deviation from rolling average - center-zero gauge
 // ═══════════════════════════════════════════════════════
 
 const DELTA_DATA = [
@@ -2012,7 +2012,7 @@ export function BaselineDeltaWidget() {
                     background: DARK, borderRadius: 2,
                   }} />
 
-                  {/* Deviation bar — extends from center */}
+                  {/* Deviation bar - extends from center */}
                   <div style={{
                     position: 'absolute',
                     top: 4, height: 6, borderRadius: 2,
@@ -2224,7 +2224,7 @@ export function VarianceDetectionWidget() {
 
 // ═══════════════════════════════════════════════════════
 // 18. HISTORICAL TRENDS WIDGET
-//     Signal metrics over time — animated time-series
+//     Signal metrics over time - animated time-series
 // ═══════════════════════════════════════════════════════
 
 const TREND_SERIES = [
@@ -2391,7 +2391,7 @@ export function HistoricalTrendsWidget() {
 
 const HEATMAP_FIGURES = ['FIG-01', 'FIG-02', 'FIG-03', 'FIG-04', 'FIG-05'];
 const HEATMAP_TOPICS = ['ECON', 'SECURITY', 'CLIMATE', 'HEALTH', 'TECH'];
-// Coverage intensity 0–1 (row = figure, col = topic)
+// Coverage intensity 0-1 (row = figure, col = topic)
 const HEATMAP_DATA = [
   [0.9, 0.6, 0.2, 0.1, 0.4],
   [0.3, 0.8, 0.5, 0.3, 0.1],
@@ -2412,7 +2412,7 @@ export function TopicHeatmapWidget() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
           <DataLabel size={8} color={TEXT}>TOPIC HEATMAP</DataLabel>
           <div style={{ flex: 1 }} />
-          <DataLabel size={7} color={SUB}>COVERAGE INTENSITY 0–1</DataLabel>
+          <DataLabel size={7} color={SUB}>COVERAGE INTENSITY 0-1</DataLabel>
         </div>
 
         {/* Grid container */}

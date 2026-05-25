@@ -17,14 +17,14 @@ type Feature = {
   tier: Tier;
   /** Frosted widget label (shown inside widget frame) */
   widgetLabel?: string;
-  /** Widget component — if present, renders as combo */
+  /** Widget component - if present, renders as combo */
   widget?: ReactNode;
   /** Span full width (2 columns) */
   wide?: boolean;
 };
 
 /* ─────────────────────────────────────────────────────────
-   SECTION DATA — ordered CORE → PRO → PRO+ → B2B
+   SECTION DATA - ordered CORE → PRO → PRO+ → B2B
    Features with widgets become combos (widget + card info
    in one frame). Features without stay as regular cards.
    ───────────────────────────────────────────────────────── */
@@ -129,7 +129,7 @@ const TIER_HIERARCHY: Record<TierFilter, Tier[]> = {
 };
 
 /* ─────────────────────────────────────────────────────────
-   FEATURE CARD — plain card (no widget)
+   FEATURE CARD - plain card (no widget)
    ───────────────────────────────────────────────────────── */
 
 function FeatureCard({ f }: { f: Feature }) {
@@ -156,7 +156,7 @@ function FeatureCard({ f }: { f: Feature }) {
 }
 
 /* ─────────────────────────────────────────────────────────
-   WIDGET CARD — frosted widget on top, card info below,
+   WIDGET CARD - frosted widget on top, card info below,
    one unified frame. One feature, one representation.
    Easter egg: tap/hold widget area to partially defrost.
    ───────────────────────────────────────────────────────── */
@@ -171,7 +171,7 @@ function WidgetCard({ f }: { f: Feature }) {
         overflow: "hidden",
       }}
     >
-      {/* Widget preview area — unfrosted, live */}
+      {/* Widget preview area - unfrosted, live */}
       <div style={{ position: "relative" }}>
         <div style={{ pointerEvents: "none", userSelect: "none" }}>
           {f.widget}
@@ -200,7 +200,7 @@ function WidgetCard({ f }: { f: Feature }) {
 }
 
 /* ─────────────────────────────────────────────────────────
-   SECTION GRID — renders features in order, combos and
+   SECTION GRID - renders features in order, combos and
    plain cards mixed in one continuous grid.
    Wide items break out of the 2-col grid.
    ───────────────────────────────────────────────────────── */
@@ -265,7 +265,7 @@ function SectionGrid({ items, filter }: { items: Feature[]; filter: TierFilter }
 }
 
 /* ─────────────────────────────────────────────────────────
-   SECTION DIVIDER — hashmark ruler
+   SECTION DIVIDER - hashmark ruler
    ───────────────────────────────────────────────────────── */
 
 function SectionDivider() {

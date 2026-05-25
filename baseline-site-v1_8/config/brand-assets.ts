@@ -1,5 +1,5 @@
 /* ─────────────────────────────────────────────────────────
-   Brand Assets — Static file references
+   Brand Assets - Static file references
    ─────────────────────────────────────────────────────────
    All assets served from /public/brand/ for optimal caching
    and Next.js Image optimization. Original files available

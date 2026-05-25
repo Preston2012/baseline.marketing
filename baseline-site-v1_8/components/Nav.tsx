@@ -103,7 +103,7 @@ export default function Nav() {
         }}
         aria-label="Main navigation"
       >
-        {/* BA mark — left */}
+        {/* BA mark - left */}
         <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, zIndex: 2 }}>
           <Image
             src={BRAND_BA_MARK}
@@ -115,7 +115,7 @@ export default function Nav() {
           />
         </Link>
 
-        {/* Wordmark — centered */}
+        {/* Wordmark - centered */}
         <Link
           href="/"
           onClick={(e) => {
@@ -145,7 +145,7 @@ export default function Nav() {
           />
         </Link>
 
-        {/* Desktop primary links — right */}
+        {/* Desktop primary links - right */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, zIndex: 2 }} className="nav-desktop noSelect">
           {NAV_PRIMARY.map(({ href, label }) => (
             <Link
@@ -189,7 +189,7 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Mobile drawer — all links (primary + overflow) */}
+      {/* Mobile drawer - all links (primary + overflow) */}
       {open && (
         <>
           <div

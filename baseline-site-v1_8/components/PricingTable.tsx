@@ -44,7 +44,7 @@ function BulletList({ items }: { items: BulletItem[] }) {
   );
 }
 
-/* S6: Redacted price decode — characters scramble then resolve */
+/* S6: Redacted price decode - characters scramble then resolve */
 function PriceDecode({ price }: { price: string }) {
   const [display, setDisplay] = useState(price.replace(/[^\s$/]/g, "█"));
   const [decoded, setDecoded] = useState(false);

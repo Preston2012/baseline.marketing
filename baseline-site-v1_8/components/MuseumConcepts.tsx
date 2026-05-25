@@ -1,14 +1,14 @@
 'use client';
 
 /* ─────────────────────────────────────────────────────────
-   MUSEUM CONCEPTS V2 — Gallery Art for ™ Surfaces
+   MUSEUM CONCEPTS V2 - Gallery Art for ™ Surfaces
    ─────────────────────────────────────────────────────────
    Each piece: minimal geometry, vast darkness, teal glow
    at intersection points, per-piece CSS animation.
    NO labels. NO legends. NO text. NO data.
    Signal emerging from darkness.
    
-   Reference: GPT concept images B1–B13
+   Reference: GPT concept images B1-B13
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';
@@ -54,7 +54,7 @@ function useVisible() {
 
 
 // ═══════════════════════════════════════════
-// 1. BASELINE™ — The Measurement Stack
+// 1. BASELINE™ - The Measurement Stack
 // ═══════════════════════════════════════════
 // Signal lines converging to center glow
 export function BaselineConcept() {
@@ -99,7 +99,7 @@ export function BaselineConcept() {
           <circle className="bsln-core" cx="180" cy="100" r="4" fill={T} opacity="0.5" />
           <line x1="40" y1="100" x2="320" y2="100" stroke={T} strokeWidth="0.3" opacity="0.06" />
 
-          {/* Hashmark measurement rulers — distinguishes from Sync */}
+          {/* Hashmark measurement rulers - distinguishes from Sync */}
           {Array.from({ length: 15 }, (_, i) => {
             const x = 60 + i * 16;
             const h = i % 4 === 0 ? 5 : 2;
@@ -113,7 +113,7 @@ export function BaselineConcept() {
 
 
 // ═══════════════════════════════════════════
-// 2. THE RECEIPT™ — Pattern Memory
+// 2. THE RECEIPT™ - Pattern Memory
 // ═══════════════════════════════════════════
 // Ref B1: Wave line with glow at crossing nodes
 export function ReceiptConcept() {
@@ -162,7 +162,7 @@ export function ReceiptConcept() {
 
 
 // ═══════════════════════════════════════════
-// 3. SIGNAL PULSE™ — Radar Ping
+// 3. SIGNAL PULSE™ - Radar Ping
 // ═══════════════════════════════════════════
 // Ref B7: Concentric circles, center flare, sonar
 export function SignalPulseConcept() {
@@ -215,7 +215,7 @@ export function SignalPulseConcept() {
 
 
 // ═══════════════════════════════════════════
-// 4. FRAMING FINGERPRINT™ — Rhetorical Identity
+// 4. FRAMING FINGERPRINT™ - Rhetorical Identity
 // ═══════════════════════════════════════════
 // Ref B10: Spiral whorl, slow rotation, center glow
 export function FingerprintConcept() {
@@ -273,7 +273,7 @@ export function FingerprintConcept() {
 
 
 // ═══════════════════════════════════════════
-// 5. FRAMING RADAR™ — Five-Axis Pentagon
+// 5. FRAMING RADAR™ - Five-Axis Pentagon
 // ═══════════════════════════════════════════
 // Ref B2: Clean pentagon + 5 axis lines, center glow
 export function RadarConcept() {
@@ -337,9 +337,9 @@ export function RadarConcept() {
 
 
 // ═══════════════════════════════════════════
-// 6. LENS LAB™ — Independent Systems
+// 6. LENS LAB™ - Independent Systems
 // ═══════════════════════════════════════════
-// Ref B3: Y-junction — 3 lines meeting at bright center
+// Ref B3: Y-junction - 3 lines meeting at bright center
 export function LensLabConcept() {
   const { ref, vis } = useVisible();
   return (
@@ -399,7 +399,7 @@ export function LensLabConcept() {
 
 
 // ═══════════════════════════════════════════
-// 7. CROSSFIRE™ — Dual Figure Comparison
+// 7. CROSSFIRE™ - Dual Figure Comparison
 // ═══════════════════════════════════════════
 // Ref B6: Two angular brackets facing each other, connected
 export function CrossfireConcept() {
@@ -462,7 +462,7 @@ export function CrossfireConcept() {
 
 
 // ═══════════════════════════════════════════
-// 8. CONSTELLATION NAV™ — Star Path
+// 8. CONSTELLATION NAV™ - Star Path
 // ═══════════════════════════════════════════
 // Ref B11: Glowing dots connected by hairlines, branching
 export function ConstellationConcept() {
@@ -527,7 +527,7 @@ export function ConstellationConcept() {
 
 
 // ═══════════════════════════════════════════
-// 9. PROVISION DRIFT™ — Semantic Distance
+// 9. PROVISION DRIFT™ - Semantic Distance
 // ═══════════════════════════════════════════
 // Ref B4: Two diverging lines (teal + amber) with measurement
 export function DriftConcept() {
@@ -591,7 +591,7 @@ export function DriftConcept() {
 
 
 // ═══════════════════════════════════════════
-// 10. SPLIT MICROSCOPE™ — Variance Cross
+// 10. SPLIT MICROSCOPE™ - Variance Cross
 // ═══════════════════════════════════════════
 // Ref B8: Vertical parallels + horizontal crossbar, glow at intersections
 export function MicroscopeConcept() {
@@ -646,7 +646,7 @@ export function MicroscopeConcept() {
 
 
 // ═══════════════════════════════════════════
-// 11. INTERSECTIONS PANEL™ — Hub & Spoke
+// 11. INTERSECTIONS PANEL™ - Hub & Spoke
 // ═══════════════════════════════════════════
 // Ref B9: Central hub with radiating connections, one amber outlier
 export function IntersectionsConcept() {
@@ -718,7 +718,7 @@ export function IntersectionsConcept() {
 
 
 // ═══════════════════════════════════════════
-// 12. DECLASSIFIED DOSSIER™ — Exhibit Plate
+// 12. DECLASSIFIED DOSSIER™ - Exhibit Plate
 // ═══════════════════════════════════════════
 // Ref B12: Tilted document with redaction bars, corner glow
 export function DossierConcept() {
@@ -787,7 +787,7 @@ export function DossierConcept() {
 
 
 // ═══════════════════════════════════════════
-// 13. NARRATIVE SYNC™ — Convergence Lines
+// 13. NARRATIVE SYNC™ - Convergence Lines
 // ═══════════════════════════════════════════
 // Ref B13: Multiple parallel lines converging to single bright point
 export function SyncConcept() {
@@ -844,7 +844,7 @@ export function SyncConcept() {
           {/* Horizontal flare streak through convergence */}
           <line x1="140" y1="100" x2="220" y2="100" stroke={T} strokeWidth="0.4" opacity="0.15" />
 
-          {/* Film perforation marks — top and bottom edges */}
+          {/* Film perforation marks - top and bottom edges */}
           {Array.from({ length: 8 }, (_, i) => {
             const x = 70 + i * 32;
             return (
@@ -1041,7 +1041,7 @@ export function SpendingScopeConcept() {
             </g>
           ))}
 
-          {/* Depth gauge — right side */}
+          {/* Depth gauge - right side */}
           <line x1="310" y1="30" x2="310" y2="170" stroke={T} strokeWidth="0.4" opacity="0.08" />
           {Array.from({ length: 8 }).map((_, i) => (
             <line key={i} x1="306" y1={30 + i * 20} x2="310" y2={30 + i * 20}

@@ -100,7 +100,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
         animation: unlocking ? "vault-trace 350ms ease-out forwards" : "none",
       }}>
 
-      {/* Film perforations — all cards are exhibit pieces */}
+      {/* Film perforations - all cards are exhibit pieces */}
       {[0, 1].map(side => (
         <div key={side} aria-hidden="true" style={{
           position: "absolute", [side === 0 ? "left" : "right"]: 0, top: 0, bottom: 0, width: 6,
@@ -113,7 +113,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
         </div>
       ))}
 
-      {/* Visual area — coded concept art */}
+      {/* Visual area - coded concept art */}
       <div style={{ position: "relative", overflow: "hidden", minHeight: 200, background: "#0c1a23", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <div style={{ width: "100%", transition: "filter 400ms, opacity 400ms", filter: revealed ? "none" : "blur(8px) brightness(0.6)", opacity: revealed ? 1 : 0.7 }}>
           <ConceptRenderer type={item.concept} />
@@ -206,7 +206,7 @@ export function MuseumGallery() {
         {allDeclassified && <span className="hub-beacon" style={{ display: "inline-flex", marginLeft: 8, verticalAlign: "middle" }}><span style={{ width: 6, height: 6, background: "var(--teal)", borderRadius: "50%", animation: "museum-breathe 2s ease-in-out infinite" }} /></span>}
       </h2>
 
-      {/* Hash mark ruler — gradient opacity */}
+      {/* Hash mark ruler - gradient opacity */}
       <div aria-hidden="true" style={{ height: 1, background: "rgba(45,212,191,0.04)", position: "relative", marginBottom: 16 }}>
         {Array.from({ length: 30 }).map((_, i) => {
           const t = i / 29;

@@ -79,10 +79,10 @@ export function FeaturesNav({
 
   return (
     <>
-      {/* Sentinel — marks the nav's natural document position */}
+      {/* Sentinel - marks the nav's natural document position */}
       <div ref={sentinelRef} style={{ height: 0 }} />
 
-      {/* Spacer — prevents content jump when nav becomes fixed */}
+      {/* Spacer - prevents content jump when nav becomes fixed */}
       {pinned && <div style={{ height: navH }} />}
 
       <div
