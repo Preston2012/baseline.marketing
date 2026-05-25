@@ -30,7 +30,7 @@
 html,body{ padding:0; margin:0; overflow-x: clip; max-width: 100vw; width: 100%; }
 body{ overflow-y: auto; }
 
-/* M1: Branded focus ring — teal doctrine, no shadows */
+/* M1: Branded focus ring - teal doctrine, no shadows */
 :focus-visible{
   outline: 2px solid #2dd4bf;
   outline-offset: 2px;
@@ -176,7 +176,7 @@ img{ max-width:100%; height:auto; display:block; }
   border-color: rgba(45, 212, 191, 0.3) !important;
 }
 
-/* I16: Pricing tier comparison — hover highlights one, dims rest */
+/* I16: Pricing tier comparison - hover highlights one, dims rest */
 .tier-grid:hover > *{
   opacity: 0.55;
   transition: opacity 200ms ease-out, transform 200ms ease-out;
@@ -210,7 +210,7 @@ img{ max-width:100%; height:auto; display:block; }
 }
 
 /* Interactive card affordance (only when opt-in class applied) */
-/* Audit fix: scale(1.005) up instead of 0.99 down — premium feel */
+/* Audit fix: scale(1.005) up instead of 0.99 down - premium feel */
 .cardInteractive{
   transition: transform 200ms ease-out, border-color 200ms ease-out;
 }
@@ -254,7 +254,7 @@ img{ max-width:100%; height:auto; display:block; }
   }
 }
 
-/* Redacted text — pre-launch stealth on proprietary surfaces. Remove .redacted class on launch day. */
+/* Redacted text - pre-launch stealth on proprietary surfaces. Remove .redacted class on launch day. */
 .redacted{
   filter: blur(5px);
   -webkit-filter: blur(5px);
@@ -525,7 +525,7 @@ body::after {
   body{ background:#ffffff; color:#000000; }
 }
 
-/* Museum gallery — shared across homepage + features */
+/* Museum gallery - shared across homepage + features */
 .museum-gallery {
   display: flex;
   gap: 20px;
@@ -539,10 +539,10 @@ body::after {
 .museum-gallery:active { cursor: grabbing; }
 .museum-gallery::-webkit-scrollbar { display: none; }
 
-/* M12: Gallery — always horizontal carousel on all viewports */
+/* M12: Gallery - always horizontal carousel on all viewports */
 @media (max-width: 900px) {
   .museum-gallery {
-    /* Keep horizontal scroll on mobile — no vertical stacking */
+    /* Keep horizontal scroll on mobile - no vertical stacking */
   }
   .museum-gallery > div {
     flex: 0 0 85vw !important;

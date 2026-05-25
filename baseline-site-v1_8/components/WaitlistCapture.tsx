@@ -5,7 +5,7 @@ import { supabaseConfig } from "@/config/supabase";
 
 type CaptureType = "notify" | "early_access";
 
-/** WaitlistCapture — 200% hero takeover.
+/** WaitlistCapture - 200% hero takeover.
  *  Scanline sweep, hashmark rulers, staggered entrance,
  *  terminal input, classified confirmation. */
 export function WaitlistCapture() {
@@ -78,7 +78,7 @@ export function WaitlistCapture() {
         marginBottom: 16,
       }}
     >
-      {/* LCP image — WebP srcset + fetchpriority high. ~13K mobile, ~26K tablet, ~41K desktop. */}
+      {/* LCP image - WebP srcset + fetchpriority high. ~13K mobile, ~26K tablet, ~41K desktop. */}
       <picture>
         <source
           type="image/webp"
@@ -105,7 +105,7 @@ export function WaitlistCapture() {
           }}
         />
       </picture>
-      {/* Dark overlay — matches hero treatment */}
+      {/* Dark overlay - matches hero treatment */}
       <div
         style={{
           position: "absolute",
@@ -118,7 +118,7 @@ export function WaitlistCapture() {
         }}
       />
 
-      {/* Scanline sweep — single pass on load */}
+      {/* Scanline sweep - single pass on load */}
       <style>{`
         @keyframes wlScanline {
           0% { top: -2px; opacity: 0; }
@@ -149,7 +149,7 @@ export function WaitlistCapture() {
           pointerEvents: "none",
         }}
       />
-      {/* Ghost scanline — slower, dimmer, trailing */}
+      {/* Ghost scanline - slower, dimmer, trailing */}
       <div
         aria-hidden="true"
         style={{
@@ -172,7 +172,7 @@ export function WaitlistCapture() {
       <Corner pos="bottom-left" />
       <Corner pos="bottom-right" />
 
-      {/* Film perf accents — left edge (enhanced) */}
+      {/* Film perf accents - left edge (enhanced) */}
       <div
         aria-hidden="true"
         style={{
@@ -261,7 +261,7 @@ export function WaitlistCapture() {
         }}
       />
 
-      {/* Content layer — above hero image (z0) and gradient overlay (z1) */}
+      {/* Content layer - above hero image (z0) and gradient overlay (z1) */}
       <div style={{ position: "relative", padding: "36px 24px 32px", zIndex: 2 }}>
         {/* Classification stamp row */}
         <div aria-hidden="true"
@@ -541,7 +541,7 @@ export function WaitlistCapture() {
                 </button>
               </div>
 
-              {/* Privacy note — micro intel label style */}
+              {/* Privacy note - micro intel label style */}
               <div
                 className="data"
                 style={{
@@ -583,7 +583,7 @@ export function WaitlistCapture() {
   );
 }
 
-/* ── Success state — classified confirmation ── */
+/* ── Success state - classified confirmation ── */
 function SuccessState() {
   const [show, setShow] = useState(false);
 
@@ -602,7 +602,7 @@ function SuccessState() {
         transition: "opacity 400ms ease-out, transform 400ms ease-out",
       }}
     >
-      {/* Confirmed ring — teal pulse */}
+      {/* Confirmed ring - teal pulse */}
       <style>{`
         @keyframes wlConfirmPulse {
           0% { box-shadow: 0 0 0 0 rgba(45,212,191,0.2); }
@@ -697,7 +697,7 @@ function SuccessState() {
   );
 }
 
-/* ── Reticle corner helper — enhanced with registration dot ── */
+/* ── Reticle corner helper - enhanced with registration dot ── */
 function Corner({
   pos,
 }: {

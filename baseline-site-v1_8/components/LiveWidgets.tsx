@@ -1,16 +1,16 @@
 'use client';
 
 /* ─────────────────────────────────────────────────────────
-   LIVE WIDGETS — Analytical Methodology Demonstrations
+   LIVE WIDGETS - Analytical Methodology Demonstrations
    ─────────────────────────────────────────────────────────
    Animated demos for the Methodology page showing HOW
    the measurement pipeline works. Analytical, not flashy.
    Complements the "How It Works" cards with visual proof.
 
    Widget Index:
-   1. PipelineWidget       — Input → parallel models → outputs
-   2. DeltaComputeWidget   — Current vs rolling avg = delta
-   3. ConsensusAssemblyWidget — Outputs → convergence ratio
+   1. PipelineWidget - Input → parallel models → outputs
+   2. DeltaComputeWidget - Current vs rolling avg = delta
+   3. ConsensusAssemblyWidget - Outputs → convergence ratio
    ───────────────────────────────────────────────────────── */
 
 import { useEffect, useRef, useState } from 'react';

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 /* ─────────────────────────────────────────────────────────
-   FROSTED WIDGET PREVIEW — Live widget behind blur
+   FROSTED WIDGET PREVIEW - Live widget behind blur
    ─────────────────────────────────────────────────────────
    Used in features and methodology pages to give a
    frosted preview of interactive widgets. All pre-launch.

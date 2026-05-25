@@ -1,6 +1,6 @@
 "use client";
 
-/** S1: The Wall — scrolling redacted data ticker.
+/** S1: The Wall - scrolling redacted data ticker.
  *  Pre-launch: atmospheric redacted data flowing past.
  *  Post-launch: replace with real aggregated stats. */
 

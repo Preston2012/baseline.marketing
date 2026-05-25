@@ -25,7 +25,7 @@ export default function WhatWeDontDoPage() {
         </div>
       </div>
 
-      {/* S3: Scroll-hijacked manifesto — each statement pins and crossfades */}
+      {/* S3: Scroll-hijacked manifesto - each statement pins and crossfades */}
       <ManifestoScroll />
 
       {/* Post-manifesto anchor */}

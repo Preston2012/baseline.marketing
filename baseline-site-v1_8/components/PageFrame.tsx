@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 /* ─────────────────────────────────────────────────────────
-   PAGE FRAME — Viewport reticles + gradient hash marks
+   PAGE FRAME - Viewport reticles + gradient hash marks
    ─────────────────────────────────────────────────────────
    Brand-level ambient treatment. Fades in on mount.
    Excluded on: legal, privacy, terms, eula, pricing,

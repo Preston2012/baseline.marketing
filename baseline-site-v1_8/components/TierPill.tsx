@@ -1,4 +1,4 @@
-/** Tier pill badge — Bloomberg terminal tag energy.
+/** Tier pill badge - Bloomberg terminal tag energy.
  *  Used on Pricing cards and Features page.
  *  JetBrains Mono, 2px teal border, transparent fill. */
 

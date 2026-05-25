@@ -3,11 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 /* ─────────────────────────────────────────────────────────
-   ETHOS CONTENT — Ten brand principles
+   ETHOS CONTENT - Ten brand principles
    ─────────────────────────────────────────────────────────
    Frosted glass cards. Corner-stamp SVG icons. Centered
    text with bullet support points. Stagger-in on scroll.
-   Uses site CSS variables — no hardcoded colors.
+   Uses site CSS variables - no hardcoded colors.
    ───────────────────────────────────────────────────────── */
 
 interface EthosCard {
@@ -226,7 +226,7 @@ const PRINCIPLES: EthosCard[] = [
   },
 ];
 
-/* ── RULER — Hashmark divider ── */
+/* ── RULER - Hashmark divider ── */
 function Ruler() {
   return (
     <div style={{ maxWidth: 760, margin: '0 auto 32px', padding: '0 16px' }}>
@@ -306,7 +306,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
         borderRadius: '50%', background: 'rgba(45,212,191,0.06)',
         transform: 'translateX(-50%)', pointerEvents: 'none',
       }} />
-      {/* Corner stamp icon — top left */}
+      {/* Corner stamp icon - top left */}
       <div
         style={{
           position: 'absolute',
@@ -367,7 +367,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
           {card.tagline}
         </p>
 
-        {/* Bullets — frosted pre-launch */}
+        {/* Bullets - frosted pre-launch */}
         <ul
           style={{
             listStyle: 'none',

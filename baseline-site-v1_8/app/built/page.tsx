@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 /* ─────────────────────────────────────────────────────────
-   /built — Portfolio page. The URL on resumes.
+   /built - Portfolio page. The URL on resumes.
    Not in primary nav. Hamburger overflow only.
    ───────────────────────────────────────────────────────── */
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-/** I1: Teal scroll progress bar — fixed at top of viewport.
+/** I1: Teal scroll progress bar - fixed at top of viewport.
  *  Only renders on long pages (Methodology, Features). */
 export function ScrollProgress() {
   const barRef = useRef<HTMLDivElement>(null);
