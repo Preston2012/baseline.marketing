@@ -14,14 +14,8 @@ export function WaitlistCapture() {
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const [entered, setEntered] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  /* Staggered entrance on mount */
-  useEffect(() => {
-    const t = setTimeout(() => setEntered(true), 100);
-    return () => clearTimeout(t);
-  }, []);
 
   async function submit(type: CaptureType) {
     const trimmed = email.trim().toLowerCase();
@@ -120,6 +114,8 @@ export function WaitlistCapture() {
 
       {/* Scanline sweep - single pass on load */}
       <style>{`
+        @keyframes wlRise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+        @keyframes wlFade { from { opacity: 0; } to { opacity: 1; } }
         @keyframes wlScanline {
           0% { top: -2px; opacity: 0; }
           10% { opacity: 1; }
@@ -276,9 +272,7 @@ export function WaitlistCapture() {
             color: "var(--teal-dim)",
             textTransform: "uppercase",
             marginBottom: 20,
-            opacity: entered ? 1 : 0,
-            transform: entered ? "translateY(0)" : "translateY(6px)",
-            transition: "opacity 500ms ease-out, transform 500ms ease-out",
+            animation: "wlRise 500ms ease-out both",
           }}
         >
           <span
@@ -313,9 +307,7 @@ export function WaitlistCapture() {
                 margin: 0,
                 textAlign: "center",
                 letterSpacing: "-0.02em",
-                opacity: entered ? 1 : 0,
-                transform: entered ? "translateY(0)" : "translateY(8px)",
-                transition: "opacity 500ms ease-out 150ms, transform 500ms ease-out 150ms",
+                animation: "wlRise 500ms ease-out 150ms both",
               }}
             >
               Get in <span style={{ color: "var(--teal)" }}>early.</span>
@@ -330,9 +322,7 @@ export function WaitlistCapture() {
                 margin: "8px 0 0",
                 lineHeight: 1.5,
                 letterSpacing: "0.04em",
-                opacity: entered ? 1 : 0,
-                transform: entered ? "translateY(0)" : "translateY(8px)",
-                transition: "opacity 500ms ease-out 250ms, transform 500ms ease-out 250ms",
+                animation: "wlRise 500ms ease-out 250ms both",
               }}
             >
               Join the waitlist. Be first to measure.
@@ -347,8 +337,7 @@ export function WaitlistCapture() {
                 margin: "20px auto 22px",
                 maxWidth: 400,
                 background: "rgba(45,212,191,0.05)",
-                opacity: entered ? 1 : 0,
-                transition: "opacity 600ms ease-out 350ms",
+                animation: "wlFade 600ms ease-out 350ms both",
               }}
             >
               {Array.from({ length: 20 }).map((_, i) => {
@@ -388,9 +377,7 @@ export function WaitlistCapture() {
               style={{
                 maxWidth: 400,
                 margin: "0 auto",
-                opacity: entered ? 1 : 0,
-                transform: entered ? "translateY(0)" : "translateY(8px)",
-                transition: "opacity 500ms ease-out 400ms, transform 500ms ease-out 400ms",
+                animation: "wlRise 500ms ease-out 400ms both",
               }}
             >
               {/* Terminal-style input wrapper */}
