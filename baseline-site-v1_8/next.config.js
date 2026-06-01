@@ -4,7 +4,10 @@ const path = require("path");
 const nextConfig = {
   output: "export",
   trailingSlash: true,
-  images: { unoptimized: true },
+  images: {
+    loader: "custom",
+    loaderFile: "./cf-image-loader.js",
+  },
   experimental: {
     // Inline critical CSS via critters. Even on static export Next will
     // emit per-page CSS as <link rel="stylesheet"> which blocks paint.
