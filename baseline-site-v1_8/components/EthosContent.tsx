@@ -332,7 +332,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
           style={{
             fontSize: 28,
             fontWeight: 500,
-            color: 'rgba(45,212,191,0.2)',
+            color: 'var(--teal-dim)',
             letterSpacing: 4,
             display: 'block',
             marginBottom: 4,
@@ -419,7 +419,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
             marginTop: 16,
             fontSize: 8,
             letterSpacing: 2,
-            color: 'rgba(45,212,191,0.4)',
+            color: 'var(--teal-dim)',
             padding: '4px 10px',
             border: '1px solid rgba(45,212,191,0.08)',
             borderRadius: 3,

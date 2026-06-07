@@ -87,7 +87,7 @@ export default function BuiltPage() {
               "var(--font-jetbrains, monospace), ui-monospace, monospace",
             fontSize: 9,
             letterSpacing: "0.15em",
-            color: "rgba(45,212,191,0.4)",
+            color: "var(--teal-dim)",
             marginBottom: 24,
             textTransform: "uppercase",
           }}
@@ -236,7 +236,7 @@ export default function BuiltPage() {
           <div style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderTop: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, left: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderLeft: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, right: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
-          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 22 INTERACTIVE WIDGETS</div>
+          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 22 INTERACTIVE WIDGETS</div>
           <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>Every widget on this site is custom-built</div>
           <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 22 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.</div>
           <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, color: "var(--teal)", letterSpacing: "0.05em" }}>View live widgets &rarr;</span>
@@ -245,7 +245,7 @@ export default function BuiltPage() {
 
       {/* ── ARCHITECTURE ── */}
       <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
-        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>SYSTEM ARCHITECTURE // BASELINE</div>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 12, textTransform: "uppercase" }}>SYSTEM ARCHITECTURE // BASELINE</div>
         <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 24px" }}>How Baseline Works</h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
@@ -269,7 +269,7 @@ export default function BuiltPage() {
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 32 }}>
           {STACK.map((s) => (
-            <span key={s} style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 11, padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(45,212,191,0.2)", color: "rgba(45,212,191,0.7)", letterSpacing: "0.05em" }}>{s}</span>
+            <span key={s} style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 11, padding: "5px 12px", borderRadius: 6, border: "1px solid rgba(45,212,191,0.2)", color: "var(--teal-dim)", letterSpacing: "0.05em" }}>{s}</span>
           ))}
         </div>
 
@@ -278,7 +278,7 @@ export default function BuiltPage() {
 
       {/* ── HOW I BUILD ── */}
       <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
-        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>METHODOLOGY // BUILD PROCESS</div>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 12, textTransform: "uppercase" }}>METHODOLOGY // BUILD PROCESS</div>
         <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 16px" }}>Multi-AI Orchestration</h2>
         <p className="p" style={{ fontSize: 15, color: "var(--sub)", margin: "0 0 16px", lineHeight: 1.6 }}>
           I don&rsquo;t write every line by hand. I direct Claude, GPT, Gemini,
@@ -301,13 +301,13 @@ export default function BuiltPage() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid var(--border_inactive)", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, color: "rgba(45,212,191,0.5)", letterSpacing: "0.1em" }}>390+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED</div>
+          <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid var(--border_inactive)", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, color: "var(--teal-dim)", letterSpacing: "0.1em" }}>390+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED</div>
         </div>
       </section>
 
       {/* ── OTHER PROJECTS ── */}
       <section style={{ padding: "0 24px 48px", maxWidth: 720, margin: "0 auto" }}>
-        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "rgba(45,212,191,0.4)", marginBottom: 12, textTransform: "uppercase" }}>ADDITIONAL // PORTFOLIO</div>
+        <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 12, textTransform: "uppercase" }}>ADDITIONAL // PORTFOLIO</div>
         <h2 style={{ fontSize: 22, fontWeight: 600, color: "var(--text)", margin: "0 0 20px" }}>Other Projects</h2>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>

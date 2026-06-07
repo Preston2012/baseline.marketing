@@ -23,9 +23,7 @@ export default function MethodologyPage() {
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
-      <div className="classification-stamp" style={{ marginBottom: 8 }}>
-        SIGINT-METHODOLOGY // UNCLASSIFIED // FOUO
-      </div>
+      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="SIGINT-METHODOLOGY // UNCLASSIFIED // FOUO" />
 
       <h1 className="h1" style={{ fontSize: 28 }}>Methodology</h1>
 
@@ -123,9 +121,7 @@ export default function MethodologyPage() {
           })}
         </div>
         {/* Classification stamp */}
-        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }}>
-          SIGINT-METH-01 // UNCLASSIFIED
-        </div>
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="SIGINT-METH-01 // UNCLASSIFIED" />
       </div>
       <div style={{ height: 24 }} />
 
@@ -143,7 +139,7 @@ export default function MethodologyPage() {
           <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
             <li>Computed as a rolling average of signal activity per figure over the most recent 24 hours.</li>
             <li>Displayed on feed cards and figure profiles. Provides at-a-glance signal read without drilling into individual statements.</li>
-            <li>Baseline Delta measures deviation from the rolling average: positive = elevated, negative = below typical, zero = on baseline.</li>
+            <li>Baseline Delta measures deviation from the rolling average: positive = above typical, negative = below typical, zero = on baseline.</li>
             <li>Updated continuously. Not a rating, not an opinion. A measurement of how active and how varied the signal is.</li>
           </ul>
       </Card>
@@ -325,9 +321,7 @@ export default function MethodologyPage() {
             return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, bottom: 0, width: 1, height: i % 5 === 0 ? 5 : 2, background: `rgba(45,212,191,${alpha.toFixed(3)})` }} />;
           })}
         </div>
-        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }}>
-          SIGINT-METH-02 // SURFACES
-        </div>
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="SIGINT-METH-02 // SURFACES" />
       </div>
       <div style={{ height: 24 }} />
 
@@ -360,7 +354,7 @@ export default function MethodologyPage() {
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each metric measured against the figure&rsquo;s own rolling average.</li>
-              <li>Positive means elevated signal. Negative means below typical. Zero means on baseline.</li>
+              <li>Positive means above-typical signal. Negative means below typical. Zero means on baseline.</li>
               <li>Measures shift, not position. A high Affect score is context. A high Affect delta is signal.</li>
             </ul>
         </Card>
