@@ -20,9 +20,7 @@ export default function WhatWeDontDoPage() {
     <>
       {/* Classification micro-stamp above manifesto */}
       <div className="section" style={{ paddingBottom: 0 }}>
-        <div className="classification-stamp">
-          BASELINE-DOCTRINE // OPERATIONAL BOUNDARIES
-        </div>
+        <div className="classification-stamp" data-stamp="BASELINE-DOCTRINE // OPERATIONAL BOUNDARIES" />
       </div>
 
       {/* S3: Scroll-hijacked manifesto - each statement pins and crossfades */}
@@ -78,7 +76,6 @@ export default function WhatWeDontDoPage() {
           className="small"
           style={{
             fontStyle: "italic",
-            opacity: 0.5,
             marginTop: 32,
           }}
         >

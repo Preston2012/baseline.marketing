@@ -125,7 +125,7 @@ function WidgetFrame({
             flexShrink: 0,
           }}
         />
-        {stamp}
+        <span className="gw-datalabel" data-label={stamp} />
       </div>
 
       {/* Reticle corners */}
@@ -197,20 +197,20 @@ function DataLabel({
   color?: string;
   size?: number;
 }) {
-  return (
-    <span
-      style={{
-        fontFamily: MONO,
-        fontSize: size || 9,
-        fontWeight: 500,
-        color: color || SUB,
-        letterSpacing: '0.06em',
-        lineHeight: 1,
-      }}
-    >
-      {children}
-    </span>
-  );
+  const dlStyle: React.CSSProperties = {
+    fontFamily: MONO,
+    fontSize: size || 9,
+    fontWeight: 500,
+    color: color || SUB,
+    letterSpacing: '0.06em',
+    lineHeight: 1,
+  };
+  const parts = Array.isArray(children) ? children : [children];
+  const isText = parts.every((c) => typeof c === 'string' || typeof c === 'number');
+  if (isText) {
+    return <span className="gw-datalabel" data-label={parts.map(String).join('')} style={dlStyle} />;
+  }
+  return <span style={dlStyle}>{children}</span>;
 }
 
 
@@ -306,7 +306,7 @@ export function SignalMetricsWidget() {
           <div style={{ width: 20, height: 20, borderRadius: '50%', border: `1.5px solid ${TEAL_LO}`, background: DARK }} />
           <div>
             <div style={{ fontFamily: BODY, fontSize: 10, color: TEXT, fontWeight: 500, lineHeight: 1.2 }}>Statement Analysis</div>
-            <div style={{ fontFamily: MONO, fontSize: 7, color: SUB, opacity: 0.5, letterSpacing: '0.08em' }}>4 INDEPENDENT SCORES · 0-100</div>
+            <div className="gw-datalabel" data-label="4 INDEPENDENT SCORES · 0-100" style={{ fontFamily: MONO, fontSize: 7, color: SUB, opacity: 0.5, letterSpacing: '0.08em' }} />
           </div>
         </div>
 
@@ -1363,7 +1363,7 @@ export function SignalPulseWidget() {
           {/* Pulse status */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
             <div style={{ width: 4, height: 4, borderRadius: '50%', background: T, opacity: 0.6 }} />
-            <DataLabel size={7} color={TEAL_MID}>ELEVATED ACTIVITY · ABOVE ROLLING AVG</DataLabel>
+            <DataLabel size={7} color={TEAL_MID}>HEIGHTENED ACTIVITY · ABOVE ROLLING AVG</DataLabel>
           </div>
         </div>
       </div>
@@ -2061,7 +2061,7 @@ export function BaselineDeltaWidget() {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
             <div style={{ width: 8, height: 3, background: T, borderRadius: 1, opacity: 0.7 }} />
-            <DataLabel size={7} color={SUB}>ELEVATED</DataLabel>
+            <DataLabel size={7} color={SUB}>HEIGHTENED</DataLabel>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
             <div style={{ width: 8, height: 3, background: A, borderRadius: 1, opacity: 0.7 }} />

@@ -30,9 +30,7 @@ export default function PressPage() {
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
       {/* Classification micro-stamp */}
-      <div className="classification-stamp" style={{ marginBottom: 8 }}>
-        BASELINE-PRESS // UNCLASSIFIED // PUBLIC RELEASE
-      </div>
+      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="BASELINE-PRESS // UNCLASSIFIED // PUBLIC RELEASE" />
 
       <h1 className="h1" style={{ fontSize: 28 }}>Press</h1>
 

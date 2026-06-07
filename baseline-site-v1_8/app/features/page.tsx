@@ -21,9 +21,7 @@ export default function FeaturesPage() {
         {/* Registration dots */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
-        <div className="classification-stamp" style={{ marginBottom: 8 }}>
-          SIGINT-FEATURES // PRODUCT MANIFEST // v3.5
-        </div>
+        <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="SIGINT-FEATURES // PRODUCT MANIFEST // v3.5" />
         <h1 className="h1" style={{ fontSize: 28 }}>Every surface. Every signal.</h1>
         <p className="p" style={{ maxWidth: 640 }}>
           The full measurement stack. Trademark surfaces, signal metrics, feed tools, figure

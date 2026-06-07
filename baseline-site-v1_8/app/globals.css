@@ -268,7 +268,7 @@ img{ max-width:100%; height:auto; display:block; }
   font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(45,212,191,0.35);
+  color: var(--teal-dim);
   margin-top: 8px;
   display: inline-flex;
   align-items: center;
@@ -583,3 +583,5 @@ body::after {
 .museum-gallery > div:nth-child(11) { animation-delay: 300ms; }
 .museum-gallery > div:nth-child(12) { animation-delay: 330ms; }
 .museum-gallery > div:nth-child(13) { animation-delay: 360ms; }
+.classification-stamp::before{ content: attr(data-stamp); }
+.gw-datalabel::before{ content: attr(data-label); }
