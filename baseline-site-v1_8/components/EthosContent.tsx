@@ -468,9 +468,8 @@ export function EthosContent() {
       <div
         className="classification-stamp"
         style={{ textAlign: 'center', paddingBottom: 24 }}
-      >
-        BASELINE™ BRAND ETHOS // CLASSIFICATION: PUBLIC
-      </div>
+        data-stamp="BASELINE™ BRAND ETHOS // CLASSIFICATION: PUBLIC"
+      />
 
       <style>{`
         .ethos-card {
