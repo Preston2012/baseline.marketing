@@ -90,6 +90,50 @@ export function SiteFooter() {
           </a>
         </div>
 
+        {/* Winters Code credit stamp */}
+        <a
+          href="https://winterscode.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Website built and designed by Winters Code"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 10,
+            marginTop: 12,
+            textDecoration: "none",
+            minHeight: 44,
+          }}
+        >
+          <span
+            className="data"
+            style={{
+              fontSize: 10,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "var(--sub-dim)",
+              fontWeight: 600,
+            }}
+          >
+            Website Built &amp; Designed By
+          </span>
+          <img
+            src="/wc-credit-stamp-176.webp"
+            alt="Winters Code"
+            width={176}
+            height={176}
+            loading="lazy"
+            style={{
+              width: 56,
+              height: 56,
+              borderRadius: "50%",
+              boxShadow: "0 4px 14px rgba(0,0,0,0.32)",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        </a>
+
         {/* N5: Next measurement timestamp */}
         <div
           aria-hidden="true"
