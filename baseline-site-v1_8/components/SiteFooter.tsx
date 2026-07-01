@@ -115,7 +115,7 @@ export function SiteFooter() {
               fontWeight: 600,
             }}
           >
-            Website Built &amp; Designed By
+            Designed &amp; Built By
           </span>
           <img
             src="/wc-credit-stamp-176.webp"
