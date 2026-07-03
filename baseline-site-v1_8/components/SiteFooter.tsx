@@ -106,16 +106,37 @@ export function SiteFooter() {
           }}
         >
           <span
-            className="data"
             style={{
-              fontSize: 10,
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              color: "var(--sub-dim)",
-              fontWeight: 600,
+              display: "inline-flex",
+              flexDirection: "column",
+              gap: 2,
+              alignItems: "center",
             }}
           >
-            Designed &amp; Built By
+            <span
+              className="data"
+              style={{
+                fontSize: 10,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--sub-dim)",
+                fontWeight: 600,
+              }}
+            >
+              Website
+            </span>
+            <span
+              className="data"
+              style={{
+                fontSize: 10,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--sub-dim)",
+                fontWeight: 600,
+              }}
+            >
+              Designed &amp; Built By
+            </span>
           </span>
           <img
             src="/wc-credit-stamp-176.webp"
