@@ -11,3 +11,14 @@ next-env.d.ts
 .env.production
 .env.development
 .env*.local
+
+# .env matches exactly one filename. A prefixed or suffixed variant walks past
+# it, which is how .demiurge-cax11.env sat untracked and unignored in another
+# repo on this host. Latent there, so closed everywhere rather than only where
+# a file happened to exist.
+.env.*
+*.env
+*.key
+*.pem
+*credential*
+*secret*
