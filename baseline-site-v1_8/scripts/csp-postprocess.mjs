@@ -18,7 +18,7 @@
  * Note: frame-ancestors is omitted (ignored when delivered via <meta>).
  *       X-Frame-Options at vercel.json handles framing protection.
  */
-import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
 
@@ -102,14 +102,26 @@ function processHtml(html, label) {
   return next;
 }
 
-const files = htmlFiles(OUT_DIR);
-let processed = 0;
-for (const f of files) {
-  const orig = readFileSync(f, 'utf8');
-  const next = processHtml(orig, f.replace(/^.*\/out\//, ''));
-  if (next !== orig) {
-    writeFileSync(f, next, 'utf8');
-    processed++;
+// Vercel's Next.js build adapter, when Vercel turns it on for a Next 16.2 or later
+// build, copies every page into .next/output while next build is still running,
+// so before this script runs, and Vercel deploys those copies. Measured locally
+// with the adapter from @vercel/next 28.0.1: all of them reached .next/output
+// without the meta tag. The same CSP is written there too, so the policy does not
+// depend on which path Vercel takes. Without the adapter there is no .next/output
+// and nothing changes.
+const ADAPTER_DIR = '.next/output';
+const dirs = [OUT_DIR];
+if (process.argv[2] === undefined && existsSync(ADAPTER_DIR)) dirs.push(ADAPTER_DIR);
+
+for (const dir of dirs) {
+  let processed = 0;
+  for (const f of htmlFiles(dir)) {
+    const orig = readFileSync(f, 'utf8');
+    const next = processHtml(orig, f.slice(dir.length + 1));
+    if (next !== orig) {
+      writeFileSync(f, next, 'utf8');
+      processed++;
+    }
   }
+  console.log(`[csp] processed ${processed} HTML files${dir === ADAPTER_DIR ? ' in ' + ADAPTER_DIR : ''}`);
 }
-console.log(`[csp] processed ${processed} HTML files`);

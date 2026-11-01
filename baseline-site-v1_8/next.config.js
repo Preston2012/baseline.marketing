@@ -1,5 +1,3 @@
-const path = require("path");
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
@@ -15,16 +13,10 @@ const nextConfig = {
     // document head, the rest loads async.
     optimizeCss: true,
   },
-  // Explicit webpack alias for the "@/*" import pattern. tsconfig.json
-  // declares paths but some Next 14 / webpack 5 builds fail to wire it
-  // through, leaving every Client Component boundary unable to resolve
-  // `@/components/*` and `@/config/*`. Setting the alias on webpack
-  // directly guarantees resolution in all environments (Vercel CI,
-  // local Linux, local Mac, and various Node versions).
-  webpack: (config) => {
-    config.resolve.alias["@"] = path.resolve(__dirname);
-    return config;
-  },
+  // No webpack hook. Next 16 builds with Turbopack, which takes the "@/*"
+  // alias from the paths in tsconfig.json, and next build refuses to run
+  // under Turbopack while a webpack function is present. The alias that
+  // lived here covered Next 14 builds that missed the tsconfig paths.
 };
 
 module.exports = nextConfig;
