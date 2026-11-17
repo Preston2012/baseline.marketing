@@ -146,7 +146,7 @@ const PRINCIPLES: EthosCard[] = [
     bullets: [
       'Politicians, crypto founders, AI leaders, tech CEOs, podcasters',
       "Anyone whose words move markets, shape policy, or shift opinion",
-      'Started with forty-four. Building toward thousands',
+      'Started with forty-four named figures. The roster grows over time',
     ],
     tag: 'CROSS-SECTOR INTELLIGENCE',
     icon: (
@@ -167,8 +167,8 @@ const PRINCIPLES: EthosCard[] = [
     tagline: "We don\u2019t manufacture urgency about information that requires clarity.",
     bullets: [
       'No countdown timers, scarcity theater, or FOMO',
-      'The product converts by being useful. The paywall is calm',
-      "The upgrade is obvious when you need it, invisible when you don\u2019t",
+      'Baseline is free. No ads, no subscriptions, no purchases',
+      'Nothing is locked behind a plan. Every feature is open to everyone',
     ],
     tag: 'TRUST BY DEFAULT',
     icon: (
@@ -367,7 +367,7 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
           {card.tagline}
         </p>
 
-        {/* Bullets - frosted pre-launch */}
+        {/* Bullets */}
         <ul
           style={{
             listStyle: 'none',
@@ -378,9 +378,6 @@ function EthosCardEl({ card, index }: { card: EthosCard; index: number }) {
             flexDirection: 'column',
             gap: 7,
             textAlign: 'left',
-            filter: 'blur(5px)',
-            WebkitFilter: 'blur(5px)',
-            userSelect: 'none',
           }}
         >
           {card.bullets.map((b, i) => (

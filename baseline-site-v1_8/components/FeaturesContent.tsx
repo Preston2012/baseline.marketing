@@ -11,7 +11,7 @@ import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptT
 type Feature = {
   name: string;
   desc: string;
-  /** Frosted widget label (shown inside widget frame) */
+  /** Widget label */
   widgetLabel?: string;
   /** Widget component - if present, renders as combo */
   widget?: ReactNode;
@@ -30,31 +30,29 @@ const SIGNALS: Feature[] = [
     widgetLabel: "SIGNAL METRICS \u00b7 4-AXIS DECOMPOSITION", widget: <SignalMetricsWidget /> },
   { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The reference signal for each figure.",
     widgetLabel: "BASELINE\u2122 \u00b7 24HR ROLLING AGGREGATE", widget: <BaselineScoreWidget /> },
-  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.",
+  { name: "Baseline Delta", desc: "How far today\u2019s score deviates from the figure\u2019s rolling average. Measures shift, not position.",
     widgetLabel: "BASELINE DELTA \u00b7 DEVIATION GAUGE", widget: <BaselineDeltaWidget /> },
-  { name: "Consensus Convergence", desc: "How often models agree. Shown as a simple ratio.",
+  { name: "Consensus Convergence", desc: "How closely multiple AI systems agree on scores.",
     widgetLabel: "CONSENSUS \u00b7 MODEL CONVERGENCE", widget: <ConsensusRingWidget /> },
-  { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.",
+  { name: "Variance Detection", desc: "Flags when AI systems meaningfully disagree. Displayed, never hidden.",
     widgetLabel: "VARIANCE \u00b7 MODEL DISAGREEMENT SURFACING", widget: <VarianceDetectionWidget /> },
   { name: "Lens Lab\u2122", desc: "Independent AI models running in parallel. Same statement, separate measurements.",
     widgetLabel: "LENS LAB\u2122 \u00b7 MULTI-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
-  { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.",
+  { name: "Historical Trends", desc: "Track how a figure\u2019s signals change over time. Measured, not predicted.",
     widgetLabel: "HISTORICAL \u00b7 SIGNAL PATTERNS OVER TIME", widget: <HistoricalTrendsWidget /> },
   { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where measurements diverge most." },
-  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.",
+  { name: "Split Microscope\u2122", desc: "Detailed variance breakdown when models disagree. See exactly where measurements diverge.",
     widgetLabel: "SPLIT MICROSCOPE\u2122 \u00b7 DIVERGENCE VIEW", widget: <SplitMicroscopeWidget /> },
 ];
 
 const FEED: Feature[] = [
   { name: "Feed Browse + Statement Detail", desc: "Access every analyzed statement with full source context." },
-  { name: "Trending Topics", desc: "Topic chips showing what\u2019s active now." },
+  { name: "Trending Topics", desc: "Topics generating the most measurement activity." },
   { name: "\u201CWhy am I seeing this?\u201D", desc: "See why this statement is in your feed." },
   { name: "Model Attribution", desc: "See which models produced each measurement." },
   { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.",
     widgetLabel: "THE RECEIPT\u2122 \u00b7 STATEMENT EXHIBIT", widget: <ReceiptTimelineWidget /> },
   { name: "Feed Sorting", desc: "Sort by novelty, recency, or signal strength." },
-  { name: "Long-press Peek Preview", desc: "Press and hold to preview a statement without navigating." },
-  { name: "Double-tap Annotate", desc: "Quick-annotate any statement with a double tap." },
   { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.",
     widgetLabel: "CROSSFIRE\u2122 \u00b7 DUAL FIGURE COMPARISON", widget: <CrossfireWidget /> },
 ];
@@ -65,14 +63,12 @@ const FIGURES: Feature[] = [
   { name: "\u201CSilent Vote\u201D Indicator", desc: "Shown when a figure discussed a bill but has no recorded vote." },
   { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.",
     widgetLabel: "FRAMING FINGERPRINT\u2122 \u00b7 RHETORICAL IDENTITY", widget: <FingerprintWidget /> },
-  { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.",
+  { name: "Signal Pulse\u2122", desc: "Activity ring on every figure avatar. Faster pulse means more statements measured recently.",
     widgetLabel: "SIGNAL PULSE\u2122 \u00b7 ACTIVITY WAVEFORM", widget: <SignalPulseWidget /> },
-  { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access." },
+  { name: "Favorites & Followed Figures", desc: "Follow figures. Their statements surface earlier in your feed." },
   { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.",
     widgetLabel: "FRAMING RADAR\u2122 \u00b7 5-AXIS MEASUREMENT", widget: <RadarDemoWidget /> },
-  { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.",
-    widgetLabel: "CONSTELLATION NAV\u2122 \u00b7 FIGURE TOPOLOGY", widget: <ConstellationWidget /> },
-  { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.",
+  { name: "Topic Heatmap", desc: "Visual density map of a figure\u2019s topic coverage.",
     widgetLabel: "TOPIC HEATMAP \u00b7 COVERAGE DENSITY", widget: <TopicHeatmapWidget /> },
   { name: "Intersections Panel\u2122", desc: "Cross-figure pattern map. See where rhetoric overlaps across figures.",
     widgetLabel: "INTERSECTIONS PANEL\u2122 \u00b7 FRAMING OVERLAP", widget: <IntersectionsWidget /> },
@@ -83,7 +79,6 @@ const FIGURES: Feature[] = [
 const BILLS: Feature[] = [
   { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded." },
   { name: "Bill Overview & Notable Provisions", desc: "Structured summaries of legislation with provision-level detail." },
-  { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap." },
   { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance." },
   { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift." },
   { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.",
@@ -95,20 +90,16 @@ const BILLS: Feature[] = [
 ];
 
 const TOOLS: Feature[] = [
-  { name: "Private Annotations", desc: "Notes on statements. Private to you." },
   { name: "Request a Figure", desc: "Don\u2019t see someone? Request a figure for tracking." },
   { name: "How Is This Measured?", desc: "Info sheets on every analysis surface explaining the methodology behind each measurement." },
   { name: "First Measurement Guide", desc: "Quick walkthrough on your first measurement screen." },
-  { name: "Export & Share", desc: "Museum-grade export with branded watermark." },
-  { name: "Ghost Export", desc: "Then vs. now: export a figure\u2019s measurements at two points in time." },
-  { name: "Copy with Citation", desc: "One-tap copy with automatic attribution footer." },
-  { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score." },
-  { name: "Digest Notifications", desc: "Daily and weekly digests." },
-  { name: "Advanced Notifications", desc: "Per-figure, per-topic alerts with higher frequency." },
-  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.",
+  { name: "Export & Share", desc: "Save analyses as shareable images with a timestamp and source attribution." },
+  { name: "Copy with Citation", desc: "Copy a statement with the speaker, the date and an attribution line." },
+  { name: "Digest Notifications", desc: "A daily digest of the top statements for your watchlist." },
+  { name: "Advanced Notifications", desc: "Granular control over every alert category." },
+  { name: "Shift Alert", desc: "Notified when a followed figure\u2019s baseline shifts significantly.",
     widgetLabel: "SHIFT ALERT \u00b7 24HR SPIKE DETECTION", widget: <ShiftAlertWidget /> },
-  { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Precision monitoring." },
-  { name: "Annotation Delta Cards", desc: "Track how model agreement on your annotations changes over time." },
+  { name: "Delta Threshold Alerts", desc: "Custom alert thresholds per signal axis." },
   { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.",
     widgetLabel: "NARRATIVE SYNC\u2122 \u00b7 CONVERGENCE DETECTION", widget: <NarrativeSyncWidget /> },
 ];
@@ -130,7 +121,7 @@ function FeatureCard({ f }: { f: Feature }) {
       <div style={{ color: "var(--text)", fontWeight: 600, marginBottom: 8, fontSize: 14 }}>
         {f.name}
       </div>
-      <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
+      <p className="p" style={{ margin: 0 }}>
         {f.desc}
       </p>
     </div>
@@ -138,9 +129,8 @@ function FeatureCard({ f }: { f: Feature }) {
 }
 
 /* ─────────────────────────────────────────────────────────
-   WIDGET CARD - frosted widget on top, card info below,
+   WIDGET CARD - widget on top, card info below,
    one unified frame. One feature, one representation.
-   Easter egg: tap/hold widget area to partially defrost.
    ───────────────────────────────────────────────────────── */
 
 function WidgetCard({ f }: { f: Feature }) {
@@ -153,7 +143,7 @@ function WidgetCard({ f }: { f: Feature }) {
         overflow: "hidden",
       }}
     >
-      {/* Widget preview area - unfrosted, live */}
+      {/* Widget illustration */}
       <div style={{ position: "relative" }}>
         <div style={{ pointerEvents: "none", userSelect: "none" }}>
           {f.widget}
@@ -170,7 +160,7 @@ function WidgetCard({ f }: { f: Feature }) {
         <div style={{ color: "var(--text)", fontWeight: 600, marginBottom: 8, fontSize: 14 }}>
           {f.name}
         </div>
-        <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
+        <p className="p" style={{ margin: 0 }}>
           {f.desc}
         </p>
       </div>
@@ -291,9 +281,9 @@ function FigureRoster() {
   return (
     <div style={{ marginBottom: 20 }}>
       <p className="p" style={{ maxWidth: 640, marginBottom: 12 }}>
-        <span className="data" style={{ color: "var(--teal)" }}>106 figures</span>{" "}
-        tracked at launch. 44 named across five categories, plus congressional
-        members synced automatically via Congress.gov. Roster expands over time.
+        <span className="data" style={{ color: "var(--teal)" }}>44 named figures</span>{" "}
+        across five categories. Congressional vote records come from Congress.gov.
+        The roster grows over time.
       </p>
 
       {FIGURE_CATEGORIES.map((cat) => (
@@ -319,8 +309,6 @@ function FigureRoster() {
                   border: "2px solid var(--border_inactive)", borderRadius: 8,
                   fontSize: 12, color: "var(--text)", background: "var(--card)",
                   whiteSpace: "nowrap",
-                  filter: "blur(5px)", WebkitFilter: "blur(5px)",
-                  userSelect: "none", WebkitUserSelect: "none",
                 }}>
                   {name}
                 </span>
@@ -331,9 +319,43 @@ function FigureRoster() {
       ))}
 
       <p className="small" style={{ color: "var(--sub-dim)", marginTop: 12 }}>
-        Request a figure for tracking in-app. Roster updates over time
+        Request a figure for tracking in the app. The roster grows
         based on source availability.
       </p>
+    </div>
+  );
+}
+
+
+const PLANNED = [
+  "Provision Resonance Links",
+  "Constellation Nav\u2122",
+  "Long-press Peek Preview",
+  "Double-tap Annotate",
+  "Private Annotations",
+  "Annotation Delta Cards",
+  "Ghost Export",
+  "Drift-infused Watermark",
+];
+
+function PlannedList() {
+  return (
+    <div style={{ marginTop: 24 }}>
+      <span className="section-label">PLANNED</span>
+      <p className="p" style={{ maxWidth: 640, marginTop: 8, marginBottom: 12 }}>
+        Not in the app yet. These are on the list.
+      </p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+        {PLANNED.map((name) => (
+          <span key={name} style={{
+            display: "inline-block", padding: "6px 10px",
+            border: "2px solid var(--border_inactive)", borderRadius: 8,
+            fontSize: 12, color: "var(--text)", background: "var(--card)",
+          }}>
+            {name}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
@@ -385,6 +407,7 @@ export function FeaturesContent() {
       <section id="tools" className="section" aria-label="Tool features">
         <span className="section-label">TOOLS</span>
         <SectionGrid items={TOOLS} />
+        <PlannedList />
       </section>
     </>
   );

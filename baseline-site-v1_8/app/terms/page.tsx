@@ -17,7 +17,7 @@ export default function TermsPage() {
       summary={[
         "Baseline is free. There is nothing to buy.",
         "Baseline is a measurement tool, not a verification service.",
-        "Covers acceptable use and how disputes are handled.",
+        "Covers acceptable use. Disputes go to the state courts in Coos County, Oregon, and small claims court is allowed.",
         "Observational analysis only. Not a fact-check."
       ]}
     >
@@ -137,10 +137,9 @@ export default function TermsPage() {
 
       <h2 className="h3">14. Dispute Resolution</h2>
       <p className="p">
-        Any dispute arising from these Terms or your use of the App shall be resolved through binding arbitration in
-        accordance with the rules of the American Arbitration Association, except that either party may seek
-        injunctive or equitable relief in any court of competent jurisdiction. Class action lawsuits and class-wide
-        arbitrations are not permitted.
+        Any dispute arising from these Terms or your use of the App shall be brought in the state courts located in
+        Coos County, Oregon, and you and Winters Code consent to the jurisdiction and venue of those courts. Either
+        party may bring an eligible claim in small claims court. Nothing in these Terms requires arbitration.
       </p>
 
       <h2 className="h3">15. Governing Law</h2>

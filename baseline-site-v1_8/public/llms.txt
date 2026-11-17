@@ -8,10 +8,13 @@
 - [Methodology](https://www.baseline.marketing/methodology): how statements are ingested and analyzed
 - [Ethos](https://www.baseline.marketing/ethos): principles and limits
 - [Free](https://www.baseline.marketing/pricing): the app is free, and how it is funded
+- [What we don't do](https://www.baseline.marketing/what-we-dont-do): the limits of what Baseline measures
+- [Press](https://www.baseline.marketing/press): media contact and brand assets
+- [Support](https://www.baseline.marketing/support): contact, corrections and privacy requests
 
 ## Facts
 - Same input run across parallel systems, results shown side by side
 - Outputs may vary between systems; sources and context remain the reference surface
-- Status: not in the Google Play or App Store yet. Support: support@baseline.marketing
+- Availability: coming to Google Play and the App Store. Support: support@baseline.marketing
 
 Built by Winters Code (https://winterscode.com), Bandon, Oregon.

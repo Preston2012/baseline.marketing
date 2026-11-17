@@ -1,25 +1,24 @@
 "use client";
 
-/** S1: The Wall - scrolling redacted data ticker.
- *  Pre-launch: atmospheric redacted data flowing past.
- *  Post-launch: replace with real aggregated stats. */
+/** S1: The Wall - scrolling ticker of what Baseline measures.
+ *  Each item names a real measurement in the app. No sample values. */
 
 const TICKER_ITEMS = [
-  "SEMANTIC_SIMILARITY: ████",
-  "FRAMING_AXIS_3: ████",
-  "NOVELTY_SCORE: ██.█",
-  "AFFECT_DELTA: ████",
-  "CONSENSUS: █/█",
-  "ENTROPY: ██.██",
-  "REPETITION_INDEX: ████",
-  "PROVISION_DRIFT: ██.█σ",
-  "RHETORICAL_VELOCITY: ████",
-  "MODEL_VARIANCE: ████",
-  "STATEMENT_COUNT: ████",
-  "CONVERGENCE_RATIO: █.██",
+  "REPETITION \u00b7 0-100",
+  "NOVELTY \u00b7 0-100",
+  "AFFECT \u00b7 0-100",
+  "ENTROPY \u00b7 0-100",
+  "BASELINE \u00b7 24H ROLLING",
+  "BASELINE DELTA \u00b7 VS 30-DAY MEAN",
+  "CONSENSUS \u00b7 MODEL AGREEMENT",
+  "VARIANCE \u00b7 FLAGGED WHEN MODELS DIVERGE",
+  "PROVISION DRIFT \u00b7 DISTANCE FROM STATED PURPOSE",
+  "FRAMING RADAR \u00b7 5 AXES",
+  "MUTATION \u00b7 CHANGE BETWEEN BILL VERSIONS",
+  "SPENDING SCOPE \u00b7 CBO AND EXTRACTED FIGURES",
 ];
 
-/* Duplicate for seamless loop */
+/* Repeated once so the loop wraps without a gap */
 const ITEMS = [...TICKER_ITEMS, ...TICKER_ITEMS];
 
 export function TheWall() {

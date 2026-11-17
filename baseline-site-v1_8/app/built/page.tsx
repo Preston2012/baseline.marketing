@@ -4,12 +4,12 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "Built By Preston Winters",
   description:
-    "Solo-built political intelligence platform. 100K+ lines of code. 28 screens. 4 AI providers. Flutter, PostgreSQL, server functions. Multi-AI orchestration at team velocity.",
+    "Solo-built speech measurement platform. 139K lines of Dart. 32 screens. 4 AI providers. Flutter, PostgreSQL, server functions. Multi-AI orchestration at team velocity.",
   alternates: { canonical: `${site.url}/built/` },
   openGraph: {
     title: "Built By Preston Winters | Baseline",
     description:
-      "Solo-built political intelligence platform. 100K+ lines of code, 4 AI providers, closed testing on Google Play.",
+      "Solo-built speech measurement platform. 139K lines of Dart, 32 screens, 4 AI providers. Free, coming to Google Play and the App Store.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
@@ -20,12 +20,10 @@ export const metadata: Metadata = {
    ───────────────────────────────────────────────────────── */
 
 const STATS = [
-  { value: "100K+", label: "LINES OF CODE", sub: "Baseline alone" },
-  { value: "28", label: "SCREENS", sub: "Production app" },
-  { value: "36", label: "SERVER FUNCTIONS", sub: "Self-hosted backend" },
+  { value: "139K", label: "LINES OF DART", sub: "Baseline app" },
+  { value: "32", label: "SCREENS", sub: "Baseline app" },
+  { value: "32", label: "SERVER FUNCTIONS", sub: "Self-hosted backend" },
   { value: "4", label: "AI PROVIDERS", sub: "Independent analysis" },
-  { value: "2", label: "APPS BUILT", sub: "1 published, 1 in testing" },
-  { value: "500+", label: "BUILD SESSIONS", sub: "Documented" },
 ];
 
 const STACK = [
@@ -116,8 +114,8 @@ export default function BuiltPage() {
             maxWidth: 560,
           }}
         >
-          1 published app. 1 in closed testing. 100K+ lines of code for
-          Baseline alone. Built in months, not years, using multi-AI orchestration.
+          Baseline is 139K lines of Dart across 32 screens, built in months,
+          not years, using multi-AI orchestration.
         </p>
 
         <div
@@ -132,7 +130,7 @@ export default function BuiltPage() {
             display: "inline-block",
           }}
         >
-          Baseline is in closed testing on Google Play. Public launch planned 2026.
+          Baseline is free. Coming to Google Play and the App Store.
         </div>
 
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -235,10 +233,10 @@ export default function BuiltPage() {
           <div style={{ position: "absolute", top: 6, right: 6, width: 10, height: 10, borderTop: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, left: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderLeft: "1px solid rgba(45,212,191,0.15)" }} />
           <div style={{ position: "absolute", bottom: 6, right: 6, width: 10, height: 10, borderBottom: "1px solid rgba(45,212,191,0.15)", borderRight: "1px solid rgba(45,212,191,0.15)" }} />
-          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 8, textTransform: "uppercase" }}>LIVE DEMO // 22 INTERACTIVE WIDGETS</div>
+          <div style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 9, letterSpacing: "0.15em", color: "var(--teal-dim)", marginBottom: 8, textTransform: "uppercase" }}>FEATURES // 21 INTERACTIVE WIDGETS</div>
           <div style={{ fontSize: 17, fontWeight: 600, color: "var(--text)", marginBottom: 6 }}>Every widget on this site is custom-built</div>
-          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 22 interactive widgets built with raw canvas rendering, staggered animations, and live data visualization. The features page is a working demo of the production app UI.</div>
-          <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, color: "var(--teal)", letterSpacing: "0.05em" }}>View live widgets &rarr;</span>
+          <div style={{ fontSize: 14, color: "var(--sub)", lineHeight: 1.5, marginBottom: 12 }}>No chart libraries. No UI kits. No templates. 21 interactive widgets built with raw canvas rendering and staggered animations. The features page shows them as illustrations with sample data.</div>
+          <span style={{ fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, fontWeight: 600, color: "var(--teal)", letterSpacing: "0.05em" }}>View the widgets &rarr;</span>
         </a>
       </section>
 
@@ -272,7 +270,7 @@ export default function BuiltPage() {
           ))}
         </div>
 
-        <a href="/methodology/" style={{ display: "inline-block", marginTop: 20, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, color: "var(--teal)", textDecoration: "none", letterSpacing: "0.05em" }}>Read the full technical methodology &rarr;</a>
+        <a href="/methodology/" style={{ display: "inline-flex", alignItems: "center", minHeight: 44, marginTop: 12, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 12, color: "var(--teal)", textDecoration: "none", letterSpacing: "0.05em" }}>Read the full technical methodology &rarr;</a>
       </section>
 
       {/* ── HOW I BUILD ── */}
@@ -311,7 +309,7 @@ export default function BuiltPage() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {[
-            { name: "StainSlayer AI", desc: "Stain identification app. Camera-first UX. Live on iOS and Android.", status: "LIVE" },
+            { name: "StainSlayer AI", desc: "Stain identification app. Camera-first UX. Published on Google Play and the App Store, retired November 2026.", status: "RETIRED" },
             { name: "4 Additional Apps", desc: "Active development pipeline. Homebase (home intelligence), ChopLight (gesture flashlight), GAUGE (weather intelligence), Inkfall (tower defense).", status: "IN DEV" },
             { name: "Cyber Hornets", desc: "Previously CEO. 40.9K followers, 7-figure revenue, 10K+ Discord community.", status: "PREV" },
           ].map((p) => (
@@ -330,8 +328,8 @@ export default function BuiltPage() {
       <section style={{ padding: "32px 24px 80px", maxWidth: 720, margin: "0 auto", borderTop: "1px solid var(--border_inactive)" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <div style={{ fontWeight: 700, fontSize: 18, color: "var(--text)", marginBottom: 8 }}>Preston Winters</div>
-          <a href="mailto:Droiddna2013@gmail.com" style={{ color: "var(--teal)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>Droiddna2013@gmail.com</a>
-          <a href="tel:+15415510731" style={{ color: "var(--sub)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>541-551-0731</a>
+          <a href="mailto:Droiddna2013@gmail.com" style={{ minHeight: 44, display: "flex", alignItems: "center", color: "var(--teal)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>Droiddna2013@gmail.com</a>
+          <a href="tel:+15415510731" style={{ minHeight: 44, display: "flex", alignItems: "center", color: "var(--sub)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>541-551-0731</a>
           <span style={{ color: "var(--sub)", fontSize: 14 }}>Bandon, Oregon</span>
         </div>
       </section>

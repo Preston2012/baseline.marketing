@@ -9,8 +9,7 @@
    works - with mock data, live animations, and the
    classified instrument aesthetic.
 
-   Placed inside FrostedWidgetPreview for pre-launch blur.
-   Animations tease through the frost.
+   Shown plainly on the Features page as illustrations with sample data.
 
    Widget Index:
    1.  SignalMetricsWidget - 4-bar signal breakdown
@@ -1587,7 +1586,7 @@ export function DossierWidget() {
           display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10,
           paddingBottom: 8, borderBottom: `1px solid ${TEAL_DIM}`,
         }}>
-          {/* Avatar placeholder */}
+          {/* Avatar circle */}
           <div style={{
             width: 32, height: 32, borderRadius: '50%',
             border: `2px solid ${TEAL_LO}`,

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   BaselineConcept, ReceiptConcept, SignalPulseConcept, FingerprintConcept,
-  RadarConcept, LensLabConcept, CrossfireConcept, ConstellationConcept,
+  RadarConcept, LensLabConcept, CrossfireConcept,
   DriftConcept, MicroscopeConcept, IntersectionsConcept, DossierConcept, SyncConcept,
   MutationTimelineConcept, SpendingScopeConcept,
 } from "./MuseumConcepts";
@@ -23,7 +23,6 @@ const CONCEPT_MAP = {
   radar: RadarConcept,
   lenslab: LensLabConcept,
   crossfire: CrossfireConcept,
-  constellation: ConstellationConcept,
   drift: DriftConcept,
   microscope: MicroscopeConcept,
   intersections: IntersectionsConcept,
@@ -35,13 +34,12 @@ const CONCEPT_MAP = {
 
 const GALLERY: MuseumItem[] = [
   { title: "Baseline\u2122", tagline: "Pure signal. No noise.", concept: "baseline", placard: "The measurement stack. Parallel AI systems, side-by-side results, source context on every surface." },
-  { title: "The Receipt\u2122", tagline: "Recurring patterns. Measured over time.", concept: "receipt", placard: "Match tiers surface the strongest patterns. History doesn\u2019t disappear." },
+  { title: "The Receipt\u2122", tagline: "Recurring patterns. Measured over time.", concept: "receipt", placard: "Match strength surfaces the strongest patterns. History doesn\u2019t disappear." },
   { title: "Signal Pulse\u2122", tagline: "The signal at a glance.", concept: "pulse", placard: "Visual summary of signal activity. No analysis required to read it." },
   { title: "Framing Fingerprint\u2122", tagline: "A figure\u2019s rhetorical identity.", concept: "fingerprint", placard: "Aggregate framing tendencies rendered as a unique visual signature." },
   { title: "Framing Radar\u2122", tagline: "Five axes. One pentagon. Every model.", concept: "radar", placard: "Overlay the models and the structure of the statement reveals itself." },
   { title: "Lens Lab\u2122", tagline: "Independent systems. Side-by-side. You decide.", concept: "lenslab", placard: "Consensus is computed after, displayed alongside, never merged." },
   { title: "Crossfire\u2122", tagline: "Two figures. One surface. Direct comparison.", concept: "crossfire", placard: "Side-by-side framing comparison across any two tracked figures." },
-  { title: "Constellation Nav\u2122", tagline: "Navigate the network.", concept: "constellation", placard: "Explore connections between figures, topics, and framing patterns." },
   { title: "Provision Drift\u2122", tagline: "How far did it drift?", concept: "drift", placard: "Measures semantic distance between provisions and a bill\u2019s stated purpose." },
   { title: "Split Microscope\u2122", tagline: "Where models diverge.", concept: "microscope", placard: "Detailed variance breakdown when independent systems disagree." },
   { title: "Intersections Panel\u2122", tagline: "Cross-linking patterns.", concept: "intersections", placard: "Shows shared framing and topic overlaps across figures and time." },
@@ -61,9 +59,7 @@ function ConceptRenderer({ type }: { type: keyof typeof CONCEPT_MAP }) {
   return <Component />;
 }
 
-function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number; onReveal: () => void }) {
-  const [revealed, setRevealed] = useState(false);
-  const [opening, setOpening] = useState(false);
+function MuseumCard({ item, index }: { item: MuseumItem; index: number }) {
   const [visible, setVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -75,27 +71,19 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
     return () => obs.disconnect();
   }, []);
 
-  const handleReveal = useCallback(() => {
-    if (revealed || opening) return;
-    setOpening(true);
-    setTimeout(() => { setRevealed(true); setOpening(false); onReveal(); }, 350);
-  }, [revealed, opening, onReveal]);
-
   return (
-    <div ref={cardRef} role="button" tabIndex={0} onClick={handleReveal}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleReveal(); } }}
-      aria-label={revealed ? `${item.title} / revealed` : `${item.title} / tap to reveal`}
+    <div ref={cardRef} role="group"
+      aria-label={item.title}
       className="museum-card"
       style={{
         flex: "0 0 340px", minWidth: 340, scrollSnapAlign: "start",
         border: "2px solid rgba(45,212,191,0.15)", borderRadius: 14,
-        overflow: "hidden", cursor: revealed ? "default" : "pointer",
+        overflow: "hidden", cursor: "default",
         background: "#000", position: "relative",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(8px)",
         transition: "opacity 400ms ease-out, transform 400ms ease-out, border-color 300ms ease-out",
         transitionDelay: `${index * 40}ms`,
-        animation: opening ? "vault-trace 350ms ease-out forwards" : "none",
       }}>
 
       {/* Film perforations - all cards are exhibit pieces */}
@@ -113,38 +101,10 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
 
       {/* Visual area - coded concept art */}
       <div style={{ position: "relative", overflow: "hidden", minHeight: 200, background: "#0c1a23", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <div style={{ width: "100%", transition: "filter 400ms, opacity 400ms", filter: revealed ? "none" : "blur(8px) brightness(0.6)", opacity: revealed ? 1 : 0.7 }}>
+        <div style={{ width: "100%" }}>
           <ConceptRenderer type={item.concept} />
         </div>
 
-        {/* Overlay badge */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: revealed ? "transparent" : "rgba(0,0,0,0.3)",
-          display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 10,
-          opacity: revealed ? 0 : 1, pointerEvents: revealed ? "none" : "auto",
-          transition: "opacity 400ms, background 400ms",
-        }}>
-          <span aria-hidden="true" className="data" style={{
-            color: "var(--teal-dim)", fontSize: 10, letterSpacing: "0.18em",
-            border: "1px solid rgba(45,212,191,0.2)", borderRadius: 4,
-            padding: "3px 10px", textTransform: "uppercase", position: "relative", overflow: "hidden",
-          }}>
-            <span style={{
-              position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%",
-              background: "linear-gradient(90deg, transparent, rgba(45,212,191,0.15), transparent)",
-              animation: "scan-line 2.5s ease-in-out infinite",
-            }} />
-            CLASSIFIED
-          </span>
-          <span className="data" style={{ color: "rgba(255,255,255,0.5)", fontSize: 11, letterSpacing: "0.05em" }}>
-            &#9656; CLEARANCE REQUIRED
-          </span>
-        </div>
-
-        {!revealed && !opening && (
-          <div style={{ position: "absolute", inset: 0, border: "2px solid rgba(45,212,191,0.03)", borderRadius: 12, animation: "museum-breathe 3s ease-in-out infinite", pointerEvents: "none" }} />
-        )}
       </div>
 
       {/* Footer */}
@@ -152,9 +112,8 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
           <span style={{ color: "var(--text)", fontWeight: 600, fontSize: 16 }}>{item.title}</span>
         </div>
-        <div className="data" style={{ color: "var(--teal)", fontSize: 13, marginBottom: revealed ? 12 : 4 }}>{item.tagline}</div>
-        {!revealed && <div className="data" style={{ color: "var(--sub-dim)", fontSize: 11 }}>&#9656; CLEARANCE REQUIRED</div>}
-        <div style={{ maxHeight: revealed ? 300 : 0, opacity: revealed ? 1 : 0, overflow: "hidden", transition: "max-height 300ms, opacity 200ms 100ms" }}>
+        <div className="data" style={{ color: "var(--teal)", fontSize: 13, marginBottom: 12 }}>{item.tagline}</div>
+        <div>
           <div style={{ borderTop: "2px solid rgba(45,212,191,0.1)", marginTop: 8, paddingTop: 8 }}>
             <p className="p" style={{ margin: 0, fontWeight: 500 }}>{item.placard}</p>
           </div>
@@ -165,10 +124,8 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
 }
 
 export function MuseumGallery() {
-  const [revealedCount, setRevealedCount] = useState(0);
   const [currentDot, setCurrentDot] = useState(0);
   const galleryRef = useRef<HTMLDivElement>(null);
-  const allDeclassified = revealedCount >= GALLERY.length;
 
   useEffect(() => {
     const el = galleryRef.current;
@@ -199,8 +156,7 @@ export function MuseumGallery() {
         color: "var(--teal)", fontSize: 12, letterSpacing: "0.15em", textTransform: "uppercase",
         display: "block", margin: 0, marginBlockEnd: 16, transition: "all 300ms",
       }}>
-        {allDeclassified ? "ALL DECLASSIFIED" : "\u2122 SURFACES"}
-        {allDeclassified && <span className="hub-beacon" style={{ display: "inline-flex", marginLeft: 8, verticalAlign: "middle" }}><span style={{ width: 6, height: 6, background: "var(--teal)", borderRadius: "50%", animation: "museum-breathe 2s ease-in-out infinite" }} /></span>}
+        {"\u2122 SURFACES"}
       </h2>
 
       {/* Hash mark ruler - gradient opacity */}
@@ -214,7 +170,7 @@ export function MuseumGallery() {
 
       <div className="museum-gallery" ref={galleryRef}>
         {GALLERY.map((item, i) => (
-          <MuseumCard key={item.title} item={item} index={i} onReveal={() => setRevealedCount(c => c + 1)} />
+          <MuseumCard key={item.title} item={item} index={i} />
         ))}
       </div>
 

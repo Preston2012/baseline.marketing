@@ -148,7 +148,10 @@ export default function EulaPage() {
 
       <h2 className="h3">15. Governing Law</h2>
       <p className="p">
-        This EULA is governed by the laws of the State of Oregon, without regard to conflict of law principles.
+        This EULA is governed by the laws of the State of Oregon, without regard to conflict of law principles. Any
+        dispute arising from this EULA shall be brought in the state courts located in Coos County, Oregon, and you and
+        Winters Code consent to the jurisdiction and venue of those courts. Either party may bring an eligible claim
+        in small claims court. This EULA does not require arbitration.
       </p>
 
       <h2 className="h3">16. Trademarks</h2>
@@ -163,8 +166,7 @@ export default function EulaPage() {
 
       <h2 className="h3">17. Developer Name and Address</h2>
       <p className="p">
-        Questions, complaints, or claims about the App: Winters Code, [DEVELOPER ADDRESS: Preston to supply before
-        this draft is approved], Bandon, Oregon.{" "}
+        Questions, complaints, or claims about the App: Winters Code, 54651 Rosa Road, Bandon, Oregon 97411.{" "}
         Email <a href={`mailto:${site.contact.support}`}>{site.contact.support}</a>.
       </p>
     </LegalDoc>

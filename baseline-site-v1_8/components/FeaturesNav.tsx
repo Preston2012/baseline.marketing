@@ -132,8 +132,12 @@ export function FeaturesNav() {
                     active === s.id
                       ? "2px solid var(--teal)"
                       : "2px solid transparent",
-                  paddingBottom: 4,
-                  padding: "0 0 4px",
+                  padding: "0 6px",
+                  minHeight: 44,
+                  minWidth: 44,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   transition: "color 150ms, border-color 150ms",
                 }}
               >

@@ -63,8 +63,10 @@ export function SiteFooter() {
                 href={link.href}
                 style={{
                   minHeight: 44,
+                  minWidth: 44,
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   padding: "0 4px",
                 }}
               >

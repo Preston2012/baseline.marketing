@@ -311,40 +311,9 @@ export default function HomePage() {
                 height={600}
                 loading="lazy"
                 decoding="async"
-                style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </picture>
-            {/* Classification overlay */}
-            <div style={{
-              position: "absolute", inset: 0,
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: 6,
-              background: "rgba(0,0,0,0.15)",
-            }}>
-              <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, left: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, right: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
-
-              <span className="data" style={{
-                color: "var(--teal-dim)", fontSize: 10,
-                letterSpacing: "0.18em",
-                border: "1px solid rgba(45,212,191,0.15)",
-                borderRadius: 4, padding: "3px 10px",
-                textTransform: "uppercase",
-                position: "relative", overflow: "hidden",
-              }}>
-                <span style={{
-                  position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%",
-                  background: "linear-gradient(90deg, transparent, rgba(45,212,191,0.12), transparent)",
-                  animation: "scan-sweep 2.5s ease-in-out infinite",
-                }} />
-                CLASSIFIED
-              </span>
-              <span aria-hidden="true" className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
-                FULL PIPELINE · PRE-LAUNCH
-              </span>
-            </div>
           </div>
         </div>
       </section>
@@ -377,7 +346,7 @@ export default function HomePage() {
         }} />
 
         {[
-          { label: "figures tracked", value: "106" },
+          { label: "features", value: "43" },
           { label: "AI providers", value: "4" },
           { label: "parallel systems", value: "3" },
         ].map((s) => (
