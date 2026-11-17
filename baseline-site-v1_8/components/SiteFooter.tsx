@@ -77,7 +77,7 @@ export function SiteFooter() {
         <div className="small" style={{ color: "var(--sub-dim)", marginTop: 4, lineHeight: 1.8 }}>
           Baseline™, The Receipt™, Framing Radar™, Lens Lab™, Crossfire™, Signal Pulse™,
           Framing Fingerprint™, Constellation Nav™, Provision Drift™, Split Microscope™,
-          Intersections Panel™, Declassified Dossier™, and Narrative Sync™ are trademarks of Baseline.
+          Intersections Panel™, Declassified Dossier™, and Narrative Sync™ are trademarks of Winters Code.
         </div>
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>

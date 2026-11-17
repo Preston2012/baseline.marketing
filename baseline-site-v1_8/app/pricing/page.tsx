@@ -46,7 +46,7 @@ export default function FreePage() {
 
         <Card title="No data sales">
           <p className="p" style={{ margin: 0 }}>
-            We do not sell your data and we do not share it for advertising. The servers are ours, in Oregon. See the{" "}
+            We do not sell your data and we do not share it for advertising. The servers are ours, at Hetzner in Nuremberg, Germany. See the{" "}
             <Link href="/privacy/">Privacy Policy</Link>.
           </p>
         </Card>

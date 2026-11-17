@@ -23,8 +23,8 @@ export default function PrivacyPage() {
       ]}
     >
       <p className="p">
-        Baseline (&ldquo;Baseline,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is a free mobile
-        app for observing public speech. Baseline is operated by Winters Code in Bandon, Oregon. This policy explains
+        Winters Code of Bandon, Oregon (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) makes Baseline, a free
+        mobile app for observing public speech. This policy explains
         what the app collects, why, who receives it, and how to delete it.
       </p>
 
@@ -101,8 +101,9 @@ export default function PrivacyPage() {
             <tr>
               <td><strong>Baseline servers</strong></td>
               <td>
-                Accounts, sync, alerts and the app&rsquo;s data. Operated by Winters Code on its own servers in
-                Hillsboro, Oregon (Hetzner). No outside database service holds your data.
+                Accounts, sync, alerts and the app&rsquo;s data. Operated by Winters Code on servers it runs at
+                Hetzner in Nuremberg, Germany. Your data is stored in Germany. No outside database service holds your
+                data.
               </td>
               <td>Everything in section 1</td>
             </tr>
@@ -141,7 +142,8 @@ export default function PrivacyPage() {
 
       <h2 className="h3">5. Security</h2>
       <p className="p">
-        The app and our servers talk over an encrypted connection (TLS). Backups are encrypted. No system is perfectly
+        Your data is stored in Germany. If you use the app outside Germany, your data is sent to Germany. The
+        app and our servers talk over an encrypted connection (TLS). Backups are encrypted. No system is perfectly
         secure, and we cannot promise it.
       </p>
 

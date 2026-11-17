@@ -28,8 +28,9 @@ export default function TermsPage() {
       <h2 className="h3">1. Acceptance of Terms</h2>
       <p className="p">
         By using the Baseline mobile application (the &ldquo;App&rdquo;), you agree to these Terms of Service
-        (&ldquo;Terms&rdquo;). If you do not agree, do not use the App. Baseline is operated by Winters Code in
-        Bandon, Oregon.
+        (&ldquo;Terms&rdquo;) with Winters Code of Bandon, Oregon (&ldquo;Winters Code,&rdquo; &ldquo;we,&rdquo;
+        &ldquo;us&rdquo;), which makes the App. Baseline is the name of the App. If you do not agree, do not use the
+        App.
       </p>
 
       <h2 className="h3">2. Service Description</h2>
@@ -75,7 +76,7 @@ export default function TermsPage() {
 
       <h2 className="h3">7. Intellectual Property</h2>
       <p className="p">
-        The App&rsquo;s content, design, and software are the property of Baseline or its licensors, except where an
+        The App&rsquo;s content, design, and software are the property of Winters Code or its licensors, except where an
         open source license says otherwise for specific code. Public statements shown in the App belong to their
         speakers and sources and are shown with attribution.
       </p>
@@ -84,7 +85,7 @@ export default function TermsPage() {
         Lab&trade;,&rdquo; &ldquo;Crossfire&trade;,&rdquo; &ldquo;Signal Pulse&trade;,&rdquo; &ldquo;Framing
         Fingerprint&trade;,&rdquo; &ldquo;Constellation Nav&trade;,&rdquo; &ldquo;Provision Drift&trade;,&rdquo;
         &ldquo;Split Microscope&trade;,&rdquo; &ldquo;Intersections Panel&trade;,&rdquo; &ldquo;Declassified
-        Dossier&trade;,&rdquo; &ldquo;Narrative Sync&trade;,&rdquo; and associated logos are trademarks of Baseline.
+        Dossier&trade;,&rdquo; &ldquo;Narrative Sync&trade;,&rdquo; and associated logos are trademarks of Winters Code.
         Do not use these marks without written consent.
       </p>
 
@@ -114,14 +115,15 @@ export default function TermsPage() {
 
       <h2 className="h3">11. Limitation of Liability</h2>
       <p className="p">
-        TO THE MAXIMUM EXTENT PERMITTED BY LAW, BASELINE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+        TO THE MAXIMUM EXTENT PERMITTED BY LAW, WINTERS CODE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
         CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR RELATED
-        TO YOUR USE OF THE APP, REGARDLESS OF THE THEORY OF LIABILITY.
+        TO YOUR USE OF THE APP, REGARDLESS OF THE THEORY OF LIABILITY. BECAUSE THE APP IS FREE, WINTERS CODE&rsquo;S
+        TOTAL LIABILITY SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (US $100).
       </p>
 
       <h2 className="h3">12. Indemnification</h2>
       <p className="p">
-        You agree to indemnify and hold harmless Baseline and Winters Code from claims, liabilities, damages, losses,
+        You agree to indemnify and hold harmless Winters Code from claims, liabilities, damages, losses,
         and expenses (including reasonable attorneys&rsquo; fees) arising out of your violation of these Terms or your
         use of the App.
       </p>

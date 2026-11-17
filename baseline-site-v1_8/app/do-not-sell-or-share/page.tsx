@@ -29,7 +29,7 @@ export default function DoNotSellPage() {
 
       <h2 className="h3">What Leaves Baseline</h2>
       <p className="p">
-        Your data lives on servers that Winters Code operates. The only information sent to AI providers is the text of
+        Your data lives on servers that Winters Code runs at Hetzner in Nuremberg, Germany. The only information sent to AI providers is the text of
         public statements. No data about you is sent to them. The{" "}
         <Link href="/privacy/">Privacy Policy</Link> lists every recipient.
       </p>
