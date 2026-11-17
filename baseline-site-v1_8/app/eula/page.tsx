@@ -45,6 +45,9 @@ export default function EulaPage() {
       <p className="p">
         Winters Code grants you a limited, non-exclusive, non-transferable, revocable license to install and use the
         App on devices you own or control, as permitted by the Usage Rules of the App Store or the Google Play terms.
+        On Apple devices, this license covers Apple-branded products you own or control, as permitted by the Usage
+        Rules in the App Store Terms of Service, and the App may also be used by other accounts associated with you
+        through Family Sharing, volume purchasing or Legacy Contacts.
         The App is free. If parts of it are released under an open source license, that license governs those parts.
       </p>
       <p className="p">You may not:</p>
