@@ -3,9 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/config/site";
 
-import { WaitlistCapture } from "@/components/WaitlistCapture";
 import { SecondaryLinkButton } from "@/components/Button";
-import { StoreCTA } from "@/components/StoreCTA";
+import { StoreBadges } from "@/components/StoreCTA";
 import { MuseumGallery } from "@/components/MuseumGallery";
 import { Card } from "@/components/Card";
 import { HeroMorph } from "@/components/HeroMorph";
@@ -21,9 +20,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ── WAITLIST CAPTURE - hero takeover ── */}
-      <WaitlistCapture />
-
       {/* ── HERO ── */}
       {/* I9: Hero fade-in via CSS animation */}
       <style>{`
@@ -45,7 +41,7 @@ export default function HomePage() {
         }}
         aria-label="Baseline hero"
       >
-        {/* Hero image - WebP srcset, loading lazy because WaitlistCapture above is the actual LCP. */}
+        {/* Hero image - WebP srcset, this image is the LCP. */}
         <picture>
           <source
             type="image/webp"
@@ -141,18 +137,8 @@ export default function HomePage() {
           </div>
 
 
-          {/* Store CTAs - grid matches nav grid below */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 10,
-              marginTop: 16,
-            }}
-          >
-            <StoreCTA store="appstore" />
-            <StoreCTA store="googleplay" />
-          </div>
+          {/* Store badges: no links yet. The app is not in either store. */}
+          <StoreBadges marginTop={16} />
 
           {/* ── Teal hashmark ruler - separates "get it" from "explore it" ── */}
           <div
@@ -211,8 +197,8 @@ export default function HomePage() {
             <SecondaryLinkButton href="/features/" ariaLabel="View features">
               Features
             </SecondaryLinkButton>
-            <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
-              Pricing
+            <SecondaryLinkButton href="/pricing/" ariaLabel="Baseline is free">
+              Free
             </SecondaryLinkButton>
             <SecondaryLinkButton href="/methodology/" ariaLabel="View methodology">
               Methodology
@@ -224,7 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS - streamlined to 3 cards (was 6) per §4 ── */}
+      {/* ── HOW IT WORKS - cut to 3 cards (was 6) per §4 ── */}
       <section className="section intel-dot-grid" aria-label="How Baseline works" style={{ position: 'relative' }}>
         {/* Registration dots: corner alignment markers */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />

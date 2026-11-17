@@ -1,17 +1,17 @@
 # Baseline
 
-> Speech you can measure. Baseline runs the same public statement through parallel AI systems and shows side-by-side observational analysis with source context. Observational analysis only, not a fact-check. Currently pre-launch with an open waitlist.
+> Speech you can measure. Baseline runs the same public statement through parallel AI systems and shows side-by-side observational analysis with source context. Observational analysis only, not a fact-check. Free. No ads, no subscriptions, no purchases.
 
 ## Pages
-- [Home](https://www.baseline.marketing/): what Baseline is and the waitlist
+- [Home](https://www.baseline.marketing/): what Baseline is
 - [Features](https://www.baseline.marketing/features): what the product shows
 - [Methodology](https://www.baseline.marketing/methodology): how statements are ingested and analyzed
 - [Ethos](https://www.baseline.marketing/ethos): principles and limits
-- [Pricing](https://www.baseline.marketing/pricing): plans at launch
+- [Free](https://www.baseline.marketing/pricing): the app is free, and how it is funded
 
 ## Facts
 - Same input run across parallel systems, results shown side by side
 - Outputs may vary between systems; sources and context remain the reference surface
-- Status: pre-launch, waitlist open
+- Status: not in the Google Play or App Store yet. Support: support@baseline.marketing
 
 Built by Winters Code (https://winterscode.com), Bandon, Oregon.

@@ -4,7 +4,7 @@ import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "Built By Preston Winters",
   description:
-    "Solo-built political intelligence platform. 100K+ lines of code. 28 screens. 4 AI providers. Flutter, Supabase, Edge Functions. Multi-AI orchestration at team velocity.",
+    "Solo-built political intelligence platform. 100K+ lines of code. 28 screens. 4 AI providers. Flutter, PostgreSQL, server functions. Multi-AI orchestration at team velocity.",
   alternates: { canonical: `${site.url}/built/` },
   openGraph: {
     title: "Built By Preston Winters | Baseline",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 const STATS = [
   { value: "100K+", label: "LINES OF CODE", sub: "Baseline alone" },
   { value: "28", label: "SCREENS", sub: "Production app" },
-  { value: "22", label: "EDGE FUNCTIONS", sub: "Supabase backend" },
+  { value: "36", label: "SERVER FUNCTIONS", sub: "Self-hosted backend" },
   { value: "4", label: "AI PROVIDERS", sub: "Independent analysis" },
   { value: "2", label: "APPS BUILT", sub: "1 published, 1 in testing" },
   { value: "500+", label: "BUILD SESSIONS", sub: "Documented" },
@@ -31,13 +31,12 @@ const STATS = [
 const STACK = [
   "Flutter",
   "Dart",
-  "Supabase",
   "PostgreSQL",
-  "Edge Functions",
+  "PostgREST",
+  "Server Functions",
   "REST APIs",
   "Riverpod",
   "GoRouter",
-  "RevenueCat",
   "Git",
 ];
 

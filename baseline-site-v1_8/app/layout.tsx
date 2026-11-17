@@ -93,11 +93,7 @@ function JsonLd() {
     url: site.url,
     applicationCategory: "NewsApplication",
     operatingSystem: "iOS, Android",
-    offers: [
-      { "@type": "Offer", price: "0", priceCurrency: "USD", description: "Core: Free" },
-      { "@type": "Offer", price: "7.99", priceCurrency: "USD", description: "Pro: Monthly" },
-      { "@type": "Offer", price: "24.99", priceCurrency: "USD", description: "Pro+: Monthly" }
-    ]
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD", description: "Free" }
   };
 
   return (

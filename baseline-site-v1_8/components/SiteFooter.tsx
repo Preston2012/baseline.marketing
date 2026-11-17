@@ -47,7 +47,7 @@ export function SiteFooter() {
             {[
               { href: "/features/", label: "Features" },
               { href: "/methodology/", label: "Methodology" },
-              { href: "/pricing/", label: "Pricing" },
+              { href: "/pricing/", label: "Free" },
               { href: "/what-we-dont-do/", label: "What We Don\u2019t Do" },
               { href: "/ethos/", label: "Ethos" },
               { href: "/support/", label: "Support" },

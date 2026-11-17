@@ -6,13 +6,13 @@ import { usePathname } from 'next/navigation';
 import { PrimaryLinkButton } from './Button';
 import { BRAND_WORDMARK, BRAND_BA_MARK } from '../config/brand-assets';
 
-/* §1 Nav Order: Home · Features · Methodology · Pricing
+/* §1 Nav Order: Home · Features · Methodology · Free
    Hamburger overflow: What We Don't Do · Press · Support · Legal */
 const NAV_PRIMARY = [
   { href: '/features/', label: 'Features' },
   { href: '/methodology/', label: 'Methodology' },
   { href: '/ethos/', label: 'Ethos' },
-  { href: '/pricing/', label: 'Pricing' },
+  { href: '/pricing/', label: 'Free' },
 ];
 
 const NAV_OVERFLOW = [
@@ -168,7 +168,7 @@ export default function Nav() {
               {label}
             </Link>
           ))}
-          <PrimaryLinkButton href="/pricing/" ariaLabel="Get started" compact>Get Started</PrimaryLinkButton>
+          <PrimaryLinkButton href="/pricing/" ariaLabel="Get the app" compact>Get the App</PrimaryLinkButton>
         </div>
 
         {/* Mobile hamburger */}
@@ -253,7 +253,7 @@ export default function Nav() {
               </Link>
             ))}
             <div style={{ marginTop: 8 }}>
-              <PrimaryLinkButton href="/pricing/" ariaLabel="Get started">Get Started</PrimaryLinkButton>
+              <PrimaryLinkButton href="/pricing/" ariaLabel="Get the app">Get the App</PrimaryLinkButton>
             </div>
           </div>
         </>

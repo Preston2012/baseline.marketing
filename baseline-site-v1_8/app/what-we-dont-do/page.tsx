@@ -66,8 +66,8 @@ export default function WhatWeDontDoPage() {
           <SecondaryLinkButton href="/methodology/" ariaLabel="View methodology">
             How we measure
           </SecondaryLinkButton>
-          <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
-            View pricing
+          <SecondaryLinkButton href="/pricing/" ariaLabel="Baseline is free">
+            Free, no ads
           </SecondaryLinkButton>
         </div>
 

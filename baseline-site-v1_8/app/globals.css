@@ -176,16 +176,6 @@ img{ max-width:100%; height:auto; display:block; }
   border-color: rgba(45, 212, 191, 0.3) !important;
 }
 
-/* I16: Pricing tier comparison - hover highlights one, dims rest */
-.tier-grid:hover > *{
-  opacity: 0.55;
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
-}
-.tier-grid:hover > *:hover{
-  opacity: 1;
-  transform: scale(1.01);
-}
-
 /* N14: Nav link teal scan line hover */
 .nav-scan-link{
   position: relative;

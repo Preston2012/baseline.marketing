@@ -1,3 +1,5 @@
+import { LEGAL_DRAFT_NOTICE } from "@/config/site";
+
 export function LegalDoc({
   title,
   effectiveDate,
@@ -14,11 +16,16 @@ export function LegalDoc({
   const bullets = summary ?? [
     "Applies to the Baseline mobile application.",
     "Explains how data is handled and what you can request.",
-    "Includes subscription and privacy disclosures where relevant."
+    "Baseline is free. No ads, no purchases, no sale of data."
   ];
 
   return (
     <section className="section legal" aria-label={title}>
+      {LEGAL_DRAFT_NOTICE ? (
+        <p className="data" role="note" style={{ color: "var(--teal)", fontSize: 12, letterSpacing: "0.08em", margin: "0 0 8px" }}>
+          {LEGAL_DRAFT_NOTICE}
+        </p>
+      ) : null}
       <h1 className="h2">{title}</h1>
       <p className="small">
         <span className="data">Effective Date:</span> {effectiveDate} &nbsp;&bull;&nbsp;{" "}

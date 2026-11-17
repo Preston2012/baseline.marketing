@@ -1,20 +1,16 @@
 "use client";
 
-import { useState, useCallback, Fragment, type ReactNode } from "react";
-import { TierPill } from "./TierPill";
-import { FeaturesNav, type TierFilter } from "./FeaturesNav";
+import { Fragment, type ReactNode } from "react";
+import { FeaturesNav } from "./FeaturesNav";
 import { SignalMetricsWidget, BaselineScoreWidget, ConsensusRingWidget, ReceiptTimelineWidget, CrossfireWidget, RadarDemoWidget, ConstellationWidget, DriftWidget, LensLabWidget, SignalPulseWidget, FingerprintWidget, IntersectionsWidget, DossierWidget, SplitMicroscopeWidget, NarrativeSyncWidget, BaselineDeltaWidget, VarianceDetectionWidget, HistoricalTrendsWidget, TopicHeatmapWidget, ShiftAlertWidget, MutationTimelineWidget, SpendingScopeWidget } from "./GalleryWidgets";
 
 /* ─────────────────────────────────────────────────────────
    TYPES
    ───────────────────────────────────────────────────────── */
 
-type Tier = "CORE" | "PRO" | "PRO+" | "B2B";
-
 type Feature = {
   name: string;
   desc: string;
-  tier: Tier;
   /** Frosted widget label (shown inside widget frame) */
   widgetLabel?: string;
   /** Widget component - if present, renders as combo */
@@ -24,109 +20,98 @@ type Feature = {
 };
 
 /* ─────────────────────────────────────────────────────────
-   SECTION DATA - ordered CORE → PRO → PRO+ → B2B
-   Features with widgets become combos (widget + card info
+   SECTION DATA
+   Every feature is free. Features with widgets become combos (widget + card info
    in one frame). Features without stay as regular cards.
    ───────────────────────────────────────────────────────── */
 
 const SIGNALS: Feature[] = [
-  { name: "Signal Metrics", desc: "Repetition, Novelty, Affect, Entropy. Four independent scores per statement, each 0\u2013100.", tier: "CORE",
+  { name: "Signal Metrics", desc: "Repetition, Novelty, Affect, Entropy. Four independent scores per statement, each 0\u2013100.",
     widgetLabel: "SIGNAL METRICS \u00b7 4-AXIS DECOMPOSITION", widget: <SignalMetricsWidget /> },
-  { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The reference signal for each figure.", tier: "CORE",
+  { name: "Baseline\u2122", desc: "Figure-level 24-hour rolling aggregate. The reference signal for each figure.",
     widgetLabel: "BASELINE\u2122 \u00b7 24HR ROLLING AGGREGATE", widget: <BaselineScoreWidget /> },
-  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.", tier: "CORE",
+  { name: "Baseline Delta", desc: "How far a statement\u2019s signal metrics deviate from the figure\u2019s historical average. Measures shift, not position.",
     widgetLabel: "BASELINE DELTA \u00b7 DEVIATION GAUGE", widget: <BaselineDeltaWidget /> },
-  { name: "Consensus Convergence", desc: "How often models agree. Shown as a simple ratio.", tier: "CORE",
+  { name: "Consensus Convergence", desc: "How often models agree. Shown as a simple ratio.",
     widgetLabel: "CONSENSUS \u00b7 MODEL CONVERGENCE", widget: <ConsensusRingWidget /> },
-  { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.", tier: "CORE",
+  { name: "Variance Detection", desc: "When models disagree, you see it. Displayed, never hidden.",
     widgetLabel: "VARIANCE \u00b7 MODEL DISAGREEMENT SURFACING", widget: <VarianceDetectionWidget /> },
-  { name: "Lens Lab\u2122", desc: "Independent AI models running in parallel. Same statement, separate measurements.", tier: "PRO",
+  { name: "Lens Lab\u2122", desc: "Independent AI models running in parallel. Same statement, separate measurements.",
     widgetLabel: "LENS LAB\u2122 \u00b7 MULTI-SYSTEM PARALLEL ANALYSIS", widget: <LensLabWidget />, wide: true },
-  { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.", tier: "PRO",
+  { name: "Historical Trends", desc: "Language patterns over time. Measured, not predicted.",
     widgetLabel: "HISTORICAL \u00b7 SIGNAL PATTERNS OVER TIME", widget: <HistoricalTrendsWidget /> },
-  { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where measurements diverge most.", tier: "PRO+" },
-  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.", tier: "PRO+",
+  { name: "Divergence Sort", desc: "Sort by lowest consensus first. See where measurements diverge most." },
+  { name: "Split Microscope\u2122", desc: "Side-by-side model output comparison. See exactly where measurements diverge.",
     widgetLabel: "SPLIT MICROSCOPE\u2122 \u00b7 DIVERGENCE VIEW", widget: <SplitMicroscopeWidget /> },
 ];
 
 const FEED: Feature[] = [
-  { name: "Feed Browse + Statement Detail", desc: "Access every analyzed statement with full source context.", tier: "CORE" },
-  { name: "Trending Topics", desc: "Topic chips showing what\u2019s active now.", tier: "CORE" },
-  { name: "\u201CWhy am I seeing this?\u201D", desc: "See why this statement is in your feed.", tier: "CORE" },
-  { name: "Model Attribution", desc: "See which models produced each measurement.", tier: "CORE" },
-  { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.", tier: "CORE",
+  { name: "Feed Browse + Statement Detail", desc: "Access every analyzed statement with full source context." },
+  { name: "Trending Topics", desc: "Topic chips showing what\u2019s active now." },
+  { name: "\u201CWhy am I seeing this?\u201D", desc: "See why this statement is in your feed." },
+  { name: "Model Attribution", desc: "See which models produced each measurement." },
+  { name: "The Receipt\u2122", desc: "The full statement exhibit: measurements, sources, and a semantic similarity timeline.",
     widgetLabel: "THE RECEIPT\u2122 \u00b7 STATEMENT EXHIBIT", widget: <ReceiptTimelineWidget /> },
-  { name: "Feed Sorting", desc: "Sort by novelty, recency, or signal strength.", tier: "PRO" },
-  { name: "Long-press Peek Preview", desc: "Press and hold to preview a statement without navigating.", tier: "PRO" },
-  { name: "Double-tap Annotate", desc: "Quick-annotate any statement with a double tap.", tier: "PRO" },
-  { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.", tier: "PRO",
+  { name: "Feed Sorting", desc: "Sort by novelty, recency, or signal strength." },
+  { name: "Long-press Peek Preview", desc: "Press and hold to preview a statement without navigating." },
+  { name: "Double-tap Annotate", desc: "Quick-annotate any statement with a double tap." },
+  { name: "Crossfire\u2122", desc: "Two figures. One surface. Direct framing comparison.",
     widgetLabel: "CROSSFIRE\u2122 \u00b7 DUAL FIGURE COMPARISON", widget: <CrossfireWidget /> },
 ];
 
 const FIGURES: Feature[] = [
-  { name: "Figure Profiles", desc: "Every tracked figure with their full measurement history.", tier: "CORE" },
-  { name: "\u201CStatements This Week\u201D Badge", desc: "Recent statement count per figure.", tier: "CORE" },
-  { name: "\u201CSilent Vote\u201D Indicator", desc: "Shown when a figure discussed a bill but has no recorded vote.", tier: "CORE" },
-  { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.", tier: "CORE",
+  { name: "Figure Profiles", desc: "Every tracked figure with their full measurement history." },
+  { name: "\u201CStatements This Week\u201D Badge", desc: "Recent statement count per figure." },
+  { name: "\u201CSilent Vote\u201D Indicator", desc: "Shown when a figure discussed a bill but has no recorded vote." },
+  { name: "Framing Fingerprint\u2122", desc: "Aggregate framing tendencies rendered as a unique visual signature.",
     widgetLabel: "FRAMING FINGERPRINT\u2122 \u00b7 RHETORICAL IDENTITY", widget: <FingerprintWidget /> },
-  { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.", tier: "CORE",
+  { name: "Signal Pulse\u2122", desc: "Visual summary of signal activity at a glance.",
     widgetLabel: "SIGNAL PULSE\u2122 \u00b7 ACTIVITY WAVEFORM", widget: <SignalPulseWidget /> },
-  { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access.", tier: "PRO" },
-  { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.", tier: "PRO",
+  { name: "Favorites & Followed Figures", desc: "Pin figures to your feed for faster access." },
+  { name: "Framing Radar\u2122", desc: "Five-axis rhetorical measurement rendered as a pentagon. One shape per figure.",
     widgetLabel: "FRAMING RADAR\u2122 \u00b7 5-AXIS MEASUREMENT", widget: <RadarDemoWidget /> },
-  { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.", tier: "PRO",
+  { name: "Constellation Nav\u2122", desc: "Data-infused dot navigation between figures, topics, and framing patterns.",
     widgetLabel: "CONSTELLATION NAV\u2122 \u00b7 FIGURE TOPOLOGY", widget: <ConstellationWidget /> },
-  { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.", tier: "PRO+",
+  { name: "Topic Heatmap", desc: "Figures \u00d7 topics grid. See who talks about what, and how much.",
     widgetLabel: "TOPIC HEATMAP \u00b7 COVERAGE DENSITY", widget: <TopicHeatmapWidget /> },
-  { name: "Intersections Panel\u2122", desc: "Cross-figure pattern map. See where rhetoric overlaps across figures.", tier: "PRO+",
+  { name: "Intersections Panel\u2122", desc: "Cross-figure pattern map. See where rhetoric overlaps across figures.",
     widgetLabel: "INTERSECTIONS PANEL\u2122 \u00b7 FRAMING OVERLAP", widget: <IntersectionsWidget /> },
-  { name: "Declassified Dossier\u2122", desc: "Complete analytical profile. Every surface, one view.", tier: "PRO+",
+  { name: "Declassified Dossier\u2122", desc: "Complete analytical profile. Every surface, one view.",
     widgetLabel: "DECLASSIFIED DOSSIER\u2122 \u00b7 EXHIBIT PLATE PROFILE", widget: <DossierWidget />, wide: true },
 ];
 
 const BILLS: Feature[] = [
-  { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded.", tier: "CORE" },
-  { name: "Bill Overview & Notable Provisions", desc: "Structured summaries of legislation with provision-level detail.", tier: "PRO+" },
-  { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap.", tier: "PRO+" },
-  { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance.", tier: "PRO+" },
-  { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift.", tier: "PRO+" },
-  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.", tier: "PRO",
+  { name: "Congressional Vote Record", desc: "Every vote. Every bill. Every member. Recorded or not recorded." },
+  { name: "Bill Overview & Notable Provisions", desc: "Structured summaries of legislation with provision-level detail." },
+  { name: "Provision Resonance Links", desc: "Cross-references between provisions that share framing or topic overlap." },
+  { name: "Drift Cascade Waterfall", desc: "Visualize how provisions drift from purpose, ranked by distance." },
+  { name: "Drift League Table", desc: "Bills ranked by aggregate provision drift." },
+  { name: "Provision Drift\u2122", desc: "Semantic distance between provisions and a bill\u2019s stated purpose.",
     widgetLabel: "PROVISION DRIFT\u2122 \u00b7 SEMANTIC DISTANCE", widget: <DriftWidget /> },
-  { name: "Mutation Timeline\u2122", desc: "How bill provisions change across legislative versions. Each mutation measured, each splice detected.", tier: "PRO+",
+  { name: "Mutation Timeline\u2122", desc: "How bill provisions change across legislative versions. Each mutation measured, each splice detected.",
     widgetLabel: "MUTATION TIMELINE\u2122 \u00b7 GENOME SEQUENCER", widget: <MutationTimelineWidget />, wide: true },
-  { name: "Spending Scope\u2122", desc: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced.", tier: "PRO+",
+  { name: "Spending Scope\u2122", desc: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced.",
     widgetLabel: "SPENDING SCOPE\u2122 \u00b7 FISCAL SONAR STATION", widget: <SpendingScopeWidget />, wide: true },
 ];
 
 const TOOLS: Feature[] = [
-  { name: "Private Annotations", desc: "Core: 0 \u00b7 Pro: 100 \u00b7 Pro+: 500 \u00b7 B2B: 1,000", tier: "CORE" },
-  { name: "Request a Figure", desc: "Don\u2019t see someone? Request a figure for tracking.", tier: "CORE" },
-  { name: "How Is This Measured?", desc: "Info sheets on every analysis surface explaining the methodology behind each measurement.", tier: "CORE" },
-  { name: "First Measurement Guide", desc: "Quick walkthrough on your first measurement screen.", tier: "CORE" },
-  { name: "Export & Share", desc: "Museum-grade export with branded watermark. Pro and above.", tier: "PRO" },
-  { name: "Ghost Export", desc: "Then vs. now: export a figure\u2019s measurements at two points in time.", tier: "PRO" },
-  { name: "Copy with Citation", desc: "One-tap copy with automatic attribution footer.", tier: "PRO" },
-  { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score.", tier: "PRO" },
-  { name: "Digest Notifications", desc: "Daily/weekly digests. Pro and above.", tier: "PRO" },
-  { name: "Advanced Notifications", desc: "Per-figure, per-topic alerts with higher frequency.", tier: "PRO+" },
-  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.", tier: "PRO+",
+  { name: "Private Annotations", desc: "Notes on statements. Private to you." },
+  { name: "Request a Figure", desc: "Don\u2019t see someone? Request a figure for tracking." },
+  { name: "How Is This Measured?", desc: "Info sheets on every analysis surface explaining the methodology behind each measurement." },
+  { name: "First Measurement Guide", desc: "Quick walkthrough on your first measurement screen." },
+  { name: "Export & Share", desc: "Museum-grade export with branded watermark." },
+  { name: "Ghost Export", desc: "Then vs. now: export a figure\u2019s measurements at two points in time." },
+  { name: "Copy with Citation", desc: "One-tap copy with automatic attribution footer." },
+  { name: "Drift-infused Watermark", desc: "Export watermark shows the statement\u2019s drift score." },
+  { name: "Digest Notifications", desc: "Daily and weekly digests." },
+  { name: "Advanced Notifications", desc: "Per-figure, per-topic alerts with higher frequency." },
+  { name: "Shift Alert", desc: "Triggered when a figure\u2019s language shifts significantly within 24 hours.",
     widgetLabel: "SHIFT ALERT \u00b7 24HR SPIKE DETECTION", widget: <ShiftAlertWidget /> },
-  { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Precision monitoring.", tier: "B2B" },
-  { name: "Annotation Delta Cards", desc: "Track how model agreement on your annotations changes over time.", tier: "B2B" },
-  { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.", tier: "B2B",
+  { name: "Delta Threshold Alerts", desc: "User-set per-figure thresholds. Precision monitoring." },
+  { name: "Annotation Delta Cards", desc: "Track how model agreement on your annotations changes over time." },
+  { name: "Narrative Sync\u2122", desc: "Cross-figure framing convergence detection.",
     widgetLabel: "NARRATIVE SYNC\u2122 \u00b7 CONVERGENCE DETECTION", widget: <NarrativeSyncWidget /> },
 ];
-
-/* ─────────────────────────────────────────────────────────
-   TIER FILTER LOGIC
-   ───────────────────────────────────────────────────────── */
-
-const TIER_HIERARCHY: Record<TierFilter, Tier[]> = {
-  ALL: ["CORE", "PRO", "PRO+", "B2B"],
-  CORE: ["CORE"],
-  PRO: ["CORE", "PRO"],
-  "PRO+": ["CORE", "PRO", "PRO+", "B2B"],
-};
 
 /* ─────────────────────────────────────────────────────────
    FEATURE CARD - plain card (no widget)
@@ -144,9 +129,6 @@ function FeatureCard({ f }: { f: Feature }) {
     >
       <div style={{ color: "var(--text)", fontWeight: 600, marginBottom: 8, fontSize: 14 }}>
         {f.name}
-      </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-        <TierPill tier={f.tier} />
       </div>
       <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
         {f.desc}
@@ -188,9 +170,6 @@ function WidgetCard({ f }: { f: Feature }) {
         <div style={{ color: "var(--text)", fontWeight: 600, marginBottom: 8, fontSize: 14 }}>
           {f.name}
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-          <TierPill tier={f.tier} />
-        </div>
         <p className="p" style={{ margin: 0, filter: "blur(5px)", WebkitFilter: "blur(5px)", userSelect: "none", WebkitUserSelect: "none" }}>
           {f.desc}
         </p>
@@ -205,17 +184,8 @@ function WidgetCard({ f }: { f: Feature }) {
    Wide items break out of the 2-col grid.
    ───────────────────────────────────────────────────────── */
 
-function SectionGrid({ items, filter }: { items: Feature[]; filter: TierFilter }) {
-  const visibleTiers = TIER_HIERARCHY[filter];
-  const filtered = items.filter((f) => visibleTiers.includes(f.tier));
-
-  if (filtered.length === 0) {
-    return (
-      <div className="data" style={{ color: "var(--sub-dim)", fontSize: 12, padding: "20px 0", textAlign: "center" }}>
-        No features in this tier for this category.
-      </div>
-    );
-  }
+function SectionGrid({ items }: { items: Feature[] }) {
+  const filtered = items;
 
   // Split into chunks: consecutive non-wide items go into grid rows,
   // wide items break out as full-width between grid chunks.
@@ -373,16 +343,13 @@ function FigureRoster() {
    ───────────────────────────────────────────────────────── */
 
 export function FeaturesContent() {
-  const [tier, setTier] = useState<TierFilter>("ALL");
-  const handleTier = useCallback((t: TierFilter) => setTier(t), []);
-
   return (
     <>
-      <FeaturesNav onTierChange={handleTier} />
+      <FeaturesNav />
 
       <section id="signals" className="section" aria-label="Signal features">
         <span className="section-label">SIGNALS</span>
-        <SectionGrid items={SIGNALS} filter={tier} />
+        <SectionGrid items={SIGNALS} />
         <div className="small" style={{ fontStyle: "italic", color: "var(--sub-dim)", marginTop: 12 }}>
           Observational analysis only. Not a fact-check.
         </div>
@@ -392,7 +359,7 @@ export function FeaturesContent() {
 
       <section id="feed" className="section" aria-label="Feed features">
         <span className="section-label">FEED</span>
-        <SectionGrid items={FEED} filter={tier} />
+        <SectionGrid items={FEED} />
       </section>
 
       <SectionDivider />
@@ -400,14 +367,14 @@ export function FeaturesContent() {
       <section id="figures" className="section" aria-label="Figure features">
         <span className="section-label">FIGURES</span>
         <FigureRoster />
-        <SectionGrid items={FIGURES} filter={tier} />
+        <SectionGrid items={FIGURES} />
       </section>
 
       <SectionDivider />
 
       <section id="bills" className="section" aria-label="Bill features">
         <span className="section-label">BILLS</span>
-        <SectionGrid items={BILLS} filter={tier} />
+        <SectionGrid items={BILLS} />
         <div className="small" style={{ fontStyle: "italic", color: "var(--sub-dim)", marginTop: 12 }}>
           Observational analysis only. Not a fact-check.
         </div>
@@ -417,7 +384,7 @@ export function FeaturesContent() {
 
       <section id="tools" className="section" aria-label="Tool features">
         <span className="section-label">TOOLS</span>
-        <SectionGrid items={TOOLS} filter={tier} />
+        <SectionGrid items={TOOLS} />
       </section>
     </>
   );

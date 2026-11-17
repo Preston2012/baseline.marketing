@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { TierPill } from "./TierPill";
 import {
   BaselineConcept, ReceiptConcept, SignalPulseConcept, FingerprintConcept,
   RadarConcept, LensLabConcept, CrossfireConcept, ConstellationConcept,
@@ -12,7 +11,6 @@ import {
 type MuseumItem = {
   title: string;
   tagline: string;
-  tier: "CORE" | "PRO" | "PRO+" | "B2B";
   concept: keyof typeof CONCEPT_MAP;
   placard: string;
 };
@@ -36,21 +34,21 @@ const CONCEPT_MAP = {
 } as const;
 
 const GALLERY: MuseumItem[] = [
-  { title: "Baseline\u2122", tagline: "Pure signal. No noise.", tier: "CORE", concept: "baseline", placard: "The measurement stack. Parallel AI systems, side-by-side results, source context on every surface." },
-  { title: "The Receipt\u2122", tagline: "Recurring patterns. Measured over time.", tier: "CORE", concept: "receipt", placard: "Match tiers surface the strongest patterns. History doesn\u2019t disappear." },
-  { title: "Signal Pulse\u2122", tagline: "The signal at a glance.", tier: "CORE", concept: "pulse", placard: "Visual summary of signal activity. No analysis required to read it." },
-  { title: "Framing Fingerprint\u2122", tagline: "A figure\u2019s rhetorical identity.", tier: "CORE", concept: "fingerprint", placard: "Aggregate framing tendencies rendered as a unique visual signature." },
-  { title: "Framing Radar\u2122", tagline: "Five axes. One pentagon. Every model.", tier: "PRO", concept: "radar", placard: "Overlay the models and the structure of the statement reveals itself." },
-  { title: "Lens Lab\u2122", tagline: "Independent systems. Side-by-side. You decide.", tier: "PRO", concept: "lenslab", placard: "Consensus is computed after, displayed alongside, never merged." },
-  { title: "Crossfire\u2122", tagline: "Two figures. One surface. Direct comparison.", tier: "PRO", concept: "crossfire", placard: "Side-by-side framing comparison across any two tracked figures." },
-  { title: "Constellation Nav\u2122", tagline: "Navigate the network.", tier: "PRO", concept: "constellation", placard: "Explore connections between figures, topics, and framing patterns." },
-  { title: "Provision Drift\u2122", tagline: "How far did it drift?", tier: "PRO", concept: "drift", placard: "Measures semantic distance between provisions and a bill\u2019s stated purpose." },
-  { title: "Split Microscope\u2122", tagline: "Where models diverge.", tier: "PRO+", concept: "microscope", placard: "Detailed variance breakdown when independent systems disagree." },
-  { title: "Intersections Panel\u2122", tagline: "Cross-linking patterns.", tier: "PRO+", concept: "intersections", placard: "Shows shared framing and topic overlaps across figures and time." },
-  { title: "Declassified Dossier\u2122", tagline: "The full exhibit plate.", tier: "PRO+", concept: "dossier", placard: "Complete analytical profile for a single figure. Every surface, one view." },
-  { title: "Mutation Timeline\u2122", tagline: "The legislative genome, sequenced.", tier: "PRO+", concept: "mutation", placard: "How bill provisions change across legislative versions. Each mutation measured, each splice detected." },
-  { title: "Spending Scope\u2122", tagline: "Fiscal depth, measured.", tier: "PRO+", concept: "spending", placard: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced." },
-  { title: "Narrative Sync\u2122", tagline: "Cross-figure framing convergence.", tier: "B2B", concept: "sync", placard: "Detects when independent figures begin using similar framing simultaneously." },
+  { title: "Baseline\u2122", tagline: "Pure signal. No noise.", concept: "baseline", placard: "The measurement stack. Parallel AI systems, side-by-side results, source context on every surface." },
+  { title: "The Receipt\u2122", tagline: "Recurring patterns. Measured over time.", concept: "receipt", placard: "Match tiers surface the strongest patterns. History doesn\u2019t disappear." },
+  { title: "Signal Pulse\u2122", tagline: "The signal at a glance.", concept: "pulse", placard: "Visual summary of signal activity. No analysis required to read it." },
+  { title: "Framing Fingerprint\u2122", tagline: "A figure\u2019s rhetorical identity.", concept: "fingerprint", placard: "Aggregate framing tendencies rendered as a unique visual signature." },
+  { title: "Framing Radar\u2122", tagline: "Five axes. One pentagon. Every model.", concept: "radar", placard: "Overlay the models and the structure of the statement reveals itself." },
+  { title: "Lens Lab\u2122", tagline: "Independent systems. Side-by-side. You decide.", concept: "lenslab", placard: "Consensus is computed after, displayed alongside, never merged." },
+  { title: "Crossfire\u2122", tagline: "Two figures. One surface. Direct comparison.", concept: "crossfire", placard: "Side-by-side framing comparison across any two tracked figures." },
+  { title: "Constellation Nav\u2122", tagline: "Navigate the network.", concept: "constellation", placard: "Explore connections between figures, topics, and framing patterns." },
+  { title: "Provision Drift\u2122", tagline: "How far did it drift?", concept: "drift", placard: "Measures semantic distance between provisions and a bill\u2019s stated purpose." },
+  { title: "Split Microscope\u2122", tagline: "Where models diverge.", concept: "microscope", placard: "Detailed variance breakdown when independent systems disagree." },
+  { title: "Intersections Panel\u2122", tagline: "Cross-linking patterns.", concept: "intersections", placard: "Shows shared framing and topic overlaps across figures and time." },
+  { title: "Declassified Dossier\u2122", tagline: "The full exhibit plate.", concept: "dossier", placard: "Complete analytical profile for a single figure. Every surface, one view." },
+  { title: "Mutation Timeline\u2122", tagline: "The legislative genome, sequenced.", concept: "mutation", placard: "How bill provisions change across legislative versions. Each mutation measured, each splice detected." },
+  { title: "Spending Scope\u2122", tagline: "Fiscal depth, measured.", concept: "spending", placard: "Spending data tied to bills and provisions. CBO scores, extracted figures, every dollar surfaced." },
+  { title: "Narrative Sync\u2122", tagline: "Cross-figure framing convergence.", concept: "sync", placard: "Detects when independent figures begin using similar framing simultaneously." },
 ];
 
 const INJECTED_STYLES = `
@@ -65,7 +63,7 @@ function ConceptRenderer({ type }: { type: keyof typeof CONCEPT_MAP }) {
 
 function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number; onReveal: () => void }) {
   const [revealed, setRevealed] = useState(false);
-  const [unlocking, setUnlocking] = useState(false);
+  const [opening, setOpening] = useState(false);
   const [visible, setVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -78,10 +76,10 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
   }, []);
 
   const handleReveal = useCallback(() => {
-    if (revealed || unlocking) return;
-    setUnlocking(true);
-    setTimeout(() => { setRevealed(true); setUnlocking(false); onReveal(); }, 350);
-  }, [revealed, unlocking, onReveal]);
+    if (revealed || opening) return;
+    setOpening(true);
+    setTimeout(() => { setRevealed(true); setOpening(false); onReveal(); }, 350);
+  }, [revealed, opening, onReveal]);
 
   return (
     <div ref={cardRef} role="button" tabIndex={0} onClick={handleReveal}
@@ -97,7 +95,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
         transform: visible ? "translateY(0)" : "translateY(8px)",
         transition: "opacity 400ms ease-out, transform 400ms ease-out, border-color 300ms ease-out",
         transitionDelay: `${index * 40}ms`,
-        animation: unlocking ? "vault-trace 350ms ease-out forwards" : "none",
+        animation: opening ? "vault-trace 350ms ease-out forwards" : "none",
       }}>
 
       {/* Film perforations - all cards are exhibit pieces */}
@@ -144,7 +142,7 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
           </span>
         </div>
 
-        {!revealed && !unlocking && (
+        {!revealed && !opening && (
           <div style={{ position: "absolute", inset: 0, border: "2px solid rgba(45,212,191,0.03)", borderRadius: 12, animation: "museum-breathe 3s ease-in-out infinite", pointerEvents: "none" }} />
         )}
       </div>
@@ -153,7 +151,6 @@ function MuseumCard({ item, index, onReveal }: { item: MuseumItem; index: number
       <div style={{ padding: 16 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
           <span style={{ color: "var(--text)", fontWeight: 600, fontSize: 16 }}>{item.title}</span>
-          <TierPill tier={item.tier} />
         </div>
         <div className="data" style={{ color: "var(--teal)", fontSize: 13, marginBottom: revealed ? 12 : 4 }}>{item.tagline}</div>
         {!revealed && <div className="data" style={{ color: "var(--sub-dim)", fontSize: 11 }}>&#9656; CLEARANCE REQUIRED</div>}

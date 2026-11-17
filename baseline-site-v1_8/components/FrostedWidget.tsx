@@ -11,7 +11,7 @@ import { useState } from 'react';
    Easter egg: tap/hold to partially defrost for a sneak peek.
    ───────────────────────────────────────────────────────── */
 
-export function FrostedWidgetPreview({ children, label, tier }: { children: React.ReactNode; label?: string; tier?: string }) {
+export function FrostedWidgetPreview({ children, label }: { children: React.ReactNode; label?: string }) {
   const [peeking, setPeeking] = useState(false);
 
   return (
@@ -116,19 +116,6 @@ export function FrostedWidgetPreview({ children, label, tier }: { children: Reac
         }}>
           PRE-LAUNCH
         </span>
-        {tier && (
-          <span style={{
-            fontFamily: "var(--font-jetbrains, monospace)",
-            fontSize: 8, letterSpacing: "0.12em",
-            color: "#2dd4bf", textTransform: "uppercase",
-            border: "1px solid rgba(45,212,191,0.25)",
-            borderRadius: 3, padding: "2px 8px", marginTop: 2,
-            opacity: peeking ? 0 : 1,
-            transition: "opacity 300ms ease",
-          }}>
-            {tier}
-          </span>
-        )}
       </div>
     </div>
   );

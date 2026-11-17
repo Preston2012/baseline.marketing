@@ -161,7 +161,6 @@ export default function MethodologyPage() {
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each statement is compared against everything the figure has previously said on that topic.</li>
               <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (semantic similarity). Tiers: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
-              <li>Match limits vary by tier. Core: <span className="data" style={{ color: "var(--teal)" }}>3</span>, Pro: <span className="data" style={{ color: "var(--teal)" }}>5</span>, Pro+: <span className="data" style={{ color: "var(--teal)" }}>unlimited</span>.</li>
               <li>Patterns measured, not interpreted. Recurrence surfaced. Meaning left to the user.</li>
             </ul>
         </Card>
@@ -301,7 +300,7 @@ export default function MethodologyPage() {
 
         <Card title="Narrative Sync™: Cross-Figure Framing Convergence">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Detects when independent figures begin using similar framing simultaneously. B2B exclusive.
+            Detects when independent figures begin using similar framing simultaneously.
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Measures framing similarity across figures within defined time windows.</li>
@@ -407,8 +406,8 @@ export default function MethodologyPage() {
       <div style={{ height: 18 }} />
 
       <p className="p">
-        This methodology page is a high-level description of the measurement surfaces. Specific feature limits and
-        subscription details are listed on the <Link href="/pricing/">Pricing</Link> page.
+        This methodology page is a high-level description of the measurement surfaces. Baseline is free. Details are on
+        the <Link href="/pricing/">Free</Link> page.
       </p>
     </section>
   );

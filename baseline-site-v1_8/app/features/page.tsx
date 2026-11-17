@@ -29,7 +29,7 @@ export default function FeaturesPage() {
         </p>
       </section>
 
-      {/* I5: Sticky scroll-spy nav + I11: Tier filter + all feature sections with frosted widgets */}
+      {/* I5: Sticky scroll-spy nav + all feature sections with frosted widgets */}
       <FeaturesContent />
     </>
   );
