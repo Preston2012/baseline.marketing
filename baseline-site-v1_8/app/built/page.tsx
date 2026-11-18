@@ -153,7 +153,7 @@ export default function BuiltPage() {
             See the App
           </a>
           <a
-            href="mailto:Droiddna2013@gmail.com?subject=Re:%20Baseline%20Portfolio"
+            href="mailto:preston@winterscode.com?subject=Re:%20Baseline%20Portfolio"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -328,7 +328,7 @@ export default function BuiltPage() {
       <section style={{ padding: "32px 24px 80px", maxWidth: 720, margin: "0 auto", borderTop: "1px solid var(--border_inactive)" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <div style={{ fontWeight: 700, fontSize: 18, color: "var(--text)", marginBottom: 8 }}>Preston Winters</div>
-          <a href="mailto:Droiddna2013@gmail.com" style={{ minHeight: 44, display: "flex", alignItems: "center", color: "var(--teal)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>Droiddna2013@gmail.com</a>
+          <a href="mailto:preston@winterscode.com" style={{ minHeight: 44, display: "flex", alignItems: "center", color: "var(--teal)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>preston@winterscode.com</a>
           <a href="tel:+15415510731" style={{ minHeight: 44, display: "flex", alignItems: "center", color: "var(--sub)", textDecoration: "none", fontSize: 14, fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace" }}>541-551-0731</a>
           <span style={{ color: "var(--sub)", fontSize: 14 }}>Bandon, Oregon</span>
         </div>
