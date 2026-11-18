@@ -168,7 +168,7 @@ export function MuseumGallery() {
         })}
       </div>
 
-      <div className="museum-gallery" ref={galleryRef}>
+      <div className="museum-gallery" ref={galleryRef} tabIndex={0} role="region" aria-label="Surface gallery">
         {GALLERY.map((item, i) => (
           <MuseumCard key={item.title} item={item} index={i} />
         ))}

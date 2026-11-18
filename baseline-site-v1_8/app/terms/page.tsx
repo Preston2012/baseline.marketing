@@ -5,7 +5,12 @@ import { LegalDoc } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: "Baseline Terms of Service. Acceptable use and dispute terms for the free speech-measurement app. Observational analysis, not a fact-check.",
-  alternates: { canonical: `${site.url}/terms/` }
+  alternates: { canonical: `${site.url}/terms/` },
+  openGraph: {
+    title: "Terms of Service | Baseline",
+    description: "Baseline Terms of Service. Acceptable use and dispute terms for the free speech-measurement app. Observational analysis, not a fact-check.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function TermsPage() {

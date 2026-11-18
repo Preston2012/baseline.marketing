@@ -7,7 +7,12 @@ import { Card } from "@/components/Card";
 export const metadata: Metadata = {
   title: "Do Not Sell or Share",
   description: "Baseline does not sell or share personal information. How to ask about your data under CPRA and CCPA.",
-  alternates: { canonical: `${site.url}/do-not-sell-or-share/` }
+  alternates: { canonical: `${site.url}/do-not-sell-or-share/` },
+  openGraph: {
+    title: "Do Not Sell or Share | Baseline",
+    description: "Baseline does not sell or share personal information. How to ask about your data under CPRA and CCPA.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function DoNotSellPage() {

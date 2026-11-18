@@ -5,7 +5,12 @@ import { Card } from "@/components/Card";
 export const metadata: Metadata = {
   title: "Support",
   description: "Baseline support. One inbox for help, privacy requests, and corrections. The app is free.",
-  alternates: { canonical: `${site.url}/support/` }
+  alternates: { canonical: `${site.url}/support/` },
+  openGraph: {
+    title: "Support | Baseline",
+    description: "Baseline support. One inbox for help, privacy requests, and corrections. The app is free.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function SupportPage() {

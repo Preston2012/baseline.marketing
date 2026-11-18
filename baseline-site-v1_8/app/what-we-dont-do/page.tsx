@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "What We Don\u2019t Do | Baseline",
     description:
       "Baseline measures public speech. It does not rate, score, editorialize, or tell you what to think.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
 

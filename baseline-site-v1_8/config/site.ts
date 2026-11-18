@@ -13,6 +13,6 @@ export const site = {
   social: {},
   contact: {
     support: "support@baseline.marketing",
-    press: "press@baseline.marketing"
+    press: "support@baseline.marketing"
   }
 } as const;

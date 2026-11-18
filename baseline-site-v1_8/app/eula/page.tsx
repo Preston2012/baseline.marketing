@@ -6,7 +6,12 @@ import { LegalDoc } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "End User License Agreement",
   description: "Baseline End User License Agreement. License terms for the free speech-measurement app and platform requirements.",
-  alternates: { canonical: `${site.url}/eula/` }
+  alternates: { canonical: `${site.url}/eula/` },
+  openGraph: {
+    title: "End User License Agreement | Baseline",
+    description: "Baseline End User License Agreement. License terms for the free speech-measurement app and platform requirements.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function EulaPage() {

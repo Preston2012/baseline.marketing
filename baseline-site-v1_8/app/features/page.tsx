@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "Features | Baseline",
     description:
       "Every surface. Every signal. All of it free.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
 

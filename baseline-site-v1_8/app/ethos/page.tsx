@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "Ethos | Baseline",
     description:
       "Ten principles that govern everything Baseline builds, measures, and ships.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
 

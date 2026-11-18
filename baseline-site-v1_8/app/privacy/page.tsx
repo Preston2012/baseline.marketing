@@ -6,7 +6,12 @@ import { LegalDoc } from "@/components/LegalDoc";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: "Baseline Privacy Policy. What the free Baseline app collects, how it is used, who receives it, how long it is kept, and how to delete it.",
-  alternates: { canonical: `${site.url}/privacy/` }
+  alternates: { canonical: `${site.url}/privacy/` },
+  openGraph: {
+    title: "Privacy Policy | Baseline",
+    description: "Baseline Privacy Policy. What the free Baseline app collects, how it is used, who receives it, how long it is kept, and how to delete it.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function PrivacyPage() {
@@ -88,7 +93,7 @@ export default function PrivacyPage() {
       <p className="p">We do not sell your personal information. We do not share it for advertising.</p>
 
       <h2 className="h3">3. Who Receives It</h2>
-      <div className="legalTableWrap">
+      <div className="legalTableWrap" tabIndex={0} role="region" aria-label="Who receives your data">
         <table>
           <thead>
             <tr>
