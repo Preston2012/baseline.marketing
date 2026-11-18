@@ -18,7 +18,7 @@ export default function EulaPage() {
   return (
     <LegalDoc
       title="BASELINE | End User License Agreement"
-      effectiveDate="Not yet in effect (draft)"
+      effectiveDate="November 17, 2026"
       lastUpdated="November 17, 2026"
       summary={[
         "License terms for using the free Baseline mobile application.",

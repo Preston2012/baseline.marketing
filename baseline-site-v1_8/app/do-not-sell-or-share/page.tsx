@@ -19,7 +19,7 @@ export default function DoNotSellPage() {
   return (
     <LegalDoc
       title="BASELINE | Do Not Sell or Share My Personal Information"
-      effectiveDate="Not yet in effect (draft)"
+      effectiveDate="November 17, 2026"
       lastUpdated="November 17, 2026"
       summary={[
         "Baseline does not sell personal information.",

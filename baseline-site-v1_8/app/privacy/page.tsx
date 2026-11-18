@@ -18,7 +18,7 @@ export default function PrivacyPage() {
   return (
     <LegalDoc
       title="BASELINE | Privacy Policy"
-      effectiveDate="Not yet in effect (draft)"
+      effectiveDate="November 17, 2026"
       lastUpdated="November 17, 2026"
       summary={[
         "Baseline is free. No ads, no purchases, no sale of your data.",

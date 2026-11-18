@@ -298,7 +298,7 @@ export default function BuiltPage() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid var(--border_inactive)", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, color: "var(--teal-dim)", letterSpacing: "0.1em" }}>390+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED</div>
+          <div style={{ marginTop: 16, paddingTop: 12, borderTop: "1px solid var(--border_inactive)", fontFamily: "var(--font-jetbrains, monospace), ui-monospace, monospace", fontSize: 10, color: "var(--teal-dim)", letterSpacing: "0.1em" }}>1,200+ INSTITUTIONAL KNOWLEDGE RULES DOCUMENTED</div>
         </div>
       </section>
 
@@ -311,7 +311,6 @@ export default function BuiltPage() {
           {[
             { name: "StainSlayer AI", desc: "Stain identification app. Camera-first UX. Published on Google Play and the App Store, retired November 2026.", status: "RETIRED" },
             { name: "4 Additional Apps", desc: "Active development pipeline. Homebase (home intelligence), ChopLight (gesture flashlight), GAUGE (weather intelligence), Inkfall (tower defense).", status: "IN DEV" },
-            { name: "Cyber Hornets", desc: "Previously CEO. 40.9K followers, 7-figure revenue, 10K+ Discord community.", status: "PREV" },
           ].map((p) => (
             <div key={p.name} style={{ padding: "16px 20px", background: "var(--card)", border: "2px solid var(--border_inactive)", borderRadius: 10, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 16 }}>
               <div>

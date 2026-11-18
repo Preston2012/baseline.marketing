@@ -17,7 +17,7 @@ export default function TermsPage() {
   return (
     <LegalDoc
       title="BASELINE | Terms of Service"
-      effectiveDate="Not yet in effect (draft)"
+      effectiveDate="November 17, 2026"
       lastUpdated="November 17, 2026"
       summary={[
         "Baseline is free. There is nothing to buy.",

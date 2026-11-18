@@ -1,6 +1,6 @@
 /** Shown at the top of every policy page until Preston approves the text.
  *  Set to an empty string to remove it everywhere. */
-export const LEGAL_DRAFT_NOTICE = "Draft for Preston's review";
+export const LEGAL_DRAFT_NOTICE = "";
 
 export const site = {
   name: "Baseline",
