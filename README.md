@@ -18,7 +18,7 @@ Building the marketing layer before launch is deliberate:
 
 - **App store compliance.** Apple and Google require privacy policies, terms of service, EULA, and support pages before app approval. All four exist here and are custom-written for Baseline's data model.
 - **Trust and transparency.** Seven pages dedicated to trust: ethos, methodology, operational boundaries, privacy, terms, EULA, and CCPA opt-out. Users and hiring managers can verify exactly what Baseline does and does not do.
-- **Conversion funnel.** Waitlist capture (Supabase), tiered pricing, interactive feature demos, and methodology walkthroughs. Every page moves a visitor toward understanding or signing up.
+- **Free, stated plainly.** Baseline is free: no ads, no subscriptions, no purchases, and guests are welcome. It is coming to Google Play and the App Store and is not in either store yet. The site says so in one place and explains how it is funded, with interactive feature demos and methodology walkthroughs.
 - **SEO foundation.** OpenGraph, Twitter Cards, JSON-LD structured data, programmatic sitemap, canonical URLs. Indexing takes weeks. The earlier this exists, the better.
 - **Portfolio showcase.** The `/built` page is designed to be the URL on resumes. It presents engineering work, build methodology, and contact info for hiring managers evaluating Founding AI Product Engineer candidates.
 
@@ -27,7 +27,7 @@ Building the marketing layer before launch is deliberate:
 - **Next.js 14** with app router and static export (`output: "export"`)
 - **TypeScript** throughout (zero `any`, strict mode)
 - **Zero external UI dependencies.** No Tailwind, no chart libraries, no component kits
-- **22 custom interactive widgets** (radar charts, timelines, tickers, signal gauges, heatmaps, constellation maps) built from scratch with vanilla React and CSS
+- **21 custom interactive widgets** (radar charts, timelines, tickers, signal gauges, heatmaps, constellation maps) built from scratch with vanilla React and CSS
 - **Responsive design** with mobile-first breakpoints
 - **Accessibility:** skip-to-content, `aria-label`/`aria-current`/`aria-modal`, keyboard focus trapping, escape key handling, `prefers-reduced-motion` support
 - **SEO:** OpenGraph + Twitter Card tags on every page, JSON-LD (Organization, WebSite, SoftwareApplication), programmatic `sitemap.ts` and `robots.ts`, canonical URLs on all routes
@@ -39,11 +39,11 @@ Building the marketing layer before launch is deliberate:
 
 | Route | Purpose | Role |
 |-------|---------|------|
-| `/` | Hero, value prop, waitlist capture, feature gallery | Conversion |
-| `/features/` | 22 interactive widget demos, product surfaces | Product showcase |
+| `/` | Hero, value prop, feature gallery | Conversion |
+| `/features/` | 21 interactive widget demos, product surfaces | Product showcase |
 | `/methodology/` | Multi-AI measurement system explained | Technical credibility |
 | `/ethos/` | Ten editorial principles | Trust signal |
-| `/pricing/` | Tiered pricing (Core/Pro/Pro+/B2B) with billing toggle | Conversion |
+| `/pricing/` | Free: no ads, no subscriptions, no purchases, how it is funded | Trust signal |
 | `/what-we-dont-do/` | Explicit operational boundaries | Trust signal |
 | `/built/` | Preston Winters portfolio page | Hiring signal |
 | `/press/` | Press kit with downloadable brand assets | Media readiness |
@@ -64,7 +64,6 @@ Full route details: [docs/ROUTE_MAP.md](docs/ROUTE_MAP.md)
 | Styling | CSS custom properties + inline styles (no framework) |
 | Fonts | Poppins + JetBrains Mono via `next/font` |
 | Images | Next.js `<Image>` component |
-| Waitlist | Supabase REST API (client-side, anon key) |
 | Hosting | Cloudflare Pages (static) |
 | Dependencies | React 18, Next.js 14, TypeScript. Nothing else. |
 
@@ -72,12 +71,12 @@ Full route details: [docs/ROUTE_MAP.md](docs/ROUTE_MAP.md)
 
 ```
 baseline-site-v1_8/
-  app/                    # Next.js app router (14 routes)
+  app/                    # Next.js app router (13 routes)
     page.tsx              # Homepage
     built/page.tsx        # Portfolio page (the resume URL)
     features/page.tsx     # Interactive widget showcase
     methodology/page.tsx  # Multi-AI measurement methodology
-    pricing/page.tsx      # Tiered pricing table
+    pricing/page.tsx      # Free page (no tiers)
     ethos/page.tsx        # Editorial principles
     what-we-dont-do/      # Operational boundaries
     privacy/              # Privacy policy
@@ -89,13 +88,11 @@ baseline-site-v1_8/
     layout.tsx            # Root layout (JSON-LD, nav, footer)
     sitemap.ts            # Programmatic sitemap
     robots.ts             # Robots config
-  components/             # 26 React components
-    GalleryWidgets.tsx    # 22 interactive data visualization widgets
+  components/             # 22 React components
+    GalleryWidgets.tsx    # Interactive data visualization widgets
     MuseumConcepts.tsx    # Concept art for trademark surfaces
     MuseumGallery.tsx     # Classified/declassified reveal gallery
     FeaturesContent.tsx   # Feature cards with widget integration
-    PricingTable.tsx      # Tiered pricing with billing toggle
-    WaitlistCapture.tsx   # Email capture (Supabase)
     Nav.tsx               # Responsive nav with keyboard traps
     SiteFooter.tsx        # Footer with all route links
     EthosContent.tsx      # Ten brand principles
@@ -103,7 +100,6 @@ baseline-site-v1_8/
   config/
     site.ts               # Centralized site metadata
     brand-assets.ts       # Brand asset paths
-    supabase.ts           # Supabase client config
   public/
     brand/                # Logos, badges, hero image
     screens/              # Product screenshots
