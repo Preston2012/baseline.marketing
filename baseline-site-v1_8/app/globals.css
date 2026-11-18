@@ -176,16 +176,6 @@ img{ max-width:100%; height:auto; display:block; }
   border-color: rgba(45, 212, 191, 0.3) !important;
 }
 
-/* I16: Pricing tier comparison - hover highlights one, dims rest */
-.tier-grid:hover > *{
-  opacity: 0.55;
-  transition: opacity 200ms ease-out, transform 200ms ease-out;
-}
-.tier-grid:hover > *:hover{
-  opacity: 1;
-  transform: scale(1.01);
-}
-
 /* N14: Nav link teal scan line hover */
 .nav-scan-link{
   position: relative;
@@ -254,35 +244,6 @@ img{ max-width:100%; height:auto; display:block; }
   .reduceTransparency{
     backdrop-filter: none !important;
   }
-}
-
-/* Redacted text - pre-launch stealth on proprietary surfaces. Remove .redacted class on launch day. */
-.redacted{
-  filter: blur(5px);
-  user-select: none;
-  -webkit-user-select: none;
-  pointer-events: none;
-  transition: filter 300ms ease-out;
-}
-.redacted-label{
-  font-family: var(--font-jetbrains, ui-monospace), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--teal-dim);
-  margin-top: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.redacted-label::before{
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(45,212,191,0.3);
-  animation: museum-breathe 2.5s ease-in-out infinite;
 }
 
 /* Ambient scan line: page-level subtle sweep (activated on body::after) */
@@ -586,3 +547,11 @@ body::after {
 .museum-gallery > div:nth-child(13) { animation-delay: 360ms; }
 .classification-stamp::before{ content: attr(data-stamp); }
 .gw-datalabel::before{ content: attr(data-label); }
+
+/* Tap targets: 44px minimum for every interactive element. Inline text links get
+   vertical padding so the hit area grows without changing the line layout. */
+.nav-mobile-btn{ min-width: 44px; min-height: 44px; }
+.nav-scan-link{ display: inline-flex !important; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; }
+header nav > a{ min-height: 44px; min-width: 44px; }
+.btnPrimary{ min-height: 44px; }
+main :is(p, li, h2, h3) a, main a.small{ padding: 14px 8px; margin-inline: -8px; }

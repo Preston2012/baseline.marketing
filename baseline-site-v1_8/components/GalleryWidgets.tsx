@@ -9,8 +9,7 @@
    works - with mock data, live animations, and the
    classified instrument aesthetic.
 
-   Placed inside FrostedWidgetPreview for pre-launch blur.
-   Animations tease through the frost.
+   Shown plainly on the Features page as illustrations with sample data.
 
    Widget Index:
    1.  SignalMetricsWidget - 4-bar signal breakdown
@@ -27,7 +26,7 @@
    12. IntersectionsWidget - Cross-figure overlap topology
    13. DossierWidget - Complete exhibit plate profile
    14. SplitMicroscopeWidget - Side-by-side divergence view
-   15. NarrativeSyncWidget - Cross-figure convergence (B2B)
+   15. NarrativeSyncWidget - Cross-figure convergence
    16. BaselineDeltaWidget - Center-zero deviation gauge
    17. VarianceDetectionWidget - Model disagreement surfacing
    18. HistoricalTrendsWidget - Signal metrics time-series
@@ -1587,7 +1586,7 @@ export function DossierWidget() {
           display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10,
           paddingBottom: 8, borderBottom: `1px solid ${TEAL_DIM}`,
         }}>
-          {/* Avatar placeholder */}
+          {/* Avatar circle */}
           <div style={{
             width: 32, height: 32, borderRadius: '50%',
             border: `2px solid ${TEAL_LO}`,
@@ -1601,13 +1600,6 @@ export function DossierWidget() {
               FIGURE DOSSIER
             </div>
             <DataLabel size={7} color={SUB}>DECLASSIFIED · EVERY SURFACE · ONE VIEW</DataLabel>
-          </div>
-          <div style={{
-            padding: '2px 6px',
-            border: `1px solid ${TEAL_LO}`,
-            borderRadius: 3,
-          }}>
-            <DataLabel size={7} color={T}>PRO+</DataLabel>
           </div>
         </div>
 
@@ -1685,9 +1677,6 @@ export function SplitMicroscopeWidget() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
           <DataLabel size={8} color={TEXT}>SPLIT MICROSCOPE™</DataLabel>
           <div style={{ flex: 1 }} />
-          <div style={{ padding: '1px 5px', border: `1px solid ${TEAL_LO}`, borderRadius: 2 }}>
-            <DataLabel size={6} color={T}>PRO+</DataLabel>
-          </div>
         </div>
 
         {/* Multi-model comparison grid */}
@@ -1775,7 +1764,7 @@ export function SplitMicroscopeWidget() {
 
 // ═══════════════════════════════════════════════════════
 // 15. NARRATIVE SYNC™ WIDGET
-//     Cross-figure framing convergence detection (B2B)
+//     Cross-figure framing convergence detection
 //     (moved from MethodologyWidgets → Features showcase)
 // ═══════════════════════════════════════════════════════
 
@@ -1810,9 +1799,6 @@ export function NarrativeSyncWidget() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
           <DataLabel size={8} color={TEXT}>NARRATIVE SYNC™</DataLabel>
           <div style={{ flex: 1 }} />
-          <div style={{ padding: '1px 5px', border: `1px solid ${TEAL_LO}`, borderRadius: 2 }}>
-            <DataLabel size={6} color={T}>B2B</DataLabel>
-          </div>
         </div>
 
         {/* Convergence strands */}

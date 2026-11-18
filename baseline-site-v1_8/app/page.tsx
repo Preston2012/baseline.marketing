@@ -3,9 +3,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/config/site";
 
-import { WaitlistCapture } from "@/components/WaitlistCapture";
 import { SecondaryLinkButton } from "@/components/Button";
-import { StoreCTA } from "@/components/StoreCTA";
+import { StoreBadges } from "@/components/StoreCTA";
 import { MuseumGallery } from "@/components/MuseumGallery";
 import { Card } from "@/components/Card";
 import { HeroMorph } from "@/components/HeroMorph";
@@ -21,9 +20,6 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      {/* ── WAITLIST CAPTURE - hero takeover ── */}
-      <WaitlistCapture />
-
       {/* ── HERO ── */}
       {/* I9: Hero fade-in via CSS animation */}
       <style>{`
@@ -45,7 +41,7 @@ export default function HomePage() {
         }}
         aria-label="Baseline hero"
       >
-        {/* Hero image - WebP srcset, loading lazy because WaitlistCapture above is the actual LCP. */}
+        {/* Hero image - WebP srcset, this image is the LCP. */}
         <picture>
           <source
             type="image/webp"
@@ -141,18 +137,8 @@ export default function HomePage() {
           </div>
 
 
-          {/* Store CTAs - grid matches nav grid below */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: 10,
-              marginTop: 16,
-            }}
-          >
-            <StoreCTA store="appstore" />
-            <StoreCTA store="googleplay" />
-          </div>
+          {/* Store badges: no links yet. The app is not in either store. */}
+          <StoreBadges marginTop={16} />
 
           {/* ── Teal hashmark ruler - separates "get it" from "explore it" ── */}
           <div
@@ -211,8 +197,8 @@ export default function HomePage() {
             <SecondaryLinkButton href="/features/" ariaLabel="View features">
               Features
             </SecondaryLinkButton>
-            <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
-              Pricing
+            <SecondaryLinkButton href="/pricing/" ariaLabel="Baseline is free">
+              Free
             </SecondaryLinkButton>
             <SecondaryLinkButton href="/methodology/" ariaLabel="View methodology">
               Methodology
@@ -224,7 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── HOW IT WORKS - streamlined to 3 cards (was 6) per §4 ── */}
+      {/* ── HOW IT WORKS - cut to 3 cards (was 6) per §4 ── */}
       <section className="section intel-dot-grid" aria-label="How Baseline works" style={{ position: 'relative' }}>
         {/* Registration dots: corner alignment markers */}
         <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.06)' }} />
@@ -325,40 +311,9 @@ export default function HomePage() {
                 height={600}
                 loading="lazy"
                 decoding="async"
-                style={{ width: "100%", height: "auto", display: "block", filter: "blur(6px) brightness(0.6) saturate(0.4)", WebkitFilter: "blur(6px) brightness(0.6) saturate(0.4)" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </picture>
-            {/* Classification overlay */}
-            <div style={{
-              position: "absolute", inset: 0,
-              display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center", gap: 6,
-              background: "rgba(0,0,0,0.15)",
-            }}>
-              <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 12, height: 12, borderTop: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, left: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderLeft: '1px solid rgba(45,212,191,0.08)' }} />
-              <div aria-hidden="true" style={{ position: 'absolute', bottom: 8, right: 8, width: 12, height: 12, borderBottom: '1px solid rgba(45,212,191,0.08)', borderRight: '1px solid rgba(45,212,191,0.08)' }} />
-
-              <span className="data" style={{
-                color: "var(--teal-dim)", fontSize: 10,
-                letterSpacing: "0.18em",
-                border: "1px solid rgba(45,212,191,0.15)",
-                borderRadius: 4, padding: "3px 10px",
-                textTransform: "uppercase",
-                position: "relative", overflow: "hidden",
-              }}>
-                <span style={{
-                  position: "absolute", top: 0, left: "-100%", width: "100%", height: "100%",
-                  background: "linear-gradient(90deg, transparent, rgba(45,212,191,0.12), transparent)",
-                  animation: "scan-sweep 2.5s ease-in-out infinite",
-                }} />
-                CLASSIFIED
-              </span>
-              <span aria-hidden="true" className="data" style={{ color: "var(--sub)", fontSize: 9, opacity: 0.35, letterSpacing: "0.06em" }}>
-                FULL PIPELINE · PRE-LAUNCH
-              </span>
-            </div>
           </div>
         </div>
       </section>
@@ -391,7 +346,7 @@ export default function HomePage() {
         }} />
 
         {[
-          { label: "figures tracked", value: "106" },
+          { label: "features", value: "43" },
           { label: "AI providers", value: "4" },
           { label: "parallel systems", value: "3" },
         ].map((s) => (

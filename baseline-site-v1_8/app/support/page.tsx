@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { site } from "@/config/site";
+import { site, LEGAL_DRAFT_NOTICE } from "@/config/site";
 import { Card } from "@/components/Card";
 
 export const metadata: Metadata = {
   title: "Support",
-  description: "Baseline support contacts and operational notes. How to reach the team behind the speech-measurement instrument. Account, billing, and technical issues.",
-  alternates: { canonical: `${site.url}/support/` }
+  description: "Baseline support. One inbox for help, privacy requests, and corrections. The app is free.",
+  alternates: { canonical: `${site.url}/support/` },
+  openGraph: {
+    title: "Support | Baseline",
+    description: "Baseline support. One inbox for help, privacy requests, and corrections. The app is free.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function SupportPage() {
@@ -15,12 +20,17 @@ export default function SupportPage() {
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
+      {LEGAL_DRAFT_NOTICE ? (
+        <p className="data" role="note" style={{ color: "var(--teal)", fontSize: 12, letterSpacing: "0.08em", margin: "0 0 8px" }}>
+          {LEGAL_DRAFT_NOTICE}
+        </p>
+      ) : null}
       <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="BASELINE-OPS // SUPPORT CHANNEL" />
       <h1 className="h1" style={{ fontSize: 28 }}>Support</h1>
 
       <p className="p" style={{ maxWidth: 760 }}>
-        For account access, technical issues, or general questions, email support. Subscription management and
-        cancellations are handled through the App Store / Google Play subscription settings.
+        For account access, technical issues, or general questions, email support. Baseline is free, so there is
+        nothing to bill or cancel.
       </p>
 
       {/* Audit fix: disclaimer on Support page */}
@@ -35,21 +45,18 @@ export default function SupportPage() {
           </p>
         </Card>
 
-        <Card title="Takedown / correction requests">
+        <Card title="Corrections and takedown requests">
           <p className="p" style={{ margin: 0 }}>
-            <a href={`mailto:${site.contact.takedown}`}>{site.contact.takedown}</a>
+            Email <a href={`mailto:${site.contact.support}?subject=Correction%20request`}>{site.contact.support}</a>{" "}
+            with the statement and what is wrong. This is the one monitored inbox.
           </p>
         </Card>
 
-        <Card title="Privacy">
+        <Card title="Privacy requests">
           <p className="p" style={{ margin: 0 }}>
-            <a href={`mailto:${site.contact.privacy}`}>{site.contact.privacy}</a>
-          </p>
-        </Card>
-
-        <Card title="Legal">
-          <p className="p" style={{ margin: 0 }}>
-            <a href={`mailto:${site.contact.legal}`}>{site.contact.legal}</a>
+            To see, correct, or delete your data, email{" "}
+            <a href={`mailto:${site.contact.support}?subject=Privacy%20request`}>{site.contact.support}</a>. You can
+            also delete your account in the app.
           </p>
         </Card>
       </div>

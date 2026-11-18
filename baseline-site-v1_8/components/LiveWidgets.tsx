@@ -384,7 +384,7 @@ export function DeltaComputeWidget() {
 
         {/* Principle */}
         <div style={{ marginTop: 8, textAlign: 'center' }}>
-          <DataLabel size={7} color={TEAL_MID}>POSITIVE Δ = ELEVATED · NEGATIVE Δ = BELOW TYPICAL · ZERO = ON BASELINE</DataLabel>
+          <DataLabel size={7} color={TEAL_MID}>POSITIVE Δ = ABOVE TYPICAL · NEGATIVE Δ = BELOW TYPICAL · ZERO = ON BASELINE</DataLabel>
         </div>
       </div>
     </WidgetFrame>

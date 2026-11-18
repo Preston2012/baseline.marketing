@@ -5,19 +5,25 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "End User License Agreement",
-  description: "Baseline End User License Agreement. License terms for the mobile speech-measurement app: subscriptions, trial terms, auto-renewal, and platform requirements.",
-  alternates: { canonical: `${site.url}/eula/` }
+  description: "Baseline End User License Agreement. License terms for the free speech-measurement app and platform requirements.",
+  alternates: { canonical: `${site.url}/eula/` },
+  openGraph: {
+    title: "End User License Agreement | Baseline",
+    description: "Baseline End User License Agreement. License terms for the free speech-measurement app and platform requirements.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function EulaPage() {
   return (
     <LegalDoc
       title="BASELINE | End User License Agreement"
-      effectiveDate="February 8, 2026"
-      lastUpdated="February 8, 2026"
+      effectiveDate="November 17, 2026"
+      lastUpdated="November 17, 2026"
       summary={[
-        "License terms for using the Baseline mobile application.",
-        "Covers subscription auto-renewal, trial terms, and platform requirements.",
+        "License terms for using the free Baseline mobile application.",
+        "The agreement is with Winters Code, not with Apple or Google.",
+        "Covers the license, platform requirements, and disclaimers.",
         "Observational analysis only. Not a fact-check."
       ]}
     >
@@ -26,127 +32,147 @@ export default function EulaPage() {
       </p>
 
       <p className="p">
-        This End User License Agreement (&ldquo;EULA&rdquo;) is a legal agreement between you and Baseline governing
-        your use of the Baseline mobile application (the &ldquo;App&rdquo;). By installing or using the App, you agree
-        to the terms of this EULA. If you do not agree, do not install or use the App.
+        This End User License Agreement (&ldquo;EULA&rdquo;) is a legal agreement between you and Winters Code
+        (&ldquo;Winters Code,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;), which makes the Baseline mobile application
+        (the &ldquo;App&rdquo;). Baseline is the name of the App. By installing or using the App, you agree to this
+        EULA. If you do not agree, do not install or use the App.
       </p>
 
-      {/* ── 1. License Grant ──────────────────────────────────── */}
-      <h2 className="h3">1. License Grant</h2>
+      <h2 className="h3">1. Acknowledgement</h2>
       <p className="p">
-        Baseline grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App
-        on devices you own or control, subject to these terms and the applicable App Store or Google Play terms of
-        service.
+        You and Winters Code acknowledge that this EULA is between you and Winters Code only, and not with Apple Inc.
+        (&ldquo;Apple&rdquo;) or Google LLC (&ldquo;Google&rdquo;). Winters Code, not Apple or Google, is solely
+        responsible for the App and its content. This EULA may not give you rights to use the App that conflict with
+        the App Store Terms of Service, the Google Play Terms of Service, or any other terms that apply to you.
       </p>
 
-      {/* ── 2. Third-Party Beneficiaries ──────────────────────── */}
-      <h2 className="h3">2. Third-Party Beneficiaries</h2>
+      <h2 className="h3">2. License Grant and Scope</h2>
       <p className="p">
-        You acknowledge that this EULA is between you and Baseline only, and not with Apple Inc. or Google LLC.
-        However, Apple and Google, and their subsidiaries, are third-party beneficiaries of this EULA. Upon your
-        acceptance of this EULA, Apple and Google will have the right (and will be deemed to have accepted the right)
-        to enforce this EULA against you as third-party beneficiaries.
+        Winters Code grants you a limited, non-exclusive, non-transferable, revocable license to install and use the
+        App on devices you own or control, as permitted by the Usage Rules of the App Store or the Google Play terms.
+        On Apple devices, this license covers Apple-branded products you own or control, as permitted by the Usage
+        Rules in the App Store Terms of Service, and the App may also be used by other accounts associated with you
+        through Family Sharing, volume purchasing or Legacy Contacts.
+        The App is free. If parts of it are released under an open source license, that license governs those parts.
       </p>
-
-      {/* ── 3. Scope of License ───────────────────────────────── */}
-      <h2 className="h3">3. Scope of License</h2>
       <p className="p">You may not:</p>
       <ul className="p">
-        <li>Distribute, sublicense, lease, rent, or lend the App to third parties.</li>
-        <li>Reverse-engineer, decompile, disassemble, or attempt to derive the source code of the App.</li>
-        <li>Make the App available over a network where it could be used by multiple devices at the same time, except
-          as authorized by your subscription tier.</li>
-        <li>Copy the App except as expressly permitted by this EULA.</li>
-        <li>Remove, alter, or obscure any proprietary notices on the App.</li>
+        <li>Distribute, sublicense, lease, rent, or lend the App to third parties, except as an open source license allows.</li>
+        <li>Reverse-engineer, decompile, or disassemble the App, except as an open source license allows.</li>
+        <li>Remove, alter, or obscure proprietary notices on the App.</li>
       </ul>
 
-      {/* ── 4. Subscriptions and Auto-Renewal ─────────────────── */}
-      <h2 className="h3">4. Subscriptions and Auto-Renewal</h2>
+      <h2 className="h3">3. No Charges</h2>
       <p className="p">
-        The App offers subscription-based access to premium features across four tiers: Core (free, ad-supported),
-        Pro, Pro+, and B2B. B2B plans may be provisioned directly and may not be listed for purchase in-app.
-      </p>
-      <p className="p">
-        Pro includes a 7-day free trial. Subscriptions automatically renew at the end of each billing
-        period (monthly or annual) unless you cancel at least 24 hours before the end of the current period.
-      </p>
-      <p className="p">
-        Payment is charged to your App Store or Google Play account at confirmation of purchase (or at the end of
-        the free trial period, if applicable). You can manage or cancel your subscription at any time through your
-        App Store or Google Play account settings.
+        The App has no advertising, no subscriptions, and no in-app purchases. Winters Code does not charge for it.
       </p>
 
-      {/* ── 5. Free Trial ─────────────────────────────────────── */}
-      <h2 className="h3">5. Free Trial</h2>
+      <h2 className="h3">4. Maintenance and Support</h2>
       <p className="p">
-        Pro includes a 7-day free trial. If you do not cancel before the trial ends, your subscription
-        will automatically convert to a paid subscription and you will be charged the applicable subscription price.
-        Any unused portion of a free trial period may be forfeited when you purchase a subscription, as determined
-        by the applicable platform (Apple or Google).
+        Winters Code, not Apple or Google, is solely responsible for providing maintenance and support for the App.
+        Apple and Google have no obligation to provide maintenance or support. Contact{" "}
+        <a href={`mailto:${site.contact.support}`}>{site.contact.support}</a>.
       </p>
 
-      {/* ── 6. Consent to Data Use ────────────────────────────── */}
-      <h2 className="h3">6. Consent to Data Use</h2>
+      <h2 className="h3">5. Consent to Data Use</h2>
       <p className="p">
         By using the App, you consent to the collection and use of your information as described in our{" "}
-        <Link href="/privacy/">Privacy Policy</Link>. The App processes public-figure statement text through independent AI
-        systems. No user personal data is sent to AI providers for analysis.
+        <Link href="/privacy/">Privacy Policy</Link>. The App processes public statement text through independent AI
+        systems. No data about you is sent to AI providers for analysis.
       </p>
 
-      {/* ── 7. Content Disclaimer ─────────────────────────────── */}
-      <h2 className="h3">7. Content Disclaimer</h2>
+      <h2 className="h3">6. Content Disclaimer</h2>
       <p className="p">
         The App is an observational measurement tool, not a verification service, fact-checking service, or news
-        source. AI system outputs may vary and are presented as observational measurements. You should not rely on
-        App outputs as authoritative determinations of any kind.
+        source. AI system outputs may vary and are presented as observational measurements. Do not rely on App outputs
+        as authoritative determinations of any kind.
       </p>
 
-      {/* ── 8. Warranty Disclaimer ────────────────────────────── */}
-      <h2 className="h3">8. Warranty Disclaimer</h2>
+      <h2 className="h3">7. Warranty</h2>
       <p className="p">
-        THE APP IS PROVIDED &ldquo;AS IS&rdquo; WITHOUT WARRANTY OF ANY KIND. BASELINE DISCLAIMS ALL WARRANTIES,
+        THE APP IS PROVIDED &ldquo;AS IS&rdquo; WITHOUT WARRANTY OF ANY KIND. WINTERS CODE DISCLAIMS ALL WARRANTIES,
         EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-        NON-INFRINGEMENT. BASELINE DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF
-        HARMFUL COMPONENTS.
+        NON-INFRINGEMENT, AND DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF HARMFUL
+        COMPONENTS.
+      </p>
+      <p className="p">
+        If the App fails to conform to any applicable warranty, you may notify Apple, and Apple will refund the
+        purchase price for the App to you, if any. The App is free, so no purchase price applies. To the maximum extent
+        permitted by law, Apple has no other warranty obligation with respect to the App. Any other claims, losses,
+        liabilities, damages, costs, or expenses attributable to any failure to conform to a warranty are the
+        responsibility of Winters Code.
       </p>
 
-      {/* ── 9. Limitation of Liability ────────────────────────── */}
-      <h2 className="h3">9. Limitation of Liability</h2>
+      <h2 className="h3">8. Product Claims</h2>
       <p className="p">
-        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, BASELINE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-        SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE APP. IN NO EVENT SHALL
-        BASELINE&rsquo;S TOTAL LIABILITY EXCEED THE AMOUNT YOU PAID FOR THE APP IN THE TWELVE (12) MONTHS PRECEDING
-        THE CLAIM.
+        Winters Code, not Apple or Google, is responsible for addressing any claims you or any third party have
+        relating to the App or your possession or use of it, including product liability claims, claims that the App
+        fails to conform to a legal or regulatory requirement, and claims under consumer protection, privacy, or
+        similar law.
       </p>
 
-      {/* ── 10. Termination ───────────────────────────────────── */}
-      <h2 className="h3">10. Termination</h2>
+      <h2 className="h3">9. Intellectual Property Claims</h2>
       <p className="p">
-        This EULA is effective until terminated. Your rights under this EULA will terminate automatically if you fail
-        to comply with any of its terms. Upon termination, you must cease all use of the App and delete all copies.
+        If a third party claims that the App or your possession and use of it infringes that party&rsquo;s
+        intellectual property rights, Winters Code, not Apple or Google, is solely responsible for the investigation,
+        defense, settlement, and discharge of the claim.
       </p>
 
-      {/* ── 11. Governing Law ─────────────────────────────────── */}
-      <h2 className="h3">11. Governing Law</h2>
+      <h2 className="h3">10. Legal Compliance and Export</h2>
       <p className="p">
-        This EULA is governed by the laws of the State of Oregon, without regard to conflict of law principles.
+        You represent and warrant that you are not located in a country that is subject to a U.S. Government embargo
+        or designated as a &ldquo;terrorist supporting&rdquo; country, and that you are not listed on any U.S.
+        Government list of prohibited or restricted parties.
       </p>
 
-      {/* ── 12. Trademarks ────────────────────────────────────── */}
-      <h2 className="h3">12. Trademarks</h2>
+      <h2 className="h3">11. Limitation of Liability</h2>
       <p className="p">
-        &ldquo;Baseline,&rdquo; &ldquo;The Receipt&trade;,&rdquo; &ldquo;Framing Radar&trade;,&rdquo; &ldquo;Lens Lab&trade;,&rdquo;
-        &ldquo;Crossfire&trade;,&rdquo; &ldquo;Signal Pulse&trade;,&rdquo; &ldquo;Framing Fingerprint&trade;,&rdquo;
-        &ldquo;Constellation Nav&trade;,&rdquo; &ldquo;Provision Drift&trade;,&rdquo; &ldquo;Split Microscope&trade;,&rdquo;
-        &ldquo;Intersections Panel&trade;,&rdquo; &ldquo;Declassified Dossier&trade;,&rdquo; and &ldquo;Narrative Sync&trade;&rdquo;
-        are trademarks of Baseline. All rights reserved.
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, WINTERS CODE SHALL NOT BE LIABLE FOR ANY INDIRECT,
+        INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE APP. BECAUSE THE APP IS
+        FREE, WINTERS CODE&rsquo;S TOTAL LIABILITY SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (US $100).
       </p>
 
-      {/* ── 13. Contact ───────────────────────────────────────── */}
-      <h2 className="h3">13. Contact</h2>
+      <h2 className="h3">12. Termination</h2>
       <p className="p">
-        For questions about this EULA, contact us at{" "}
-        <a href={`mailto:${site.contact.legal}`}>{site.contact.legal}</a>.
+        This EULA is effective until terminated. Your rights end automatically if you fail to comply with it. On
+        termination, stop using the App and delete all copies.
+      </p>
+
+      <h2 className="h3">13. Third-Party Terms</h2>
+      <p className="p">
+        You must comply with applicable third-party terms of agreement when using the App, for example your wireless
+        carrier&rsquo;s terms and the terms of your device platform.
+      </p>
+
+      <h2 className="h3">14. Third-Party Beneficiaries</h2>
+      <p className="p">
+        Apple and Google, and their subsidiaries, are third-party beneficiaries of this EULA. On your acceptance of
+        this EULA, Apple and Google have the right (and are deemed to have accepted the right) to enforce this EULA
+        against you as third-party beneficiaries.
+      </p>
+
+      <h2 className="h3">15. Governing Law</h2>
+      <p className="p">
+        This EULA is governed by the laws of the State of Oregon, without regard to conflict of law principles. Any
+        dispute arising from this EULA shall be brought in the state courts located in Coos County, Oregon, and you and
+        Winters Code consent to the jurisdiction and venue of those courts. Either party may bring an eligible claim
+        in small claims court. This EULA does not require arbitration.
+      </p>
+
+      <h2 className="h3">16. Trademarks</h2>
+      <p className="p">
+        &ldquo;Baseline,&rdquo; &ldquo;The Receipt&trade;,&rdquo; &ldquo;Framing Radar&trade;,&rdquo; &ldquo;Lens
+        Lab&trade;,&rdquo; &ldquo;Crossfire&trade;,&rdquo; &ldquo;Signal Pulse&trade;,&rdquo; &ldquo;Framing
+        Fingerprint&trade;,&rdquo; &ldquo;Constellation Nav&trade;,&rdquo; &ldquo;Provision Drift&trade;,&rdquo;
+        &ldquo;Split Microscope&trade;,&rdquo; &ldquo;Intersections Panel&trade;,&rdquo; &ldquo;Declassified
+        Dossier&trade;,&rdquo; and &ldquo;Narrative Sync&trade;&rdquo; are trademarks of Winters Code. All rights
+        reserved.
+      </p>
+
+      <h2 className="h3">17. Developer Name and Address</h2>
+      <p className="p">
+        Questions, complaints, or claims about the App: Winters Code, 54651 Rosa Road, Bandon, Oregon 97411.{" "}
+        Email <a href={`mailto:${site.contact.support}`}>{site.contact.support}</a>.
       </p>
     </LegalDoc>
   );

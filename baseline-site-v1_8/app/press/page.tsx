@@ -30,7 +30,7 @@ export default function PressPage() {
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
       {/* Classification micro-stamp */}
-      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="BASELINE-PRESS // UNCLASSIFIED // PUBLIC RELEASE" />
+      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="BASELINE-PRESS // PUBLIC" />
 
       <h1 className="h1" style={{ fontSize: 28 }}>Press</h1>
 
@@ -74,6 +74,7 @@ export default function PressPage() {
                 alignItems: "center",
                 gap: 6,
                 padding: "8px 14px",
+                minHeight: 44,
                 border: "2px solid var(--border_inactive)",
                 borderRadius: 8,
                 color: "var(--teal)",
@@ -87,10 +88,17 @@ export default function PressPage() {
           </div>
         </Card>
 
+        <Card title="Availability">
+          <p className="p" style={{ margin: 0 }}>
+            Baseline is free: no ads, no subscriptions, no purchases. The apps are coming to Google Play and the App
+            Store.
+          </p>
+        </Card>
+
         <Card title="Core features">
           <p className="p" style={{ margin: 0 }}>
             Baseline™ · The Receipt™ · Framing Radar™ · Lens Lab™ · Crossfire™ ·
-            Signal Pulse™ · Framing Fingerprint™ · Constellation Nav™ ·
+            Signal Pulse™ · Framing Fingerprint™ ·
             Provision Drift™ · Split Microscope™ · Intersections Panel™ ·
             Declassified Dossier™ · Mutation Timeline™ · Spending Scope™ ·
             Narrative Sync™

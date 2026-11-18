@@ -23,7 +23,7 @@ export default function MethodologyPage() {
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, left: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
       <div aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 3, height: 3, borderRadius: '50%', background: 'rgba(45,212,191,0.05)' }} />
 
-      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="SIGINT-METHODOLOGY // UNCLASSIFIED // FOUO" />
+      <div className="classification-stamp" style={{ marginBottom: 8 }} data-stamp="METHODOLOGY // PUBLIC" />
 
       <h1 className="h1" style={{ fontSize: 28 }}>Methodology</h1>
 
@@ -121,7 +121,7 @@ export default function MethodologyPage() {
           })}
         </div>
         {/* Classification stamp */}
-        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="SIGINT-METH-01 // UNCLASSIFIED" />
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="METH-01" />
       </div>
       <div style={{ height: 24 }} />
 
@@ -147,10 +147,10 @@ export default function MethodologyPage() {
       <div style={{ height: 24 }} />
 
       {/* ═══════════════════════════════════════════════════════
-          SECTION 2: PROPRIETARY MEASUREMENT SURFACES
+          SECTION 2: MEASUREMENT SURFACES
           ═══════════════════════════════════════════════════════ */}
       <span className="section-label">
-        Proprietary Measurement Surfaces
+        Measurement Surfaces
       </span>
 
       <div className="grid" style={{ gap: 16 }}>
@@ -160,8 +160,7 @@ export default function MethodologyPage() {
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each statement is compared against everything the figure has previously said on that topic.</li>
-              <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (semantic similarity). Tiers: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
-              <li>Match limits vary by tier. Core: <span className="data" style={{ color: "var(--teal)" }}>3</span>, Pro: <span className="data" style={{ color: "var(--teal)" }}>5</span>, Pro+: <span className="data" style={{ color: "var(--teal)" }}>unlimited</span>.</li>
+              <li>Match strength scored <span className="data" style={{ color: "var(--teal)" }}>0.0-1.0</span> (semantic similarity). Levels: Very High (&ge;0.90), High (&ge;0.75), Moderate (&ge;0.60), Low (&lt;0.60).</li>
               <li>Patterns measured, not interpreted. Recurrence surfaced. Meaning left to the user.</li>
             </ul>
         </Card>
@@ -198,7 +197,7 @@ export default function MethodologyPage() {
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each provision measured against the bill&rsquo;s title and purpose clause by semantic distance.</li>
-              <li>Drift tiers: <span className="data" style={{ color: "var(--teal)" }}>Low (0-25)</span>, <span className="data" style={{ color: "var(--teal)" }}>Moderate (26-50)</span>, <span className="data" style={{ color: "var(--teal)" }}>High (51-75)</span>, <span className="data" style={{ color: "var(--teal)" }}>Very High (76-100)</span>.</li>
+              <li>Drift levels: <span className="data" style={{ color: "var(--teal)" }}>Low (0-25)</span>, <span className="data" style={{ color: "var(--teal)" }}>Moderate (26-50)</span>, <span className="data" style={{ color: "var(--teal)" }}>High (51-75)</span>, <span className="data" style={{ color: "var(--teal)" }}>Very High (76-100)</span>.</li>
               <li>High-drift provisions surface riders, earmarks, and thematically distant amendments.</li>
               <li>Source links to original bill text always provided.</li>
             </ul>
@@ -206,7 +205,7 @@ export default function MethodologyPage() {
 
         <Card title="Mutation Timeline™: Legislative Version Tracking">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Tracks how bill provisions change across legislative versions: introduced, committee, floor, enrolled.
+            Tracks how bill provisions change across legislative versions: introduced, committee, engrossed, enrolled.
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Provision-level diffs between version pairs: additions, removals, and modifications.</li>
@@ -259,16 +258,6 @@ export default function MethodologyPage() {
             </ul>
         </Card>
 
-        <Card title="Constellation Nav™: Data-Infused Navigation">
-          <p className="p" style={{ margin: "0 0 8px" }}>
-            Dot-based navigation between figures, topics, and framing patterns. Each node sized and colored by activity.
-          </p>
-            <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
-              <li>Connections mapped from shared topics and framing similarity.</li>
-              <li>Navigation, not analysis. Explore, don&rsquo;t interpret.</li>
-            </ul>
-        </Card>
-
         <Card title="Split Microscope™: Variance Strip">
           <p className="p" style={{ margin: "0 0 8px" }}>
             Detailed variance breakdown inside Lens Lab&trade; when independent systems disagree.
@@ -301,7 +290,7 @@ export default function MethodologyPage() {
 
         <Card title="Narrative Sync™: Cross-Figure Framing Convergence">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            Detects when independent figures begin using similar framing simultaneously. B2B exclusive.
+            Detects when independent figures begin using similar framing simultaneously.
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Measures framing similarity across figures within defined time windows.</li>
@@ -321,7 +310,7 @@ export default function MethodologyPage() {
             return <div key={i} style={{ position: "absolute", left: `${t * 100}%`, bottom: 0, width: 1, height: i % 5 === 0 ? 5 : 2, background: `rgba(45,212,191,${alpha.toFixed(3)})` }} />;
           })}
         </div>
-        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="SIGINT-METH-02 // SURFACES" />
+        <div className="classification-stamp" style={{ position: "absolute", bottom: 4, right: 0 }} data-stamp="METH-02 // SURFACES" />
       </div>
       <div style={{ height: 24 }} />
 
@@ -350,7 +339,7 @@ export default function MethodologyPage() {
 
         <Card title="Baseline Delta">
           <p className="p" style={{ margin: "0 0 8px" }}>
-            How far a statement&rsquo;s signal metrics deviate from the figure&rsquo;s historical average.
+            How far today&rsquo;s score deviates from the figure&rsquo;s rolling average.
           </p>
             <ul className="p" style={{ margin: 0, paddingLeft: 18 }}>
               <li>Each metric measured against the figure&rsquo;s own rolling average.</li>
@@ -407,8 +396,8 @@ export default function MethodologyPage() {
       <div style={{ height: 18 }} />
 
       <p className="p">
-        This methodology page is a high-level description of the measurement surfaces. Specific feature limits and
-        subscription details are listed on the <Link href="/pricing/">Pricing</Link> page.
+        This methodology page is a high-level description of the measurement surfaces. Baseline is free. Details are on
+        the <Link href="/pricing/">Free</Link> page.
       </p>
     </section>
   );

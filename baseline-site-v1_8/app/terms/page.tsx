@@ -4,19 +4,25 @@ import { LegalDoc } from "@/components/LegalDoc";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Baseline Terms of Service. Acceptable use, subscriptions, and dispute terms for the speech-measurement instrument. Observational analysis, not a fact-check.",
-  alternates: { canonical: `${site.url}/terms/` }
+  description: "Baseline Terms of Service. Acceptable use and dispute terms for the free speech-measurement app. Observational analysis, not a fact-check.",
+  alternates: { canonical: `${site.url}/terms/` },
+  openGraph: {
+    title: "Terms of Service | Baseline",
+    description: "Baseline Terms of Service. Acceptable use and dispute terms for the free speech-measurement app. Observational analysis, not a fact-check.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
+  },
 };
 
 export default function TermsPage() {
   return (
     <LegalDoc
       title="BASELINE | Terms of Service"
-      effectiveDate="February 8, 2026"
-      lastUpdated="February 8, 2026"
+      effectiveDate="November 17, 2026"
+      lastUpdated="November 17, 2026"
       summary={[
-        "Covers acceptable use, subscription terms, and dispute resolution.",
+        "Baseline is free. There is nothing to buy.",
         "Baseline is a measurement tool, not a verification service.",
+        "Covers acceptable use. Disputes go to the state courts in Coos County, Oregon, and small claims court is allowed.",
         "Observational analysis only. Not a fact-check."
       ]}
     >
@@ -24,19 +30,19 @@ export default function TermsPage() {
         Observational analysis only. Not a fact-check.
       </p>
 
-      {/* ── 1. Acceptance ─────────────────────────────────────── */}
       <h2 className="h3">1. Acceptance of Terms</h2>
       <p className="p">
-        By accessing or using the Baseline mobile application (the &ldquo;App&rdquo;), you agree to be bound by these
-        Terms of Service (&ldquo;Terms&rdquo;). If you do not agree, do not use the App.
+        By using the Baseline mobile application (the &ldquo;App&rdquo;), you agree to these Terms of Service
+        (&ldquo;Terms&rdquo;) with Winters Code of Bandon, Oregon (&ldquo;Winters Code,&rdquo; &ldquo;we,&rdquo;
+        &ldquo;us&rdquo;), which makes the App. Baseline is the name of the App. If you do not agree, do not use the
+        App.
       </p>
 
-      {/* ── 2. Service Description ────────────────────────────── */}
       <h2 className="h3">2. Service Description</h2>
       <p className="p">
-        Baseline is an observational measurement tool for public speech. The App processes public-figure statements
-        through multiple independent AI systems and displays the outputs side-by-side with source context and a
-        separate consensus layer.
+        Baseline is an observational measurement tool for public speech. The App processes public statements through
+        multiple independent AI systems and shows the outputs side by side with source context and a separate
+        consensus layer.
       </p>
       <p className="p">
         <strong>Baseline is not a fact-checking service, a verification service, or a news source.</strong> Outputs
@@ -44,170 +50,117 @@ export default function TermsPage() {
         judgments, or provide veracity determinations.
       </p>
 
-      {/* ── 3. Eligibility ────────────────────────────────────── */}
-      <h2 className="h3">3. Eligibility</h2>
+      <h2 className="h3">3. Free to Use</h2>
       <p className="p">
-        You must be at least 13 years of age (or the applicable minimum age in your jurisdiction) to use the App.
-        By using the App, you represent that you meet this requirement.
+        The App is free. It has no advertising, no subscriptions, and no purchases. Baseline is meant to be open
+        source. If that changes how the App is licensed, these Terms will say so.
       </p>
 
-      {/* ── 4. Account Registration ───────────────────────────── */}
-      <h2 className="h3">4. Account Registration</h2>
+      <h2 className="h3">4. Eligibility</h2>
       <p className="p">
-        Certain features require account registration. You are responsible for maintaining the security of your
-        account credentials and for all activities that occur under your account. You agree to provide accurate
-        information and to notify us promptly of any unauthorized use.
-      </p>
-      <p className="p">
-        Guest access is available with limited functionality. Authentication is triggered at the first personal
-        action (e.g., creating an annotation or managing a subscription).
+        You must be at least 13 years of age (or the applicable minimum age in your jurisdiction) to use the App. By
+        using the App, you say you meet this requirement.
       </p>
 
-      {/* ── 5. Subscription Plans ─────────────────────────────── */}
-      <h2 className="h3">5. Subscription Plans</h2>
-      <p className="p">The App offers four tiers:</p>
-      <ul className="p">
-        <li>
-          <strong>Core (Free):</strong> Ad-supported with limited features. Includes The Receipt&trade; (3 matches),
-          Signal Pulse&trade;, Framing Fingerprint&trade;, Congressional Vote Record, consensus view, signal metrics,
-          variance detection, feed browse, statement detail, trending topics, and source attribution.
-          Advertisements appear on the Today Feed and Search surfaces only, never on analysis surfaces.
-        </li>
-        <li>
-          <strong>Pro ($7.99/month or $59.99/year):</strong> Ad-free. Includes all Core features plus
-          The Receipt&trade; (5 matches), Framing Radar&trade;, Lens Lab&trade;, Crossfire&trade;,
-          Constellation Nav&trade;, individual lens views, Historical Trends, feed sorting, favorites,
-          long-press peek preview, double-tap annotate, export &amp; share with watermark, digest notifications,
-          and Annotations (100 limit). Launch price: $5.99/mo for the first 60 days, then $7.99/mo.
-        </li>
-        <li>
-          <strong>Pro+ ($24.99/month or $199.99/year):</strong> All Pro features plus
-          The Receipt&trade; (unlimited matches), Provision Drift&trade;, Split Microscope&trade;,
-          Intersections Panel&trade;, Declassified Dossier&trade;, Bill Overview &amp; Notable Provisions,
-          Drift Cascade Waterfall, Drift League Table, Topic Heatmap, Divergence Sort, Shift Alert,
-          advanced notifications (per-figure, per-topic), and Annotations (500 limit).
-        </li>
-        <li>
-          <strong>B2B (annual-only, Contact Us):</strong> All Pro+ features plus
-          Narrative Sync&trade;, Delta Threshold Alerts, Annotation Delta Cards,
-          Annotations (1,000 limit), 10,000 requests/hour, custom terms, and a 30-day pilot period.
-          Family Sharing available on iOS for consumer tiers.
-        </li>
-      </ul>
+      <h2 className="h3">5. Accounts</h2>
       <p className="p">
-        Pro includes a 7-day free trial. Subscriptions renew automatically unless cancelled at least
-        24 hours before the end of the current period. Payment is charged to your App Store or Google Play account.
-        You can manage or cancel your subscription in your App Store / Google Play account settings.
+        You can use the App without an account. An account is needed to sync follows and alerts. You are responsible
+        for keeping your sign-in details safe and for activity under your account. Give accurate information and tell
+        us promptly about unauthorized use. You can delete your account in the App at any time.
       </p>
 
-      {/* ── 6. Acceptable Use ─────────────────────────────────── */}
       <h2 className="h3">6. Acceptable Use</h2>
       <p className="p">You agree not to:</p>
       <ul className="p">
         <li>Attempt to gain unauthorized access to the App, its servers, or any related systems.</li>
         <li>Use the App to harass, defame, or threaten any person.</li>
-        <li>Misrepresent App outputs as independent verification, fact-checks, or authoritative judgments.</li>
-        <li>Scrape, crawl, or use automated means to access the App beyond normal usage patterns.</li>
-        <li>Reverse-engineer, decompile, or disassemble any part of the App.</li>
-        <li>Circumvent rate limits, feature gates, or subscription restrictions.</li>
+        <li>Present App outputs as independent verification, fact-checks, or authoritative judgments.</li>
+        <li>Scrape, crawl, or use automated means to access the App beyond normal usage.</li>
+        <li>Circumvent rate limits or other technical protections.</li>
       </ul>
 
-      {/* ── 7. Intellectual Property ──────────────────────────── */}
       <h2 className="h3">7. Intellectual Property</h2>
       <p className="p">
-        All content, features, and functionality of the App (including but not limited to text, graphics, logos,
-        icons, software, and the compilation thereof) are the property of Baseline or its licensors and are protected
-        by copyright, trademark, and other intellectual property laws.
+        The App&rsquo;s content, design, and software are the property of Winters Code or its licensors, except where an
+        open source license says otherwise for specific code. Public statements shown in the App belong to their
+        speakers and sources and are shown with attribution.
       </p>
       <p className="p">
-        &ldquo;Baseline,&rdquo; &ldquo;The Receipt&trade;,&rdquo; &ldquo;Framing Radar&trade;,&rdquo; &ldquo;Lens Lab&trade;,&rdquo;
-        &ldquo;Crossfire&trade;,&rdquo; &ldquo;Signal Pulse&trade;,&rdquo; &ldquo;Framing Fingerprint&trade;,&rdquo;
-        &ldquo;Constellation Nav&trade;,&rdquo; &ldquo;Provision Drift&trade;,&rdquo; &ldquo;Split Microscope&trade;,&rdquo;
-        &ldquo;Intersections Panel&trade;,&rdquo; &ldquo;Declassified Dossier&trade;,&rdquo; &ldquo;Narrative Sync&trade;,&rdquo;
-        and associated logos are trademarks of Baseline. You may not use these marks without prior written consent.
+        &ldquo;Baseline,&rdquo; &ldquo;The Receipt&trade;,&rdquo; &ldquo;Framing Radar&trade;,&rdquo; &ldquo;Lens
+        Lab&trade;,&rdquo; &ldquo;Crossfire&trade;,&rdquo; &ldquo;Signal Pulse&trade;,&rdquo; &ldquo;Framing
+        Fingerprint&trade;,&rdquo; &ldquo;Constellation Nav&trade;,&rdquo; &ldquo;Provision Drift&trade;,&rdquo;
+        &ldquo;Split Microscope&trade;,&rdquo; &ldquo;Intersections Panel&trade;,&rdquo; &ldquo;Declassified
+        Dossier&trade;,&rdquo; &ldquo;Narrative Sync&trade;,&rdquo; and associated logos are trademarks of Winters Code.
+        Do not use these marks without written consent.
       </p>
 
-      {/* ── 7a. Shared Content & Watermarks ────────────────────── */}
-      <h2 className="h3">7a. Shared Content &amp; Watermarks</h2>
+      <h2 className="h3">8. Shared Content</h2>
       <p className="p">
-        Content shared or exported from the App may include a persistent Baseline watermark identifying the source
-        and tier of the exporting user. You may not remove, alter, or obscure this watermark. Shared content
-        generates public deep links that remain accessible and are not revocable by the sharing user.
+        Content you share or export from the App may carry a Baseline watermark. Do not remove or obscure it. Shared
+        links are public and may stay reachable.
       </p>
 
-      {/* ── 7b. AI-Generated Summaries ─────────────────────────── */}
-      <h2 className="h3">7b. AI-Generated Summaries</h2>
+      <h2 className="h3">9. AI-Generated Summaries</h2>
       <p className="p">
-        The App produces AI-generated observational summaries of public speech. These summaries are machine-generated
-        measurements, not editorial content. You may not represent AI-generated summaries as human-authored analysis,
-        independent verification, or authoritative determinations of any kind.
+        The App produces AI-generated observational summaries of public speech. They are machine-generated
+        measurements, not editorial content. Do not present them as human-authored analysis, independent
+        verification, or authoritative determinations of any kind.
       </p>
 
-      {/* ── 8. Disclaimers ────────────────────────────────────── */}
-      <h2 className="h3">8. Disclaimers</h2>
+      <h2 className="h3">10. Disclaimers</h2>
       <p className="p">
         THE APP IS PROVIDED &ldquo;AS IS&rdquo; AND &ldquo;AS AVAILABLE&rdquo; WITHOUT WARRANTIES OF ANY KIND,
-        EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-        PURPOSE, AND NON-INFRINGEMENT.
+        EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
+        NON-INFRINGEMENT.
       </p>
       <p className="p">
         AI system outputs are observational measurements that may vary between systems and over time. Variance
-        between systems is expected behavior, not a defect. You should not rely on App outputs as the sole basis for
-        any decision.
+        between systems is expected, not a defect. Do not rely on App outputs as the sole basis for any decision.
       </p>
 
-      {/* ── 9. Limitation of Liability ────────────────────────── */}
-      <h2 className="h3">9. Limitation of Liability</h2>
+      <h2 className="h3">11. Limitation of Liability</h2>
       <p className="p">
-        TO THE MAXIMUM EXTENT PERMITTED BY LAW, BASELINE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
-        CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR
-        RELATED TO YOUR USE OF THE APP, REGARDLESS OF THE THEORY OF LIABILITY.
+        TO THE MAXIMUM EXTENT PERMITTED BY LAW, WINTERS CODE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+        CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR RELATED
+        TO YOUR USE OF THE APP, REGARDLESS OF THE THEORY OF LIABILITY. BECAUSE THE APP IS FREE, WINTERS CODE&rsquo;S
+        TOTAL LIABILITY SHALL NOT EXCEED ONE HUNDRED U.S. DOLLARS (US $100).
       </p>
 
-      {/* ── 10. Indemnification ───────────────────────────────── */}
-      <h2 className="h3">10. Indemnification</h2>
+      <h2 className="h3">12. Indemnification</h2>
       <p className="p">
-        You agree to indemnify and hold harmless Baseline and its officers, directors, employees, and agents from any
-        claims, liabilities, damages, losses, and expenses (including reasonable attorneys&rsquo; fees) arising out of
-        or related to your violation of these Terms or your use of the App.
+        You agree to indemnify and hold harmless Winters Code from claims, liabilities, damages, losses,
+        and expenses (including reasonable attorneys&rsquo; fees) arising out of your violation of these Terms or your
+        use of the App.
       </p>
 
-      {/* ── 11. Takedown Requests ─────────────────────────────── */}
-      <h2 className="h3">11. Takedown Requests</h2>
+      <h2 className="h3">13. Corrections and Takedown Requests</h2>
       <p className="p">
-        Public figures or their authorized representatives may submit takedown or correction requests to{" "}
-        <a href={`mailto:${site.contact.takedown}`}>{site.contact.takedown}</a>. We will review requests in
-        accordance with our content policies and applicable law.
+        Public figures, their representatives, and anyone else may report an error or request a correction or takedown
+        at <a href={`mailto:${site.contact.support}`}>{site.contact.support}</a>. We review requests under our content
+        policies and applicable law.
       </p>
 
-      {/* ── 12. Dispute Resolution ────────────────────────────── */}
-      <h2 className="h3">12. Dispute Resolution</h2>
+      <h2 className="h3">14. Dispute Resolution</h2>
       <p className="p">
-        Any dispute arising from these Terms or your use of the App shall be resolved through binding arbitration
-        in accordance with the rules of the American Arbitration Association, except that either party may seek
-        injunctive or equitable relief in any court of competent jurisdiction. Class action lawsuits and class-wide
-        arbitrations are not permitted.
+        Any dispute arising from these Terms or your use of the App shall be brought in the state courts located in
+        Coos County, Oregon, and you and Winters Code consent to the jurisdiction and venue of those courts. Either
+        party may bring an eligible claim in small claims court. Nothing in these Terms requires arbitration.
       </p>
 
-      {/* ── 13. Governing Law ─────────────────────────────────── */}
-      <h2 className="h3">13. Governing Law</h2>
+      <h2 className="h3">15. Governing Law</h2>
       <p className="p">
         These Terms are governed by the laws of the State of Oregon, without regard to conflict of law principles.
       </p>
 
-      {/* ── 14. Changes to Terms ──────────────────────────────── */}
-      <h2 className="h3">14. Changes to Terms</h2>
+      <h2 className="h3">16. Changes to Terms</h2>
       <p className="p">
-        We may update these Terms from time to time. We will notify you of material changes by updating the
-        &ldquo;Last Updated&rdquo; date and, where appropriate, providing notice through the App. Your continued use
-        of the App after changes constitutes acceptance.
+        We may update these Terms. We will update the &ldquo;Last Updated&rdquo; date and, where it matters, give
+        notice in the App. Continued use after a change means you accept it.
       </p>
 
-      {/* ── 15. Contact ───────────────────────────────────────── */}
-      <h2 className="h3">15. Contact</h2>
+      <h2 className="h3">17. Contact</h2>
       <p className="p">
-        For questions about these Terms, contact us at{" "}
-        <a href={`mailto:${site.contact.legal}`}>{site.contact.legal}</a>.
+        Questions about these Terms: <a href={`mailto:${site.contact.support}`}>{site.contact.support}</a>.
       </p>
     </LegalDoc>
   );

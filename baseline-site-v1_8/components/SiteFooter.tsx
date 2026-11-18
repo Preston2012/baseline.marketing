@@ -47,7 +47,7 @@ export function SiteFooter() {
             {[
               { href: "/features/", label: "Features" },
               { href: "/methodology/", label: "Methodology" },
-              { href: "/pricing/", label: "Pricing" },
+              { href: "/pricing/", label: "Free" },
               { href: "/what-we-dont-do/", label: "What We Don\u2019t Do" },
               { href: "/ethos/", label: "Ethos" },
               { href: "/support/", label: "Support" },
@@ -63,8 +63,10 @@ export function SiteFooter() {
                 href={link.href}
                 style={{
                   minHeight: 44,
+                  minWidth: 44,
                   display: "inline-flex",
                   alignItems: "center",
+                  justifyContent: "center",
                   padding: "0 4px",
                 }}
               >
@@ -77,7 +79,7 @@ export function SiteFooter() {
         <div className="small" style={{ color: "var(--sub-dim)", marginTop: 4, lineHeight: 1.8 }}>
           Baseline™, The Receipt™, Framing Radar™, Lens Lab™, Crossfire™, Signal Pulse™,
           Framing Fingerprint™, Constellation Nav™, Provision Drift™, Split Microscope™,
-          Intersections Panel™, Declassified Dossier™, and Narrative Sync™ are trademarks of Baseline.
+          Intersections Panel™, Declassified Dossier™, and Narrative Sync™ are trademarks of Winters Code.
         </div>
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 4 }}>

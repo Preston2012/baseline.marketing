@@ -10,21 +10,12 @@ const SECTIONS = [
   { id: "tools", label: "Tools" },
 ];
 
-const TIER_OPTIONS = ["ALL", "CORE", "PRO", "PRO+"] as const;
-type TierFilter = (typeof TIER_OPTIONS)[number];
-
 const NAV_TOP = 56; // main nav height
 
 /** I5: Fixed section nav with scroll spy.
- *  I11: Tier filter pills.
  *  Uses position:fixed to avoid ancestor overflow issues. */
-export function FeaturesNav({
-  onTierChange,
-}: {
-  onTierChange: (tier: TierFilter) => void;
-}) {
+export function FeaturesNav() {
   const [active, setActive] = useState("signals");
-  const [tier, setTier] = useState<TierFilter>("ALL");
   const [pinned, setPinned] = useState(false);
   const [navH, setNavH] = useState(0);
   const sentinelRef = useRef<HTMLDivElement>(null);
@@ -141,45 +132,16 @@ export function FeaturesNav({
                     active === s.id
                       ? "2px solid var(--teal)"
                       : "2px solid transparent",
-                  paddingBottom: 4,
-                  padding: "0 0 4px",
+                  padding: "0 6px",
+                  minHeight: 44,
+                  minWidth: 44,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   transition: "color 150ms, border-color 150ms",
                 }}
               >
                 {s.label}
-              </button>
-            ))}
-          </div>
-
-          {/* I11: Tier filter pills */}
-          <div style={{ display: "flex", gap: 6, marginTop: 4 }}>
-            {TIER_OPTIONS.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => {
-                  setTier(t);
-                  onTierChange(t);
-                }}
-                style={{
-                  background:
-                    tier === t ? "rgba(45, 212, 191, 0.12)" : "transparent",
-                  border:
-                    tier === t
-                      ? "1px solid rgba(45, 212, 191, 0.3)"
-                      : "1px solid var(--border_inactive)",
-                  borderRadius: 6,
-                  padding: "4px 10px",
-                  fontSize: 10,
-                  fontFamily: "var(--font-jetbrains, monospace), monospace",
-                  fontWeight: 500,
-                  letterSpacing: "0.1em",
-                  color: tier === t ? "var(--teal)" : "var(--sub)",
-                  cursor: "pointer",
-                  transition: "all 150ms",
-                }}
-              >
-                {t}
               </button>
             ))}
           </div>
@@ -188,5 +150,3 @@ export function FeaturesNav({
     </>
   );
 }
-
-export type { TierFilter };

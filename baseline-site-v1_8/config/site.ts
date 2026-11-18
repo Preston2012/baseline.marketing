@@ -1,3 +1,7 @@
+/** Shown at the top of every policy page until Preston approves the text.
+ *  Set to an empty string to remove it everywhere. */
+export const LEGAL_DRAFT_NOTICE = "";
+
 export const site = {
   name: "Baseline",
   url: "https://www.baseline.marketing",
@@ -9,10 +13,6 @@ export const site = {
   social: {},
   contact: {
     support: "support@baseline.marketing",
-    privacy: "privacy@baseline.marketing",
-    legal: "legal@baseline.marketing",
-    takedown: "takedown@baseline.marketing",
-    press: "press@baseline.marketing",
-    sales: "sales@baseline.marketing"
+    press: "support@baseline.marketing"
   }
 } as const;

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "What We Don\u2019t Do | Baseline",
     description:
       "Baseline measures public speech. It does not rate, score, editorialize, or tell you what to think.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Baseline" }],
   },
 };
 
@@ -66,8 +67,8 @@ export default function WhatWeDontDoPage() {
           <SecondaryLinkButton href="/methodology/" ariaLabel="View methodology">
             How we measure
           </SecondaryLinkButton>
-          <SecondaryLinkButton href="/pricing/" ariaLabel="View pricing">
-            View pricing
+          <SecondaryLinkButton href="/pricing/" ariaLabel="Baseline is free">
+            Free, no ads
           </SecondaryLinkButton>
         </div>
 
